@@ -1,19 +1,20 @@
 package sha3_pkg;
 
     // 1. 定義 Keccak 的基本維度
-    localparam int LANE_W = 64;
+    localparam int LANE_W  = 64;
     localparam int ROW_NUM = 5;
     localparam int COL_NUM = 5;
     
     // 2. 定義 3D Array 型別，完美對應 25 個 Lane
-    // 未來所有模組的 I/O 只要寫 input state_t data_in，就不怕接錯
-    typedef logic [LANE_W-1:0] state_t [COL_NUM-1:0][ROW_NUM-1:0];
+    // 採用 [0 : COL_NUM-1] 正向索引，方便寫 (x+1) mod 5 等模除運算
+    // 未來所有模組的 I/O 只要宣告 state_t，即可防止腳位長度接錯
+    typedef logic [LANE_W-1:0] state_t [0 : COL_NUM-1][0 : ROW_NUM-1];
     
     // 3. 定義一整個 Row (5個 Lane, 共 320 bits)，Chi Unit 會用到
-    typedef logic [LANE_W-1:0] row_t [COL_NUM-1:0];
+    typedef logic [LANE_W-1:0] row_t [0 : COL_NUM-1];
 
     // 4. 定義一整個 Column (5個 Lane, 共 320 bits)，Theta Unit 會用到
-    typedef logic [LANE_W-1:0] col_t [ROW_NUM-1:0];
+    typedef logic [LANE_W-1:0] col_t [0 : ROW_NUM-1];
 
     // 5. 定義大腦的狀態機 Enum (FSM States)
     typedef enum logic [2:0] {
@@ -25,14 +26,25 @@ package sha3_pkg;
         ST_DONE      = 3'b101
     } top_fsm_state_e;
 
-    // 6. 定義 24 個 Round Constants
+    // 6. 定義 24 個 Round Constants (FIPS 202 標準規範，Iota 步驟使用)
     parameter logic [63:0] RC [0:23] = '{
         64'h0000000000000001, 64'h0000000000008082, 64'h800000000000808A, 64'h8000000080008000,
         64'h000000000000808B, 64'h0000000080000001, 64'h8000000080008081, 64'h8000000000008009,
         64'h000000000000008A, 64'h0000000000000088, 64'h0000000080008009, 64'h000000008000000A,
         64'h000000008000808B, 64'h800000000000008B, 64'h8000000000008089, 64'h8000000000008003,
-        64'h8000000000008002, 64'h8000000000000080, 64'h000000000000800A, 64'h800000008000000A,
-        64'h8000000080008081, 64'h8000000000008080, 64'h0000000080000001, 64'h8000000080008008
+        64'h8000000000008002, 64'h8000000000000080, 64'h000000000000808A, 64'h800000008000000A,
+        64'h8000000080008081, 64'h8000000000008080, 64'h0000000080000001, 64'h8000000080008088
+    };
+
+    // 7. 定義 Rho 步驟專用的 25 個位移偏移量 (Rotation Offsets) [x][y]
+    // 根據 FIPS 202 規範，代表各個 Lane 向左循環位移 (Circular Shift) 的位數
+    parameter int RHO_OFFSET [0:4][0:4] = '{
+        // y=0    y=1    y=2    y=3    y=4
+        '{   0,    36,     3,    41,    18}, // x=0
+        '{   1,    44,    10,    45,     2}, // x=1
+        '{  62,     6,    43,    15,    61}, // x=2
+        '{  28,    55,    25,    21,    56}, // x=3
+        '{  27,    20,    39,     8,    14}  // x=4
     };
 
 endpackage : sha3_pkg
