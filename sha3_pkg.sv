@@ -67,12 +67,10 @@ package sha3_pkg;
         THETA_UPDATE = 2'b11   // Cycle 7~11: 逐列更新 State 並在最後拉高 done
     } theta_state_e;
 
-    // 9. 新增：Chi 多週期微狀態機 Enum (支援 Row-Serial 排程)
-    typedef enum logic [1:0] {
-        CHI_IDLE = 2'b00,      // 等待 start 訊號
-        CHI_ROW_0_1 = 2'b01,   // 處理 Row 0 與 Row 1
-        CHI_ROW_2_3 = 2'b10,   // 處理 Row 2 與 Row 3
-        CHI_ROW_4   = 2'b11    // 處理 Row 4 並拉高 done
+    // 8. 新增：Chi 狀態機 (搭配 cnt 進行精準 5 週期 Row-Serial 排程)
+    typedef enum logic {
+        CHI_IDLE = 1'b0,  // 等待 start 訊號
+        CHI_CALC = 1'b1   // 進行 5 個周期的 Row 計算 (cnt = 0 ~ 4)
     } chi_state_e;
     
     // 10. 新增：微週期交握排程器 Enum (Round Scheduler)
@@ -82,28 +80,4 @@ package sha3_pkg;
         SCHED_RHO_PI = 2'b10,  // (0 Cycle) 純連線過渡狀態
         SCHED_CHI   = 2'b11    // 啟動 Chi 並等待 chi_done
     } round_sched_state_e;
-
-    // 11. 新增：Output Formatter (Squeeze) 多週期微狀態機 Enum
-    // 對應 sha3_output_formatter.sv，負責把 25 個 Lane 中屬於 rate 區段
-    // 的部分，依 Keccak lane 線性化順序 (z = x + 5y) 逐 word 輸出。
-    typedef enum logic [1:0] {
-        SQZ_IDLE = 2'b00,  // 等待 ctrl_fsm 的 start (squeeze_en)
-        SQZ_LO   = 2'b01,  // 輸出目前 Lane 的低 32 bits
-        SQZ_HI   = 2'b10,  // 輸出目前 Lane 的高 32 bits，Lane index + 1
-        SQZ_DONE = 2'b11   // OUT_LANE_NUM 個 Lane 輸出完畢，拉高 done
-    } squeeze_state_e;
-
-    // 12. 新增：SHA3-256 Squeeze 輸出相關參數
-    // 目前僅支援 SHA3-256 固定長度輸出（§13 建議規格：SHA3-256 first）。
-    // 未來若要擴充 SHAKE，OUT_BITS 需改為可變長度並新增對應暫存器。
-    localparam int OUT_BITS     = 256;                // SHA3-256 輸出長度
-    localparam int OUT_LANE_NUM = OUT_BITS / LANE_W;  // 需輸出的 Lane 數 = 4
-    localparam int OUT_WORD_W   = 32;                 // 輸出介面寬度 (32-bit)，對齊 8/32-bit streaming interface
-
-    // 13. 新增：效能計數器 (sha3_perf_counter.sv) 相關參數
-    // 純觀測用途，不可回寫 state 或影響 FSM 判斷；用來量化極低瞬間功耗的證據
-    // （對應 cycles_per_block / active_lane_banks_per_round 等量測指標）。
-    localparam int PERF_CNT_W = 32;  // cycle_count、lane_toggle_count 計數器寬度
-    localparam int PERM_CNT_W = 16;  // perm_count（完整 24-round permutation 次數）計數器寬度
-
 endpackage : sha3_pkg
