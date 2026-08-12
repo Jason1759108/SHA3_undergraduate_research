@@ -62,7 +62,7 @@ module keccak_chi_row(
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             out_state <= '{default: '0};
-            done      <= 1 meb0;
+            done      <= 1'b0;
         end else begin
             case (s)
                 CHI_IDLE: begin

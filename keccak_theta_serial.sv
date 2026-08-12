@@ -78,42 +78,42 @@ module keccak_theta_serial (
     // =========================================================================
     // Block 3: 資料路徑與輸出運算
     // =========================================================================
-        always_ff @(posedge clk or negedge rst_n) begin
-            if (!rst_n) begin
-                out_state <= '{default: '0};
-                done      <= 1'b0;
-                C         <= '{default: '0};
-                D         <= '{default: '0};
-            end else begin
-                case (s)
-                    THETA_IDLE: begin
-                        done <= 1'b0; 
-                    end
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            out_state <= '{default: '0};
+            done      <= 1'b0;
+            C         <= '{default: '0};
+            D         <= '{default: '0};
+        end else begin
+            case (s)
+                THETA_IDLE: begin
+                    done <= 1'b0; 
+                end
 
-                    THETA_CALC_C: begin
-                        C[cnt] <= in_state[cnt][0] ^ 
-                                in_state[cnt][1] ^ 
-                                in_state[cnt][2] ^ 
-                                in_state[cnt][3] ^ 
-                                in_state[cnt][4];
+                THETA_CALC_C: begin
+                    C[cnt] <= in_state[cnt][0] ^ 
+                            in_state[cnt][1] ^ 
+                            in_state[cnt][2] ^ 
+                            in_state[cnt][3] ^ 
+                            in_state[cnt][4];
+                end
+                
+                THETA_CALC_D: begin
+                    for (int x = 0; x < COL_NUM; x++) begin
+                        D[x] <= C[left_table[x]] ^ {C[right_table[x]][LANE_W - 2 : 0], C[right_table[x]][LANE_W - 1]};
                     end
-                    
-                    THETA_CALC_D: begin
-                        for (int x = 0; x < COL_NUM; x++) begin
-                            D[x] <= C[left_table[x]] ^ {C[right_table[x]][LANE_W - 2 : 0], C[right_table[x]][LANE_W - 1]};
-                        end
+                end
+                
+                THETA_UPDATE: begin
+                    for (int y = 0; y < 5; y++) begin
+                        out_state[cnt][y] <= in_state[cnt][y] ^ D[cnt];
                     end
-                    
-                    THETA_UPDATE: begin
-                        for (int y = 0; y < 5; y++) begin
-                            out_state[cnt][y] <= in_state[cnt][y] ^ D[cnt];
-                        end
-                        if (cnt == 3'd4) begin
-                            done <= 1'b1; 
-                        end
+                    if (cnt == 3'd4) begin
+                        done <= 1'b1; 
                     end
-                endcase
-            end
+                end
+            endcase
         end
+    end
 
 endmodule

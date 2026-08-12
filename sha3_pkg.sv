@@ -67,7 +67,7 @@ package sha3_pkg;
         THETA_UPDATE = 2'b11   // Cycle 7~11: 逐列更新 State 並在最後拉高 done
     } theta_state_e;
 
-    // 8. 新增：Chi 狀態機 (搭配 cnt 進行精準 5 週期 Row-Serial 排程)
+    // 9. 新增：Chi 狀態機 (搭配 cnt 進行精準 5 週期 Row-Serial 排程)
     typedef enum logic {
         CHI_IDLE = 1'b0,  // 等待 start 訊號
         CHI_CALC = 1'b1   // 進行 5 個周期的 Row 計算 (cnt = 0 ~ 4)
@@ -80,4 +80,11 @@ package sha3_pkg;
         SCHED_RHO_PI = 2'b10,  // (0 Cycle) 純連線過渡狀態
         SCHED_CHI   = 2'b11    // 啟動 Chi 並等待 chi_done
     } round_sched_state_e;
+
+    // 11. 擠出階段
+    typedef enum logic [1:0] {
+        SQZ_IDLE = 2'b00,
+        SQZ_RUN  = 2'b01,
+        SQZ_DONE = 2'b10
+    } sqz_state_e;
 endpackage : sha3_pkg
