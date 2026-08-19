@@ -74,11 +74,15 @@ package sha3_pkg;
     } chi_state_e;
     
     // 10. 新增：微週期交握排程器 Enum (Round Scheduler)
-    typedef enum logic [1:0] {
-        SCHED_IDLE  = 2'b00,   // 等待頂層 FSM 的 start_process
-        SCHED_THETA = 2'b01,   // 啟動 Theta 並等待 theta_done
-        SCHED_RHO_PI = 2'b10,  // (0 Cycle) 純連線過渡狀態
-        SCHED_CHI   = 2'b11    // 啟動 Chi 並等待 chi_done
+    typedef enum logic [2:0] {
+        SCHED_IDLE         = 3'b000,   // 等待頂層 FSM 的 start_process
+        SCHED_THETA_START  = 3'b001,   // 啟動 Theta 並等待 theta_done
+        SCHED_THETA_WAIT   = 3'b010,   // (0 Cycle) 
+        SCHED_RHO_PI_START = 3'b011,   // 啟動 Rho & Pi 並等待 theta_done
+        SCHED_RHO_PI_WAIT  = 3'b100,   // (0 Cycle)
+        SCHED_CHI_START    = 3'b101,   // 啟動 Chi 並等待 chi_done
+        SCHED_CHI_WAIT     = 3'b110,   // (0 Cycle)
+        SCHED_DONE         = 3'b111    // 拉高 process_done，回到 SCHED_IDLE
     } round_sched_state_e;
 
     // 11. 擠出階段
