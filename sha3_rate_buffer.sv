@@ -7,7 +7,6 @@ module sha3_rate_buffer (
     import sha3_pkg::*;
 
     always_comb begin
-        out_state = in_state;
         // 必須加上 automatic 關鍵字，確保每次觸發組合邏輯時都重設為 0
         automatic int x = 0;
         automatic int y = 0;

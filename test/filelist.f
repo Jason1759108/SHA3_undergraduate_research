@@ -1,11 +1,16 @@
-// 1. Package 必須最先編譯 (往上兩層回到家目錄，再進入 sha3_pkg 資料夾)
-// 如果你的 sha3_pkg.sv 放在 sha3_pkg/01_RTL/ 底下，請用這行：
-../../sha3_pkg/01_RTL/sha3_pkg.sv
-// (如果你的 sha3_pkg.sv 是直接放在 sha3_pkg/ 底下，則改為 ../../sha3_pkg/sha3_pkg.sv)
+sha3_pkg.sv
+sha3_ctrl_fsm.sv
+sha3_pad_domain.sv
+sha3_rate_buffer.sv
+keccak_round_scheduler.sv
+keccak_theta_serial.sv
+keccak_rho_pi_wire.sv
+keccak_chi_row.sv
+keccak_iota.sv
+sha3_output_formatter.sv
+sha3_low_power_gating.sv
+keccak_state_bank.sv
+sha3_ultra_low_power_top.sv
+test/TESTBED.sv
+test/PATTERN.sv
 
-// 2. 接著編譯 Testbench 環境
-../00_TESTBED/TESTBED.sv
-../00_TESTBED/PATTERN.sv
-
-// 3. 最後編譯你的 RTL 設計檔 (因為它需要呼叫上面的 package)
-test.sv

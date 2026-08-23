@@ -5,7 +5,8 @@ module TESTBED;
     logic          clk;
     logic          rst_n;
     logic          in_valid;
-    logic [1079:0] msg_in;
+    logic [1087:0] msg_in;
+    logic          in_last;
     logic [7:0]    msg_length;
     logic          in_ready;
     logic [31:0]   out_data;
@@ -18,6 +19,7 @@ module TESTBED;
         .in_valid   (in_valid),
         .msg_in     (msg_in),
         .msg_length (msg_length),
+        .in_last    (in_last),
         .in_ready   (in_ready),
         .out_data   (out_data),
         .out_valid  (out_valid),
@@ -30,6 +32,7 @@ module TESTBED;
         .in_valid   (in_valid),
         .msg_in     (msg_in),
         .msg_length (msg_length),
+        .in_last    (in_last),
         .in_ready   (in_ready),
         .out_data   (out_data),
         .out_valid  (out_valid),
@@ -37,7 +40,7 @@ module TESTBED;
     );
 
     initial begin
-        $dumpfile("work/sha3_sim.vcd");
+        $dumpfile("sha3_sim.vcd");
         $dumpvars(0, TESTBED);
     end
 

@@ -3,18 +3,19 @@ module keccak_theta_serial (
     input  logic             clk,
     input  logic             rst_n,
     input  logic             start,
+    
     output sha3_pkg::state_t out_state,
-    output logic             done
+    output logic             done,
+    output logic [24:0]      lane_active
 );
-    import sha3_pkg::*; // 引入 pkg 內部變數
+    import sha3_pkg::*;
 
     logic [LANE_W-1:0] C [0 : COL_NUM-1];
     logic [LANE_W-1:0] D [0 : COL_NUM-1];
-
+    
     localparam logic [2:0] left_table  [0 : COL_NUM-1] = '{3'b100, 3'b000, 3'b001, 3'b010, 3'b011};
     localparam logic [2:0] right_table [0 : COL_NUM-1] = '{3'b001, 3'b010, 3'b011, 3'b100, 3'b000};
 
-    
     theta_state_e s, s_next;
     logic [2:0] cnt, cnt_next;
 
@@ -76,20 +77,32 @@ module keccak_theta_serial (
     end
 
     // =========================================================================
-    // Block 3: 資料路徑與輸出運算
+    // Block 3: 純組合邏輯 (0 延遲, 0 狀態暫存器)
+    // =========================================================================
+    always_comb begin
+        lane_active = 25'd0;
+        out_state   = in_state; // 預設 Pass-through
+
+        if (s == THETA_UPDATE) begin
+            for (int y = 0; y < ROW_NUM; y++) begin
+                lane_active[y * COL_NUM + cnt] = 1'b1;
+                
+                out_state[cnt][y] = in_state[cnt][y] ^ D[cnt];
+            end
+        end
+    end
+
+    // =========================================================================
+    // Block 4: 內部 Parity (C, D) 運算暫存與 Done 訊號
     // =========================================================================
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            out_state <= '{default: '0};
-            done      <= 1'b0;
-            C         <= '{default: '0};
-            D         <= '{default: '0};
+            for (int x = 0; x < COL_NUM; x++) begin C[x] <= '0; D[x] <= '0; end
+            done <= 1'b0;
         end else begin
-            case (s)
-                THETA_IDLE: begin
-                    done <= 1'b0; 
-                end
+            done <= (s == THETA_UPDATE) && (cnt == 3'd4); 
 
+            case (s)
                 THETA_CALC_C: begin
                     C[cnt] <= in_state[cnt][0] ^ 
                             in_state[cnt][1] ^ 
@@ -101,15 +114,6 @@ module keccak_theta_serial (
                 THETA_CALC_D: begin
                     for (int x = 0; x < COL_NUM; x++) begin
                         D[x] <= C[left_table[x]] ^ {C[right_table[x]][LANE_W - 2 : 0], C[right_table[x]][LANE_W - 1]};
-                    end
-                end
-                
-                THETA_UPDATE: begin
-                    for (int y = 0; y < 5; y++) begin
-                        out_state[cnt][y] <= in_state[cnt][y] ^ D[cnt];
-                    end
-                    if (cnt == 3'd4) begin
-                        done <= 1'b1; 
                     end
                 end
             endcase

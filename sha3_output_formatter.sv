@@ -9,15 +9,9 @@ module sha3_output_formatter (
 );
     import sha3_pkg::*;
 
-    // 若 sha3_pkg.sv 未包含此 Enum，可直接在此定義
-    typedef enum logic [1:0] {
-        SQZ_IDLE = 2'b00,
-        SQZ_RUN  = 2'b01,
-        SQZ_DONE = 2'b10
-    } sqz_state_e;
-
     sqz_state_e s, s_next;
     logic [2:0] cnt, cnt_next; // 3-bit 計數器 (0 ~ 7) 對應 8 個 Cycles
+    logic start_d;
 
     // =========================================================================
     // Block 1: 時序控制暫存器
@@ -26,9 +20,11 @@ module sha3_output_formatter (
         if (!rst_n) begin
             s   <= SQZ_IDLE;
             cnt <= 3'd0;
+            start_d <= 1'b0;
         end else begin
             s   <= s_next;
             cnt <= cnt_next;
+            start_d <= start;
         end
     end
 
@@ -41,7 +37,7 @@ module sha3_output_formatter (
         
         case (s)
             SQZ_IDLE: begin
-                if (start) begin
+                if (start_d) begin
                     s_next   = SQZ_RUN;
                     cnt_next = 3'd0;        
                 end
@@ -89,6 +85,7 @@ module sha3_output_formatter (
                     end else begin
                         out_data <= in_state[cnt[2:1]][0][63:32];
                     end
+
                 end
 
                 SQZ_DONE: begin

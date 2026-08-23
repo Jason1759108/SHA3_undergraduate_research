@@ -4,4 +4,7 @@
 3. 創建任何需要import pkg的區塊時，一樣先在../ 用build name
 4. 在../name/01_RTL/name.sv參考github上test資料夾裡面test.sv的寫法實作
 5. 在../name/00_TESTBED/參考github上test資料夾裡面的寫法寫filelist跟需要的PATTERN和TESTBED
-6. 然後就可以用我們熟悉的方法跑01，其他還沒研究
+6. 然後就可以用我們熟悉的方法跑01，要用nWave打開vcd可以調filter
+7. 開過vcd就會自動產出fsdb(規避TESTBENCH直接寫語法錯誤)
+8. 跑02要調整tcl，我有把這整個設計用的調整好傳上來
+9. 7 有做過並且02有跑03就可以正常用
