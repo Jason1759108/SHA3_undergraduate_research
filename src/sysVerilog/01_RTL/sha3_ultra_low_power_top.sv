@@ -64,13 +64,19 @@ module sha3_ultra_low_power_top (
 
     logic [1087:0] padded_block;
 
-    logic          in_valid_ff;
-    logic [1087:0] msg_in_ff;
-    logic [7:0]    msg_length_ff;
-    logic          in_last_ff;
+    logic          input_buffer_valid_q;
+    logic [1087:0] input_buffer_data_q;
+    logic [7:0]    input_buffer_length_q;
+    logic          input_buffer_last_q;
+    logic          input_buffer_push;
+    logic          input_buffer_pop;
 
-    assign in_ready   = ctrl_block_ready;
-    assign accept_msg = in_valid_ff && in_ready;
+    // The input register is a one-block buffer.  in_ready describes the
+    // buffer's capacity, while ctrl_block_ready describes the core's capacity.
+    assign in_ready         = !input_buffer_valid_q;
+    assign input_buffer_push = in_valid && in_ready;
+    assign input_buffer_pop  = input_buffer_valid_q && ctrl_block_ready;
+    assign accept_msg        = input_buffer_pop;
 
     assign clear_state = accept_msg && !message_active_q;
 
@@ -94,9 +100,9 @@ module sha3_ultra_low_power_top (
         end
         else begin
             if (accept_msg) begin
-                msg_in_q     <= msg_in_ff;
-                msg_length_q <= msg_length_ff;
-                block_last_q <= in_last_ff;
+                msg_in_q     <= input_buffer_data_q;
+                msg_length_q <= input_buffer_length_q;
+                block_last_q <= input_buffer_last_q;
 
                 extra_pad_active_q <= 1'b0;
                 message_active_q   <= 1'b1;
@@ -263,18 +269,23 @@ module sha3_ultra_low_power_top (
         .cur_state(cur_state)
     );
 
-    always_ff @(posedge clk or negedge rst_n) begin: ff_for_critical_path
+    always_ff @(posedge clk or negedge rst_n) begin : input_buffer_ff
         if (!rst_n) begin
-            in_valid_ff <= '0;
-            msg_in_ff <= '0;
-            msg_length_ff <= '0;
-            in_last_ff <= '0;
+            input_buffer_valid_q  <= 1'b0;
+            input_buffer_data_q   <= '0;
+            input_buffer_length_q <= '0;
+            input_buffer_last_q   <= 1'b0;
         end
         else begin
-            in_valid_ff <= in_valid;
-            msg_in_ff <= msg_in;
-            msg_length_ff <= msg_length;
-            in_last_ff <= in_last;
+            if (input_buffer_push) begin
+                input_buffer_valid_q  <= 1'b1;
+                input_buffer_data_q   <= msg_in;
+                input_buffer_length_q <= msg_length;
+                input_buffer_last_q   <= in_last;
+            end
+            else if (input_buffer_pop) begin
+                input_buffer_valid_q <= 1'b0;
+            end
         end
     end
 
