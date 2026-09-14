@@ -183,6 +183,7 @@ xrun_post:
 
 # Open nWave waveform viewer and load FSDB files
 nWave:
+	vcd2fsdb *.vcd
 	nWave -ssf *.fsdb $(shell [ -f $(RC_FILE) ] && echo "-sswr $(RC_FILE)") &
 
 # Open Verdi for RTL code debugging and waveform linkage
