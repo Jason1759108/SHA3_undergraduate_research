@@ -1,6 +1,9 @@
 `timescale 1ns/1ps
 
-module PATTERN (
+module PATTERN #(
+    // 使用者可直接修改或在實例化時覆寫此參數。
+    parameter real CLK_PERIOD_NS = 10.0
+) (
     output logic          clk,
     output logic          rst_n,
     output logic          in_valid,
@@ -14,13 +17,23 @@ module PATTERN (
     input  logic          hash_done
 );
 
-int pass_count;
+int              pass_count;
+longint unsigned sim_cycle;
 
 // ------------------------------------------------------------------------
-// 時脈產生 (10ns 週期)
+// 時脈產生
 // ------------------------------------------------------------------------
 initial clk = 1'b0;
-always #5 clk = ~clk;
+always #(CLK_PERIOD_NS / 2.0) clk = ~clk;
+
+initial sim_cycle = 0;
+
+always @(posedge clk) begin
+    if (!rst_n)
+        sim_cycle <= 0;
+    else
+        sim_cycle <= sim_cycle + 1;
+end
 
 
 // ------------------------------------------------------------------------
@@ -36,24 +49,46 @@ task automatic run_bytes_case(
     logic [255:0] digest;
 
     int           word_count;
-    int           cycles;
+    int           timeout_cycles;
+    int           timeout_limit;
+    int           permutation_count;
 
     int           total_bytes;
     int           offset;
     int           bytes_remaining;
     int           current_block_len;
 
+    longint unsigned start_cycle;
+    longint unsigned end_cycle;
+    longint unsigned latency_cycles;
+
+    real          elapsed_ns;
+    real          throughput_mbps;
+
+    bit           measurement_started;
+
     logic [1087:0] block_data;
     logic          is_last_block;
 
     begin
 
-        digest      = '0;
-        word_count  = 0;
-        cycles      = 0;
+        digest             = '0;
+        word_count         = 0;
+        timeout_cycles     = 0;
+        start_cycle        = 0;
+        end_cycle          = 0;
+        latency_cycles     = 0;
+        elapsed_ns         = 0.0;
+        throughput_mbps    = 0.0;
+        measurement_started = 1'b0;
 
         total_bytes = msg_bytes.size();
         offset      = 0;
+
+        // SHA3 padding guarantees one final permutation, including empty and
+        // exact-rate messages.
+        permutation_count = (total_bytes / 136) + 1;
+        timeout_limit      = permutation_count * 1000 + 1000;
 
 
         // =================================================================
@@ -73,6 +108,9 @@ task automatic run_bytes_case(
 
             @(posedge clk);
             #1;
+
+            start_cycle         = sim_cycle;
+            measurement_started = 1'b1;
 
             msg_in     = '0;
             msg_length = 8'd0;
@@ -130,6 +168,11 @@ task automatic run_bytes_case(
                 @(posedge clk);
                 #1;
 
+                if (!measurement_started) begin
+                    start_cycle         = sim_cycle;
+                    measurement_started = 1'b1;
+                end
+
                 msg_in     = '0;
                 msg_length = 8'd0;
                 in_last    = 1'b0;
@@ -159,20 +202,30 @@ task automatic run_bytes_case(
 
             end
 
-            cycles++;
+            timeout_cycles++;
 
-            if (cycles > 20000) begin
+            if (timeout_cycles > timeout_limit) begin
 
                 $display(
-                    "[FAIL] %0s timeout waiting for hash_done (cycles=%0d)",
+                    "[FAIL] %0s timeout waiting for hash_done (wait_cycles=%0d, limit=%0d)",
                     case_name,
-                    cycles
+                    timeout_cycles,
+                    timeout_limit
                 );
 
                 $finish;
 
             end
 
+        end
+
+        end_cycle      = sim_cycle;
+        latency_cycles = end_cycle - start_cycle;
+        elapsed_ns     = latency_cycles * CLK_PERIOD_NS;
+
+        if ((total_bytes > 0) && (elapsed_ns > 0.0)) begin
+            throughput_mbps =
+                (total_bytes * 8.0 * 1000.0) / elapsed_ns;
         end
 
 
@@ -219,13 +272,27 @@ task automatic run_bytes_case(
 
         pass_count++;
 
-        $display(
-            "[PASS] %0s (len=%0d bytes, cycles=%0d) digest=%064h",
-            case_name,
-            total_bytes,
-            cycles,
-            digest
-        );
+        if (total_bytes == 0) begin
+            $display(
+                "[PASS] %0s len=%0d bytes latency=%0d cycles time=%0.3f ns throughput=N/A digest=%064h",
+                case_name,
+                total_bytes,
+                latency_cycles,
+                elapsed_ns,
+                digest
+            );
+        end
+        else begin
+            $display(
+                "[PASS] %0s len=%0d bytes latency=%0d cycles time=%0.3f ns throughput=%0.3f Mbps digest=%064h",
+                case_name,
+                total_bytes,
+                latency_cycles,
+                elapsed_ns,
+                throughput_mbps,
+                digest
+            );
+        end
 
         @(negedge clk);
 
@@ -293,7 +360,7 @@ endtask
 
 
 // ------------------------------------------------------------------------
-// 主測試流程 (17 個涵蓋各種邊界條件的 Test Cases)
+// 主測試流程 (17 個功能案例 + 1 個 throughput 案例)
 // ------------------------------------------------------------------------
 initial begin
 
@@ -321,6 +388,10 @@ initial begin
     $display("");
     $display("==================================================");
     $display("   STARTING SHA3-256 MULTI-BLOCK VERIFICATION");
+    $display(
+        "   All following tests use Clock Period = %0.3f ns",
+        CLK_PERIOD_NS
+    );
     $display("==================================================");
     $display("");
 
@@ -473,6 +544,19 @@ initial begin
     run_string_case(
         "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
         256'hf017475e75626680ae0bbd8852bad4dbb00e85a0f9c3f024e70f99f206157ba8
+    );
+
+
+    // ====================================================================
+    // [Throughput] 4096-byte deterministic payload
+    // Byte i = i mod 256. 31 Keccak permutations including final padding.
+    // ====================================================================
+    run_pattern_case(
+        "throughput_4096_bytes",
+        4096,
+        0,
+        8'h00,
+        256'h83ec70ca871e4398e046c14ef4bb9c100187c3e7e36513a3a2ff5ce6ceb4b3ee
     );
 
 
