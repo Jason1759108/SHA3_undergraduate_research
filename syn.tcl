@@ -10,39 +10,55 @@
 set DESIGN "SHA3"
 set TOP_MODULE "sha3_ultra_low_power_top"
 
-set CYCLE 10.0
+if {[info exists env(CLK_PERIOD)]} {
+    set CYCLE $env(CLK_PERIOD)
+} else {
+    set CYCLE 10.0
+}
+
 set INPUT_DLY  [expr 0.5*$CYCLE]
 set OUTPUT_DLY [expr 0.5*$CYCLE]
 
 #======================================================
 # (B) Read RTL Code
 #======================================================
-# (B-1) analyze + elaborate
+
 set hdlin_auto_save_templates TRUE
 
-# 1. 絕對要優先獨立讀取 Package 檔案 (請確認檔名是否正確)
+# Clean previous designs in current DC session
+remove_design -all
+
+# Package first
 analyze -f sverilog "../01_RTL/sha3_pkg.sv"
 
-# 2. 獲取所有的 .sv 檔案，但用迴圈濾掉 package 與 testbench
-set all_rtl_files [glob ../01_RTL/*.sv]
-set syn_files ""
+# Explicit synthesis source list
+set syn_files [list \
+    "../01_RTL/sha3_ctrl_fsm.sv" \
+    "../01_RTL/sha3_pad_domain.sv" \
+    "../01_RTL/sha3_rate_buffer.sv" \
+    "../01_RTL/keccak_round_scheduler.sv" \
+    "../01_RTL/keccak_theta_serial.sv" \
+    "../01_RTL/keccak_rho_pi_wire.sv" \
+    "../01_RTL/keccak_chi_row.sv" \
+    "../01_RTL/keccak_iota.sv" \
+    "../01_RTL/keccak_state_bank.sv" \
+    "../01_RTL/sha3_low_power_gating.sv" \
+    "../01_RTL/sha3_output_formatter.sv" \
+    "../01_RTL/sha3_ultra_low_power_top.sv" \
+]
 
-foreach file $all_rtl_files {
-    # 只要檔名不包含 sha3_pkg.sv 且不包含 TESTBED 就加入清單
-    if {![string match "*sha3_pkg.sv" $file] && ![string match "*TESTBED*" $file]} {
-        lappend syn_files $file
-    }
-}
+# Analyze all synthesizable RTL
+analyze -f sverilog $syn_files
+
+# Elaborate top
 elaborate $TOP_MODULE
-# elaborate $DESIGN
 
-# (B-2) read_sverilog
-# read_sverilog $DESIGN\.v
-
-# (B-3) set current design
 current_design $TOP_MODULE
-#current_design $DESIGN
 link
+
+# Check before optimization
+check_design > Report/${DESIGN}_pre_compile.check
+check_timing  > Report/${DESIGN}_pre_compile.timing
 
 #======================================================
 #  (C) Global Setting
