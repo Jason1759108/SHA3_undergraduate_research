@@ -5,8 +5,8 @@ module sha3_ultra_low_power_top (
     // One input transaction is one 1088-bit (136-byte) rate block.
     input  logic          in_valid,
     input  logic [1087:0] msg_in,
-    input  logic [7:0]    msg_length, // 0..136
-    input  logic          in_last,    // 1 only on the final input block
+    input  logic [7:0]    msg_length,
+    input  logic          in_last,
 
     output logic          in_ready,
     output logic [31:0]   out_data,
@@ -18,17 +18,12 @@ module sha3_ultra_low_power_top (
 
     localparam logic [24:0] ALL_LANES  = 25'h1FFFFFF;
     localparam logic [24:0] RATE_LANES = 25'h001FFFF;
-    localparam logic [24:0] LANE_00    = 25'h000001;
 
-    // Current input block registers.
     logic [1087:0] msg_in_q;
     logic [7:0]    msg_length_q;
     logic          block_last_q;
 
-    // Tracks whether a real message is currently being processed.
     logic          message_active_q;
-
-    // High while the synthetic padding-only block is being processed.
     logic          extra_pad_active_q;
 
     logic          accept_msg;
@@ -37,6 +32,7 @@ module sha3_ultra_low_power_top (
     logic          absorb_en;
     logic          start_process;
     logic          squeeze_start;
+    logic          formatter_start_q;
     logic          process_done;
     logic          formatter_done;
 
@@ -53,6 +49,7 @@ module sha3_ultra_low_power_top (
     logic [24:0]   chi_lane_active;
 
     logic [4:0]    round_index;
+
     logic [24:0]   sleep_en;
     logic [24:0]   lane_clk;
     logic [24:0]   state_active_mask;
@@ -67,7 +64,7 @@ module sha3_ultra_low_power_top (
 
     logic [1087:0] padded_block;
 
-    assign in_ready  = ctrl_block_ready;
+    assign in_ready   = ctrl_block_ready;
     assign accept_msg = in_valid && in_ready;
 
     assign clear_state = accept_msg && !message_active_q;
@@ -83,11 +80,12 @@ module sha3_ultra_low_power_top (
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            msg_in_q          <= '0;
-            msg_length_q      <= 8'd0;
-            block_last_q      <= 1'b0;
-            message_active_q  <= 1'b0;
-            extra_pad_active_q<= 1'b0;
+            msg_in_q           <= '0;
+            msg_length_q       <= 8'd0;
+            block_last_q       <= 1'b0;
+            message_active_q   <= 1'b0;
+            extra_pad_active_q <= 1'b0;
+            formatter_start_q  <= 1'b0;
         end
         else begin
             if (accept_msg) begin
@@ -99,9 +97,10 @@ module sha3_ultra_low_power_top (
                 message_active_q   <= 1'b1;
             end
 
-            if (process_done && need_extra_pad) begin
+            if (process_done && need_extra_pad)
                 extra_pad_active_q <= 1'b1;
-            end
+
+            formatter_start_q <= process_done && final_block_done;
 
             if (hash_done) begin
                 message_active_q   <= 1'b0;
@@ -186,7 +185,7 @@ module sha3_ultra_low_power_top (
     sha3_output_formatter u_output_formatter (
         .clk       (clk),
         .rst_n     (rst_n),
-        .start     (squeeze_start),
+        .start     (formatter_start_q),
         .in_state  (cur_state),
         .out_data  (out_data),
         .out_valid (out_valid),
@@ -204,6 +203,7 @@ module sha3_ultra_low_power_top (
 
         if (clear_state) begin
             state_active_mask = ALL_LANES;
+
             for (int x = 0; x < COL_NUM; x++) begin
                 for (int y = 0; y < ROW_NUM; y++) begin
                     nxt_state[x][y] = '0;
@@ -212,6 +212,7 @@ module sha3_ultra_low_power_top (
         end
         else if (absorb_en) begin
             state_active_mask = RATE_LANES;
+
             for (int x = 0; x < COL_NUM; x++) begin
                 for (int y = 0; y < ROW_NUM; y++) begin
                     nxt_state[x][y] = absorbed_state[x][y];
@@ -220,6 +221,7 @@ module sha3_ultra_low_power_top (
         end
         else if (theta_lane_active != 25'd0) begin
             state_active_mask = theta_lane_active;
+
             for (int x = 0; x < COL_NUM; x++) begin
                 for (int y = 0; y < ROW_NUM; y++) begin
                     nxt_state[x][y] = theta_state[x][y];
@@ -228,9 +230,10 @@ module sha3_ultra_low_power_top (
         end
         else if (chi_lane_active != 25'd0) begin
             state_active_mask = chi_lane_active;
+
             for (int x = 0; x < COL_NUM; x++) begin
                 for (int y = 0; y < ROW_NUM; y++) begin
-                    if (x == 0 && y == 0)
+                    if ((x == 0) && (y == 0))
                         nxt_state[x][y] = iota_state[x][y];
                     else
                         nxt_state[x][y] = chi_state[x][y];
@@ -243,6 +246,7 @@ module sha3_ultra_low_power_top (
 
     sha3_low_power_gating u_low_power_gating (
         .clk      (clk),
+        .rst_n    (rst_n),
         .sleep_en (sleep_en),
         .gated_clk(lane_clk)
     );
@@ -255,3 +259,4 @@ module sha3_ultra_low_power_top (
     );
 
 endmodule
+
