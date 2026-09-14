@@ -64,8 +64,13 @@ module sha3_ultra_low_power_top (
 
     logic [1087:0] padded_block;
 
+    logic          in_valid_ff;
+    logic [1087:0] msg_in_ff;
+    logic [7:0]    msg_length_ff;
+    logic          in_last_ff;
+
     assign in_ready   = ctrl_block_ready;
-    assign accept_msg = in_valid && in_ready;
+    assign accept_msg = in_valid_ff && in_ready;
 
     assign clear_state = accept_msg && !message_active_q;
 
@@ -89,9 +94,9 @@ module sha3_ultra_low_power_top (
         end
         else begin
             if (accept_msg) begin
-                msg_in_q     <= msg_in;
-                msg_length_q <= msg_length;
-                block_last_q <= in_last;
+                msg_in_q     <= msg_in_ff;
+                msg_length_q <= msg_length_ff;
+                block_last_q <= in_last_ff;
 
                 extra_pad_active_q <= 1'b0;
                 message_active_q   <= 1'b1;
@@ -257,6 +262,21 @@ module sha3_ultra_low_power_top (
         .nxt_state(nxt_state),
         .cur_state(cur_state)
     );
+
+    always_ff @(posedge clk or negedge rst_n) begin ff_for_critical_path
+        if (!rst_n) begin
+            in_valid_ff <= '0;
+            msg_in_ff <= '0;
+            msg_length_ff <= '0;
+            in_last_ff <= '0;
+        end
+        else begin
+            in_valid_ff <= in_valid;
+            msg_in_ff <= msg_in;
+            msg_length_ff <= msg_length;
+            in_last_ff <= in_last;
+        end
+    end
 
 endmodule
 
