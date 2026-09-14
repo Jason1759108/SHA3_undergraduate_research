@@ -137,7 +137,7 @@ module sha3_ultra_low_power_top (
         .padded_block   (padded_block)
     );
 
-    sha3_rate_buffer u_rate_buffer (
+    sha3_absorb_xor u_absorb_xor (
         .in_state     (cur_state),
         .padded_block (padded_block),
         .absorb_en    (absorb_en),
@@ -263,7 +263,7 @@ module sha3_ultra_low_power_top (
         .cur_state(cur_state)
     );
 
-    always_ff @(posedge clk or negedge rst_n) begin ff_for_critical_path
+    always_ff @(posedge clk or negedge rst_n) begin: ff_for_critical_path
         if (!rst_n) begin
             in_valid_ff <= '0;
             msg_in_ff <= '0;

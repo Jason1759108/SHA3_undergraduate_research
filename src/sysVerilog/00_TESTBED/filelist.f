@@ -1,7 +1,7 @@
 ../01_RTL/sha3_pkg.sv
 ../01_RTL/sha3_ctrl_fsm.sv
 ../01_RTL/sha3_pad_domain.sv
-../01_RTL/sha3_rate_buffer.sv
+../01_RTL/sha3_absorb_xor.sv
 ../01_RTL/keccak_round_scheduler.sv
 ../01_RTL/keccak_theta_serial.sv
 ../01_RTL/keccak_rho_pi_wire.sv

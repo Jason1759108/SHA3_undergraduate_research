@@ -1,8 +1,8 @@
+import sha3_pkg::*;
 module keccak_rho_pi_wire (
-    input  sha3_pkg::state_t in_state,
-    output sha3_pkg::state_t out_state
+    input  state_t     in_state,
+    output state_t     out_state
 );
-    import sha3_pkg::*;
 
     // 使用 generate 在編譯期強制展開成純連線 (Wire)
     genvar x, y;

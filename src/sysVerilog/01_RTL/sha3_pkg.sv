@@ -5,7 +5,7 @@ package sha3_pkg;
     localparam int ROW_NUM = 5;
     localparam int COL_NUM = 5;
     
-     // 2. 定義 3D Array 型別，完美對應 25 個 Lane
+    // 2. 定義 3D Array 型別，完美對應 25 個 Lane
     // 採用 [0 : COL_NUM-1] 正向索引，方便寫 (x+1) mod 5 等模除運算
     // 未來所有模組的 I/O 只要宣告 state_t，即可防止腳位長度接錯
     typedef logic [LANE_W-1:0] state_t [0 : COL_NUM-1][0 : ROW_NUM-1];
@@ -58,32 +58,6 @@ package sha3_pkg;
 
     localparam int X_PLUS_1 [0:4] = '{1, 2, 3, 4, 0}; // (x + 1) % 5
     localparam int X_PLUS_2 [0:4] = '{2, 3, 4, 0, 1}; // (x + 2) % 5
-
-    // 8. 新增：Theta 多週期微狀態機 Enum (支援 Lane-Serial 多週期排程)
-    typedef enum logic [1:0] {
-        THETA_IDLE   = 2'b00,  // 等待 start 訊號
-        THETA_CALC_C = 2'b01,  // Cycle 1~5: 計算並快取 5 個 Column 的 Parity (C)
-        THETA_CALC_D = 2'b10,  // Cycle 6: 計算 D 
-        THETA_UPDATE = 2'b11   // Cycle 7~11: 逐列更新 State 並在最後拉高 done
-    } theta_state_e;
-
-    // 9. 新增：Chi 狀態機 (搭配 cnt 進行精準 5 週期 Row-Serial 排程)
-    typedef enum logic {
-        CHI_IDLE = 1'b0,  // 等待 start 訊號
-        CHI_CALC = 1'b1   // 進行 5 個周期的 Row 計算 (cnt = 0 ~ 4)
-    } chi_state_e;
-    
-    // 10. 新增：微週期交握排程器 Enum (Round Scheduler)
-    typedef enum logic [2:0] {
-        SCHED_IDLE         = 3'b000,   // 等待頂層 FSM 的 start_process
-        SCHED_THETA_START  = 3'b001,   // 啟動 Theta 並等待 theta_done
-        SCHED_THETA_WAIT   = 3'b010,   // (0 Cycle) 
-        SCHED_RHO_PI_START = 3'b011,   // 啟動 Rho & Pi 並等待 theta_done
-        SCHED_RHO_PI_WAIT  = 3'b100,   // (0 Cycle)
-        SCHED_CHI_START    = 3'b101,   // 啟動 Chi 並等待 chi_done
-        SCHED_CHI_WAIT     = 3'b110,   // (0 Cycle)
-        SCHED_DONE         = 3'b111    // 拉高 process_done，回到 SCHED_IDLE
-    } round_sched_state_e;
 
     // 11. 擠出階段
     typedef enum logic [1:0] {
