@@ -15,6 +15,9 @@ module keccak_chi_row(
         CHI_CALC
     } chi_state_e;
     chi_state_e FSM_state, nxt_FSM_state;
+
+    localparam int X_PLUS_1 [0:4] = '{1, 2, 3, 4, 0}; // (x + 1) % 5
+    localparam int X_PLUS_2 [0:4] = '{2, 3, 4, 0, 1}; // (x + 2) % 5
     
     logic [2:0] cnt, cnt_next;
     state_t frozen_state;

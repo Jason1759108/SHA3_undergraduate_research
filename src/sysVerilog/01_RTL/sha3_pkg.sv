@@ -56,10 +56,7 @@ package sha3_pkg;
         '{   4,     2,     0,     3,     1}  // x=4
     };
 
-    localparam int X_PLUS_1 [0:4] = '{1, 2, 3, 4, 0}; // (x + 1) % 5
-    localparam int X_PLUS_2 [0:4] = '{2, 3, 4, 0, 1}; // (x + 2) % 5
-
-    // 11. 擠出階段
+    // 8. 擠出階段
     typedef enum logic [1:0] {
         SQZ_IDLE = 2'b00,
         SQZ_RUN  = 2'b01,
