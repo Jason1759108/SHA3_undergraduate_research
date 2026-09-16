@@ -6,16 +6,17 @@ DESIGN="${DESIGN:-SHA3}"
 RUN_SCRIPT="${RUN_SCRIPT:-./01_run_dc}"
 REPORT_DIR="${REPORT_DIR:-./Report}"
 OUTPUT_ROOT="${OUTPUT_ROOT:-./sweep_results}"
+BLOCK_SIZE_BITS=1088
 
 usage() {
     cat <<'EOF'
 Usage:
   ./sweep_dc.sh
-  ./sweep_dc.sh <start_period_ns> <end_period_ns> <step_ns>
+  ./sweep_dc.sh <start_period_ns> <end_period_ns> <step_ns> <clock_cycles_per_block>
 
 Examples:
-  ./sweep_dc.sh 10 2 0.5
-  ./sweep_dc.sh 1 5 0.25
+  ./sweep_dc.sh 10 2 0.5 120
+  ./sweep_dc.sh 1 5 0.25 120
 EOF
 }
 
@@ -28,6 +29,11 @@ is_positive_number() {
     local value="$1"
     [[ "$value" =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?$ ]] &&
         awk -v value="$value" 'BEGIN { exit !(value > 0) }'
+}
+
+is_positive_integer() {
+    local value="$1"
+    [[ "$value" =~ ^[1-9][0-9]*$ ]]
 }
 
 extract_area() {
@@ -105,10 +111,12 @@ if [[ $# -eq 0 ]]; then
     read -r -p "Initial clock period (ns): " START_PERIOD
     read -r -p "Final clock period (ns):   " END_PERIOD
     read -r -p "Sweep step (ns):           " STEP
-elif [[ $# -eq 3 ]]; then
+    read -r -p "Clock cycles per block:     " CLOCK_CYCLES_PER_BLOCK
+elif [[ $# -eq 4 ]]; then
     START_PERIOD="$1"
     END_PERIOD="$2"
     STEP="$3"
+    CLOCK_CYCLES_PER_BLOCK="$4"
 else
     usage
     exit 2
@@ -117,6 +125,8 @@ fi
 is_positive_number "$START_PERIOD" || die "Initial clock period must be a positive number."
 is_positive_number "$END_PERIOD"   || die "Final clock period must be a positive number."
 is_positive_number "$STEP"         || die "Sweep step must be a positive number."
+is_positive_integer "$CLOCK_CYCLES_PER_BLOCK" || \
+    die "Clock cycles per block must be a positive integer."
 
 [[ -f "$RUN_SCRIPT" ]] || die "Cannot find synthesis command: $RUN_SCRIPT"
 [[ -x "$RUN_SCRIPT" ]] || die "$RUN_SCRIPT is not executable. Run: chmod +x $RUN_SCRIPT"
@@ -148,7 +158,7 @@ csv_file="$run_root/sweep_summary.csv"
 
 mkdir -p "$run_root"
 printf '%s\n' \
-    'clock_period_ns,total_cell_area,static_power_mw,dynamic_power_mw,total_power_mw,worst_slack_ns,status' \
+    'clock_period_ns,clock_cycles_per_block,block_size_bits,total_cell_area,static_power_mw,dynamic_power_mw,total_power_mw,throughput_gbps,energy_per_bit_pj,worst_slack_ns,status' \
     > "$csv_file"
 
 echo "============================================================"
@@ -156,6 +166,8 @@ echo "DC clock sweep"
 echo "  Start : $START_PERIOD ns"
 echo "  End   : $END_PERIOD ns"
 echo "  Step  : $STEP ns"
+echo "  Cycles/block : $CLOCK_CYCLES_PER_BLOCK"
+echo "  Block size   : $BLOCK_SIZE_BITS bits"
 echo "  Runs  : ${#PERIODS[@]}"
 echo "  CSV   : $csv_file"
 echo "============================================================"
@@ -188,6 +200,9 @@ for period in "${PERIODS[@]}"; do
     static_power="N/A"
     dynamic_power="N/A"
     total_power="N/A"
+    throughput=$(awk -v bits="$BLOCK_SIZE_BITS" -v cycles="$CLOCK_CYCLES_PER_BLOCK" \
+        -v period="$period" 'BEGIN { printf "%.9g\n", bits / (cycles * period) }')
+    energy_per_bit="N/A"
     worst_slack="N/A"
     status="OK"
 
@@ -211,10 +226,13 @@ for period in "${PERIODS[@]}"; do
         if [[ "$static_power" != "N/A" && "$dynamic_power" != "N/A" ]]; then
             total_power=$(awk -v static="$static_power" -v dynamic="$dynamic_power" \
                 'BEGIN { printf "%.9g\n", static + dynamic }')
+            energy_per_bit=$(awk -v power="$total_power" -v rate="$throughput" \
+                'BEGIN { printf "%.9g\n", power / rate }')
         fi
 
         if [[ "$area" == "N/A" || "$static_power" == "N/A" ||
               "$dynamic_power" == "N/A" || "$total_power" == "N/A" ||
+              "$energy_per_bit" == "N/A" ||
               "$worst_slack" == "N/A" ]]; then
             status="PARSE_FAILED"
         elif awk -v slack="$worst_slack" 'BEGIN { exit !(slack < 0) }'; then
@@ -222,12 +240,13 @@ for period in "${PERIODS[@]}"; do
         fi
     fi
 
-    printf '%s,%s,%s,%s,%s,%s,%s\n' \
-        "$period" "$area" "$static_power" "$dynamic_power" "$total_power" \
-        "$worst_slack" "$status" \
+    printf '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n' \
+        "$period" "$CLOCK_CYCLES_PER_BLOCK" "$BLOCK_SIZE_BITS" "$area" \
+        "$static_power" "$dynamic_power" "$total_power" "$throughput" \
+        "$energy_per_bit" "$worst_slack" "$status" \
         >> "$csv_file"
 
-    echo "[RESULT] period=${period}ns area=${area} static=${static_power}mW dynamic=${dynamic_power}mW total=${total_power}mW slack=${worst_slack}ns status=${status}"
+    echo "[RESULT] period=${period}ns cycles/block=${CLOCK_CYCLES_PER_BLOCK} area=${area} static=${static_power}mW dynamic=${dynamic_power}mW total=${total_power}mW throughput=${throughput}Gbps energy/bit=${energy_per_bit}pJ/bit slack=${worst_slack}ns status=${status}"
 done
 
 cp "$csv_file" "$OUTPUT_ROOT/latest_summary.csv"
