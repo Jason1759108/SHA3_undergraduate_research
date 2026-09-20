@@ -30,7 +30,9 @@ module keccak_chi_row(
             CHI_IDLE: begin
                 if (start) begin
                     nxt_FSM_state   = CHI_CALC; 
-                    cnt_next        = 3'd0;
+                    // row0 已經在「這個 start cycle」做掉了，CHI_CALC 只需要
+                    // 再跑 row1~row4，所以從 cnt=1 開始，不是 0。
+                    cnt_next        = 3'd1;
                 end
             end
 
@@ -58,7 +60,8 @@ module keccak_chi_row(
         end else begin
             FSM_state   <= nxt_FSM_state;
             cnt         <= cnt_next;
-            if (start) frozen_state <= in_state; // 啟動瞬間截取資料
+            // 啟動瞬間截取資料，供 row1~4 用 (row0 這個 cycle 直接用 in_state)。
+            if (start) frozen_state <= in_state;
         end 
     end
 
@@ -66,7 +69,19 @@ module keccak_chi_row(
         lane_active = 25'd0;
         out_state   = in_state; 
 
-        if (FSM_state == CHI_CALC) begin
+        if ((FSM_state == CHI_IDLE) && start) begin
+            // row0：直接用 in_state，frozen_state 這個 cycle「還沒」鎖存好
+            // (鎖存跟這個 cycle 的運算是同一個 edge 完成)，但數值上
+            // in_state 跟「frozen_state 鎖存後會拿到的值」完全相同，
+            // 所以提早用 in_state 算 row0 是安全的。
+            for (int x = 0; x < COL_NUM; x++) begin
+                lane_active[0 * COL_NUM + x] = 1'b1;
+                out_state[x][0] = in_state[x][0] ^
+                                   ((~in_state[X_PLUS_1[x]][0]) & in_state[X_PLUS_2[x]][0]);
+            end
+        end
+        else if (FSM_state == CHI_CALC) begin
+            // row1~row4：讀凍結快照，避免 Pi 跨 row 搬動造成髒資料。
             for (int x = 0; x < COL_NUM; x++) begin
                 lane_active[cnt * COL_NUM + x] = 1'b1; 
                 
