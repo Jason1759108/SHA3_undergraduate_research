@@ -76,9 +76,6 @@ module keccak_chi_row(
         end
     end
 
-    always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n) done <= 1'b0;
-        else        done <= (FSM_state == CHI_CALC) && (cnt == 3'd4);
-    end
+    assign done = (FSM_state == CHI_CALC) && (cnt == 3'd4);
 
 endmodule

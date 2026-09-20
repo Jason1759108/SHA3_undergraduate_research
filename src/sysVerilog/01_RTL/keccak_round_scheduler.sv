@@ -17,7 +17,6 @@ module keccak_round_scheduler (
         SCHED_IDLE,  
         SCHED_THETA_START,   
         SCHED_THETA_WAIT,   
-        SCHED_RHO_PI_START,   
         SCHED_CHI_START,  
         SCHED_CHI_WAIT,   
         SCHED_DONE   
@@ -53,12 +52,9 @@ module keccak_round_scheduler (
 
             SCHED_THETA_WAIT: begin
                 if (theta_done) begin
-                    nxt_FSM_state = SCHED_RHO_PI_START;
+                    // 原本先跳 SCHED_RHO_PI_START，現在直接跳 SCHED_CHI_START。
+                    nxt_FSM_state = SCHED_CHI_START;
                 end
-            end
-
-            SCHED_RHO_PI_START: begin
-                nxt_FSM_state = SCHED_CHI_START;
             end
 
             SCHED_CHI_START: begin

@@ -81,17 +81,16 @@ module keccak_theta_serial (
         end
     end
 
+    assign done = (FSM_state == THETA_UPDATE) && (col == 3'd4);
+
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             for (int x = 0; x < COL_NUM; x++) begin 
                 C[x] <= '0; 
                 D[x] <= '0; 
             end
-            done <= 1'b0;
 
         end else begin
-            done <= (FSM_state == THETA_UPDATE) && (col == 3'd4); 
-
             case (FSM_state)
                 THETA_CALC_C: begin
                     for (int x = 0; x < COL_NUM; x++) begin
