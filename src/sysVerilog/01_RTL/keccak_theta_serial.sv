@@ -22,14 +22,20 @@ module keccak_theta_serial (
     logic [LANE_W-1:0] C_comb [0 : COL_NUM-1];
     logic [LANE_W-1:0] D [0 : COL_NUM-1];
     logic [2:0] col, nxt_col;
+    logic compute_d;
+
+    // 只有 start 那一拍會把 C_comb 寫進 D[]。χ 期間 in_state 一直在變，
+    // 若 XOR 樹一直開著會空轉。compute_d=0 時把 XOR 輸入 AND 成 0
+    // （operand isolation），不新增長 clock。
+    assign compute_d = (FSM_state == THETA_IDLE) && start;
 
     always_comb begin
         for (int x = 0; x < COL_NUM; x++) begin
-            C_comb[x] = in_state[x][0] ^
-                        in_state[x][1] ^
-                        in_state[x][2] ^
-                        in_state[x][3] ^
-                        in_state[x][4];
+            C_comb[x] = (in_state[x][0] & {LANE_W{compute_d}}) ^
+                        (in_state[x][1] & {LANE_W{compute_d}}) ^
+                        (in_state[x][2] & {LANE_W{compute_d}}) ^
+                        (in_state[x][3] & {LANE_W{compute_d}}) ^
+                        (in_state[x][4] & {LANE_W{compute_d}});
         end
     end
 
@@ -95,7 +101,7 @@ module keccak_theta_serial (
             end
 
         end else begin
-            if ((FSM_state == THETA_IDLE) && start) begin
+            if (compute_d) begin
                 for (int x = 0; x < COL_NUM; x++) begin
                     D[x] <= C_comb[X_PLUS_4[x]] ^ {C_comb[X_PLUS_1[x]][LANE_W - 2 : 0], C_comb[X_PLUS_1[x]][LANE_W - 1]};
                 end

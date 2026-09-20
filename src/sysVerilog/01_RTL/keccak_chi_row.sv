@@ -20,7 +20,11 @@ module keccak_chi_row(
     localparam int X_PLUS_2 [0:4] = '{2, 3, 4, 0, 1}; // (x + 2) % 5
     
     logic [2:0] cnt, cnt_next;
-    state_t frozen_state;
+
+    // Snapshot 只存 row1~row4。row0 的 χ 已經在 start 那一拍用 in_state
+    // 算完，frozen 的 row0 從來沒被讀過，不必再佔 320-bit FF。
+    // row1~4 仍讀凍結值，Pi 跨 row 的髒資料保護維持不變。
+    logic [LANE_W-1:0] frozen_state [0:COL_NUM-1][1:4];
 
     always_comb begin: FSM_state_logic
         nxt_FSM_state = FSM_state;
@@ -54,14 +58,24 @@ module keccak_chi_row(
 
     always_ff @(posedge clk or negedge rst_n) begin: FSM_state_ff
         if (!rst_n) begin
-            FSM_state   <= CHI_IDLE;
-            cnt         <= 3'd0;
-            frozen_state <= '{default: '0};
+            FSM_state <= CHI_IDLE;
+            cnt       <= 3'd0;
+            for (int x = 0; x < COL_NUM; x++) begin
+                for (int y = 1; y < ROW_NUM; y++) begin
+                    frozen_state[x][y] <= '0;
+                end
+            end
         end else begin
-            FSM_state   <= nxt_FSM_state;
-            cnt         <= cnt_next;
+            FSM_state <= nxt_FSM_state;
+            cnt       <= cnt_next;
             // 啟動瞬間截取資料，供 row1~4 用 (row0 這個 cycle 直接用 in_state)。
-            if (start) frozen_state <= in_state;
+            if (start) begin
+                for (int x = 0; x < COL_NUM; x++) begin
+                    for (int y = 1; y < ROW_NUM; y++) begin
+                        frozen_state[x][y] <= in_state[x][y];
+                    end
+                end
+            end
         end 
     end
 
