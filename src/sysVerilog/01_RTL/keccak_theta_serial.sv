@@ -20,7 +20,9 @@ module keccak_theta_serial (
     localparam logic [2:0] X_PLUS_1  [0 : COL_NUM-1] = '{3'd1, 3'd2, 3'd3, 3'd4, 3'd0};
 
     logic [LANE_W-1:0] C_comb [0 : COL_NUM-1];
-    logic [LANE_W-1:0] D [0 : COL_NUM-1];
+    logic [LANE_W-1:0] D_comb [0 : COL_NUM-1];
+    // col0 在 start 當拍用 D_comb[0] 寫完，D[0] 從來沒被讀過，不必再佔 64-bit FF。
+    logic [LANE_W-1:0] D [1:4];
     logic [2:0] col, nxt_col;
     logic compute_d;
 
@@ -39,6 +41,14 @@ module keccak_theta_serial (
         end
     end
 
+    always_comb begin
+        for (int x = 0; x < COL_NUM; x++) begin
+            D_comb[x] = C_comb[X_PLUS_4[x]] ^
+                        {C_comb[X_PLUS_1[x]][LANE_W - 2 : 0],
+                         C_comb[X_PLUS_1[x]][LANE_W - 1]};
+        end
+    end
+
     always_comb begin: FSM_state_logic
         nxt_FSM_state = FSM_state;
         nxt_col       = col;
@@ -47,7 +57,8 @@ module keccak_theta_serial (
             THETA_IDLE: begin
                 if (start) begin
                     nxt_FSM_state = THETA_UPDATE;
-                    nxt_col       = 3'd0;
+                    // start 當拍已經把 col0 寫掉，UPDATE 從 col1 開始。
+                    nxt_col       = 3'd1;
                 end
             end
 
@@ -81,7 +92,15 @@ module keccak_theta_serial (
         lane_active = 25'd0;
         out_state   = in_state; 
 
-        if (FSM_state == THETA_UPDATE) begin
+        if (compute_d) begin
+            // start 當拍：D_ff 還沒更新（仍是上一輪），用 D_comb[0]
+            // 寫 col0。數值等於舊的「先鎖 D 再 UPDATE col0」，少 1 cycle。
+            for (int y = 0; y < ROW_NUM; y++) begin
+                lane_active[y * COL_NUM + 0] = 1'b1;
+                out_state[0][y] = in_state[0][y] ^ D_comb[0];
+            end
+        end
+        else if (FSM_state == THETA_UPDATE) begin
             for (int y = 0; y < ROW_NUM; y++) begin
                 lane_active[y * COL_NUM + col] = 1'b1;
                 out_state[col][y] = in_state[col][y] ^ D[col];
@@ -96,14 +115,14 @@ module keccak_theta_serial (
     // C_comb，數值上完全等價，只是提早 1 個 cycle 做。
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            for (int x = 0; x < COL_NUM; x++) begin 
+            for (int x = 1; x < COL_NUM; x++) begin 
                 D[x] <= '0; 
             end
 
         end else begin
             if (compute_d) begin
-                for (int x = 0; x < COL_NUM; x++) begin
-                    D[x] <= C_comb[X_PLUS_4[x]] ^ {C_comb[X_PLUS_1[x]][LANE_W - 2 : 0], C_comb[X_PLUS_1[x]][LANE_W - 1]};
+                for (int x = 1; x < COL_NUM; x++) begin
+                    D[x] <= D_comb[x];
                 end
             end
         end

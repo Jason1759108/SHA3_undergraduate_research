@@ -19,7 +19,6 @@ module sha3_ultra_low_power_top (
     localparam logic [24:0] ALL_LANES  = 25'h1FFFFFF;
     localparam logic [24:0] RATE_LANES = 25'h001FFFF;
 
-    logic [1087:0] msg_in_q;
     logic [7:0]    msg_length_q;
     logic          block_last_q;
 
@@ -73,10 +72,14 @@ module sha3_ultra_low_power_top (
 
     // The input register is a one-block buffer.  in_ready describes the
     // buffer's capacity, while ctrl_block_ready describes the core's capacity.
-    assign in_ready         = !input_buffer_valid_q;
+    assign in_ready          = !input_buffer_valid_q;
     assign input_buffer_push = in_valid && in_ready;
-    assign input_buffer_pop  = input_buffer_valid_q && ctrl_block_ready;
-    assign accept_msg        = input_buffer_pop;
+    // 不再複製一份 1088-bit msg_in_q。padding 直接讀 buffer，
+    // 所以要等到 absorb 真正吃掉這塊才 pop。extra_pad 那一拍
+    // 不走訊息內容，不可把已經排隊的下一塊 pop 掉。
+    assign accept_msg        = input_buffer_valid_q && ctrl_block_ready;
+    assign input_buffer_pop  = absorb_en && input_buffer_valid_q &&
+                               !extra_pad_active_q;
 
     assign clear_state = accept_msg && !message_active_q;
 
@@ -91,7 +94,6 @@ module sha3_ultra_low_power_top (
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            msg_in_q           <= '0;
             msg_length_q       <= 8'd0;
             block_last_q       <= 1'b0;
             message_active_q   <= 1'b0;
@@ -100,7 +102,6 @@ module sha3_ultra_low_power_top (
         end
         else begin
             if (accept_msg) begin
-                msg_in_q     <= input_buffer_data_q;
                 msg_length_q <= input_buffer_length_q;
                 block_last_q <= input_buffer_last_q;
 
@@ -136,10 +137,11 @@ module sha3_ultra_low_power_top (
     );
 
     sha3_pad_domain u_pad_domain (
-        .msg_in         (msg_in_q),
+        .msg_in         (input_buffer_data_q),
         .msg_length     (msg_length_q),
         .block_last     (block_last_q),
         .extra_pad_block(extra_pad_active_q),
+        .absorb_en      (absorb_en),
         .padded_block   (padded_block)
     );
 
@@ -290,4 +292,3 @@ module sha3_ultra_low_power_top (
     end
 
 endmodule
-
