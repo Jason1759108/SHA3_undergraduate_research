@@ -59,7 +59,6 @@ module sha3_ultra_low_power_top (
     state_t theta_state;
     state_t rho_pi_state;
     state_t chi_state;
-    state_t iota_state;
 
     logic [1087:0] padded_block;
 
@@ -184,15 +183,10 @@ module sha3_ultra_low_power_top (
         .clk         (clk),
         .rst_n       (rst_n),
         .start       (chi_start),
+        .round_index (round_index),
         .out_state   (chi_state),
         .done        (chi_done),
         .lane_active (chi_lane_active)
-    );
-
-    keccak_iota u_iota (
-        .round_index(round_index),
-        .in_state   (chi_state),
-        .out_state  (iota_state)
     );
 
     sha3_output_formatter u_output_formatter (
@@ -246,10 +240,7 @@ module sha3_ultra_low_power_top (
 
             for (int x = 0; x < COL_NUM; x++) begin
                 for (int y = 0; y < ROW_NUM; y++) begin
-                    if ((x == 0) && (y == 0))
-                        nxt_state[x][y] = iota_state[x][y];
-                    else
-                        nxt_state[x][y] = chi_state[x][y];
+                    nxt_state[x][y] = chi_state[x][y];
                 end
             end
         end

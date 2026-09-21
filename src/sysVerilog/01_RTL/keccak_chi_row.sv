@@ -3,7 +3,8 @@ module keccak_chi_row(
     input  state_t      in_state,
     input  logic        clk,      
     input  logic        rst_n,    
-    input  logic        start,   
+    input  logic        start,
+    input  logic [4:0]  round_index,
     
     output state_t      out_state,
     output logic        done,
@@ -25,6 +26,16 @@ module keccak_chi_row(
     // 算完，frozen 的 row0 從來沒被讀過，不必再佔 320-bit FF。
     // row1~4 仍讀凍結值，Pi 跨 row 的髒資料保護維持不變。
     logic [LANE_W-1:0] frozen_state [0:COL_NUM-1][1:4];
+
+    // ι 併進 row0：只對 lane(0,0) 做 64-bit RC XOR，避免 1600-bit 轉送。
+    logic [LANE_W-1:0] chi_lane_00;
+    logic [LANE_W-1:0] iota_lane_00;
+
+    keccak_iota u_iota (
+        .round_index(round_index),
+        .in_lane    (chi_lane_00),
+        .out_lane   (iota_lane_00)
+    );
 
     always_comb begin: FSM_state_logic
         nxt_FSM_state = FSM_state;
@@ -81,7 +92,8 @@ module keccak_chi_row(
 
     always_comb begin
         lane_active = 25'd0;
-        out_state   = in_state; 
+        out_state   = in_state;
+        chi_lane_00 = '0;
 
         if ((FSM_state == CHI_IDLE) && start) begin
             // row0：直接用 in_state，frozen_state 這個 cycle「還沒」鎖存好
@@ -90,8 +102,14 @@ module keccak_chi_row(
             // 所以提早用 in_state 算 row0 是安全的。
             for (int x = 0; x < COL_NUM; x++) begin
                 lane_active[0 * COL_NUM + x] = 1'b1;
-                out_state[x][0] = in_state[x][0] ^
-                                   ((~in_state[X_PLUS_1[x]][0]) & in_state[X_PLUS_2[x]][0]);
+                if (x == 0) begin
+                    chi_lane_00 = in_state[0][0] ^
+                                   ((~in_state[X_PLUS_1[0]][0]) & in_state[X_PLUS_2[0]][0]);
+                    out_state[0][0] = iota_lane_00;
+                end else begin
+                    out_state[x][0] = in_state[x][0] ^
+                                       ((~in_state[X_PLUS_1[x]][0]) & in_state[X_PLUS_2[x]][0]);
+                end
             end
         end
         else if (FSM_state == CHI_CALC) begin
