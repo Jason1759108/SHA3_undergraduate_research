@@ -62,4 +62,61 @@ package sha3_pkg;
         SQZ_RUN  = 2'b01,
         SQZ_DONE = 2'b10
     } sqz_state_e;
+
+    // 9. Lane Hamming SECDED 合約（(72,64)；位置 1-indexed，與課堂 (7,4) 同一套）
+    //
+    // code[k] ↔ 位置 (k+1)，因此：
+    //   code[71] = 位置 72 = P_ext（全體 even parity，XOR 位置 1..71）
+    //   code[70:0] = 位置 71 .. 位置 1
+    // 位置 1,2,4,8,16,32,64 = Hamming 校驗 P1..P64
+    // 其餘 64 個位置（3,5,6,...,71）依編號由小到大塞 data[0]..data[63]
+    // Hamming / TB 必須用下面的 FT_DATA_POS / function，禁止各寫一份對照表。
+    localparam int FT_DATA_W = 64;
+    localparam int FT_HAM_P  = 7;
+    localparam int FT_EXT_P  = 1;
+    localparam int FT_CODE_W = FT_DATA_W + FT_HAM_P + FT_EXT_P; // 72
+    localparam int FT_EXT_POS = 72;
+
+    parameter int FT_HAM_POS [0:6] = '{1, 2, 4, 8, 16, 32, 64};
+
+    parameter int FT_DATA_POS [0:63] = '{
+        3,  5,  6,  7,  9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21,
+        22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38,
+        39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54,
+        55, 56, 57, 58, 59, 60, 61, 62, 63, 65, 66, 67, 68, 69, 70, 71
+    };
+
+    typedef enum logic [1:0] {
+        FT_ST_OK        = 2'd0,
+        FT_ST_CORRECTED = 2'd1,
+        FT_ST_UNCORR    = 2'd2
+    } ft_status_e;
+
+    typedef enum logic [2:0] {
+        FT_SRC_NONE,
+        FT_SRC_THETA,
+        FT_SRC_CHI
+    } ft_src_e;
+
+    typedef enum logic [2:0] {
+        FT_REPLAY_NONE,
+        FT_REPLAY_THETA_COL,
+        FT_REPLAY_THETA_CD,
+        FT_REPLAY_THETA_FROM0,
+        FT_REPLAY_CHI_ROW
+    } ft_replay_e;
+
+    function automatic int ft_data_pos(input int d);
+        return FT_DATA_POS[d];
+    endfunction
+
+    function automatic logic ft_pos_is_ham_p(input int p);
+        return (p == 1) || (p == 2) || (p == 4) || (p == 8) ||
+               (p == 16) || (p == 32) || (p == 64);
+    endfunction
+
+    // 1-indexed 位置 pos∈[1,72] 對應 code[pos-1]
+    function automatic logic ft_code_bit(input logic [FT_CODE_W-1:0] code, input int pos);
+        return code[pos-1];
+    endfunction
 endpackage : sha3_pkg
