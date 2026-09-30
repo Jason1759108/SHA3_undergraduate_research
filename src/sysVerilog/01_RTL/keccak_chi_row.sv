@@ -5,6 +5,7 @@ module keccak_chi_row(
     input  logic        rst_n,    
     input  logic        start,
     input  logic [4:0]  round_index,
+    input  logic        replay,  
     
     output state_t      out_state,
     output logic        done,
@@ -39,32 +40,35 @@ module keccak_chi_row(
 
     always_comb begin: FSM_state_logic
         nxt_FSM_state = FSM_state;
-        cnt_next = cnt;
+        cnt_next      = cnt;
 
-        case (FSM_state)
-            CHI_IDLE: begin
-                if (start) begin
-                    nxt_FSM_state   = CHI_CALC; 
-                    // row0 已經在「這個 start cycle」做掉了，CHI_CALC 只需要
-                    // 再跑 row1~row4，所以從 cnt=1 開始，不是 0。
-                    cnt_next        = 3'd1;
+        if (replay) begin
+            nxt_FSM_state = FSM_state;
+            cnt_next      = cnt;
+        end else begin
+            case (FSM_state)
+                CHI_IDLE: begin
+                    if (start) begin
+                        nxt_FSM_state = CHI_CALC;
+                        cnt_next      = 3'd1;
+                    end
                 end
-            end
 
-            CHI_CALC: begin
-                if (cnt == 3'd4) begin 
-                    nxt_FSM_state   = CHI_IDLE;
-                    cnt_next        = 3'd0;
-                end else begin
-                    cnt_next = cnt + 3'd1;
+                CHI_CALC: begin
+                    if (cnt == 3'd4) begin
+                        nxt_FSM_state = CHI_IDLE;
+                        cnt_next      = 3'd0;
+                    end else begin
+                        cnt_next = cnt + 3'd1;
+                    end
                 end
-            end
-            
-            default: begin
-                nxt_FSM_state   = CHI_IDLE;
-                cnt_next        = 3'd0;
-            end
-        endcase
+
+                default: begin
+                    nxt_FSM_state = CHI_IDLE;
+                    cnt_next      = 3'd0;
+                end
+            endcase
+        end
     end
 
     always_ff @(posedge clk or negedge rst_n) begin: FSM_state_ff
@@ -80,7 +84,7 @@ module keccak_chi_row(
             FSM_state <= nxt_FSM_state;
             cnt       <= cnt_next;
             // 啟動瞬間截取資料，供 row1~4 用 (row0 這個 cycle 直接用 in_state)。
-            if (start) begin
+            if (start && !replay) begin
                 for (int x = 0; x < COL_NUM; x++) begin
                     for (int y = 1; y < ROW_NUM; y++) begin
                         frozen_state[x][y] <= in_state[x][y];
@@ -123,6 +127,6 @@ module keccak_chi_row(
         end
     end
 
-    assign done = (FSM_state == CHI_CALC) && (cnt == 3'd4);
+    assign done = (FSM_state == CHI_CALC) && (cnt == 3'd4) && !replay;
 
 endmodule
