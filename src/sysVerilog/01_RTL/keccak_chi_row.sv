@@ -1,34 +1,34 @@
 import sha3_pkg::*;
 module keccak_chi_row(
     input  state_t      in_state,
-    input  logic        clk,      
-    input  logic        rst_n,    
+    input  logic        clk,
+    input  logic        rst_n,
     input  logic        start,
     input  logic [4:0]  round_index,
-    input  logic        replay,  
-    
+    input  logic        replay,
+    input  logic        hold,
+
+    output logic [2:0]  cnt,
     output state_t      out_state,
     output logic        done,
     output logic [24:0] lane_active
 );
-    
+
     typedef enum logic {
         CHI_IDLE,
         CHI_CALC
     } chi_state_e;
     chi_state_e FSM_state, nxt_FSM_state;
 
-    localparam int X_PLUS_1 [0:4] = '{1, 2, 3, 4, 0}; // (x + 1) % 5
-    localparam int X_PLUS_2 [0:4] = '{2, 3, 4, 0, 1}; // (x + 2) % 5
-    
-    logic [2:0] cnt, cnt_next;
+    localparam int X_PLUS_1 [0:4] = '{1, 2, 3, 4, 0};
+    localparam int X_PLUS_2 [0:4] = '{2, 3, 4, 0, 1};
 
-    // Snapshot 只存 row1~row4。row0 的 χ 已經在 start 那一拍用 in_state
-    // 算完，frozen 的 row0 從來沒被讀過，不必再佔 320-bit FF。
-    // row1~4 仍讀凍結值，Pi 跨 row 的髒資料保護維持不變。
+    logic [2:0] cnt_next;
+
     logic [LANE_W-1:0] frozen_state [0:COL_NUM-1][1:4];
+    logic [LANE_W-1:0] row0_snap [0:COL_NUM-1];
+    logic [LANE_W-1:0] row0_src [0:COL_NUM-1];
 
-    // ι 併進 row0：只對 lane(0,0) 做 64-bit RC XOR，避免 1600-bit 轉送。
     logic [LANE_W-1:0] chi_lane_00;
     logic [LANE_W-1:0] iota_lane_00;
 
@@ -42,9 +42,20 @@ module keccak_chi_row(
         nxt_FSM_state = FSM_state;
         cnt_next      = cnt;
 
-        if (replay) begin
+        if (hold) begin
             nxt_FSM_state = FSM_state;
             cnt_next      = cnt;
+        end else if (replay) begin
+            // 重寫當拍 row 後走成功拍的下一狀態，避免同一 row 再算一次。
+            if (FSM_state == CHI_IDLE) begin
+                nxt_FSM_state = CHI_CALC;
+                cnt_next      = 3'd1;
+            end else if (cnt == 3'd4) begin
+                nxt_FSM_state = CHI_IDLE;
+                cnt_next      = 3'd0;
+            end else begin
+                cnt_next = cnt + 3'd1;
+            end
         end else begin
             case (FSM_state)
                 CHI_IDLE: begin
@@ -76,6 +87,7 @@ module keccak_chi_row(
             FSM_state <= CHI_IDLE;
             cnt       <= 3'd0;
             for (int x = 0; x < COL_NUM; x++) begin
+                row0_snap[x] <= '0;
                 for (int y = 1; y < ROW_NUM; y++) begin
                     frozen_state[x][y] <= '0;
                 end
@@ -83,15 +95,22 @@ module keccak_chi_row(
         end else begin
             FSM_state <= nxt_FSM_state;
             cnt       <= cnt_next;
-            // 啟動瞬間截取資料，供 row1~4 用 (row0 這個 cycle 直接用 in_state)。
-            if (start && !replay) begin
+            // start 當拍鎖 row0 與 frozen。hold 當拍 in_state 仍是原始 ρπ 結果。
+            // replay 沒有 start，不可重鎖。
+            if (start) begin
                 for (int x = 0; x < COL_NUM; x++) begin
+                    row0_snap[x] <= in_state[x][0];
                     for (int y = 1; y < ROW_NUM; y++) begin
                         frozen_state[x][y] <= in_state[x][y];
                     end
                 end
             end
-        end 
+        end
+    end
+
+    always_comb begin
+        for (int x = 0; x < COL_NUM; x++)
+            row0_src[x] = start ? in_state[x][0] : row0_snap[x];
     end
 
     always_comb begin
@@ -99,34 +118,29 @@ module keccak_chi_row(
         out_state   = in_state;
         chi_lane_00 = '0;
 
-        if ((FSM_state == CHI_IDLE) && start) begin
-            // row0：直接用 in_state，frozen_state 這個 cycle「還沒」鎖存好
-            // (鎖存跟這個 cycle 的運算是同一個 edge 完成)，但數值上
-            // in_state 跟「frozen_state 鎖存後會拿到的值」完全相同，
-            // 所以提早用 in_state 算 row0 是安全的。
+        if ((FSM_state == CHI_IDLE) && (start || replay)) begin
             for (int x = 0; x < COL_NUM; x++) begin
                 lane_active[0 * COL_NUM + x] = 1'b1;
                 if (x == 0) begin
-                    chi_lane_00 = in_state[0][0] ^
-                                   ((~in_state[X_PLUS_1[0]][0]) & in_state[X_PLUS_2[0]][0]);
+                    chi_lane_00 = row0_src[0] ^
+                                   ((~row0_src[X_PLUS_1[0]]) & row0_src[X_PLUS_2[0]]);
                     out_state[0][0] = iota_lane_00;
                 end else begin
-                    out_state[x][0] = in_state[x][0] ^
-                                       ((~in_state[X_PLUS_1[x]][0]) & in_state[X_PLUS_2[x]][0]);
+                    out_state[x][0] = row0_src[x] ^
+                                       ((~row0_src[X_PLUS_1[x]]) & row0_src[X_PLUS_2[x]]);
                 end
             end
         end
         else if (FSM_state == CHI_CALC) begin
-            // row1~row4：讀凍結快照，避免 Pi 跨 row 搬動造成髒資料。
             for (int x = 0; x < COL_NUM; x++) begin
-                lane_active[cnt * COL_NUM + x] = 1'b1; 
-                
-                out_state[x][cnt] = frozen_state[x][cnt] ^ 
-                                    ((~frozen_state[X_PLUS_1[x]][cnt]) & frozen_state[X_PLUS_2[x]][cnt]);
+                lane_active[cnt * COL_NUM + x] = 1'b1;
+                out_state[x][cnt] = frozen_state[x][cnt] ^
+                                    ((~frozen_state[X_PLUS_1[x]][cnt]) &
+                                     frozen_state[X_PLUS_2[x]][cnt]);
             end
         end
     end
 
-    assign done = (FSM_state == CHI_CALC) && (cnt == 3'd4) && !replay;
+    assign done = (FSM_state == CHI_CALC) && (cnt == 3'd4) && !hold;
 
 endmodule

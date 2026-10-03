@@ -1,5 +1,7 @@
 `timescale 1ns/1ps
 
+`ifndef FT_PATTERN
+
 module PATTERN #(
     // 使用者可直接修改或在實例化時覆寫此參數。
     parameter real CLK_PERIOD_NS = 10.0
@@ -579,3 +581,5 @@ initial begin
 end
 
 endmodule
+
+`endif

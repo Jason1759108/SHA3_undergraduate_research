@@ -69,12 +69,12 @@ module keccak_round_scheduler (
     assign chi_replay = replay_pending && chi_phase;
     assign active_replay_kind = replay_pending ? saved_replay_kind : FT_REPLAY_NONE;
 
-    // A done from the failing cycle or from the replay-command cycle must
-    // not advance the scheduler. The datapath must reissue done afterwards.
+    // Hold 當拍的 done 不收（可能是出錯拍）。replay 當拍若剛好是最後
+    // 一欄／列，done 是重算成功後的新完成，要收下，否則會多卡 1 拍。
     assign theta_complete = (FSM_state == SCHED_THETA_WAIT) && theta_done &&
-                            !theta_request && !replay_pending;
+                            !theta_request;
     assign chi_complete = (FSM_state == SCHED_CHI_WAIT) && chi_done &&
-                          !chi_request && !replay_pending;
+                          !chi_request;
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin

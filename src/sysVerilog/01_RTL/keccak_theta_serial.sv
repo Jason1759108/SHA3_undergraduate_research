@@ -5,7 +5,11 @@ module keccak_theta_serial (
     input  logic        rst_n,
     input  logic        start,
     input  logic        replay,
+    input  logic        hold,
     input  ft_replay_e  replay_kind,
+    input  logic        d_inject_valid,
+    input  logic [2:0]  d_inject_col,
+    input  logic [71:0] d_inject_mask,
 
     output state_t      out_state,
     output logic        done,
@@ -26,9 +30,11 @@ module keccak_theta_serial (
 
     logic [LANE_W-1:0] C_comb [0 : COL_NUM-1];
     logic [LANE_W-1:0] D_comb [0 : COL_NUM-1];
-    // col0 在 start 當拍用 D_comb[0] 寫完，D[0] 從來沒被讀過，不必再佔 64-bit FF。
     logic [LANE_W-1:0] D [1:4];
     logic [2:0]        nxt_col;
+
+    state_t            theta_base;
+    logic              use_live_in;
 
     logic              open_c_tree;
     logic              latch_D;
@@ -42,12 +48,10 @@ module keccak_theta_serial (
     logic                 D_ext  [1:4];
     logic [LANE_W-1:0]    D_use  [1:4];
 
-    // CD / FROM0 都當「再做一次 start 拍」。FROM0 不另做 5 拍 hold。
     assign need_cd = replay &&
                      ((replay_kind == FT_REPLAY_THETA_CD) ||
                       (replay_kind == FT_REPLAY_THETA_FROM0));
 
-    // COL 且人還在 IDLE：只重寫 col0，要開樹才有 D_comb[0]。
     assign col_replay_col0 = replay &&
                              (replay_kind == FT_REPLAY_THETA_COL) &&
                              (FSM_state == THETA_IDLE);
@@ -56,20 +60,34 @@ module keccak_theta_serial (
                          need_cd ||
                          col_replay_col0;
 
-    // COL 禁止重鎖 D[1:4]；其餘開樹的拍（正常 start / CD / FROM0）要鎖。
     assign latch_D = open_c_tree &&
                      !(replay && (replay_kind == FT_REPLAY_THETA_COL));
 
-    // 給 region：這一拍是不是 C/D 拍。
     assign compute_d = open_c_tree;
+
+    // start 當拍 theta_base 還沒鎖好，C/D 與寫 col0 用 in_state。
+    // 之後（含無 start 的 replay）一律用 θ 開始前的快照。
+    assign use_live_in = (FSM_state == THETA_IDLE) && start;
+
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            for (int x = 0; x < COL_NUM; x++)
+                for (int y = 0; y < ROW_NUM; y++)
+                    theta_base[x][y] <= '0;
+        end else if (start) begin
+            for (int x = 0; x < COL_NUM; x++)
+                for (int y = 0; y < ROW_NUM; y++)
+                    theta_base[x][y] <= in_state[x][y];
+        end
+    end
 
     always_comb begin
         for (int x = 0; x < COL_NUM; x++) begin
-            C_comb[x] = (in_state[x][0] & {LANE_W{open_c_tree}}) ^
-                        (in_state[x][1] & {LANE_W{open_c_tree}}) ^
-                        (in_state[x][2] & {LANE_W{open_c_tree}}) ^
-                        (in_state[x][3] & {LANE_W{open_c_tree}}) ^
-                        (in_state[x][4] & {LANE_W{open_c_tree}});
+            C_comb[x] = ((use_live_in ? in_state[x][0] : theta_base[x][0]) & {LANE_W{open_c_tree}}) ^
+                        ((use_live_in ? in_state[x][1] : theta_base[x][1]) & {LANE_W{open_c_tree}}) ^
+                        ((use_live_in ? in_state[x][2] : theta_base[x][2]) & {LANE_W{open_c_tree}}) ^
+                        ((use_live_in ? in_state[x][3] : theta_base[x][3]) & {LANE_W{open_c_tree}}) ^
+                        ((use_live_in ? in_state[x][4] : theta_base[x][4]) & {LANE_W{open_c_tree}});
         end
     end
 
@@ -87,7 +105,9 @@ module keccak_theta_serial (
             keccak_hamming64 u_d_ham (
                 .data_in (D_comb[gx]),
                 .code_out(D_enc[gx]),
-                .code_in (open_c_tree ? D_enc[gx] : D_code[gx]),
+                .code_in ((open_c_tree ? D_enc[gx] : D_code[gx]) ^
+                          ((d_inject_valid && (d_inject_col == gx)) ?
+                           d_inject_mask : 72'd0)),
                 .data_out(D_dec[gx]),
                 .syndrome(D_syn[gx]),
                 .ext_fail(D_ext[gx]),
@@ -102,10 +122,23 @@ module keccak_theta_serial (
         nxt_FSM_state = FSM_state;
         nxt_col       = col;
 
-        if (replay) begin
+        if (hold) begin
+            nxt_FSM_state = FSM_state;
+            nxt_col       = col;
+        end else if (replay) begin
             case (replay_kind)
                 FT_REPLAY_THETA_COL: begin
-                    // hold：UPDATE 重寫當前 col；IDLE 重寫 col0。
+                    // 重寫當拍 index 後，走和成功拍一樣的下一狀態，
+                    // 否則 T+2 會再用同一個 col 算一次。
+                    if (FSM_state == THETA_IDLE) begin
+                        nxt_FSM_state = THETA_UPDATE;
+                        nxt_col       = 3'd1;
+                    end else if (col == 3'd4) begin
+                        nxt_FSM_state = THETA_IDLE;
+                        nxt_col       = 3'd0;
+                    end else begin
+                        nxt_col = col + 3'd1;
+                    end
                 end
                 FT_REPLAY_THETA_CD,
                 FT_REPLAY_THETA_FROM0: begin
@@ -158,18 +191,19 @@ module keccak_theta_serial (
         if (open_c_tree) begin
             for (int y = 0; y < ROW_NUM; y++) begin
                 lane_active[y * COL_NUM + 0] = 1'b1;
-                out_state[0][y] = in_state[0][y] ^ D_comb[0];
+                out_state[0][y] = (use_live_in ? in_state[0][y] : theta_base[0][y]) ^
+                                  D_comb[0];
             end
         end
         else if (FSM_state == THETA_UPDATE) begin
             for (int y = 0; y < ROW_NUM; y++) begin
                 lane_active[y * COL_NUM + col] = 1'b1;
-                out_state[col][y] = in_state[col][y] ^ D_use[col];
+                out_state[col][y] = theta_base[col][y] ^ D_use[col];
             end
         end
     end
 
-    assign done = (FSM_state == THETA_UPDATE) && (col == 3'd4) && !replay;
+    assign done = (FSM_state == THETA_UPDATE) && (col == 3'd4) && !hold;
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin

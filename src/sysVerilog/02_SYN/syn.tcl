@@ -37,10 +37,13 @@ set syn_files [list \
     "../01_RTL/sha3_pad_domain.sv" \
     "../01_RTL/sha3_absorb_xor.sv" \
     "../01_RTL/keccak_round_scheduler.sv" \
+    "../01_RTL/keccak_hamming64.sv" \
     "../01_RTL/keccak_theta_serial.sv" \
     "../01_RTL/keccak_rho_pi_wire.sv" \
     "../01_RTL/keccak_chi_row.sv" \
     "../01_RTL/keccak_iota.sv" \
+    "../01_RTL/keccak_lane_ecc.sv" \
+    "../01_RTL/keccak_ft_region.sv" \
     "../01_RTL/keccak_state_bank.sv" \
     "../01_RTL/sha3_low_power_gating.sv" \
     "../01_RTL/sha3_output_formatter.sv" \
@@ -88,6 +91,16 @@ set_output_delay  -max  $OUTPUT_DLY -clock clk   [all_outputs] ; # setup time ch
 set_output_delay  -min  0           -clock clk   [all_outputs] ; # hold  time check
 set_input_delay 0 -clock clk clk
 set_input_delay 0 -clock clk rst_n
+
+# Injection ports are TB-only; synthesis treats them as tied-off 0.
+if {[sizeof_collection [get_ports -quiet ft_inject_valid]] > 0} {
+    set_case_analysis 0 [get_ports ft_inject_valid]
+    set_case_analysis 0 [get_ports ft_d_inject_valid]
+    set_false_path -from [get_ports ft_inject_lane]
+    set_false_path -from [get_ports ft_inject_mask]
+    set_false_path -from [get_ports ft_d_inject_col]
+    set_false_path -from [get_ports ft_d_inject_mask]
+}
 # set_max_delay $CYCLE -from [all_inputs] -to [all_outputs]
 
 # (D-3) Setting Design Environment

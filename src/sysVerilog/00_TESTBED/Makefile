@@ -5,7 +5,7 @@
 # Date:     2026/05/13
 #===============================================================================
 
-.PHONY: vcs_rtl vcs_gate vcs_post \
+.PHONY: vcs_rtl vcs_rtl_ft vcs_gate vcs_post \
 				irun_rtl irun_gate irun_post \
 				xrun_rtl xrun_gate xrun_post \
 				nWave verdi_rtl verdi_gate \
@@ -144,6 +144,10 @@ VERDI_OPTS   = -ssf *.fsdb -sv -f $(SRC_FILE) -nologo +v2k -autoalias \
 # Run Synopsys VCS RTL simulation (behavioral level)
 vcs_rtl:
 	$(VCS_RTL_SIM)
+
+# Fault-injection PATTERN_FT (original PATTERN is unchanged)
+vcs_rtl_ft:
+	$(VCS_RTL_SIM) +define+FT_PATTERN
 
 # Run Synopsys VCS Gate-level simulation (after synthesis, with cell library)
 vcs_gate:
