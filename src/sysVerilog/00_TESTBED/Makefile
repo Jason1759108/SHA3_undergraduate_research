@@ -5,7 +5,7 @@
 # Date:     2026/05/13
 #===============================================================================
 
-.PHONY: vcs_rtl vcs_rtl_ft vcs_gate vcs_post \
+.PHONY: vcs_rtl vcs_rtl_ft vcs_rtl_ft_1600 vcs_gate vcs_post \
 				irun_rtl irun_gate irun_post \
 				xrun_rtl xrun_gate xrun_post \
 				nWave verdi_rtl verdi_gate \
@@ -148,6 +148,10 @@ vcs_rtl:
 # Fault-injection PATTERN_FT (original PATTERN is unchanged)
 vcs_rtl_ft:
 	$(VCS_RTL_SIM) +define+FT_PATTERN
+
+# 1600-bit state Hamming contrast (overlay 3 RTL files into 01_RTL, then)
+vcs_rtl_ft_1600:
+	$(VCS_RTL_SIM) +define+FT_PATTERN_1600
 
 # Run Synopsys VCS Gate-level simulation (after synthesis, with cell library)
 vcs_gate:

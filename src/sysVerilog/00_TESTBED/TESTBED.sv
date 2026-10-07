@@ -39,7 +39,26 @@ module TESTBED;
         .ft_d_inject_mask (ft_d_inject_mask)
     );
 
-`ifdef FT_PATTERN
+`ifdef FT_PATTERN_1600
+    PATTERN_FT_1600 u_PATTERN (
+        .clk              (clk),
+        .rst_n            (rst_n),
+        .in_valid         (in_valid),
+        .msg_in           (msg_in),
+        .msg_length       (msg_length),
+        .in_last          (in_last),
+        .in_ready         (in_ready),
+        .out_data         (out_data),
+        .out_valid        (out_valid),
+        .hash_done        (hash_done),
+        .ft_inject_valid  (ft_inject_valid),
+        .ft_inject_lane   (ft_inject_lane),
+        .ft_inject_mask   (ft_inject_mask),
+        .ft_d_inject_valid(ft_d_inject_valid),
+        .ft_d_inject_col  (ft_d_inject_col),
+        .ft_d_inject_mask (ft_d_inject_mask)
+    );
+`elsif FT_PATTERN
     PATTERN_FT u_PATTERN (
         .clk              (clk),
         .rst_n            (rst_n),

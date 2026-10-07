@@ -1,6 +1,7 @@
 `timescale 1ns/1ps
 
 `ifndef FT_PATTERN
+`ifndef FT_PATTERN_1600
 
 module PATTERN #(
     // 使用者可直接修改或在實例化時覆寫此參數。
@@ -582,4 +583,5 @@ end
 
 endmodule
 
+`endif
 `endif
