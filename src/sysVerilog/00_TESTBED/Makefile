@@ -5,7 +5,7 @@
 # Date:     2026/05/13
 #===============================================================================
 
-.PHONY: vcs_rtl vcs_rtl_ft vcs_rtl_ft_1600 vcs_gate vcs_post \
+.PHONY: vcs_rtl vcs_rtl_no_ft vcs_rtl_ft vcs_rtl_ft_1600 verilator_rtl vcs_gate vcs_post \
 				irun_rtl irun_gate irun_post \
 				xrun_rtl xrun_gate xrun_post \
 				nWave verdi_rtl verdi_gate \
@@ -145,13 +145,23 @@ VERDI_OPTS   = -ssf *.fsdb -sv -f $(SRC_FILE) -nologo +v2k -autoalias \
 vcs_rtl:
 	$(VCS_RTL_SIM)
 
-# Fault-injection PATTERN_FT (original PATTERN is unchanged)
+# Unprotected baseline with the same datapath.
+vcs_rtl_no_ft:
+	$(VCS_RTL_SIM) +define+FT_DISABLED
+
+# Algebraic parity + replay fault injection (64-bit raw-data masks).
 vcs_rtl_ft:
 	$(VCS_RTL_SIM) +define+FT_PATTERN
 
-# 1600-bit state Hamming contrast (overlay 3 RTL files into 01_RTL, then)
+# Old overlays are incompatible with the parity interface; fail explicitly.
 vcs_rtl_ft_1600:
-	$(VCS_RTL_SIM) +define+FT_PATTERN_1600
+	$(error Use SECDED baseline commit 0798e0b; see others/parity_predictor_design.md)
+
+# Open-source regression; additional options can specify native Windows tools.
+PYTHON ?= python3
+VERILATOR_ARGS ?=
+verilator_rtl:
+	$(PYTHON) run_verilator.py --mode all $(VERILATOR_ARGS)
 
 # Run Synopsys VCS Gate-level simulation (after synthesis, with cell library)
 vcs_gate:

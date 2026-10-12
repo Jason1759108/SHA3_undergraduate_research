@@ -1,3 +1,5 @@
+> 歷史設計文件：現行主 RTL 已改用 Parity + Replay，請以 [現行設計筆記](parity_predictor_design.md) 為準。下文保留作為舊架構研究紀錄。
+
 # Fault Detection / Recovery 論文導讀與算法講義
 
 給 **兩個人一起讀**。這份不排寫 RTL 的工時（那份在 `fault detection and recover分工說明.md`），只回答：

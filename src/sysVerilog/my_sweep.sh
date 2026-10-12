@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # ==================== 請依據您的硬體設計修改以下參數 ====================
-CYCLES_PER_BLOCK=480   # 處理一個 block 需要的 clock cycles 數 (請依您 IP 的實際數值修改)
+CYCLES_PER_BLOCK=240   # 處理一個 block 需要的 clock cycles 數 (請依您 IP 的實際數值修改)
+DESIGN=SHA3_parity
+if [[ "${FT_ENABLE:-1}" == "0" ]]; then DESIGN=SHA3_base; fi
 BITS_PER_BLOCK=1088   # SHA3-256 的 Rate (預設為 1088 bits)
 # ====================================================================
 
@@ -33,11 +35,11 @@ for PERIOD in $PERIODS; do
     cp dc_run.log "$DEST_DIR/"
     
     # 1. 抓取 Slack 數值
-    SLACK_VAL=$(grep -i "slack" $DEST_DIR/SHA3.timing | head -n 1 | awk '{print $NF}')
+    SLACK_VAL=$(grep -i "slack" $DEST_DIR/${DESIGN}.timing | head -n 1 | awk '{print $NF}')
     if [ -z "$SLACK_VAL" ]; then SLACK_VAL="N/A"; fi
 
-    # 2. 抓取 Total Power 數值 (從 SHA3.power 的最後一行提取 Total Power)
-    POWER_VAL=$(grep -A 10 "Power Group" $DEST_DIR/SHA3.power | grep "Total" | awk '{
+    # 2. 抓取 Total Power 數值 (從 ${DESIGN}.power 的最後一行提取 Total Power)
+    POWER_VAL=$(grep -A 10 "Power Group" $DEST_DIR/${DESIGN}.power | grep "Total" | awk '{
         # 判斷單位是 mW 還是 uW 並統一換算為 mW
         val = $(NF-1);
         unit = $NF;

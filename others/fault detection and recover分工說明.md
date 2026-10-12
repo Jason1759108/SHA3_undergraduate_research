@@ -1,3 +1,5 @@
+> 歷史設計文件：現行主 RTL 已改用 Parity + Replay，請以 [現行設計筆記](parity_predictor_design.md) 為準。下文保留作為舊架構研究紀錄。
+
 # SHA-3 Lane Hamming Detection & Recovery 分工說明
 
 本文件對應 **Candidate 3（lane-serial + `lane_active[24:0]`）** 的下一步實作。規格來源是 `FT論文導讀與算法講義.md` **第六、七部分的完整版**：

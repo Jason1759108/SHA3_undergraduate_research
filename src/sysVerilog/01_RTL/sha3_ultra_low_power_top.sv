@@ -1,4 +1,4 @@
-module sha3_ultra_low_power_top (
+module sha3_ultra_low_power_top #(parameter bit FT_ENABLE = 1'b1) (
     input  logic          clk,
     input  logic          rst_n,
 
@@ -16,10 +16,13 @@ module sha3_ultra_low_power_top (
     // Fault injection (synthesis / original PATTERN tie these to 0).
     input  logic          ft_inject_valid,
     input  logic [4:0]    ft_inject_lane,
-    input  logic [71:0]   ft_inject_mask,
+    input  logic [63:0]   ft_inject_mask,
+    input  logic          ft_c_inject_valid,
+    input  logic [2:0]    ft_c_inject_col,
+    input  logic [63:0]   ft_c_inject_mask,
     input  logic          ft_d_inject_valid,
     input  logic [2:0]    ft_d_inject_col,
-    input  logic [71:0]   ft_d_inject_mask
+    input  logic [63:0]   ft_d_inject_mask
 );
 
     import sha3_pkg::*;
@@ -51,10 +54,10 @@ module sha3_ultra_low_power_top (
     logic          theta_done;
     logic          theta_hold;
     logic          theta_replay;
-    logic          theta_compute_d;
+    logic          theta_compute_d, theta_checkpoint_fault;
     logic [2:0]    theta_col;
     logic [24:0]   theta_lane_active;
-    ft_status_e    theta_d_status [1:4];
+    logic [24:0]   theta_predicted_parity, chi_predicted_parity;
 
     logic          chi_start;
     logic          chi_done;
@@ -66,20 +69,12 @@ module sha3_ultra_low_power_top (
     logic [4:0]    round_index;
 
     logic          fault_valid;
-    ft_replay_e    replay_kind;
-    ft_replay_e    active_replay_kind;
-    ft_src_e       ft_src;
-
     logic [24:0]   sleep_en;
     logic [24:0]   lane_clk;
     logic [24:0]   state_active_mask;
 
-    logic [24:0]   lane_inject_en;
-    logic [71:0]   lane_inject_mask [0:24];
-    logic [7:0]    ecc_q [0:24];
-    ft_status_e    lane_status [0:24];
-    logic          any_uncorr;
-    logic [24:0]   uncorr_mask;
+    logic [24:0]   mismatch_mask, predicted_parity;
+    logic          parity_check_valid;
     state_t        data_wr;
 
     state_t cur_state;
@@ -187,7 +182,6 @@ module sha3_ultra_low_power_top (
         .theta_done        (theta_done),
         .chi_done          (chi_done),
         .fault_valid       (fault_valid),
-        .replay_kind       (replay_kind),
         .theta_start       (theta_start),
         .chi_start         (chi_start),
         .round_index       (round_index),
@@ -195,18 +189,19 @@ module sha3_ultra_low_power_top (
         .theta_hold        (theta_hold),
         .chi_hold          (chi_hold),
         .theta_replay      (theta_replay),
-        .chi_replay        (chi_replay),
-        .active_replay_kind(active_replay_kind)
+        .chi_replay        (chi_replay)
     );
 
-    keccak_theta_serial u_theta (
+    keccak_theta_serial #(.FT_ENABLE(FT_ENABLE)) u_theta (
         .in_state    (cur_state),
         .clk         (clk),
         .rst_n       (rst_n),
         .start       (theta_start),
         .replay      (theta_replay),
         .hold        (theta_hold),
-        .replay_kind (active_replay_kind),
+        .c_inject_valid(ft_c_inject_valid),
+        .c_inject_col(ft_c_inject_col),
+        .c_inject_mask(ft_c_inject_mask),
         .d_inject_valid(ft_d_inject_valid),
         .d_inject_col  (ft_d_inject_col),
         .d_inject_mask (ft_d_inject_mask),
@@ -214,8 +209,9 @@ module sha3_ultra_low_power_top (
         .done        (theta_done),
         .lane_active (theta_lane_active),
         .compute_d   (theta_compute_d),
+        .checkpoint_fault(theta_checkpoint_fault),
         .col         (theta_col),
-        .d_status    (theta_d_status)
+        .predicted_parity(theta_predicted_parity)
     );
 
     keccak_rho_pi_wire u_rho_pi (
@@ -223,7 +219,7 @@ module sha3_ultra_low_power_top (
         .out_state (rho_pi_state)
     );
 
-    keccak_chi_row u_chi (
+    keccak_chi_row #(.FT_ENABLE(FT_ENABLE)) u_chi (
         .in_state    (rho_pi_state),
         .clk         (clk),
         .rst_n       (rst_n),
@@ -234,7 +230,8 @@ module sha3_ultra_low_power_top (
         .cnt         (chi_cnt),
         .out_state   (chi_state),
         .done        (chi_done),
-        .lane_active (chi_lane_active)
+        .lane_active (chi_lane_active),
+        .predicted_parity(chi_predicted_parity)
     );
 
     sha3_output_formatter u_output_formatter (
@@ -296,54 +293,23 @@ module sha3_ultra_low_power_top (
 
     assign sleep_en = ~state_active_mask;
 
-    always_comb begin
-        lane_inject_en = 25'd0;
-        for (int i = 0; i < 25; i++)
-            lane_inject_mask[i] = 72'd0;
-
-        // 只在 keccak-f 且該 lane 正在寫時注入；absorb / pad 不打。
-        if (ft_inject_valid &&
-            (ft_inject_lane <= 5'd24) &&
-            ((theta_lane_active != 25'd0) || (chi_lane_active != 25'd0)) &&
-            state_active_mask[ft_inject_lane]) begin
-            lane_inject_en[ft_inject_lane]   = 1'b1;
-            lane_inject_mask[ft_inject_lane] = ft_inject_mask;
-        end
-
-        if (theta_lane_active != 25'd0)
-            ft_src = FT_SRC_THETA;
-        else if (chi_lane_active != 25'd0)
-            ft_src = FT_SRC_CHI;
-        else
-            ft_src = FT_SRC_NONE;
-    end
-
-    keccak_lane_ecc u_lane_ecc (
-        .clk         (clk),
-        .rst_n       (rst_n),
-        .lane_clk    (lane_clk),
-        .lane_active (state_active_mask),
-        .data_nxt    (nxt_state),
-        .data_cur    (cur_state),
-        .inject_en   (lane_inject_en),
-        .inject_mask (lane_inject_mask),
-        .data_wr     (data_wr),
-        .ecc_q       (ecc_q),
-        .status      (lane_status),
-        .any_uncorr  (any_uncorr),
-        .uncorr_mask (uncorr_mask)
-    );
-
-    keccak_ft_region u_ft_region (
-        .src            (ft_src),
-        .theta_compute_d(theta_compute_d),
-        .theta_col      (theta_col),
-        .chi_cnt        (chi_cnt),
-        .uncorr_mask    (uncorr_mask),
-        .d_status       (theta_d_status),
-        .replay_kind    (replay_kind),
-        .fault_valid    (fault_valid)
-    );
+    assign parity_check_valid = (|theta_lane_active) || (|chi_lane_active);
+    assign predicted_parity = (|theta_lane_active) ? theta_predicted_parity : chi_predicted_parity;
+    generate if (FT_ENABLE) begin : gen_ft
+        keccak_lane_parity u_lane_parity (
+            .data_nxt(nxt_state), .data_cur(cur_state),
+            .lane_active(state_active_mask), .check_valid(parity_check_valid),
+            .checkpoint_fault(theta_checkpoint_fault),
+            .predicted_parity(predicted_parity),
+            .inject_valid(ft_inject_valid), .inject_lane(ft_inject_lane),
+            .inject_mask(ft_inject_mask), .data_wr(data_wr),
+            .mismatch_mask(mismatch_mask), .fault_valid(fault_valid)
+        );
+    end else begin : gen_no_ft
+        assign data_wr = nxt_state;
+        assign mismatch_mask = '0;
+        assign fault_valid = 1'b0;
+    end endgenerate
 
     sha3_low_power_gating u_low_power_gating (
         .clk      (clk),

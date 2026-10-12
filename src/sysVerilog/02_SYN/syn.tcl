@@ -7,7 +7,11 @@
 #======================================================
 # (A) Global Parameters
 #======================================================
-set DESIGN "SHA3"
+# FT_ENABLE=0 is the same datapath without predictor/checker/replay hardware.
+set FT_ENABLE 1
+if {[info exists env(FT_ENABLE)]} { set FT_ENABLE $env(FT_ENABLE) }
+if {$FT_ENABLE ni {0 1}} { error "FT_ENABLE must be 0 or 1" }
+set DESIGN [expr {$FT_ENABLE ? "SHA3_parity" : "SHA3_base"}]
 set TOP_MODULE "sha3_ultra_low_power_top"
 
 if {[info exists env(CLK_PERIOD)]} {
@@ -37,13 +41,12 @@ set syn_files [list \
     "../01_RTL/sha3_pad_domain.sv" \
     "../01_RTL/sha3_absorb_xor.sv" \
     "../01_RTL/keccak_round_scheduler.sv" \
-    "../01_RTL/keccak_hamming64.sv" \
+    "../01_RTL/keccak_parity_predictor.sv" \
     "../01_RTL/keccak_theta_serial.sv" \
     "../01_RTL/keccak_rho_pi_wire.sv" \
     "../01_RTL/keccak_chi_row.sv" \
     "../01_RTL/keccak_iota.sv" \
-    "../01_RTL/keccak_lane_ecc.sv" \
-    "../01_RTL/keccak_ft_region.sv" \
+    "../01_RTL/keccak_lane_parity.sv" \
     "../01_RTL/keccak_state_bank.sv" \
     "../01_RTL/sha3_low_power_gating.sv" \
     "../01_RTL/sha3_output_formatter.sv" \
@@ -54,7 +57,7 @@ set syn_files [list \
 analyze -f sverilog $syn_files
 
 # Elaborate top
-elaborate $TOP_MODULE
+elaborate $TOP_MODULE -parameters "FT_ENABLE=$FT_ENABLE"
 
 current_design $TOP_MODULE
 link
@@ -95,6 +98,9 @@ set_input_delay 0 -clock clk rst_n
 # Injection ports are TB-only; synthesis treats them as tied-off 0.
 if {[sizeof_collection [get_ports -quiet ft_inject_valid]] > 0} {
     set_case_analysis 0 [get_ports ft_inject_valid]
+    set_case_analysis 0 [get_ports ft_c_inject_valid]
+    set_false_path -from [get_ports ft_c_inject_col]
+    set_false_path -from [get_ports ft_c_inject_mask]
     set_case_analysis 0 [get_ports ft_d_inject_valid]
     set_false_path -from [get_ports ft_inject_lane]
     set_false_path -from [get_ports ft_inject_mask]
@@ -129,6 +135,25 @@ check_timing
 check_design > Report/$DESIGN\.check
 set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
 set_fix_hold [all_clocks]
+# Compile predictors separately before freezing them. Freezing unmapped RTL
+# would invalidate the area comparison. Prevent cross-boundary optimization
+# from proving an error-free checker constant and removing its protection.
+if {$FT_ENABLE} {
+    foreach predictor {keccak_theta_parity keccak_chi_parity} {
+        current_design $predictor
+        set_max_delay $CYCLE -from [all_inputs] -to [all_outputs]
+        set_input_transition 0.5 [all_inputs]
+        compile_ultra
+        set_dont_touch [get_designs $predictor] true
+    }
+    current_design $TOP_MODULE
+    set predictor_cells [get_cells -hierarchical -filter {ref_name == keccak_theta_parity || ref_name == keccak_chi_parity}]
+    if {[sizeof_collection $predictor_cells] != 2} {
+        error "Expected two independent parity predictor instances"
+    }
+    set_boundary_optimization $predictor_cells false
+    set_ungroup $predictor_cells false
+}
 compile_ultra
 # uniquify
 # compile
@@ -139,7 +164,7 @@ compile_ultra
 report_design              > Report/$DESIGN\.design
 report_resource            > Report/$DESIGN\.resource
 report_timing -max_paths 3 > Report/$DESIGN\.timing
-report_area                > Report/$DESIGN\.area
+report_area -hierarchy     > Report/$DESIGN\.area
 report_power               > Report/$DESIGN\.power
 report_clock               > Report/$DESIGN\.clock
 report_port                > Report/$DESIGN\.port

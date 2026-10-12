@@ -2,7 +2,11 @@
 
 set -uo pipefail
 
-DESIGN="${DESIGN:-SHA3}"
+if [[ "${FT_ENABLE:-1}" == "0" ]]; then
+    DESIGN="${DESIGN:-SHA3_base}"
+else
+    DESIGN="${DESIGN:-SHA3_parity}"
+fi
 RUN_SCRIPT="${RUN_SCRIPT:-./01_run_dc}"
 REPORT_DIR="${REPORT_DIR:-./Report}"
 OUTPUT_ROOT="${OUTPUT_ROOT:-./sweep_results}"
