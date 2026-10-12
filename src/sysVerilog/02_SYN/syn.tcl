@@ -59,7 +59,9 @@ analyze -f sverilog $syn_files
 # Elaborate top
 elaborate $TOP_MODULE -parameters "FT_ENABLE=$FT_ENABLE"
 
-current_design $TOP_MODULE
+# Parameterized elaboration may append a suffix to the top design name.
+set ELAB_TOP [get_object_name [current_design]]
+current_design $ELAB_TOP
 link
 
 # Check before optimization
@@ -146,7 +148,7 @@ if {$FT_ENABLE} {
         compile_ultra
         set_dont_touch [get_designs $predictor] true
     }
-    current_design $TOP_MODULE
+    current_design $ELAB_TOP
     set predictor_cells [get_cells -hierarchical -filter {ref_name == keccak_theta_parity || ref_name == keccak_chi_parity}]
     if {[sizeof_collection $predictor_cells] != 2} {
         error "Expected two independent parity predictor instances"
