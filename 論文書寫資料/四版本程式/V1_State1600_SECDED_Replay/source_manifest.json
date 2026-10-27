@@ -1,0 +1,15 @@
+{
+  "version_id": "V1_State1600_SECDED_Replay",
+  "source_commit": "0798e0b9ed8ba1b73a2cdd427b2441c755fb4903",
+  "snapshot_id": "V1_State1600_SECDED_Replay_r0",
+  "syn_script": "syn_1600.tcl",
+  "design_prefix": "SHA3_1600",
+  "ft_target": "vcs_rtl_ft_1600",
+  "ft_enable": null,
+  "overlay": [
+    "sha3_pkg.sv",
+    "keccak_hamming64.sv",
+    "keccak_lane_ecc.sv"
+  ],
+  "status": "source_exported_not_rerun"
+}

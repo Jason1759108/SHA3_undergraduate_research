@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "runtimes": [
+    "Python 2.7.18",
+    "Python 3.12.4"
+  ],
+  "tested": [
+    "actual DC Time_unit : 1.0e-09 Second(ns)",
+    "equivalent 1 ns formats",
+    "non-1ns, nonfinite and unknown format rejection",
+    "full/core parse_reports with mock report fixtures and unchanged energy formulas"
+  ],
+  "actual_workstation_rerun": "pending"
+}

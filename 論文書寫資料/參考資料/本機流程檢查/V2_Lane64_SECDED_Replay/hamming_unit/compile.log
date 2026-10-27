@@ -1,0 +1,42 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\paper_tools\\verilator\\bin\\verilator_bin.exe', '--timing', '--assert', '-Wno-fatal', '--top-module', 'tb_hamming64', '--prefix', 'VPAPER', '--Mdir', 'C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v2_1\\hamming_unit', '-DNO_DUMP', '-f', 'C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v2_1\\hamming_unit\\files.f', '--cc', '--main']
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/01_RTL\sha3_pkg.sv:1:9: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | package sha3_pkg;
+      |         ^~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/00_TESTBED\tb_hamming64.sv:15:8: ... Location of module with timescale
+   15 | module tb_hamming64;
+      |        ^~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=0.000
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/01_RTL\keccak_hamming64.sv:2:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    2 | module keccak_hamming64(
+      |        ^~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/00_TESTBED\tb_hamming64.sv:15:8: ... Location of module with timescale
+   15 | module tb_hamming64;
+      |        ^~~~~~~~~~~~
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/01_RTL\sha3_pkg.sv:41:27: Ascending bit range vector: left < right of bit range: [0:4]
+   41 |     localparam logic [0:4][0:4][31:0] RHO_OFFSET = '{
+      |                           ^
+                   ... For warning description see https://verilator.org/warn/ASCRANGE?v=0.000
+                   ... Use "/* verilator lint_off ASCRANGE */" and lint_on around source to disable this message.
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/01_RTL\sha3_pkg.sv:41:22: Ascending bit range vector: left < right of bit range: [0:4]
+   41 |     localparam logic [0:4][0:4][31:0] RHO_OFFSET = '{
+      |                      ^
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/01_RTL\sha3_pkg.sv:50:27: Ascending bit range vector: left < right of bit range: [0:4]
+   50 |     localparam logic [0:4][0:4][31:0] PI_Y_MAP = '{
+      |                           ^
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/01_RTL\sha3_pkg.sv:50:22: Ascending bit range vector: left < right of bit range: [0:4]
+   50 |     localparam logic [0:4][0:4][31:0] PI_Y_MAP = '{
+      |                      ^
+%Warning-WIDTHEXPAND: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/00_TESTBED\tb_hamming64.sv:98:30: Operator NEQ expects 32 bits on the LHS, but LHS's VARREF 'syndrome' generates 7 bits.
+                                                                                                                                                                             : ... note: In instance 'tb_hamming64'
+   98 |                 if (syndrome != pos) fail_msg("syndrome != pos");
+      |                              ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=0.000
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/00_TESTBED\tb_hamming64.sv:118:30: Operator NEQ expects 32 bits on the LHS, but LHS's VARREF 'syndrome' generates 7 bits.
+                                                                                                                                                                              : ... note: In instance 'tb_hamming64'
+  118 |                 if (syndrome != pos) fail_msg("syndrome != pos");
+      |                              ^~
+- V e r i l a t i o n   R e p o r t:  rev vUNKNOWN-built20260516-4e853d8
+- Verilator: Built from 0.116 MB sources in 5 modules, into 0.389 MB in 8 C++ files needing 0.002 MB
+- Verilator: Walltime 0.112 s (elab=0.003, cvt=0.053, bld=0.000); cpu 0.016 s on 1 threads; allocated 18.113 MB

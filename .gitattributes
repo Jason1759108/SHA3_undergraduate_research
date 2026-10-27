@@ -1,1 +1,5 @@
 *.sh text eol=lf
+
+# Preserve exact exported bytes for prepared_hashes.csv; shell entries remain LF.
+"論文書寫資料/四版本程式/**" -text
+"論文書寫資料/四版本程式/**/*.sh" text eol=lf

@@ -1,0 +1,28 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\ft\\sim.exe']
+
+==================================================
+   SHA3-256 FT VERIFICATION (1600-bit Hamming)
+==================================================
+
+[PASS] baseline_no_inject nbit=0 f_cycles=241 extra=241 status=OK kind=NONE hold=0 replay=0
+[INFO] baseline keccak-f cycles (start_process..process_done) = 241
+[PASS] theta_col0_1bit nbit=1 f_cycles=241 extra=0 status=CORRECTED kind=NONE hold=0 replay=0
+[PASS] theta_col3_1bit nbit=1 f_cycles=241 extra=0 status=CORRECTED kind=NONE hold=0 replay=0
+[PASS] chi_row0_1bit nbit=1 f_cycles=241 extra=0 status=CORRECTED kind=NONE hold=0 replay=0
+[PASS] chi_row3_1bit nbit=1 f_cycles=241 extra=0 status=CORRECTED kind=NONE hold=0 replay=0
+[PASS] chi_last_1bit nbit=1 f_cycles=241 extra=0 status=CORRECTED kind=NONE hold=0 replay=0
+[PASS] theta_col0_2bit nbit=2 f_cycles=242 extra=1 status=UNCORR kind=THETA_COL hold=1 replay=1
+[PASS] theta_col3_2bit nbit=2 f_cycles=242 extra=1 status=UNCORR kind=THETA_COL hold=1 replay=1
+[PASS] theta_col3_d_2bit nbit=2 f_cycles=245 extra=4 status=UNCORR kind=THETA_FROM0 hold=1 replay=1
+[PASS] chi_row0_2bit nbit=2 f_cycles=242 extra=1 status=UNCORR kind=CHI_ROW hold=1 replay=1
+[PASS] chi_row3_2bit nbit=2 f_cycles=242 extra=1 status=UNCORR kind=CHI_ROW hold=1 replay=1
+[PASS] chi_last_2bit nbit=2 f_cycles=242 extra=1 status=UNCORR kind=CHI_ROW hold=1 replay=1
+
+==================================================
+[SUCCESS] All 12 FT test cases passed!
+==================================================
+
+- C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\PATTERN_FT_1600.sv:453: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 32us; walltime 10.124 s; speed 3.196 us/s
+- Verilator: cpu 9.984 s on 1 threads; allocated 7 MB

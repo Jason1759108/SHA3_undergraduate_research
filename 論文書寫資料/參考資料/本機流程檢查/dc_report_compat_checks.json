@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "checks": [
+    "four Tcl files syntactically complete",
+    "activity audit tested with mock DC collections",
+    "switching-activity commands and override order preserved",
+    "all prepared file hashes match"
+  ],
+  "actual_DC_execution": "pending workstation rerun"
+}

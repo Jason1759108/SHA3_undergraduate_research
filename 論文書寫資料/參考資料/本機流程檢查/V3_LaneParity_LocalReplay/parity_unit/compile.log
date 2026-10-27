@@ -1,0 +1,44 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\paper_tools\\verilator\\bin\\verilator_bin.exe', '--timing', '--assert', '-Wno-fatal', '--top-module', 'tb_parity_predictor', '--prefix', 'VPAPER', '--Mdir', 'C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v3_1\\parity_unit', '-DNO_DUMP', '-f', 'C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v3_1\\parity_unit\\files.f', '--cc', '--main']
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/01_RTL\sha3_pkg.sv:1:9: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | package sha3_pkg;
+      |         ^~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/00_TESTBED\tb_parity_predictor.sv:3:8: ... Location of module with timescale
+    3 | module tb_parity_predictor;
+      |        ^~~~~~~~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=0.000
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/01_RTL\keccak_parity_predictor.sv:3:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    3 | module keccak_theta_parity (
+      |        ^~~~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/00_TESTBED\tb_parity_predictor.sv:3:8: ... Location of module with timescale
+    3 | module tb_parity_predictor;
+      |        ^~~~~~~~~~~~~~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/01_RTL\keccak_parity_predictor.sv:24:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+   24 | module keccak_chi_parity (
+      |        ^~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/00_TESTBED\tb_parity_predictor.sv:3:8: ... Location of module with timescale
+    3 | module tb_parity_predictor;
+      |        ^~~~~~~~~~~~~~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/01_RTL\keccak_lane_parity.sv:2:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    2 | module keccak_lane_parity (
+      |        ^~~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/00_TESTBED\tb_parity_predictor.sv:3:8: ... Location of module with timescale
+    3 | module tb_parity_predictor;
+      |        ^~~~~~~~~~~~~~~~~~~
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/01_RTL\sha3_pkg.sv:42:27: Ascending bit range vector: left < right of bit range: [0:4]
+   42 |     localparam logic [0:4][0:4][31:0] RHO_OFFSET = '{
+      |                           ^
+                   ... For warning description see https://verilator.org/warn/ASCRANGE?v=0.000
+                   ... Use "/* verilator lint_off ASCRANGE */" and lint_on around source to disable this message.
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/01_RTL\sha3_pkg.sv:42:22: Ascending bit range vector: left < right of bit range: [0:4]
+   42 |     localparam logic [0:4][0:4][31:0] RHO_OFFSET = '{
+      |                      ^
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/01_RTL\sha3_pkg.sv:51:27: Ascending bit range vector: left < right of bit range: [0:4]
+   51 |     localparam logic [0:4][0:4][31:0] PI_Y_MAP = '{
+      |                           ^
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/01_RTL\sha3_pkg.sv:51:22: Ascending bit range vector: left < right of bit range: [0:4]
+   51 |     localparam logic [0:4][0:4][31:0] PI_Y_MAP = '{
+      |                      ^
+- V e r i l a t i o n   R e p o r t:  rev vUNKNOWN-built20260516-4e853d8
+- Verilator: Built from 0.123 MB sources in 7 modules, into 0.238 MB in 8 C++ files needing 0.001 MB
+- Verilator: Walltime 0.094 s (elab=0.004, cvt=0.033, bld=0.000); cpu 0.000 s on 1 threads; allocated 17.039 MB

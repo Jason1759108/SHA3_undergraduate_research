@@ -1,0 +1,52 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v3_1\\normal\\sim.exe']
+
+==================================================
+   STARTING SHA3-256 MULTI-BLOCK VERIFICATION
+   All following tests use Clock Period = 10.000 ns
+==================================================
+
+[METRIC] bytes=0 e2e_cycles=255 permutations=1 core_cycles_total=241
+[PASS] empty len=0 bytes latency=256 cycles time=2560.000 ns throughput=N/A digest=4a43f8804b0ad882fa493be44dff80f562d661a05647c15166d71ebff8c6ffa7
+[METRIC] bytes=1 e2e_cycles=255 permutations=1 core_cycles_total=241
+[PASS] one_ff len=1 bytes latency=256 cycles time=2560.000 ns throughput=3.125 Mbps digest=42a4ecee176aa48cf52622c72f82a0bc233afdde198fc95dec5a39ceec894b44
+[METRIC] bytes=3 e2e_cycles=255 permutations=1 core_cycles_total=241
+[PASS] abc len=3 bytes latency=256 cycles time=2560.000 ns throughput=9.375 Mbps digest=3215431145e2bf465b529d3e6e085f85bd90d36b2d175c04b225e24fa75d983a
+[METRIC] bytes=5 e2e_cycles=255 permutations=1 core_cycles_total=241
+[PASS] hello len=5 bytes latency=256 cycles time=2560.000 ns throughput=15.625 Mbps digest=92f3982320b9f42a794d424fb888a8536468f0cd86498138f3c5504f69be3833
+[METRIC] bytes=4 e2e_cycles=255 permutations=1 core_cycles_total=241
+[PASS] sha3 len=4 bytes latency=256 cycles time=2560.000 ns throughput=12.500 Mbps digest=150070d51fbc334720d6a58b10747734c4d3623ff00842412fc6e5bfed908c6f
+[METRIC] bytes=10 e2e_cycles=255 permutations=1 core_cycles_total=241
+[PASS] 1234567890 len=10 bytes latency=256 cycles time=2560.000 ns throughput=31.250 Mbps digest=63a174f343909111d46aa7d0cb1d3967921c5fd4625ac1a53a9176e94388da01
+[METRIC] bytes=13 e2e_cycles=255 permutations=1 core_cycles_total=241
+[PASS] SystemVerilog len=13 bytes latency=256 cycles time=2560.000 ns throughput=40.625 Mbps digest=9c7c0f42b0680e064ac0ee3698c558900964230a741b221d3845f6a77e6a1989
+[METRIC] bytes=16 e2e_cycles=255 permutations=1 core_cycles_total=241
+[PASS] 0123456789abcdef len=16 bytes latency=256 cycles time=2560.000 ns throughput=50.000 Mbps digest=1fa00d4b2db4622033af6831c415a1302f9a705b0767f6acdbb5fde9aa4cdfa5
+[METRIC] bytes=135 e2e_cycles=255 permutations=1 core_cycles_total=241
+[PASS] rate_minus_1 len=135 bytes latency=256 cycles time=2560.000 ns throughput=421.875 Mbps digest=e2d5315247b9c9a9aae9b715d0d1aad8cfe5c56b7c3beb1e601c55d6d98fedfd
+[METRIC] bytes=135 e2e_cycles=255 permutations=1 core_cycles_total=241
+[PASS] 135_bytes_0xAA len=135 bytes latency=256 cycles time=2560.000 ns throughput=421.875 Mbps digest=b196674fdc873448ca2e26e430289177b9e783b4047b1bf6352c83b97686d0eb
+[METRIC] bytes=136 e2e_cycles=498 permutations=2 core_cycles_total=482
+[PASS] exact_136_bytes len=136 bytes latency=499 cycles time=4990.000 ns throughput=218.036 Mbps digest=e530498c3fe7df5769108817eebf4947e130c41783d3c26091a28024f9cf3ccf
+[METRIC] bytes=136 e2e_cycles=498 permutations=2 core_cycles_total=482
+[PASS] 136_bytes_0xAA len=136 bytes latency=499 cycles time=4990.000 ns throughput=218.036 Mbps digest=24bd65fda7fca7a3eda7216ef3f33a244f7d8efc94dbe3c42b33cc38e18a276f
+[METRIC] bytes=137 e2e_cycles=499 permutations=2 core_cycles_total=482
+[PASS] multi_137_bytes len=137 bytes latency=500 cycles time=5000.000 ns throughput=219.200 Mbps digest=cada8480ee830adc07ed18ef9b27d6c652539a47195074925dee1309c97d9dce
+[METRIC] bytes=137 e2e_cycles=499 permutations=2 core_cycles_total=482
+[PASS] 137_bytes_0xAA len=137 bytes latency=500 cycles time=5000.000 ns throughput=219.200 Mbps digest=b80e29a67f283986966629d66608d419bf34c4e8721c088325b7069108c7919c
+[METRIC] bytes=272 e2e_cycles=742 permutations=3 core_cycles_total=723
+[PASS] exact_272_bytes len=272 bytes latency=743 cycles time=7430.000 ns throughput=292.867 Mbps digest=b57d57648ea3305c9f41bf3f92e0245b5108abe09fba099e176dff8e4aec210b
+[METRIC] bytes=300 e2e_cycles=743 permutations=3 core_cycles_total=723
+[PASS] multi_300_bytes len=300 bytes latency=744 cycles time=7440.000 ns throughput=322.581 Mbps digest=0181c534465d2d970c64a561630ef08b55bc475f3ad3ad61ce2085ebbb065c81
+[METRIC] bytes=180 e2e_cycles=499 permutations=2 core_cycles_total=482
+[PASS] The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.  len=180 bytes latency=500 cycles time=5000.000 ns throughput=288.000 Mbps digest=f017475e75626680ae0bbd8852bad4dbb00e85a0f9c3f024e70f99f206157ba8
+[METRIC] bytes=4096 e2e_cycles=7575 permutations=31 core_cycles_total=7471
+[PASS] throughput_4096_bytes len=4096 bytes latency=7576 cycles time=75760.000 ns throughput=432.524 Mbps digest=83ec70ca871e4398e046c14ef4bb9c100187c3e7e36513a3a2ff5ce6ceb4b3ee
+
+==================================================
+[SUCCESS] All 18 SHA3-256 test cases passed!
+==================================================
+
+- C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/00_TESTBED\PATTERN.sv:580: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 142us; walltime 0.074 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; allocated 6 MB

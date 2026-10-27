@@ -1,0 +1,158 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\paper_tools\\verilator\\bin\\verilator_bin.exe', '--timing', '--assert', '-Wno-fatal', '--top-module', 'TESTBED', '--prefix', 'VPAPER', '--Mdir', 'C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\cross_lane', '-DNO_DUMP', '-f', 'C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\cross_lane\\files.f', '--cc', '--main']
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pkg.sv:1:9: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | package sha3_pkg;
+      |         ^~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=0.000
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_ctrl_fsm.sv:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module sha3_ctrl_fsm (
+      |        ^~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pad_domain.sv:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module sha3_pad_domain (
+      |        ^~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_absorb_xor.sv:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module sha3_absorb_xor (
+      |        ^~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_round_scheduler.sv:2:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    2 | module keccak_round_scheduler (
+      |        ^~~~~~~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_hamming64.sv:2:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    2 | module keccak_hamming64(
+      |        ^~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_hamming64.sv:73:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+   73 | module keccak_hamming1600
+      |        ^~~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_theta_serial.sv:2:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    2 | module keccak_theta_serial (
+      |        ^~~~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_rho_pi_wire.sv:2:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    2 | module keccak_rho_pi_wire (
+      |        ^~~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_chi_row.sv:2:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    2 | module keccak_chi_row(
+      |        ^~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_iota.sv:2:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    2 | module keccak_iota (
+      |        ^~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_lane_ecc.sv:6:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    6 | module keccak_lane_ecc (
+      |        ^~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_ft_region.sv:3:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    3 | module keccak_ft_region (
+      |        ^~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_output_formatter.sv:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module sha3_output_formatter (
+      |        ^~~~~~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_low_power_gating.sv:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module sha3_low_power_gating (
+      |        ^~~~~~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_state_bank.sv:2:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    2 | module keccak_state_bank (
+      |        ^~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_ultra_low_power_top.sv:1:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | module sha3_ultra_low_power_top (
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:5:8: ... Location of module with timescale
+    5 | module TESTBED;
+      |        ^~~~~~~
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pkg.sv:41:27: Ascending bit range vector: left < right of bit range: [0:4]
+   41 |     localparam logic [0:4][0:4][31:0] RHO_OFFSET = '{
+      |                           ^
+                   ... For warning description see https://verilator.org/warn/ASCRANGE?v=0.000
+                   ... Use "/* verilator lint_off ASCRANGE */" and lint_on around source to disable this message.
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pkg.sv:41:22: Ascending bit range vector: left < right of bit range: [0:4]
+   41 |     localparam logic [0:4][0:4][31:0] RHO_OFFSET = '{
+      |                      ^
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pkg.sv:50:27: Ascending bit range vector: left < right of bit range: [0:4]
+   50 |     localparam logic [0:4][0:4][31:0] PI_Y_MAP = '{
+      |                           ^
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pkg.sv:50:22: Ascending bit range vector: left < right of bit range: [0:4]
+   50 |     localparam logic [0:4][0:4][31:0] PI_Y_MAP = '{
+      |                      ^
+%Warning-WIDTHEXPAND: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_hamming64.sv:121:32: Operator LTE expects 32 bits on the LHS, but LHS's VARREF 'syndrome' generates 11 bits.
+                                                                                                                                                                                 : ... note: In instance 'TESTBED.u_sha3_top.u_lane_ecc.u_hamming'
+  121 |         end else if ((syndrome <= (FT_S_DATA_W + FT_S_HAM_P)) && (ext_fail == 1)) begin
+      |                                ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=0.000
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_output_formatter.sv:84:45: Bit extraction of array[4:0] requires 3 bit index, not 2 bits.
+                                                                                                                                                                                     : ... note: In instance 'TESTBED.u_sha3_top.u_output_formatter'
+   84 |                         out_data <= in_state[cnt[2:1]][0][31:0];
+      |                                             ^
+%Warning-WIDTHEXPAND: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_output_formatter.sv:86:45: Bit extraction of array[4:0] requires 3 bit index, not 2 bits.
+                                                                                                                                                                                     : ... note: In instance 'TESTBED.u_sha3_top.u_output_formatter'
+   86 |                         out_data <= in_state[cnt[2:1]][0][63:32];
+      |                                             ^
+%Warning-WIDTHEXPAND: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_theta_serial.sv:200:41: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'col' generates 3 bits.
+                                                                                                                                                                                    : ... note: In instance 'TESTBED.u_sha3_top.u_theta'
+  200 |                 lane_active[y * COL_NUM + col] = 1'b1;
+      |                                         ^
+%Warning-WIDTHEXPAND: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pad_domain.sv:35:32: Operator EQ expects 32 bits on the RHS, but RHS's VARREF 'msg_length' generates 8 bits.
+                                                                                                                                                                               : ... note: In instance 'TESTBED.u_sha3_top.u_pad_domain'
+   35 |                     else if (i == msg_length && msg_length < 136)
+      |                                ^~
+%Warning-CASEINCOMPLETE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_output_formatter.sv:77:13: Case values incompletely covered (example pattern 0x0)
+   77 |             case (s)
+      |             ^~~~
+                         ... For warning description see https://verilator.org/warn/CASEINCOMPLETE?v=0.000
+                         ... Use "/* verilator lint_off CASEINCOMPLETE */" and lint_on around source to disable this message.
+%Warning-MULTIDRIVEN: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_ultra_low_power_top.sv:85:13: Signal has multiple driving blocks with different clocking: 'TESTBED.u_sha3_top.cur_state'
+                      C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_state_bank.sv:19:25: ... Location of first driving block
+   19 |                         cur_state[x][y] <= nxt_state[x][y];
+      |                         ^~~~~~~~~
+                      C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_state_bank.sv:19:25: ... Location of other driving block
+   19 |                         cur_state[x][y] <= nxt_state[x][y];
+      |                         ^~~~~~~~~
+                      ... For warning description see https://verilator.org/warn/MULTIDRIVEN?v=0.000
+                      ... Use "/* verilator lint_off MULTIDRIVEN */" and lint_on around source to disable this message.
+- V e r i l a t i o n   R e p o r t:  rev vUNKNOWN-built20260516-4e853d8
+- Verilator: Built from 1.349 MB sources in 20 modules, into 1.726 MB in 11 C++ files needing 0.010 MB
+- Verilator: Walltime 0.579 s (elab=0.017, cvt=0.469, bld=0.000); cpu 0.484 s on 1 threads; allocated 42.156 MB

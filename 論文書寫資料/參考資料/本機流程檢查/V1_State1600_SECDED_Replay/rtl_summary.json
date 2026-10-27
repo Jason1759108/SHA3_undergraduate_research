@@ -1,0 +1,79 @@
+{
+  "version": "V1_State1600_SECDED_Replay",
+  "status": "PASS",
+  "simulator": "verilator",
+  "timestamp": "2026-10-27T02:49:20.024479",
+  "source_sha256": {
+    "00_TESTBED\\filelist.f": "62f3a6a31210180e5bd6bb1f676816b1198265aef340fefaf4644a518e451576",
+    "00_TESTBED\\filelist_cross_lane.f": "5b0aaca93d1f9f1fb45a3a4ed82aa07a0c7b33a131f45c138af131a7463ef521",
+    "00_TESTBED\\Makefile": "abe8d798757f406661cb62ab38462159f0b2156fa5228bdffce60981dcd41422",
+    "00_TESTBED\\paper_cycle_monitor.sv": "94e4a718a2dad9116aaa22924cd63aadf749c1c5019ded1c9968a81a65fe4cce",
+    "00_TESTBED\\PATTERN.sv": "eff35e3379bac8bbf68b1149fa3689b7a19d7451434da6a7ccf63939a7c23a02",
+    "00_TESTBED\\PATTERN_FT.sv": "0b7479b5e1cc0349d3db35b8dad4fa07366eda411ad4098fb8edd1764846dd54",
+    "00_TESTBED\\PATTERN_FT_1600.sv": "ec5e92106260fce84977588da6bc6d405813e8f924bd9c6af470da145eee3b11",
+    "00_TESTBED\\run_all_rtl.py": "e227898dd50205cefc33ccb54bd7996ca7c9e58e2e218c9898746829f328d8ad",
+    "00_TESTBED\\run_all_rtl.sh": "c9fe493a4b3ae5f326985f28994bbd71dc331e89f9ae540fc2242ca878b3bc55",
+    "00_TESTBED\\tb_hamming1600.sv": "d8f219ba85fac1c223a47dc99896ee36d5c5748ab90247c0dcaea1da6dee44ea",
+    "00_TESTBED\\tb_hamming64.sv": "e5772b8c86be57f8a70d2299d0ed15c00541c1de7ba7977dc7ef7659bd437e9a",
+    "00_TESTBED\\TESTBED.sv": "cc4b7973543f680bed540c72e3c2d15436df1eb076b801448a8381c2bef76ad7",
+    "00_TESTBED\\TESTBED_CORE.sv": "3bdb68b405d1ba54bf172ec6e17c68f8b01e4f43c6a771b36f2b503e54bfeaa4",
+    "00_TESTBED\\TESTBED_CROSS_LANE.sv": "6a7808ffaa2d1131c7299b0cb5a8bd5e2dc85412ab88301c52659a051ce43371",
+    "01_RTL\\keccak_chi_row.sv": "f89f7b657136f89d6c5ac18128749107019af44501c175a3f76f5e11a702d399",
+    "01_RTL\\keccak_ft_region.sv": "4f0dbbe9e71017055902c6596e399a1d745c545fbc0cbe017aaebe1da7871f3c",
+    "01_RTL\\keccak_hamming64.sv": "cb62e9c08f7a041a0bf281a237ffd05f988e925883fabf26e50225d6b9f7080d",
+    "01_RTL\\keccak_iota.sv": "52890f11c42c5c3c4859903f558265e0c817447140e3069c0cfaf9291f789232",
+    "01_RTL\\keccak_lane_ecc.sv": "3700a619706cb1b57b93ccf617e6dbf270fffb9e3feadb8c624be4b3992c030a",
+    "01_RTL\\keccak_rho_pi_wire.sv": "470c465d4c1673bc60407366ad9b13ef57b75aef9fd30a5208df2ea9c5b3a65f",
+    "01_RTL\\keccak_round_scheduler.sv": "42ac564422d04f5d315b0cd819823dfdc39d69f5427d02c4d6c3c6c23920d7a0",
+    "01_RTL\\keccak_state_bank.sv": "b6c27a9af3fbca67d71f869fe2c13a0cc496679b5a78ab380fecbae42d5c2e2e",
+    "01_RTL\\keccak_theta_serial.sv": "39821473f6a1b46a7ef9fc97df1d5eef98bbac75b722a6d8d1c5d1b0ed61de33",
+    "01_RTL\\paper_keccak_core.sv": "787bca75a776eb3c3b2f99e0d2e1b3a2add5d2ed31cfd3120fa54759431eed25",
+    "01_RTL\\sha3_absorb_xor.sv": "a6aca8b4e99907a3fa8cc454da52914abb11ab4c7efae42e7e0d74e68e72fdef",
+    "01_RTL\\sha3_ctrl_fsm.sv": "9d77c9a49a6d91a551b0d9d78aa98f6850f9f69d47a8716ad91ad7d4d1e91ca7",
+    "01_RTL\\sha3_low_power_gating.sv": "731a86f7e8ec3cfc8ea77a1db8f5f7a57c8083140df12fa45846217c5f4b3062",
+    "01_RTL\\sha3_output_formatter.sv": "f68e550ade08e8861bd1e4882a91956cb746cd41db5e89da52ab26228ec8d6a5",
+    "01_RTL\\sha3_pad_domain.sv": "b6e738d50b50c5745e526bcbacc88fe9d02320bfc6cecced730317e3445f5627",
+    "01_RTL\\sha3_pkg.sv": "9e6c70e6a91b3d12cbc6cceff76284df4546b8bfc5d8184d750d07a59d09b2bf",
+    "01_RTL\\sha3_ultra_low_power_top.sv": "0cbd3edd25994a054fddea7b1bcfe20863fadabe367f2f565f2cdee313a0e739"
+  },
+  "tests": [
+    {
+      "test": "normal",
+      "status": "PASS",
+      "log": "C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\normal\\simulation.log"
+    },
+    {
+      "test": "ft",
+      "status": "PASS",
+      "log": "C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\ft\\simulation.log"
+    },
+    {
+      "test": "cross_lane",
+      "status": "PASS",
+      "log": "C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\cross_lane\\simulation.log"
+    },
+    {
+      "test": "hamming_unit",
+      "status": "PASS",
+      "log": "C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\hamming_unit\\simulation.log"
+    },
+    {
+      "test": "hamming1600_unit",
+      "status": "PASS",
+      "log": "C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\hamming1600_unit\\simulation.log"
+    },
+    {
+      "test": "core",
+      "status": "PASS",
+      "log": "C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\core\\simulation.log"
+    }
+  ],
+  "message": {
+    "message_bytes": "4096",
+    "e2e_cycles": "7575",
+    "permutations": "31",
+    "core_cycles_total": "7471"
+  },
+  "standalone_core_cycles": 241,
+  "output": "C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1"
+}

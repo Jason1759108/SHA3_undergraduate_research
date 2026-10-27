@@ -1,0 +1,16 @@
+{
+  "checks": [
+    "ZIP integrity and SHA-256 of every overlay file",
+    "LF shell scripts",
+    "School Makefile/syn.tcl/setup omitted from overlay",
+    "Eight Python runner help invocations",
+    "All four suite source dependencies exist",
+    "Bash syntax check of check_workstation.sh"
+  ],
+  "not_executed": [
+    "Workstation diagnostic",
+    "VCS RTL",
+    "Design Compiler synthesis"
+  ],
+  "blocking_environment": "Workstation Python >= 3.8 not yet located"
+}

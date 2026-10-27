@@ -1,0 +1,44 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\paper_tools\\verilator\\bin\\verilator_bin.exe', '--timing', '--assert', '-Wno-fatal', '--top-module', 'tb_hamming1600', '--prefix', 'VPAPER', '--Mdir', 'C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\hamming1600_unit', '-DNO_DUMP', '-f', 'C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\hamming1600_unit\\files.f', '--cc', '--main']
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pkg.sv:1:9: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    1 | package sha3_pkg;
+      |         ^~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\tb_hamming1600.sv:3:8: ... Location of module with timescale
+    3 | module tb_hamming1600;
+      |        ^~~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/TIMESCALEMOD?v=0.000
+                       ... Use "/* verilator lint_off TIMESCALEMOD */" and lint_on around source to disable this message.
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_hamming64.sv:2:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+    2 | module keccak_hamming64(
+      |        ^~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\tb_hamming1600.sv:3:8: ... Location of module with timescale
+    3 | module tb_hamming1600;
+      |        ^~~~~~~~~~~~~~
+%Warning-TIMESCALEMOD: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_hamming64.sv:73:8: Timescale missing on this module as other modules have it (IEEE 1800-2023 3.14.2.3)
+   73 | module keccak_hamming1600
+      |        ^~~~~~~~~~~~~~~~~~
+                       C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\tb_hamming1600.sv:3:8: ... Location of module with timescale
+    3 | module tb_hamming1600;
+      |        ^~~~~~~~~~~~~~
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pkg.sv:41:27: Ascending bit range vector: left < right of bit range: [0:4]
+   41 |     localparam logic [0:4][0:4][31:0] RHO_OFFSET = '{
+      |                           ^
+                   ... For warning description see https://verilator.org/warn/ASCRANGE?v=0.000
+                   ... Use "/* verilator lint_off ASCRANGE */" and lint_on around source to disable this message.
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pkg.sv:41:22: Ascending bit range vector: left < right of bit range: [0:4]
+   41 |     localparam logic [0:4][0:4][31:0] RHO_OFFSET = '{
+      |                      ^
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pkg.sv:50:27: Ascending bit range vector: left < right of bit range: [0:4]
+   50 |     localparam logic [0:4][0:4][31:0] PI_Y_MAP = '{
+      |                           ^
+%Warning-ASCRANGE: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\sha3_pkg.sv:50:22: Ascending bit range vector: left < right of bit range: [0:4]
+   50 |     localparam logic [0:4][0:4][31:0] PI_Y_MAP = '{
+      |                      ^
+%Warning-WIDTHEXPAND: C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/01_RTL\keccak_hamming64.sv:121:32: Operator LTE expects 32 bits on the LHS, but LHS's VARREF 'syndrome' generates 11 bits.
+                                                                                                                                                                                 : ... note: In instance 'tb_hamming1600.dut'
+  121 |         end else if ((syndrome <= (FT_S_DATA_W + FT_S_HAM_P)) && (ext_fail == 1)) begin
+      |                                ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=0.000
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+- V e r i l a t i o n   R e p o r t:  rev vUNKNOWN-built20260516-4e853d8
+- Verilator: Built from 0.148 MB sources in 6 modules, into 0.202 MB in 9 C++ files needing 0.003 MB
+- Verilator: Walltime 0.115 s (elab=0.005, cvt=0.059, bld=0.000); cpu 0.000 s on 1 threads; allocated 17.328 MB

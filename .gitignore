@@ -2,3 +2,13 @@
 __pycache__/
 obj_dir/
 *.vcd
+
+# Generated paper-flow outputs (keep curated evidence under 參考資料).
+*.pyc
+*.pyo
+~$*.docx
+/論文書寫資料/四版本程式/V*/results/
+/論文書寫資料/四版本程式/V*/rtl_latest.json
+/論文書寫資料/四版本程式/V*/02_SYN/.synopsys_dc.setup
+/論文書寫資料/四版本程式/sweep_logs*/
+/論文書寫資料/四版本程式/paper_results_*.tar.gz

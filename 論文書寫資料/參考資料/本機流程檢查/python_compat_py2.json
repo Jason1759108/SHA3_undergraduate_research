@@ -1,0 +1,17 @@
+{
+  "status": "PASS", 
+  "scope": "Mock tools only, not VCS/DC", 
+  "checks": [
+    "V0_C3_NoFT: suite, CSV/JSON, failure rejection", 
+    "V1_State1600_SECDED_Replay: suite, CSV/JSON, failure rejection", 
+    "V2_Lane64_SECDED_Replay: suite, CSV/JSON, failure rejection", 
+    "V3_LaneParity_LocalReplay: suite, CSV/JSON, failure rejection", 
+    "subprocess success/nonzero/timeout", 
+    "UTF-8 CSV", 
+    "V0_C3_NoFT: full/core sweep, formulas, timing/constraint/source/error checks", 
+    "V1_State1600_SECDED_Replay: full/core sweep, formulas, timing/constraint/source/error checks", 
+    "V2_Lane64_SECDED_Replay: full/core sweep, formulas, timing/constraint/source/error checks", 
+    "V3_LaneParity_LocalReplay: full/core sweep, formulas, timing/constraint/source/error checks"
+  ], 
+  "python": "2.7.18 (v2.7.18:8d21aa21f2, Apr 20 2020, 13:25:05) [MSC v.1500 64 bit (AMD64)]"
+}

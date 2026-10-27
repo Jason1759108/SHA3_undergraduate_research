@@ -1,0 +1,66 @@
+[
+  {
+    "version_id": "V0_C3_NoFT",
+    "source_commit": "93cdc28337f97c38a1170f958b1065d55cf4bccb",
+    "snapshot_id": "V0_C3_NoFT_r0",
+    "syn_script": "paper_syn.tcl",
+    "design_prefix": "SHA3",
+    "ft_target": "vcs_rtl",
+    "ft_enable": null,
+    "overlay": [],
+    "status": "workstation complete RTL suite PASS per user console; corrected DC smoke test reported PASS; raw evidence and full dense-sweep import pending",
+    "paper_revision": "2026-10-27-rtl-validated-py27-core-load-fix",
+    "rtl_entry": "00_TESTBED/run_all_rtl.sh",
+    "sweep_entry": "02_SYN/run_sweep.sh",
+    "workstation_rtl_run": "20261027_190128"
+  },
+  {
+    "version_id": "V1_State1600_SECDED_Replay",
+    "source_commit": "0798e0b9ed8ba1b73a2cdd427b2441c755fb4903",
+    "snapshot_id": "V1_State1600_SECDED_Replay_r0",
+    "syn_script": "paper_syn.tcl",
+    "design_prefix": "SHA3_1600",
+    "ft_target": "vcs_rtl_ft_1600",
+    "ft_enable": null,
+    "overlay": [
+      "sha3_pkg.sv",
+      "keccak_hamming64.sv",
+      "keccak_lane_ecc.sv"
+    ],
+    "status": "workstation complete RTL suite PASS per user console; corrected DC smoke test reported PASS; raw evidence and full dense-sweep import pending",
+    "paper_revision": "2026-10-27-rtl-validated-py27-core-load-fix",
+    "rtl_entry": "00_TESTBED/run_all_rtl.sh",
+    "sweep_entry": "02_SYN/run_sweep.sh",
+    "workstation_rtl_run": "20261027_190140"
+  },
+  {
+    "version_id": "V2_Lane64_SECDED_Replay",
+    "source_commit": "0798e0b9ed8ba1b73a2cdd427b2441c755fb4903",
+    "snapshot_id": "V2_Lane64_SECDED_Replay_r0",
+    "syn_script": "paper_syn.tcl",
+    "design_prefix": "SHA3",
+    "ft_target": "vcs_rtl_ft",
+    "ft_enable": null,
+    "overlay": [],
+    "status": "workstation complete RTL suite PASS per user console; corrected DC smoke test reported PASS; raw evidence and full dense-sweep import pending",
+    "paper_revision": "2026-10-27-rtl-validated-py27-core-load-fix",
+    "rtl_entry": "00_TESTBED/run_all_rtl.sh",
+    "sweep_entry": "02_SYN/run_sweep.sh",
+    "workstation_rtl_run": "20261027_190257"
+  },
+  {
+    "version_id": "V3_LaneParity_LocalReplay",
+    "source_commit": "a352ebfff67c7ee28e5366ab4ce443beecac44e4",
+    "snapshot_id": "V3_LaneParity_LocalReplay_r0",
+    "syn_script": "paper_syn.tcl",
+    "design_prefix": "SHA3_parity",
+    "ft_target": "vcs_rtl_ft",
+    "ft_enable": 1,
+    "overlay": [],
+    "status": "workstation complete RTL suite PASS per user console; corrected DC smoke test reported PASS; raw evidence and full dense-sweep import pending",
+    "paper_revision": "2026-10-27-rtl-validated-py27-core-load-fix",
+    "rtl_entry": "00_TESTBED/run_all_rtl.sh",
+    "sweep_entry": "02_SYN/run_sweep.sh",
+    "workstation_rtl_run": "20261027_190452"
+  }
+]

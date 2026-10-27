@@ -1,0 +1,6 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v3_1\\parity_unit\\sim.exe']
+[SUCCESS] 33000 predictor/checker checks on 1000 random states
+- C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V3_LaneParity_LocalReplay/00_TESTBED\tb_parity_predictor.sv:99: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 12us; walltime 0.016 s; speed 768.000 us/s
+- Verilator: cpu 0.016 s on 1 threads; allocated 6 MB

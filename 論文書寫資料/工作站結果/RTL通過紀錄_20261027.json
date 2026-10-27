@@ -1,0 +1,55 @@
+{
+  "evidence": "User-supplied workstation console output, 2026-10-27; raw rtl_latest.json and simulation logs have not yet been imported locally.",
+  "host": "ferrari",
+  "simulator": "VCS L-2016.06-SP1-1_Full64 (reported in earlier logs)",
+  "status": "all four complete RTL suites reported PASS",
+  "scope": "Only implemented test cases and fault models; no exhaustive physical fault coverage claim. Synthesis pending.",
+  "runs": {
+    "V0_C3_NoFT": {
+      "run_id": "20261027_190128",
+      "tests_passed": [
+        "normal",
+        "core"
+      ],
+      "success_marker": "[SUCCESS] Complete RTL suite passed!",
+      "remote_results": "~/sha3_paper_build/V0_C3_NoFT/results/rtl/20261027_190128"
+    },
+    "V1_State1600_SECDED_Replay": {
+      "run_id": "20261027_190140",
+      "tests_passed": [
+        "normal",
+        "ft",
+        "cross_lane",
+        "hamming_unit",
+        "hamming1600_unit",
+        "core"
+      ],
+      "success_marker": "[SUCCESS] Complete RTL suite passed!",
+      "remote_results": "~/sha3_paper_build/V1_State1600_SECDED_Replay/results/rtl/20261027_190140"
+    },
+    "V2_Lane64_SECDED_Replay": {
+      "run_id": "20261027_190257",
+      "tests_passed": [
+        "normal",
+        "ft",
+        "cross_lane",
+        "hamming_unit",
+        "core"
+      ],
+      "success_marker": "[SUCCESS] Complete RTL suite passed!",
+      "remote_results": "~/sha3_paper_build/V2_Lane64_SECDED_Replay/results/rtl/20261027_190257"
+    },
+    "V3_LaneParity_LocalReplay": {
+      "run_id": "20261027_190452",
+      "tests_passed": [
+        "normal",
+        "ft",
+        "cross_lane",
+        "parity_unit",
+        "core"
+      ],
+      "success_marker": "[SUCCESS] Complete RTL suite passed!",
+      "remote_results": "~/sha3_paper_build/V3_LaneParity_LocalReplay/results/rtl/20261027_190452"
+    }
+  }
+}

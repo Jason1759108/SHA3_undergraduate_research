@@ -1,0 +1,18 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\core_load_fix\\V1_State1600_SECDED_Replay\\results\\rtl\\20261027_183238\\core\\sim.exe']
+[PASS] standalone core input vector=0 loaded 1600-bit state
+[PASS] standalone core vector=0 complete 1600-bit state matches reference
+[CORE_METRIC] cycles=241
+[PASS] standalone core input vector=1 loaded 1600-bit state
+[PASS] standalone core vector=1 complete 1600-bit state matches reference
+[CORE_METRIC] cycles=241
+[PASS] standalone core input vector=2 loaded 1600-bit state
+[PASS] standalone core vector=2 complete 1600-bit state matches reference
+[CORE_METRIC] cycles=241
+[PASS] standalone core input vector=3 loaded 1600-bit state
+[PASS] standalone core vector=3 complete 1600-bit state matches reference
+[CORE_METRIC] cycles=241
+[SUCCESS] All 4 standalone core reference vectors passed!
+- C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/core_load_fix/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CORE.sv:52: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 10us; walltime 2.696 s; speed 3.863 us/s
+- Verilator: cpu 2.594 s on 1 threads; allocated 6 MB

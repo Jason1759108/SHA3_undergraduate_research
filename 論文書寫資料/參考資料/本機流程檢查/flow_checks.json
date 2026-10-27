@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "Script/parser tests only; no actual VCS/DC or PPA measurements",
+  "checks": [
+    "Python syntax: run_all_rtl.py",
+    "Python syntax: run_sweep.py",
+    "Python syntax: run_all_rtl.py",
+    "Python syntax: run_sweep.py",
+    "Python syntax: run_all_rtl.py",
+    "Python syntax: run_sweep.py",
+    "Python syntax: run_all_rtl.py",
+    "Python syntax: run_sweep.py",
+    "Bash syntax: collect_results.sh",
+    "Bash syntax: run_all_rtl.sh",
+    "Bash syntax: run_sweep.sh",
+    "Bash syntax: run_all_rtl.sh",
+    "Bash syntax: run_sweep.sh",
+    "Bash syntax: run_all_rtl.sh",
+    "Bash syntax: run_sweep.sh",
+    "Bash syntax: run_all_rtl.sh",
+    "Bash syntax: run_sweep.sh",
+    "All Tcl scripts have complete Tcl command structure (not DC execution)",
+    "Mock-only end-to-end sweep: full/core reports, unit conversion, formulas, timing rejection and CSV/JSON preservation",
+    "Rejected: check_timing.rpt",
+    "Rejected: units.rpt",
+    "Rejected: power.rpt",
+    "Rejected DC Error log despite existing reports",
+    "Changed source prevents sweep before invoking DC"
+  ]
+}

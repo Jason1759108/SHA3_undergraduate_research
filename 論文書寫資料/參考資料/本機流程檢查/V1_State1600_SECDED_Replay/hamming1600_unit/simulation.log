@@ -1,0 +1,9 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\hamming1600_unit\\sim.exe']
+[PASS] hamming1600 pattern=0 all single positions and representative double pairs
+[PASS] hamming1600 pattern=1 all single positions and representative double pairs
+[PASS] hamming1600 pattern=2 all single positions and representative double pairs
+[SUCCESS] All 14508 Hamming1600 checks passed!
+- C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\tb_hamming1600.sv:39: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 15us; walltime 7.626 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; allocated 6 MB

@@ -1,0 +1,15 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v1_1\\cross_lane\\sim.exe']
+==================================================
+   SHA3-256 CROSS-LANE FAULT VERIFICATION
+==================================================
+[PASS] cross_lane point=0 lanes=0,0 cycles=241 extra=0 faults=0 digest=4a43f8804b0ad882fa493be44dff80f562d661a05647c15166d71ebff8c6ffa7
+[PASS] cross_lane point=1 lanes=0,5 cycles=242 extra=1 faults=1 digest=4a43f8804b0ad882fa493be44dff80f562d661a05647c15166d71ebff8c6ffa7
+[PASS] cross_lane point=2 lanes=3,8 cycles=242 extra=1 faults=1 digest=4a43f8804b0ad882fa493be44dff80f562d661a05647c15166d71ebff8c6ffa7
+[PASS] cross_lane point=3 lanes=0,1 cycles=242 extra=1 faults=1 digest=4a43f8804b0ad882fa493be44dff80f562d661a05647c15166d71ebff8c6ffa7
+[PASS] cross_lane point=4 lanes=15,16 cycles=242 extra=1 faults=1 digest=4a43f8804b0ad882fa493be44dff80f562d661a05647c15166d71ebff8c6ffa7
+[PASS] cross_lane point=5 lanes=20,21 cycles=242 extra=1 faults=1 digest=4a43f8804b0ad882fa493be44dff80f562d661a05647c15166d71ebff8c6ffa7
+[SUCCESS] All 6 cross-lane test cases passed!
+- C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V1_State1600_SECDED_Replay/00_TESTBED\TESTBED_CROSS_LANE.sv:137: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 16us; walltime 3.718 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; allocated 7 MB

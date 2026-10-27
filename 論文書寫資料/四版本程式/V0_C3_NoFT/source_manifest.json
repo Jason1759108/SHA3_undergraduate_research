@@ -1,0 +1,11 @@
+{
+  "version_id": "V0_C3_NoFT",
+  "source_commit": "93cdc28337f97c38a1170f958b1065d55cf4bccb",
+  "snapshot_id": "V0_C3_NoFT_r0",
+  "syn_script": "syn.tcl",
+  "design_prefix": "SHA3",
+  "ft_target": "vcs_rtl",
+  "ft_enable": null,
+  "overlay": [],
+  "status": "source_exported_not_rerun"
+}

@@ -1,0 +1,11 @@
+{
+  "version_id": "V3_LaneParity_LocalReplay",
+  "source_commit": "a352ebfff67c7ee28e5366ab4ce443beecac44e4",
+  "snapshot_id": "V3_LaneParity_LocalReplay_r0",
+  "syn_script": "syn.tcl",
+  "design_prefix": "SHA3_parity",
+  "ft_target": "vcs_rtl_ft",
+  "ft_enable": 1,
+  "overlay": [],
+  "status": "source_exported_not_rerun"
+}

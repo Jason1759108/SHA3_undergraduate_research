@@ -1,0 +1,14 @@
+COMMAND: ['C:\\Users\\0milk\\.codex\\visualizations\\2026\\10\\25\\01a1733b-67fe-7d52-ac43-7c52ab68df61\\full_v2_1\\core\\sim.exe']
+[PASS] standalone core vector=0 complete 1600-bit state matches reference
+[CORE_METRIC] cycles=241
+[PASS] standalone core vector=1 complete 1600-bit state matches reference
+[CORE_METRIC] cycles=241
+[PASS] standalone core vector=2 complete 1600-bit state matches reference
+[CORE_METRIC] cycles=241
+[PASS] standalone core vector=3 complete 1600-bit state matches reference
+[CORE_METRIC] cycles=241
+[SUCCESS] All 4 standalone core reference vectors passed!
+- C:/Users/0milk/.codex/visualizations/2026/10/25/01a1733b-67fe-7d52-ac43-7c52ab68df61/local_rtl/V2_Lane64_SECDED_Replay/00_TESTBED\TESTBED_CORE.sv:40: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 10us; walltime 0.972 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; allocated 7 MB

@@ -1,0 +1,30 @@
+{
+  "V0_C3_NoFT": {
+    "local_simulator": "Verilator",
+    "input_load_checks": 4,
+    "output_vectors_passed": 4,
+    "core_cycles": 241,
+    "workstation_VCS": "pending"
+  },
+  "V1_State1600_SECDED_Replay": {
+    "local_simulator": "Verilator",
+    "input_load_checks": 4,
+    "output_vectors_passed": 4,
+    "core_cycles": 241,
+    "workstation_VCS": "pending"
+  },
+  "V2_Lane64_SECDED_Replay": {
+    "local_simulator": "Verilator",
+    "input_load_checks": 4,
+    "output_vectors_passed": 4,
+    "core_cycles": 241,
+    "workstation_VCS": "pending"
+  },
+  "V3_LaneParity_LocalReplay": {
+    "local_simulator": "Verilator",
+    "input_load_checks": 4,
+    "output_vectors_passed": 4,
+    "core_cycles": 241,
+    "workstation_VCS": "pending"
+  }
+}
