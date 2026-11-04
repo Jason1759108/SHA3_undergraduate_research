@@ -9,6 +9,8 @@ module sha3_ctrl_fsm (
     input  logic final_block_done,
 
     output logic absorb_en,
+    output logic [1:0] absorb_group,
+    output logic absorb_last,
     output logic start_process,
     output logic squeeze_start,
     output logic hash_done,
@@ -17,6 +19,7 @@ module sha3_ctrl_fsm (
     import sha3_pkg::*;
 
     top_fsm_state_e cur_state, nxt_state;
+    logic [1:0] absorb_group_q;
 
     always_comb begin
         nxt_state = cur_state;
@@ -28,7 +31,8 @@ module sha3_ctrl_fsm (
             end
 
             ST_ABSORB: begin
-                nxt_state = ST_RUN_ROUND;
+                if (absorb_group_q == 2'd3)
+                    nxt_state = ST_RUN_ROUND;
             end
 
             ST_RUN_ROUND: begin
@@ -67,8 +71,18 @@ module sha3_ctrl_fsm (
             cur_state     <= ST_IDLE;
             start_process <= 1'b0;
             squeeze_start <= 1'b0;
+            absorb_group_q <= 2'd0;
         end else begin
             cur_state <= nxt_state;
+            if (cur_state == ST_ABSORB) begin
+                if (absorb_group_q == 2'd3)
+                    absorb_group_q <= 2'd0;
+                else
+                    absorb_group_q <= absorb_group_q + 2'd1;
+            end
+            else begin
+                absorb_group_q <= 2'd0;
+            end
 
             // Default: single-cycle pulses.
             start_process <= 1'b0;
@@ -89,6 +103,8 @@ module sha3_ctrl_fsm (
     assign block_ready = (cur_state == ST_IDLE) ||
                          (cur_state == ST_WAIT_BLOCK);
     assign absorb_en = (cur_state == ST_ABSORB);
+    assign absorb_group = absorb_group_q;
+    assign absorb_last = absorb_en && (absorb_group_q == 2'd3);
     assign hash_done = (cur_state == ST_DONE);
 
 endmodule

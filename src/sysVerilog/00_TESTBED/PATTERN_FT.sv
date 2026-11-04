@@ -141,7 +141,14 @@ module PATTERN_FT #(parameter real CLK_PERIOD_NS = 10.0) (
         repeat (duration) begin
             #1;
             if (TESTBED.u_sha3_top.fault_valid !== expect_detect)
-                $fatal(1, "parity detection mismatch chi=%0d index=%0d mask=%h",chi,index,mask);
+                $fatal(1, "parity detection mismatch chi=%0d index=%0d mask=%h observed=%b expected=%b lane=%0d live=%b sampled=%b mismatch=%b check=%b predicted=%b data_parity=%b",
+                       chi,index,mask,TESTBED.u_sha3_top.fault_valid,expect_detect,lane,
+                       TESTBED.u_sha3_top.state_active_mask[lane],
+                       TESTBED.u_sha3_top.write_mask_q[lane],
+                       TESTBED.u_sha3_top.mismatch_mask[lane],
+                       TESTBED.u_sha3_top.parity_check_valid_q,
+                       TESTBED.u_sha3_top.predicted_parity_q[lane],
+                       ^TESTBED.u_sha3_top.nxt_state[lane%5][lane/5]);
             if (expect_detect && !(chi ? TESTBED.u_sha3_top.chi_hold : TESTBED.u_sha3_top.theta_hold))
                 $fatal(1, "missing hold");
             @(posedge clk); #1;

@@ -1,0 +1,11 @@
+{
+  "source": "others/make_ft_parity_vs_c3_report.py PAR",
+  "qualification": "historical parity report; exact current flow equivalence not established",
+  "values": {
+    "total_cell_area": "63337.3",
+    "static_power_mw": "0.400271",
+    "dynamic_power_mw": "2.0556",
+    "total_power_mw": "2.455871",
+    "worst_slack_ns": "1.33"
+  }
+}

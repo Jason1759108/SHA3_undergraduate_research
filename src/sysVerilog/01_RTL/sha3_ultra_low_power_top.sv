@@ -28,7 +28,6 @@ module sha3_ultra_low_power_top #(parameter bit FT_ENABLE = 1'b1) (
     import sha3_pkg::*;
 
     localparam logic [24:0] ALL_LANES  = 25'h1FFFFFF;
-    localparam logic [24:0] RATE_LANES = 25'h001FFFF;
 
     logic [7:0]    msg_length_q;
     logic          block_last_q;
@@ -40,6 +39,8 @@ module sha3_ultra_low_power_top #(parameter bit FT_ENABLE = 1'b1) (
     logic          clear_state;
 
     logic          absorb_en;
+    logic [1:0]    absorb_group;
+    logic          absorb_last;
     logic          start_process;
     logic          squeeze_start;
     logic          formatter_start_q;
@@ -72,9 +73,21 @@ module sha3_ultra_low_power_top #(parameter bit FT_ENABLE = 1'b1) (
     logic [24:0]   sleep_en;
     logic [24:0]   lane_clk;
     logic [24:0]   state_active_mask;
+    logic [24:0]   write_mask_q;
+
+    localparam logic [2:0] WR_HOLD   = 3'd0;
+    localparam logic [2:0] WR_CLEAR  = 3'd1;
+    localparam logic [2:0] WR_ABSORB = 3'd2;
+    localparam logic [2:0] WR_THETA  = 3'd3;
+    localparam logic [2:0] WR_CHI    = 3'd4;
+    logic [2:0] write_kind_d, write_kind_q;
+    logic [LANE_W-1:0] serial_write_q [0:4];
 
     logic [24:0]   mismatch_mask, predicted_parity;
     logic          parity_check_valid;
+    logic [24:0]   predicted_parity_q;
+    logic          parity_check_valid_q;
+    state_t        parity_data_nxt;
     state_t        data_wr;
 
     state_t cur_state;
@@ -101,7 +114,7 @@ module sha3_ultra_low_power_top #(parameter bit FT_ENABLE = 1'b1) (
     // 所以要等到 absorb 真正吃掉這塊才 pop。extra_pad 那一拍
     // 不走訊息內容，不可把已經排隊的下一塊 pop 掉。
     assign accept_msg        = input_buffer_valid_q && ctrl_block_ready;
-    assign input_buffer_pop  = absorb_en && input_buffer_valid_q &&
+    assign input_buffer_pop  = absorb_last && input_buffer_valid_q &&
                                !extra_pad_active_q;
 
     assign clear_state = accept_msg && !message_active_q;
@@ -153,6 +166,8 @@ module sha3_ultra_low_power_top #(parameter bit FT_ENABLE = 1'b1) (
         .need_extra_pad  (need_extra_pad),
         .final_block_done(final_block_done),
         .absorb_en       (absorb_en),
+        .absorb_group    (absorb_group),
+        .absorb_last     (absorb_last),
         .start_process   (start_process),
         .squeeze_start   (squeeze_start),
         .hash_done       (hash_done),
@@ -244,48 +259,89 @@ module sha3_ultra_low_power_top #(parameter bit FT_ENABLE = 1'b1) (
         .done      (formatter_done)
     );
 
+    // The clock gate already samples this mask on the falling edge. Sample the
+    // write source and lane mask on that same edge, so the state-bank D mux
+    // cannot switch to the next operation before the gated rising edge.
     always_comb begin
         state_active_mask = 25'd0;
-
-        for (int x = 0; x < COL_NUM; x++) begin
-            for (int y = 0; y < ROW_NUM; y++) begin
-                nxt_state[x][y] = cur_state[x][y];
-            end
-        end
-
+        write_kind_d = WR_HOLD;
         if (clear_state) begin
             state_active_mask = ALL_LANES;
-
-            for (int x = 0; x < COL_NUM; x++) begin
-                for (int y = 0; y < ROW_NUM; y++) begin
-                    nxt_state[x][y] = '0;
-                end
-            end
+            write_kind_d = WR_CLEAR;
         end
         else if (absorb_en) begin
-            state_active_mask = RATE_LANES;
-
-            for (int x = 0; x < COL_NUM; x++) begin
-                for (int y = 0; y < ROW_NUM; y++) begin
-                    nxt_state[x][y] = absorbed_state[x][y];
-                end
+            // Seventeen rate lanes are absorbed in four groups of at most five.
+            for (int lane = 0; lane < 17; lane++) begin
+                if ((lane / COL_NUM) == absorb_group)
+                    state_active_mask[lane] = 1'b1;
             end
+            write_kind_d = WR_ABSORB;
         end
         else if (theta_lane_active != 25'd0) begin
             state_active_mask = theta_lane_active;
-
-            for (int x = 0; x < COL_NUM; x++) begin
-                for (int y = 0; y < ROW_NUM; y++) begin
-                    nxt_state[x][y] = theta_state[x][y];
-                end
-            end
+            write_kind_d = WR_THETA;
         end
         else if (chi_lane_active != 25'd0) begin
             state_active_mask = chi_lane_active;
+            write_kind_d = WR_CHI;
+        end
+    end
 
+    always_ff @(negedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            write_mask_q <= 25'd0;
+            write_kind_q <= WR_HOLD;
+        end
+        else begin
+            write_mask_q <= state_active_mask;
+            write_kind_q <= write_kind_d;
+        end
+    end
+
+    // Absorb uses one five-lane group per cycle. Theta uses a column and chi
+    // uses a row. All three operations share these five falling-edge lanes.
+    // The write kind and lane mask above are sampled on this same edge.
+    always_ff @(negedge clk) begin
+        if (rst_n && write_kind_d == WR_ABSORB) begin
             for (int x = 0; x < COL_NUM; x++) begin
-                for (int y = 0; y < ROW_NUM; y++) begin
-                    nxt_state[x][y] = chi_state[x][y];
+                if ((absorb_group * COL_NUM + x) < 17)
+                    serial_write_q[x] <= absorbed_state[x][absorb_group];
+            end
+        end
+        // During a live D/C fault, parity_data_nxt checks theta_state directly.
+        // Do not latch that faulted value into serial_write_q: a multi-cycle
+        // injection could otherwise leave one extra fault after deassertion.
+        else if (rst_n && write_kind_d == WR_THETA &&
+                 !ft_d_inject_valid && !ft_c_inject_valid) begin
+            for (int x = 0; x < COL_NUM; x++) begin
+                if (theta_lane_active[x]) begin
+                    for (int y = 0; y < ROW_NUM; y++)
+                        serial_write_q[y] <= theta_state[x][y];
+                end
+            end
+        end
+        else if (rst_n && write_kind_d == WR_CHI) begin
+            for (int y = 0; y < ROW_NUM; y++) begin
+                if (chi_lane_active[y * COL_NUM]) begin
+                    for (int x = 0; x < COL_NUM; x++)
+                        serial_write_q[x] <= chi_state[x][y];
+                end
+            end
+        end
+    end
+
+    always_comb begin
+        for (int x = 0; x < COL_NUM; x++) begin
+            for (int y = 0; y < ROW_NUM; y++) begin
+                nxt_state[x][y] = cur_state[x][y];
+                if (write_mask_q[y * COL_NUM + x]) begin
+                    case (write_kind_q)
+                        WR_CLEAR:  nxt_state[x][y] = '0;
+                        WR_ABSORB: nxt_state[x][y] = serial_write_q[x];
+                        WR_THETA:  nxt_state[x][y] = serial_write_q[y];
+                        WR_CHI:    nxt_state[x][y] = serial_write_q[x];
+                        default:   nxt_state[x][y] = cur_state[x][y];
+                    endcase
                 end
             end
         end
@@ -295,12 +351,41 @@ module sha3_ultra_low_power_top #(parameter bit FT_ENABLE = 1'b1) (
 
     assign parity_check_valid = (|theta_lane_active) || (|chi_lane_active);
     assign predicted_parity = (|theta_lane_active) ? theta_predicted_parity : chi_predicted_parity;
+    // D/C fault injection is applied after the falling-edge sample in the
+    // test interface. During those injections the checker must see the live
+    // theta result; otherwise the injected bit is absent from serial_write_q.
+    // Normal operation still uses the staged five-lane write data.
+    always_comb begin
+        parity_data_nxt = nxt_state;
+        if ((ft_d_inject_valid || ft_c_inject_valid) && (|theta_lane_active)) begin
+            for (int x = 0; x < COL_NUM; x++) begin
+                for (int y = 0; y < ROW_NUM; y++) begin
+                    if (state_active_mask[y * COL_NUM + x])
+                        parity_data_nxt[x][y] = theta_state[x][y];
+                end
+            end
+        end
+    end
+    // The five write lanes and their data are sampled at the falling edge.
+    // Keep the independent parity prediction from that same operation until
+    // its gated rising-edge write; otherwise the checker can see the next
+    // operation while the state-bank D input still holds the current one.
+    always_ff @(negedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            parity_check_valid_q <= 1'b0;
+            predicted_parity_q <= '0;
+        end else begin
+            parity_check_valid_q <= parity_check_valid;
+            predicted_parity_q <= predicted_parity;
+        end
+    end
     generate if (FT_ENABLE) begin : gen_ft
         keccak_lane_parity u_lane_parity (
-            .data_nxt(nxt_state), .data_cur(cur_state),
-            .lane_active(state_active_mask), .check_valid(parity_check_valid),
+            .data_nxt(parity_data_nxt), .data_cur(cur_state),
+            .lane_active(ft_inject_valid ? state_active_mask : write_mask_q),
+            .check_valid(parity_check_valid_q),
             .checkpoint_fault(theta_checkpoint_fault),
-            .predicted_parity(predicted_parity),
+            .predicted_parity(predicted_parity_q),
             .inject_valid(ft_inject_valid), .inject_lane(ft_inject_lane),
             .inject_mask(ft_inject_mask), .data_wr(data_wr),
             .mismatch_mask(mismatch_mask), .fault_valid(fault_valid)

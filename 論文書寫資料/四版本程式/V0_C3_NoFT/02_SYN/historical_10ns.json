@@ -1,0 +1,17 @@
+{
+  "source": "others/sweep_summary_C3.csv",
+  "qualification": "reproduced original C3 flow",
+  "values": {
+    "clock_period_ns": "10",
+    "clock_cycles_per_block": "240",
+    "block_size_bits": "1088",
+    "total_cell_area": "43698.68854",
+    "static_power_mw": "0.2768897",
+    "dynamic_power_mw": "1.6115",
+    "total_power_mw": "1.8883897",
+    "throughput_gbps": "0.453333333",
+    "energy_per_bit_pj": "4.16556552",
+    "worst_slack_ns": "1.46",
+    "status": "OK"
+  }
+}

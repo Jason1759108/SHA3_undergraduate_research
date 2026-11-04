@@ -1,0 +1,17 @@
+{
+  "source": "others/sweep_summary_lane.csv",
+  "qualification": "historical record; exact current flow equivalence not established",
+  "values": {
+    "clock_period_ns": "10",
+    "clock_cycles_per_block": "240",
+    "block_size_bits": "1088",
+    "total_cell_area": "87513.498982",
+    "static_power_mw": "0.5613525",
+    "dynamic_power_mw": "2.852",
+    "total_power_mw": "3.4133525",
+    "throughput_gbps": "0.453333333",
+    "energy_per_bit_pj": "7.52945405",
+    "worst_slack_ns": "0.34",
+    "status": "OK"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "commit": "93cdc28337f97c38a1170f958b1065d55cf4bccb",
+  "tcl": "syn.tcl",
+  "design": "SHA3",
+  "original_sweep_sha256": "094e66dbd76d2b0e183eaaf13c9af0d3679df937d756e054afb8b71d173d7509",
+  "tcl_sha256": "239d1c7164d96229b82ef274a6c6d8d46d9cf5bc4fd92557e031889bafc2b587",
+  "makefile_sha256": "3d563278c20d0fa901c03b628da7da0a23adb4949051f4785706a808d101d370",
+  "scope": "full SHA3 only",
+  "modifications": "Two hooks added to original sweep only: post-point save/gate, final summary. Tcl and Makefile unchanged."
+}

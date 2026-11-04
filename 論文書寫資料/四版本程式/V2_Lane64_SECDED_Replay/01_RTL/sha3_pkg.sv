@@ -38,7 +38,7 @@ package sha3_pkg;
 
     // 7. 定義 Rho 步驟專用的 25 個位移偏移量 (Rotation Offsets) [x][y]
     // 根據 FIPS 202 規範，代表各個 Lane 向左循環位移 (Circular Shift) 的位數
-    localparam logic [0:4][0:4][31:0] RHO_OFFSET = '{
+    parameter int RHO_OFFSET [0:4][0:4] = '{
         // y=0    y=1    y=2    y=3    y=4
         '{   0,    36,     3,    41,    18}, // x=0
         '{   1,    44,    10,    45,     2}, // x=1
@@ -47,7 +47,7 @@ package sha3_pkg;
         '{  27,    20,    39,     8,    14}  // x=4
     };
 
-    localparam logic [0:4][0:4][31:0] PI_Y_MAP = '{
+    parameter int PI_Y_MAP [0:4][0:4] = '{
         // y=0    y=1    y=2    y=3    y=4
         '{   0,     3,     1,     4,     2}, // x=0
         '{   1,     4,     2,     0,     3}, // x=1

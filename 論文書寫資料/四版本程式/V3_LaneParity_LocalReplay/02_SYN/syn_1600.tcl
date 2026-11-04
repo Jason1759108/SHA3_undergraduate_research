@@ -1,5 +1,3 @@
-# Compatibility entry. Use run_sweep.sh for the complete paper flow.
-if {![info exists env(PAPER_VERSION)]} {set env(PAPER_VERSION) V3_LaneParity_LocalReplay}
-if {![info exists env(PAPER_SCOPE)]} {set env(PAPER_SCOPE) full}
-if {![info exists env(CLK_PERIOD)]} {set env(CLK_PERIOD) 10.0}
-source paper_syn.tcl
+# The 1600-bit SECDED overlay belongs to the pre-parity architecture.
+# Export commit 0798e0b9ed8ba1b73a2cdd427b2441c755fb4903 to run that comparison.
+error "Legacy SECDED synthesis: use baseline commit 0798e0b; see others/parity_predictor_design.md"

@@ -1,0 +1,5 @@
+"version","rtl_01_status","period_ns","synthesis_02_status","gate_03_status","gate_03_timing_violation","area","total_power_mw","worst_slack_ns","old_p_over_t_pj_per_bit","full_sha3_cycles_4096B","full_sha3_p_over_t_pj_per_bit","sdf_warnings"
+"V0_C3_NoFT","PASS","10","OK","PASS_WITH_SDF_WARNING","NO","47995.187680","2.0176281","1.66","4.45065022","7668","4.72142708","4364"
+"V1_State1600_SECDED_Replay","PASS","10","OK","PASS_WITH_SDF_WARNING","NO","93673.840758","3.5283499","0.00","7.78312479","7668","8.25664887","6321"
+"V2_Lane64_SECDED_Replay","PASS","10","OK","PASS_WITH_SDF_WARNING","NO","91894.367726","3.3803968","0.00","7.45675765","7668","7.91042562","6321"
+"V3_LaneParity_LocalReplay","PASS","10","OK","PASS_WITH_SDF_WARNING","NO","68693.862188","2.5365118","0.83","5.59524662","7668","5.93566055","4806"

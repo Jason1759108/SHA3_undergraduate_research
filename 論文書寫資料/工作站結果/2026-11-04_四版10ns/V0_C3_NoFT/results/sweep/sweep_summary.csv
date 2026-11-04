@@ -1,0 +1,2 @@
+clock_period_ns,clock_cycles_per_block,block_size_bits,total_cell_area,static_power_mw,dynamic_power_mw,total_power_mw,throughput_gbps,energy_per_bit_pj,worst_slack_ns,status,e2e_cycles_4096B,full_sha3_throughput_gbps,full_sha3_estimated_p_over_t_pj_per_bit,gate_03_status,gate_03_pass,gate_03_timing_violation,gate_03_sdf_warnings,gate_03_first_failure
+10,240,1088,47995.187680,0.3071281,1.7105,2.0176281,0.453333333,4.45065022,1.66,OK,7668,0.427334377,4.72142708,PASS_WITH_SDF_WARNING,YES,NO,4364,

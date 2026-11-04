@@ -1,16 +1,5 @@
-# Complete paper source package
+# 四版正式程式
 
-All four versions include the final Python 2.7 support and core loading testbench fix.
-See WORKSTATION_GUIDE.md for the full build/merge and execution instructions.
-User-reported complete workstation VCS RTL suites passed on 2026-10-27.
-See workstation_rtl_validation.json for the run IDs and evidence limits.
-User reports the corrected DC smoke test passed. Full dense-sweep results and raw workstation RTL/DC evidence remain pending import.
+`V0_C3_NoFT`、`V1_State1600_SECDED_Replay`、`V2_Lane64_SECDED_Replay`、`V3_LaneParity_LocalReplay` 是 2026-11-04 工作站驗證所用的 overlay。四版均有完整 01 RTL `PASS`、10 ns 02 `OK`、03 `PASS_WITH_SDF_WARNING` 的精簡結果。結果檔在 `../工作站結果/2026-11-04_四版10ns/`。
 
-Existing validated workstation projects: do not overwrite 00/01 or their runtime summaries; proceed to the documented 02 sweep.
-Fresh school build projects: merge source/test files but preserve the school's Makefiles and original syn.tcl/tool launch scripts. Run our complete runners, not the single-case school shortcuts. The bundled Makefiles are provided for standalone source completeness.
-
-No patch ZIP is required. Original source provenance is recorded separately from prepared_hashes.csv. Raw results are not included in this source archive.
-
-Dense sweep entry: bash run_dense_sweep.sh VERSION_DIRECTORY (10.0 to 1.0 ns, step 0.1 ns, 91 points, full/core).
-
-See ARCHITECTURE_GUIDE.md for each file, original/new sweep comparison, reports and verification limits.
+工作站操作及保存規則見 [PROJECT_10NS_GUIDE.md](PROJECT_10NS_GUIDE.md)。`SERIAL320_four_compact.zip` 由 `package_four.py` 產生，是這四個資料夾的傳輸包。四版是 build 專案的 overlay，並非完整製程庫或已 build 的工作站專案。

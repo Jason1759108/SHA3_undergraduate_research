@@ -39,6 +39,28 @@ def run(command, log, cwd, env):
                            log.read_text(encoding='utf-8', errors='replace')[-5000:])
 
 
+def compact_builds(out, keep_logs):
+    # VCS csrc/simv and Verilator objects are temporary. A failing test keeps
+    # only its small text logs; a passing suite keeps CSV/JSON summaries only.
+    for name in ('normal','ft','cross_lane','hamming_unit','hamming1600_unit','parity_unit','core'):
+        build = out / name
+        if not os.path.isdir(str(build)) or os.path.islink(str(build)):
+            continue
+        if not keep_logs:
+            shutil.rmtree(str(build))
+            continue
+        for entry in os.listdir(str(build)):
+            if entry in ('compile.log','simulation.log','build.log','files.f'):
+                continue
+            path = os.path.join(str(build), entry)
+            if os.path.islink(path):
+                os.unlink(path)
+            elif os.path.isdir(path):
+                shutil.rmtree(path)
+            else:
+                os.unlink(path)
+
+
 def suite():
     normal = [str((TB / s.strip()).resolve()) for s in (TB / 'filelist.f').read_text().splitlines()
               if s.strip() and not s.lstrip().startswith('//')]
@@ -73,7 +95,12 @@ def main():
     parser.add_argument('--output', type=Path)
     parser.add_argument('--only', help='Development-only subset; cannot authorize a sweep')
     args = parser.parse_args()
-    out = (args.output or ROOT/'results'/'rtl'/datetime.now().strftime('%Y%m%d_%H%M%S')).resolve()
+    raw_out = args.output or ROOT/'results'/'rtl'/'current'
+    if not args.output and os.path.islink(str(raw_out)):
+        raise RuntimeError('Refusing linked RTL temporary directory')
+    out = raw_out.resolve()
+    if not args.output and out.exists():
+        shutil.rmtree(str(out))
     out.mkdir(parents=True, exist_ok=False)
     before = fingerprint()
     results = []
@@ -115,7 +142,7 @@ def main():
             text = (build/'simulation.log').read_text(encoding='utf-8', errors='replace')
             if success not in text or re.search(r'\[FAIL\]|\bFatal\b|%Error|\bFATAL\b', text):
                 raise RuntimeError('{}: missing success marker or failure in {}/simulation.log'.format(mode, build))
-            results.append({'test': mode, 'status': 'PASS', 'log': str(build/'simulation.log')})
+            results.append({'test': mode, 'status': 'PASS'})
             for line in text.splitlines():
                 if '[PASS]' in line:
                     fields=dict(re.findall(r'(\w+)=([^\s]+)',line))
@@ -143,10 +170,14 @@ def main():
                         message=selected[0],standalone_core_cycles=core_cycles.pop(),output=str(out))
             (out/'rtl_summary.json').write_text(json.dumps(record,indent=2),encoding='utf-8')
             (ROOT/'rtl_latest.json').write_text(json.dumps(record,indent=2),encoding='utf-8')
+        compact_builds(out, keep_logs=False)
+        if not args.output:
+            shutil.rmtree(str(out))
         emit('[SUCCESS] Complete RTL suite passed!' if not args.only else '[SUCCESS] Selected development tests passed (not a full-suite approval).')
-        emit(out)
+        emit(ROOT/'rtl_latest.json' if not args.only else out)
     except Exception as exc:
         (out/'FAILED.txt').write_text(str(exc),encoding='utf-8')
+        compact_builds(out, keep_logs=True)
         emit('[FAIL] {}'.format(exc),flush=True)
         raise SystemExit(1)
 
