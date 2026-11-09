@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-28",
+  "python_2_7_18": "PASS parser and four-point fake-DC orchestration",
+  "python_3_12": "PASS parser and four-point fake-DC orchestration",
+  "coverage": [
+    "historical precision match/mismatch",
+    "legacy240 rounding",
+    "constraint vs timing status",
+    "preservation report counts 0/5/29/2",
+    "original CPU launch flags",
+    "sampled operating point summaries",
+    "empty strict-valid set remains explicit"
+  ],
+  "bash_syntax": "PASS run_four_sweeps.sh and run_dense_sweep.sh",
+  "tcl_syntax": "info complete PASS; no DC execution",
+  "four_version_RTL_changes": false,
+  "workstation_synthesis": "not run; user must execute check then dense"
+}

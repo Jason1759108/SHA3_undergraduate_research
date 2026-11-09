@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-28",
+  "original_C3_files_match_git": true,
+  "four_version_RTL_and_TB_unchanged": true,
+  "prepared_hashes_verified": true,
+  "zip_verified_files": 185,
+  "parser_fixture_checks": "passed Python 2.7.18 and Python 3.12; match/difference/units/protection-area checks",
+  "workstation_DC_run": "not executed"
+}

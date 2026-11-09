@@ -1,0 +1,6 @@
+{
+  "fix": "Create Report and Netlist before V0 full dispatch, and at direct reference entry",
+  "test": "Tcl executed both entry paths in fresh directories and stopped before DC; both PASS",
+  "synthesis_parameters_changed": false,
+  "workstation_rerun": "pending"
+}

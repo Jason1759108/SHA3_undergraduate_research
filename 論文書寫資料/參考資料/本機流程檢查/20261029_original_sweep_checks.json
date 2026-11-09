@@ -1,0 +1,30 @@
+{
+  "source_checks": [
+    {
+      "version": "V0_C3_NoFT",
+      "original_tcl_makefile_sweep_equal": true,
+      "sweep_original_lines_all_preserved": true
+    },
+    {
+      "version": "V1_State1600_SECDED_Replay",
+      "original_tcl_makefile_sweep_equal": true,
+      "sweep_original_lines_all_preserved": true
+    },
+    {
+      "version": "V2_Lane64_SECDED_Replay",
+      "original_tcl_makefile_sweep_equal": true,
+      "sweep_original_lines_all_preserved": true
+    },
+    {
+      "version": "V3_LaneParity_LocalReplay",
+      "original_tcl_makefile_sweep_equal": true,
+      "sweep_original_lines_all_preserved": true
+    }
+  ],
+  "unchanged_00_01": 117,
+  "python27_syntax": "PASS",
+  "flow_tests": "MOCK DC/VCS four versions x two periods PASS; timing/gate/DC failure classification PASS",
+  "workstation_real_runs": "NOT_RUN",
+  "zip_entries": 199,
+  "zip_sha256": "3c434072c3c3e82cc536c5146eb124606ede0dd160eef18795070d8ea3c03e16"
+}

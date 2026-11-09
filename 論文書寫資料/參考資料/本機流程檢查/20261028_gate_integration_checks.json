@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-28",
+  "python_2_7_and_3_flow_fixture_checks": "PASS",
+  "eight_generated_gate_testbenches_verilator_syntax_only": "PASS (port stubs, not technology simulation)",
+  "bash_syntax": "PASS",
+  "original_00_01_files_unchanged_against_previous_zip": 117,
+  "zip_entries_verified": 181,
+  "zip_sha256": "6e15aa37ba05bdb441ca6962edc1a9d7b3213ba0fbf5cd1f75c50acf92afbfc3",
+  "workstation_dc_vcs_gate_execution": "NOT_EXECUTED; first four-version 10ns check required",
+  "scope": "Mocked process tests verify orchestration and result parsing only. Not real circuit correctness or SDF coverage."
+}

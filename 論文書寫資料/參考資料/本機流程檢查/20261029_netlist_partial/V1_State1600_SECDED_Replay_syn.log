@@ -1,0 +1,1528 @@
+#======================================================
+#
+# Synopsys Synthesis Scripts (Design Vision dctcl mode)
+#
+#======================================================
+#======================================================
+# (A) Global Parameters
+#======================================================
+set DESIGN "SHA3_1600"
+SHA3_1600
+set TOP_MODULE "sha3_ultra_low_power_top"
+sha3_ultra_low_power_top
+if {[info exists env(CLK_PERIOD)]} {
+    set CYCLE $env(CLK_PERIOD)
+} else {
+    set CYCLE 10.0
+}
+10
+set INPUT_DLY  [expr 0.5*$CYCLE]
+5.0
+set OUTPUT_DLY [expr 0.5*$CYCLE]
+5.0
+#======================================================
+# (B) Read RTL Code
+#======================================================
+set hdlin_auto_save_templates TRUE
+TRUE
+# Clean previous designs in current DC session
+remove_design -all
+1
+# Same 01_RTL list as syn.tcl. Copy the 3 overlay files into 01_RTL first.
+analyze -f sverilog "../01_RTL/sha3_pkg.sv"
+Running PRESTO HDLC
+Compiling source file ../01_RTL/sha3_pkg.sv
+Warning:  ../01_RTL/sha3_pkg.sv:30: Parameter keyword used in local parameter declaration. (VER-329)
+Presto compilation completed successfully.
+Loading db file '/usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db'
+Loading db file '/usr/cad/synopsys/synthesis/cur/libraries/syn/dw_foundation.sldb'
+Loading db file '/usr/cad/synopsys/synthesis/cur/libraries/syn/standard.sldb'
+1
+set syn_files [list     "../01_RTL/sha3_ctrl_fsm.sv"     "../01_RTL/sha3_pad_domain.sv"     "../01_RTL/sha3_absorb_xor.sv"     "../01_RTL/keccak_round_scheduler.sv"     "../01_RTL/keccak_hamming64.sv"     "../01_RTL/keccak_theta_serial.sv"     "../01_RTL/keccak_rho_pi_wire.sv"     "../01_RTL/keccak_chi_row.sv"     "../01_RTL/keccak_iota.sv"     "../01_RTL/keccak_lane_ecc.sv"     "../01_RTL/keccak_ft_region.sv"     "../01_RTL/keccak_state_bank.sv"     "../01_RTL/sha3_low_power_gating.sv"     "../01_RTL/sha3_output_formatter.sv"     "../01_RTL/sha3_ultra_low_power_top.sv" ]
+../01_RTL/sha3_ctrl_fsm.sv ../01_RTL/sha3_pad_domain.sv ../01_RTL/sha3_absorb_xor.sv ../01_RTL/keccak_round_scheduler.sv ../01_RTL/keccak_hamming64.sv ../01_RTL/keccak_theta_serial.sv ../01_RTL/keccak_rho_pi_wire.sv ../01_RTL/keccak_chi_row.sv ../01_RTL/keccak_iota.sv ../01_RTL/keccak_lane_ecc.sv ../01_RTL/keccak_ft_region.sv ../01_RTL/keccak_state_bank.sv ../01_RTL/sha3_low_power_gating.sv ../01_RTL/sha3_output_formatter.sv ../01_RTL/sha3_ultra_low_power_top.sv
+# Analyze all synthesizable RTL
+analyze -f sverilog $syn_files
+Running PRESTO HDLC
+Compiling source file ../01_RTL/sha3_ctrl_fsm.sv
+Compiling source file ../01_RTL/sha3_pad_domain.sv
+Compiling source file ../01_RTL/sha3_absorb_xor.sv
+Compiling source file ../01_RTL/keccak_round_scheduler.sv
+Compiling source file ../01_RTL/keccak_hamming64.sv
+Compiling source file ../01_RTL/keccak_theta_serial.sv
+Compiling source file ../01_RTL/keccak_rho_pi_wire.sv
+Compiling source file ../01_RTL/keccak_chi_row.sv
+Compiling source file ../01_RTL/keccak_iota.sv
+Compiling source file ../01_RTL/keccak_lane_ecc.sv
+Compiling source file ../01_RTL/keccak_ft_region.sv
+Compiling source file ../01_RTL/keccak_state_bank.sv
+Compiling source file ../01_RTL/sha3_low_power_gating.sv
+Compiling source file ../01_RTL/sha3_output_formatter.sv
+Compiling source file ../01_RTL/sha3_ultra_low_power_top.sv
+Presto compilation completed successfully.
+1
+# Elaborate top
+elaborate $TOP_MODULE
+Loading db file '/usr/cad/synopsys/synthesis/cur/libraries/syn/gtech.db'
+  Loading link library 'sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+
+Inferred memory devices in process
+        in routine sha3_ultra_low_power_top line 123 in file
+                '../01_RTL/sha3_ultra_low_power_top.sv'.
+==================================================================================
+|     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+==================================================================================
+| formatter_start_q_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    msg_length_q_reg    | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    block_last_q_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  message_active_q_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| extra_pad_active_q_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+==================================================================================
+
+Inferred memory devices in process
+        in routine sha3_ultra_low_power_top line 362 in file
+                '../01_RTL/sha3_ultra_low_power_top.sv'.
+=====================================================================================
+|       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=====================================================================================
+|  input_buffer_last_q_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| input_buffer_valid_q_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  input_buffer_data_q_reg  | Flip-flop | 1088  |  Y  | N  | Y  | N  | N  | N  | N  |
+| input_buffer_length_q_reg | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+=====================================================================================
+Presto compilation completed successfully. (sha3_ultra_low_power_top)
+Elaborated 1 design.
+Current design is now 'sha3_ultra_low_power_top'.
+Information: Building the design 'sha3_ctrl_fsm'. (HDL-193)
+
+Statistics for case statements in always block at line 21 in file
+        '../01_RTL/sha3_ctrl_fsm.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            24            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine sha3_ctrl_fsm line 65 in file
+                '../01_RTL/sha3_ctrl_fsm.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  squeeze_start_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  start_process_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (sha3_ctrl_fsm)
+Information: Building the design 'sha3_pad_domain'. (HDL-193)
+Presto compilation completed successfully. (sha3_pad_domain)
+Information: Building the design 'sha3_absorb_xor'. (HDL-193)
+Presto compilation completed successfully. (sha3_absorb_xor)
+Information: Building the design 'keccak_round_scheduler'. (HDL-193)
+
+Statistics for case statements in always block at line 52 in file
+        '../01_RTL/keccak_round_scheduler.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            56            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 114 in file
+        '../01_RTL/keccak_round_scheduler.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           116            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine keccak_round_scheduler line 79 in file
+                '../01_RTL/keccak_round_scheduler.sv'.
+=================================================================================
+|     Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=================================================================================
+| saved_replay_kind_reg | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  replay_pending_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    replay_used_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+=================================================================================
+
+Inferred memory devices in process
+        in routine keccak_round_scheduler line 104 in file
+                '../01_RTL/keccak_round_scheduler.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   round_index_reg   | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine keccak_round_scheduler line 158 in file
+                '../01_RTL/keccak_round_scheduler.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    FSM_state_reg    | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (keccak_round_scheduler)
+Information: Building the design 'keccak_theta_serial'. (HDL-193)
+Warning:  ../01_RTL/keccak_theta_serial.sv:200: signed to unsigned conversion occurs. (VER-318)
+Warning:  ../01_RTL/keccak_theta_serial.sv:152: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 121 in file
+        '../01_RTL/keccak_theta_serial.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           129            |    auto/auto     |
+|           152            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine keccak_theta_serial line 72 in file
+                '../01_RTL/keccak_theta_serial.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   theta_base_reg    | Flip-flop | 1600  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine keccak_theta_serial line 177 in file
+                '../01_RTL/keccak_theta_serial.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       col_reg       | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    FSM_state_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine keccak_theta_serial line 208 in file
+                '../01_RTL/keccak_theta_serial.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|        D_reg        | Flip-flop |  256  |  Y  | N  | Y  | N  | N  | N  | N  |
+|     D_code_reg      | Flip-flop |  288  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+=============================================================
+|    block name/line      | Inputs | Outputs | # sel inputs |
+=============================================================
+| keccak_theta_serial/201 |   4    |   64    |      2       |
+=============================================================
+Presto compilation completed successfully. (keccak_theta_serial)
+Information: Building the design 'keccak_rho_pi_wire'. (HDL-193)
+Presto compilation completed successfully. (keccak_rho_pi_wire)
+Information: Building the design 'keccak_chi_row'. (HDL-193)
+Warning:  ../01_RTL/keccak_chi_row.sv:136: signed to unsigned conversion occurs. (VER-318)
+Warning:  ../01_RTL/keccak_chi_row.sv:60: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+
+Statistics for case statements in always block at line 41 in file
+        '../01_RTL/keccak_chi_row.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            60            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine keccak_chi_row line 85 in file
+                '../01_RTL/keccak_chi_row.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    row0_snap_reg    | Flip-flop |  320  |  Y  | N  | Y  | N  | N  | N  | N  |
+|    FSM_state_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|       cnt_reg       | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  frozen_state_reg   | Flip-flop | 1280  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+========================================================
+|  block name/line   | Inputs | Outputs | # sel inputs |
+========================================================
+| keccak_chi_row/137 |   4    |   320   |      2       |
+========================================================
+Presto compilation completed successfully. (keccak_chi_row)
+Information: Building the design 'sha3_output_formatter'. (HDL-193)
+
+Statistics for case statements in always block at line 34 in file
+        '../01_RTL/sha3_output_formatter.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            38            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 69 in file
+        '../01_RTL/sha3_output_formatter.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            77            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+        in routine sha3_output_formatter line 19 in file
+                '../01_RTL/sha3_output_formatter.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     start_d_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|        s_reg        | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|       cnt_reg       | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine sha3_output_formatter line 69 in file
+                '../01_RTL/sha3_output_formatter.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      done_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    out_data_reg     | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (sha3_output_formatter)
+Information: Building the design 'keccak_lane_ecc'. (HDL-193)
+
+Inferred memory devices in process
+        in routine keccak_lane_ecc line 135 in file
+                '../01_RTL/keccak_lane_ecc.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      ecc_q_reg      | Flip-flop |  16   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      ecc_q_reg      |   Latch   |  184  |  Y  | N  | Y  | N  | -  | -  | -  |
+===============================================================================
+Warning:  ../01_RTL/keccak_lane_ecc.sv:135: Netlist for always_ff block contains a latch. (ELAB-978)
+Presto compilation completed successfully. (keccak_lane_ecc)
+Information: Building the design 'keccak_ft_region'. (HDL-193)
+
+Statistics for case statements in always block at line 18 in file
+        '../01_RTL/keccak_ft_region.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            35            |    auto/auto     |
+===============================================
+Statistics for MUX_OPs
+=========================================================
+|  block name/line    | Inputs | Outputs | # sel inputs |
+=========================================================
+| keccak_ft_region/47 |   4    |    2    |      2       |
+=========================================================
+Presto compilation completed successfully. (keccak_ft_region)
+Information: Building the design 'sha3_low_power_gating'. (HDL-193)
+
+Inferred memory devices in process
+        in routine sha3_low_power_gating line 10 in file
+                '../01_RTL/sha3_low_power_gating.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   gate_en_ff_reg    | Flip-flop |  25   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (sha3_low_power_gating)
+Information: Building the design 'keccak_state_bank'. (HDL-193)
+
+Inferred memory devices in process
+        in routine keccak_state_bank line 15 in file
+                '../01_RTL/keccak_state_bank.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (keccak_state_bank)
+Information: Building the design 'keccak_hamming64'. (HDL-193)
+Presto compilation completed successfully. (keccak_hamming64)
+Information: Building the design 'keccak_iota'. (HDL-193)
+Presto compilation completed successfully. (keccak_iota)
+Information: Building the design 'keccak_hamming1600'. (HDL-193)
+Warning:  ../01_RTL/keccak_hamming64.sv:121: signed to unsigned conversion occurs. (VER-318)
+Presto compilation completed successfully. (keccak_hamming1600)
+1
+current_design $TOP_MODULE
+Current design is 'sha3_ultra_low_power_top'.
+{sha3_ultra_low_power_top}
+link
+
+  Linking design 'sha3_ultra_low_power_top'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (16 designs)              /mnt/newNAS/home/UnderGraduate2/2026/113511153/sha3_paper_build/V1_State1600_SECDED_Replay/02_SYN/sha3_ultra_low_power_top.db, etc
+  sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c (library) /usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db
+  dw_foundation.sldb (library) /usr/cad/synopsys/synthesis/cur/libraries/syn/dw_foundation.sldb
+
+1
+# Check before optimization
+check_design > Report/${DESIGN}_pre_compile.check
+check_timing  > Report/${DESIGN}_pre_compile.timing
+#======================================================
+#  (C) Global Setting
+#======================================================
+set_wire_load_mode top
+1
+# set_operating_conditions -max WCCOM -min BCCOM
+# set_wire_load_model -name umc18_wl10 -library slow
+#======================================================
+#  (D) Set Design Constraints
+#======================================================
+# (D-1) Setting Clock Constraints
+create_clock -name clk -period $CYCLE [get_ports clk]
+1
+set_dont_touch_network      [get_clocks clk]
+1
+set_fix_hold                [get_clocks clk]
+1
+set_clock_uncertainty   0.1 [get_clocks clk]
+1
+# set_clock_latency -source 0 [get_clocks clk]
+# set_clock_latency         1 [get_clocks clk]
+set_input_transition 0.5 [all_inputs]
+1
+set_clock_transition 0.1 [all_clocks]
+1
+# (D-2) Setting in/out Constraints
+set_input_delay   -max  $INPUT_DLY  -clock clk   [all_inputs] ;  # setup time check
+1
+set_input_delay   -min  0           -clock clk   [all_inputs] ;  # hold  time check
+1
+set_output_delay  -max  $OUTPUT_DLY -clock clk   [all_outputs] ; # setup time check
+1
+set_output_delay  -min  0           -clock clk   [all_outputs] ; # hold  time check
+1
+set_input_delay 0 -clock clk clk
+1
+set_input_delay 0 -clock clk rst_n
+1
+# Injection ports are TB-only; synthesis treats them as tied-off 0.
+if {[sizeof_collection [get_ports -quiet ft_inject_valid]] > 0} {
+    set_case_analysis 0 [get_ports ft_inject_valid]
+    set_case_analysis 0 [get_ports ft_d_inject_valid]
+    set_false_path -from [get_ports ft_inject_lane]
+    set_false_path -from [get_ports ft_inject_mask]
+    set_false_path -from [get_ports ft_d_inject_col]
+    set_false_path -from [get_ports ft_d_inject_mask]
+}
+1
+# set_max_delay $CYCLE -from [all_inputs] -to [all_outputs]
+# (D-3) Setting Design Environment
+# set_driving_cell -library umc18io3v5v_slow -lib_cell P2C -pin {Y} [get_ports clk]
+# set_driving_cell -library umc18io3v5v_slow -lib_cell P2C -pin {Y} [remove_from_collection [all_inputs] [get_ports clk]]
+# set_load [load_of "umc18io3v5v_slow/P8C/A"] [all_outputs] ; # ~= 0.038
+set_load 0.05 [all_outputs]
+1
+# (D-4) Setting DRC Constraint
+# set_max_delay       0 ; # Optimize delay max effort
+# set_max_area        0 ; # Optimize area max effort
+set_max_transition  3    [all_inputs] ; # U18 LUT Max Transition Value
+1
+set_max_capacitance 0.15 [all_inputs] ; # U18 LUT Max Capacitance Value
+1
+set_max_fanout      10   [all_inputs]
+1
+# set_dont_use slow/JKFF*
+# set_dont_touch [get_cells core_reg_macro]
+# set hdlin_ff_always_sync_set_reset true
+# (D-5) Report Clock skew
+report_clock -skew clk
+Information: Updating design information... (UID-85)
+Warning: Design 'sha3_ultra_low_power_top' contains 22 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : clock_skew
+Design : sha3_ultra_low_power_top
+Version: R-2020.09
+Date   : Thu Oct 29 02:12:19 2026
+****************************************
+
+                 Rise      Fall  Min Rise  Min fall        Uncertainty
+Object          Delay     Delay     Delay     Delay     Plus      Minus
+--------------------------------------------------------------------------------
+clk                 -         -         -         -      0.10      0.10
+
+                 Max Transition      Min Transition
+Object           Rise      Fall      Rise      Fall
+-------------------------------------------------------
+clk              0.10      0.10      0.10      0.10
+1
+check_timing
+
+Information: Checking generated_clocks...
+
+Information: Checking loops...
+
+Information: Checking no_input_delay...
+
+Information: Checking unconstrained_endpoints...
+
+Information: Checking pulse_clock_cell_type...
+
+Information: Checking no_driving_cell...
+
+Information: Checking partial_input_delay...
+1
+#======================================================
+#  (E) Optimization
+#======================================================
+check_design > Report/$DESIGN\.check
+set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
+1
+set_fix_hold [all_clocks]
+1
+compile_ultra
+Information: Performing power optimization. (PWR-850)
+Analyzing: "/usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db"
+Library analysis succeeded.
+Information: Running optimization using a maximum of 4 cores. (OPT-1500)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | Q-2019.12-DWBB_201912.0 |     *     |
+| Licensed DW Building Blocks        | Q-2019.12-DWBB_201912.0 |     *     |
+============================================================================
+
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+
+Information: There are 4890 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+Information: Uniquified 4 instances of design 'keccak_hamming64'. (OPT-1056)
+  Simplifying Design 'sha3_ultra_low_power_top'
+Information: The register 'u_lane_ecc/ecc_q_reg[24][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[24][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[24][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[24][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[24][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[24][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[24][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[24][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[23][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[23][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[23][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[23][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[23][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[23][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[23][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[23][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[22][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[22][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[22][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[22][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[22][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[22][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[22][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[22][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[21][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[21][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[21][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[21][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[21][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[21][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[21][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[21][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[20][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[20][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[20][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[20][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[20][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[20][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[20][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[20][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[19][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[19][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[19][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[19][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[19][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[19][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[19][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[19][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[18][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[18][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[18][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[18][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[18][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[18][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[18][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[18][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[17][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[17][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[17][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[17][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[17][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[17][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[17][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[17][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[16][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[16][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[16][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[16][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[16][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[16][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[16][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[16][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[15][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[15][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[15][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[15][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[15][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[15][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[15][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[15][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[14][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[14][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[14][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[14][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[14][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[14][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[14][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[14][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[13][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[13][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[13][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[13][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[13][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[13][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[13][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[13][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[12][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[12][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[12][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[12][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[12][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[12][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[12][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[12][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[11][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[11][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[11][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[11][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[11][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[11][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[11][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[11][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[10][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[10][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[10][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[10][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[10][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[10][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[10][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[10][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[9][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[9][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[9][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[9][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[9][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[9][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[9][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[9][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[8][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[8][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[8][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[8][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[8][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[8][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[8][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[8][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[7][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[7][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[7][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[7][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[7][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[7][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[7][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[7][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[6][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[6][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[6][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[6][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[6][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[6][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[6][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[6][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[5][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[5][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[5][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[5][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[5][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[5][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[5][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[5][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[4][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[4][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[4][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[4][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[4][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[4][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[4][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[4][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[3][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[3][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[3][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[3][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[3][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[3][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[3][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[3][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[2][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[2][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[2][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[2][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[2][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[2][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[2][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[2][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[1][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[1][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[1][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[1][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[1][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[1][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[1][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[1][7]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[0][0]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[0][1]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[0][2]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[0][3]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[0][4]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[0][5]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[0][6]' will be removed. (OPT-1207)
+Information: The register 'u_lane_ecc/ecc_q_reg[0][7]' will be removed. (OPT-1207)
+Information: The register 'u_ctrl_fsm/squeeze_start_reg' will be removed. (OPT-1207)
+
+Loaded alib file './alib-52/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db.alib'
+  Building model 'DW01_NAND2'
+Information: Ungrouping hierarchy u_ctrl_fsm before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_absorb_xor before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_round_scheduler before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_rho_pi before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_output_formatter before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_ft_region before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_low_power_gating before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_state_bank before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_theta/gen_d_ecc[1].u_d_ham before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_chi/u_iota before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_theta/gen_d_ecc[4].u_d_ham before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_theta/gen_d_ecc[3].u_d_ham before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_theta/gen_d_ecc[2].u_d_ham before Pass 1 (OPT-776)
+Information: Ungrouping 13 of 19 hierarchies before Pass 1 (OPT-775)
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+........
+  Processing 'keccak_hamming1600'
+ Implement Synthetic for 'keccak_hamming1600'.
+Information: Added key list 'DesignWare' to design 'keccak_hamming1600'. (DDB-72)
+  Processing 'sha3_ultra_low_power_top'
+Information: Added key list 'DesignWare' to design 'sha3_ultra_low_power_top'. (DDB-72)
+ Implement Synthetic for 'sha3_ultra_low_power_top'.
+  Processing 'keccak_theta_serial'
+Information: Added key list 'DesignWare' to design 'keccak_theta_serial'. (DDB-72)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][2]' is removed because it is merged to 'D_reg[1][0]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][70]' is removed because it is merged to 'D_reg[1][63]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][69]' is removed because it is merged to 'D_reg[1][62]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][68]' is removed because it is merged to 'D_reg[1][61]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][67]' is removed because it is merged to 'D_reg[1][60]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][66]' is removed because it is merged to 'D_reg[1][59]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][65]' is removed because it is merged to 'D_reg[1][58]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][64]' is removed because it is merged to 'D_reg[1][57]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][62]' is removed because it is merged to 'D_reg[1][56]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][61]' is removed because it is merged to 'D_reg[1][55]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][60]' is removed because it is merged to 'D_reg[1][54]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][59]' is removed because it is merged to 'D_reg[1][53]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][58]' is removed because it is merged to 'D_reg[1][52]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][57]' is removed because it is merged to 'D_reg[1][51]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][56]' is removed because it is merged to 'D_reg[1][50]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][55]' is removed because it is merged to 'D_reg[1][49]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][54]' is removed because it is merged to 'D_reg[1][48]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][53]' is removed because it is merged to 'D_reg[1][47]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][52]' is removed because it is merged to 'D_reg[1][46]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][51]' is removed because it is merged to 'D_reg[1][45]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][50]' is removed because it is merged to 'D_reg[1][44]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][49]' is removed because it is merged to 'D_reg[1][43]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][48]' is removed because it is merged to 'D_reg[1][42]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][47]' is removed because it is merged to 'D_reg[1][41]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][46]' is removed because it is merged to 'D_reg[1][40]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][45]' is removed because it is merged to 'D_reg[1][39]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][44]' is removed because it is merged to 'D_reg[1][38]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][43]' is removed because it is merged to 'D_reg[1][37]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][42]' is removed because it is merged to 'D_reg[1][36]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][41]' is removed because it is merged to 'D_reg[1][35]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][40]' is removed because it is merged to 'D_reg[1][34]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][39]' is removed because it is merged to 'D_reg[1][33]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][38]' is removed because it is merged to 'D_reg[1][32]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][37]' is removed because it is merged to 'D_reg[1][31]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][36]' is removed because it is merged to 'D_reg[1][30]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][35]' is removed because it is merged to 'D_reg[1][29]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][34]' is removed because it is merged to 'D_reg[1][28]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][33]' is removed because it is merged to 'D_reg[1][27]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][32]' is removed because it is merged to 'D_reg[1][26]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][30]' is removed because it is merged to 'D_reg[1][25]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][29]' is removed because it is merged to 'D_reg[1][24]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][28]' is removed because it is merged to 'D_reg[1][23]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][27]' is removed because it is merged to 'D_reg[1][22]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][26]' is removed because it is merged to 'D_reg[1][21]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][25]' is removed because it is merged to 'D_reg[1][20]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][24]' is removed because it is merged to 'D_reg[1][19]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][23]' is removed because it is merged to 'D_reg[1][18]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][22]' is removed because it is merged to 'D_reg[1][17]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][21]' is removed because it is merged to 'D_reg[1][16]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][20]' is removed because it is merged to 'D_reg[1][15]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][19]' is removed because it is merged to 'D_reg[1][14]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][18]' is removed because it is merged to 'D_reg[1][13]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][17]' is removed because it is merged to 'D_reg[1][12]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][16]' is removed because it is merged to 'D_reg[1][11]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][14]' is removed because it is merged to 'D_reg[1][10]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][13]' is removed because it is merged to 'D_reg[1][9]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][12]' is removed because it is merged to 'D_reg[1][8]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][11]' is removed because it is merged to 'D_reg[1][7]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][10]' is removed because it is merged to 'D_reg[1][6]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][9]' is removed because it is merged to 'D_reg[1][5]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][8]' is removed because it is merged to 'D_reg[1][4]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][6]' is removed because it is merged to 'D_reg[1][3]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][5]' is removed because it is merged to 'D_reg[1][2]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[1][4]' is removed because it is merged to 'D_reg[1][1]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][70]' is removed because it is merged to 'D_reg[4][63]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][2]' is removed because it is merged to 'D_reg[2][0]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][69]' is removed because it is merged to 'D_reg[4][62]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][70]' is removed because it is merged to 'D_reg[2][63]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][68]' is removed because it is merged to 'D_reg[4][61]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][69]' is removed because it is merged to 'D_reg[2][62]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][67]' is removed because it is merged to 'D_reg[4][60]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][68]' is removed because it is merged to 'D_reg[2][61]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][66]' is removed because it is merged to 'D_reg[4][59]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][67]' is removed because it is merged to 'D_reg[2][60]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][65]' is removed because it is merged to 'D_reg[4][58]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][66]' is removed because it is merged to 'D_reg[2][59]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][64]' is removed because it is merged to 'D_reg[4][57]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][65]' is removed because it is merged to 'D_reg[2][58]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][62]' is removed because it is merged to 'D_reg[4][56]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][64]' is removed because it is merged to 'D_reg[2][57]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][61]' is removed because it is merged to 'D_reg[4][55]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][62]' is removed because it is merged to 'D_reg[2][56]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][60]' is removed because it is merged to 'D_reg[4][54]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][61]' is removed because it is merged to 'D_reg[2][55]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][59]' is removed because it is merged to 'D_reg[4][53]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][60]' is removed because it is merged to 'D_reg[2][54]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][58]' is removed because it is merged to 'D_reg[4][52]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][59]' is removed because it is merged to 'D_reg[2][53]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][57]' is removed because it is merged to 'D_reg[4][51]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][58]' is removed because it is merged to 'D_reg[2][52]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][56]' is removed because it is merged to 'D_reg[4][50]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][57]' is removed because it is merged to 'D_reg[2][51]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][55]' is removed because it is merged to 'D_reg[4][49]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][56]' is removed because it is merged to 'D_reg[2][50]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][54]' is removed because it is merged to 'D_reg[4][48]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][55]' is removed because it is merged to 'D_reg[2][49]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][53]' is removed because it is merged to 'D_reg[4][47]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][54]' is removed because it is merged to 'D_reg[2][48]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][52]' is removed because it is merged to 'D_reg[4][46]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][53]' is removed because it is merged to 'D_reg[2][47]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][51]' is removed because it is merged to 'D_reg[4][45]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][52]' is removed because it is merged to 'D_reg[2][46]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][50]' is removed because it is merged to 'D_reg[4][44]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][51]' is removed because it is merged to 'D_reg[2][45]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][49]' is removed because it is merged to 'D_reg[4][43]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][50]' is removed because it is merged to 'D_reg[2][44]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][48]' is removed because it is merged to 'D_reg[4][42]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][49]' is removed because it is merged to 'D_reg[2][43]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][47]' is removed because it is merged to 'D_reg[4][41]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][48]' is removed because it is merged to 'D_reg[2][42]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][46]' is removed because it is merged to 'D_reg[4][40]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][47]' is removed because it is merged to 'D_reg[2][41]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][45]' is removed because it is merged to 'D_reg[4][39]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][46]' is removed because it is merged to 'D_reg[2][40]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][44]' is removed because it is merged to 'D_reg[4][38]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][45]' is removed because it is merged to 'D_reg[2][39]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][43]' is removed because it is merged to 'D_reg[4][37]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][44]' is removed because it is merged to 'D_reg[2][38]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][42]' is removed because it is merged to 'D_reg[4][36]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][43]' is removed because it is merged to 'D_reg[2][37]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][41]' is removed because it is merged to 'D_reg[4][35]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][42]' is removed because it is merged to 'D_reg[2][36]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][40]' is removed because it is merged to 'D_reg[4][34]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][41]' is removed because it is merged to 'D_reg[2][35]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][39]' is removed because it is merged to 'D_reg[4][33]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][40]' is removed because it is merged to 'D_reg[2][34]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][38]' is removed because it is merged to 'D_reg[4][32]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][39]' is removed because it is merged to 'D_reg[2][33]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][37]' is removed because it is merged to 'D_reg[4][31]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][38]' is removed because it is merged to 'D_reg[2][32]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][36]' is removed because it is merged to 'D_reg[4][30]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][37]' is removed because it is merged to 'D_reg[2][31]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][35]' is removed because it is merged to 'D_reg[4][29]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][36]' is removed because it is merged to 'D_reg[2][30]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][34]' is removed because it is merged to 'D_reg[4][28]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][35]' is removed because it is merged to 'D_reg[2][29]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][33]' is removed because it is merged to 'D_reg[4][27]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][34]' is removed because it is merged to 'D_reg[2][28]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][32]' is removed because it is merged to 'D_reg[4][26]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][33]' is removed because it is merged to 'D_reg[2][27]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][30]' is removed because it is merged to 'D_reg[4][25]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][32]' is removed because it is merged to 'D_reg[2][26]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][29]' is removed because it is merged to 'D_reg[4][24]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][30]' is removed because it is merged to 'D_reg[2][25]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][28]' is removed because it is merged to 'D_reg[4][23]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][29]' is removed because it is merged to 'D_reg[2][24]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][27]' is removed because it is merged to 'D_reg[4][22]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][28]' is removed because it is merged to 'D_reg[2][23]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][26]' is removed because it is merged to 'D_reg[4][21]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][27]' is removed because it is merged to 'D_reg[2][22]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][25]' is removed because it is merged to 'D_reg[4][20]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][26]' is removed because it is merged to 'D_reg[2][21]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][24]' is removed because it is merged to 'D_reg[4][19]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][25]' is removed because it is merged to 'D_reg[2][20]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][23]' is removed because it is merged to 'D_reg[4][18]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][24]' is removed because it is merged to 'D_reg[2][19]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][22]' is removed because it is merged to 'D_reg[4][17]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][23]' is removed because it is merged to 'D_reg[2][18]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][21]' is removed because it is merged to 'D_reg[4][16]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][22]' is removed because it is merged to 'D_reg[2][17]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][20]' is removed because it is merged to 'D_reg[4][15]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][21]' is removed because it is merged to 'D_reg[2][16]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][19]' is removed because it is merged to 'D_reg[4][14]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][20]' is removed because it is merged to 'D_reg[2][15]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][18]' is removed because it is merged to 'D_reg[4][13]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][19]' is removed because it is merged to 'D_reg[2][14]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][17]' is removed because it is merged to 'D_reg[4][12]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][18]' is removed because it is merged to 'D_reg[2][13]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][16]' is removed because it is merged to 'D_reg[4][11]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][17]' is removed because it is merged to 'D_reg[2][12]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][14]' is removed because it is merged to 'D_reg[4][10]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][16]' is removed because it is merged to 'D_reg[2][11]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][13]' is removed because it is merged to 'D_reg[4][9]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][14]' is removed because it is merged to 'D_reg[2][10]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][12]' is removed because it is merged to 'D_reg[4][8]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][13]' is removed because it is merged to 'D_reg[2][9]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][11]' is removed because it is merged to 'D_reg[4][7]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][12]' is removed because it is merged to 'D_reg[2][8]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][10]' is removed because it is merged to 'D_reg[4][6]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][11]' is removed because it is merged to 'D_reg[2][7]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][9]' is removed because it is merged to 'D_reg[4][5]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][10]' is removed because it is merged to 'D_reg[2][6]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][8]' is removed because it is merged to 'D_reg[4][4]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][9]' is removed because it is merged to 'D_reg[2][5]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][6]' is removed because it is merged to 'D_reg[4][3]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][8]' is removed because it is merged to 'D_reg[2][4]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][5]' is removed because it is merged to 'D_reg[4][2]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][6]' is removed because it is merged to 'D_reg[2][3]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][4]' is removed because it is merged to 'D_reg[4][1]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][5]' is removed because it is merged to 'D_reg[2][2]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[4][2]' is removed because it is merged to 'D_reg[4][0]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[2][4]' is removed because it is merged to 'D_reg[2][1]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][2]' is removed because it is merged to 'D_reg[3][0]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][70]' is removed because it is merged to 'D_reg[3][63]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][69]' is removed because it is merged to 'D_reg[3][62]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][68]' is removed because it is merged to 'D_reg[3][61]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][67]' is removed because it is merged to 'D_reg[3][60]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][66]' is removed because it is merged to 'D_reg[3][59]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][65]' is removed because it is merged to 'D_reg[3][58]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][64]' is removed because it is merged to 'D_reg[3][57]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][62]' is removed because it is merged to 'D_reg[3][56]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][61]' is removed because it is merged to 'D_reg[3][55]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][60]' is removed because it is merged to 'D_reg[3][54]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][59]' is removed because it is merged to 'D_reg[3][53]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][58]' is removed because it is merged to 'D_reg[3][52]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][57]' is removed because it is merged to 'D_reg[3][51]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][56]' is removed because it is merged to 'D_reg[3][50]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][55]' is removed because it is merged to 'D_reg[3][49]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][54]' is removed because it is merged to 'D_reg[3][48]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][53]' is removed because it is merged to 'D_reg[3][47]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][52]' is removed because it is merged to 'D_reg[3][46]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][51]' is removed because it is merged to 'D_reg[3][45]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][50]' is removed because it is merged to 'D_reg[3][44]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][49]' is removed because it is merged to 'D_reg[3][43]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][48]' is removed because it is merged to 'D_reg[3][42]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][47]' is removed because it is merged to 'D_reg[3][41]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][46]' is removed because it is merged to 'D_reg[3][40]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][45]' is removed because it is merged to 'D_reg[3][39]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][44]' is removed because it is merged to 'D_reg[3][38]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][43]' is removed because it is merged to 'D_reg[3][37]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][42]' is removed because it is merged to 'D_reg[3][36]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][41]' is removed because it is merged to 'D_reg[3][35]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][40]' is removed because it is merged to 'D_reg[3][34]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][39]' is removed because it is merged to 'D_reg[3][33]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][38]' is removed because it is merged to 'D_reg[3][32]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][37]' is removed because it is merged to 'D_reg[3][31]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][36]' is removed because it is merged to 'D_reg[3][30]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][35]' is removed because it is merged to 'D_reg[3][29]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][34]' is removed because it is merged to 'D_reg[3][28]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][33]' is removed because it is merged to 'D_reg[3][27]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][32]' is removed because it is merged to 'D_reg[3][26]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][30]' is removed because it is merged to 'D_reg[3][25]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][29]' is removed because it is merged to 'D_reg[3][24]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][28]' is removed because it is merged to 'D_reg[3][23]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][27]' is removed because it is merged to 'D_reg[3][22]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][26]' is removed because it is merged to 'D_reg[3][21]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][25]' is removed because it is merged to 'D_reg[3][20]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][24]' is removed because it is merged to 'D_reg[3][19]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][23]' is removed because it is merged to 'D_reg[3][18]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][22]' is removed because it is merged to 'D_reg[3][17]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][21]' is removed because it is merged to 'D_reg[3][16]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][20]' is removed because it is merged to 'D_reg[3][15]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][19]' is removed because it is merged to 'D_reg[3][14]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][18]' is removed because it is merged to 'D_reg[3][13]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][17]' is removed because it is merged to 'D_reg[3][12]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][16]' is removed because it is merged to 'D_reg[3][11]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][14]' is removed because it is merged to 'D_reg[3][10]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][13]' is removed because it is merged to 'D_reg[3][9]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][12]' is removed because it is merged to 'D_reg[3][8]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][11]' is removed because it is merged to 'D_reg[3][7]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][10]' is removed because it is merged to 'D_reg[3][6]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][9]' is removed because it is merged to 'D_reg[3][5]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][8]' is removed because it is merged to 'D_reg[3][4]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][6]' is removed because it is merged to 'D_reg[3][3]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][5]' is removed because it is merged to 'D_reg[3][2]'. (OPT-1215)
+Information: In design 'keccak_theta_serial', the register 'D_code_reg[3][4]' is removed because it is merged to 'D_reg[3][1]'. (OPT-1215)
+ Implement Synthetic for 'keccak_theta_serial'.
+  Processing 'keccak_chi_row'
+Information: Added key list 'DesignWare' to design 'keccak_chi_row'. (DDB-72)
+ Implement Synthetic for 'keccak_chi_row'.
+  Processing 'keccak_lane_ecc'
+  Processing 'sha3_pad_domain'
+Information: Added key list 'DesignWare' to design 'sha3_pad_domain'. (DDB-72)
+ Implement Synthetic for 'sha3_pad_domain'.
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'TIELO_X1M_A9TR' in the library 'sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI_X1M_A9TR' in the library 'sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+Information: Complementing port 'hold' in design 'keccak_theta_serial'.
+         The new name of the port is 'hold_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[24]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[24]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[19]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[19]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[14]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[14]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[9]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[9]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[4]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[4]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[23]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[23]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[18]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[18]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[13]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[13]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[8]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[8]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[3]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[3]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[2]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[2]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[1]' in design 'keccak_theta_serial'.
+         The new name of the port is 'lane_active[1]_BAR'. (OPT-319)
+Information: Complementing port 'col[2]' in design 'keccak_theta_serial'.
+         The new name of the port is 'col[2]_BAR'. (OPT-319)
+Information: Complementing port 'col[1]' in design 'keccak_theta_serial'.
+         The new name of the port is 'col[1]_BAR'. (OPT-319)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+Information: Ungrouping hierarchy u_pad_domain 'sha3_pad_domain' #insts = 1504. (OPT-777)
+  Mapping Optimization (Phase 1)
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:03:06  110344.5      0.00       0.0   11324.3                           1289.8414      0.00  
+    0:03:14  110342.1      0.00       0.0   11324.3                           1289.8396      0.00  
+
+  Beginning Constant Register Removal
+  -----------------------------------
+    0:03:17  110342.1      0.00       0.0   11324.3                           1289.8396      0.00  
+    0:03:22  110342.1      0.00       0.0   11324.3                           1289.8396      0.00  
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:04:00   92311.2      0.00       0.0   19152.6                            980.9045      0.00  
+    0:04:00   92311.2      0.00       0.0   19152.6                            980.9045      0.00  
+    0:04:00   92311.2      0.00       0.0   19152.6                            980.9045      0.00  
+    0:04:00   92311.2      0.00       0.0   19152.6                            980.9045      0.00  
+    0:04:18   91913.2      0.00       0.0   19153.4                            971.9039      0.00  
+    0:04:25   91912.7      0.00       0.0   19153.4                            971.8997      0.00  
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:04:45   91877.4      0.00       0.0   19110.7                            962.2784      0.00  
+    0:04:51   91692.7      0.00       0.0   19109.1                            956.5625      0.00  
+    0:05:12   91221.2      0.00       0.0   18764.0                            948.1809      0.00  
+    0:05:16   91086.7      0.00       0.0   18304.2                            946.0084      0.00  
+    0:05:16   91086.7      0.00       0.0   18304.2                            946.0084      0.00  
+    0:05:16   91086.7      0.00       0.0   18304.2                            946.0084      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_fanout)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:05:32   90235.8      0.00       0.0   13883.3                            781.9664      0.00  
+  Global Optimization (Phase 34)
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+    0:05:37   90329.4      0.00       0.0   10446.0 net115483                  782.6485      0.00  
+    0:05:44   90329.4      0.00       0.0   10445.8                            782.6485      0.00  
+    0:05:44   90329.4      0.00       0.0   10445.8                            782.6485      0.00  
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:05:44   90329.4      0.00       0.0   10445.8                            782.6485      0.00  
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+  Global Optimization (Phase 44)
+  Global Optimization (Phase 45)
+  Global Optimization (Phase 46)
+  Global Optimization (Phase 47)
+  Global Optimization (Phase 48)
+  Global Optimization (Phase 49)
+  Global Optimization (Phase 50)
+  Global Optimization (Phase 51)
+  Global Optimization (Phase 52)
+Information: Complementing port 'col[1]_BAR' in design 'keccak_theta_serial'.
+         The new name of the port is 'col[1]'. (OPT-319)
+    0:06:21   89820.5      0.49     433.9   10435.6                            679.0767      0.00  
+Information: Complementing port 'status[0]' in design 'keccak_hamming1600'.
+         The new name of the port is 'status[0]_BAR'. (OPT-319)
+    0:06:22   89823.0      0.00       0.0   10435.6                            679.4572      0.00  
+    0:06:22   89823.0      0.00       0.0   10435.6                            679.4572      0.00  
+    0:06:22   89823.0      0.00       0.0   10435.6                            679.4572      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+    0:06:31   89724.8      0.00       0.0   10435.6                            659.6149      0.00  
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:06:35   89722.8      0.00       0.0   10435.6                            659.6016      0.00  
+    0:06:48   89199.3      0.00       0.0   10435.7                            606.7633      0.00  
+    0:06:48   89199.3      0.00       0.0   10435.7                            606.7633      0.00  
+    0:06:48   89199.3      0.00       0.0   10435.7                            606.7633      0.00  
+    0:06:52   89197.0      0.00       0.0   10436.2                            606.2109      0.00  
+    0:07:08   89158.5      0.00       0.0   10435.9                            605.5527      0.00  
+    0:07:14   89144.9      0.00       0.0   10435.7 u_chi/net155015            603.7398      0.00  
+    0:07:17   89216.5      0.00       0.0   10435.7 net153869                  603.9757      0.00  
+    0:07:26   89216.8      0.00       0.0   10435.7                            603.9857      0.00  
+    0:07:26   89216.8      0.00       0.0   10435.7                            603.9857      0.00  
+    0:07:26   89216.8      0.00       0.0   10435.7                            603.9857      0.00  
+    0:07:26   89216.8      0.00       0.0   10435.7                            603.9857      0.00  
+    0:07:26   89216.8      0.00       0.0   10435.7                            603.9857      0.00  
+    0:07:26   89216.8      0.00       0.0   10435.7                            603.9857      0.00  
+    0:07:39   89176.9      0.00       0.0   10442.5                            603.6875      0.00  
+Loading db file '/usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'sha3_ultra_low_power_top' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'u_lane_ecc/clk': 4713 load(s), 1 driver(s)
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1
+# uniquify
+# compile
+#======================================================
+#  (F) Output Reports
+#======================================================
+report_design              > Report/$DESIGN\.design
+report_resource            > Report/$DESIGN\.resource
+report_timing -max_paths 3 > Report/$DESIGN\.timing
+report_area                > Report/$DESIGN\.area
+report_power               > Report/$DESIGN\.power
+report_clock               > Report/$DESIGN\.clock
+report_port                > Report/$DESIGN\.port
+report_power               > Report/$DESIGN\.power
+# report_reference           > Report/$DESIGN\.reference
+#======================================================
+#  (G) Change Naming Rule
+#======================================================
+set bus_inference_style "%s\[%d\]"
+%s[%d]
+set bus_naming_style    "%s\[%d\]"
+%s[%d]
+set hdlout_internal_busses true
+true
+change_names -hierarchy -rule verilog
+1
+define_name_rules name_rule -allowed "a-z A-Z 0-9 _"   -max_length 255 -type cell
+1
+define_name_rules name_rule -allowed "a-z A-Z 0-9 _[]" -max_length 255 -type net
+1
+define_name_rules name_rule -map {{"\\*cell\\*" "cell"}}
+1
+define_name_rules name_rule -case_insensitive
+1
+change_names -hierarchy -rules name_rule
+1
+#======================================================
+#  (H) Output Results
+#======================================================
+set verilogout_higher_designs_first true
+true
+write -format verilog -hierarchy -output Netlist/$DESIGN\_SYN.v 
+Writing verilog file '/mnt/newNAS/home/UnderGraduate2/2026/113511153/sha3_paper_build/V1_State1600_SECDED_Replay/02_SYN/Netlist/SHA3_1600_SYN.v'.
+1
+write -format ddc     -hierarchy -output $DESIGN\_SYN.ddc
+Writing ddc file 'SHA3_1600_SYN.ddc'.
+1
+write_sdf -version 3.0 -context verilog -load_delay cell Netlist/$DESIGN\_SYN.sdf -significant_digits 6
+Information: Writing timing information to file '/mnt/newNAS/home/UnderGraduate2/2026/113511153/sha3_paper_build/V1_State1600_SECDED_Replay/02_SYN/Netlist/SHA3_1600_SYN.sdf'. (WT-3)
+1
+write_sdc Netlist/$DESIGN\_SYN.sdc
+1
+#======================================================
+#  (I) Finish and Quit
+#======================================================
+report_area
+ 
+****************************************
+Report : area
+Design : sha3_ultra_low_power_top
+Version: R-2020.09
+Date   : Thu Oct 29 02:21:42 2026
+****************************************
+
+Library(s) Used:
+
+    sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c (File: /usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db)
+
+Number of ports:                        21241
+Number of nets:                         79595
+Number of cells:                        60297
+Number of combinational cells:          54005
+Number of sequential cells:              6288
+Number of macros/black boxes:               0
+Number of buf/inv:                       6730
+Number of references:                     108
+
+Combinational area:              60631.350226
+Buf/Inv area:                     3359.134731
+Noncombinational area:           28545.500194
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                 89176.850420
+Total area:                      89176.850420
+1
+report_timing
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : sha3_ultra_low_power_top
+Version: R-2020.09
+Date   : Thu Oct 29 02:21:42 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: tt_typical_max_0p90v_25c   Library: sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+Wire Load Model Mode: top
+
+  Startpoint: u_round_scheduler_FSM_state_reg_0_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: u_state_bank_cur_state_reg_4__4__62_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  sha3_ultra_low_power_top
+                     Small                 sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  u_round_scheduler_FSM_state_reg_0_/CK (DFFRPQ_X2M_A9TR)
+                                                          0.00 #     0.00 r
+  u_round_scheduler_FSM_state_reg_0_/Q (DFFRPQ_X2M_A9TR)
+                                                          0.10       0.10 r
+  U8952/Y (INV_X1B_A9TR)                                  0.04       0.14 f
+  U9616/Y (NOR3_X2M_A9TR)                                 0.17       0.31 r
+  u_theta/start (keccak_theta_serial)                     0.00       0.31 r
+  u_theta/U2513/Y (INV_X5M_A9TR)                          0.19       0.50 f
+  u_theta/U4225/Y (OR2_X1M_A9TR)                          0.09       0.59 f
+  u_theta/U2502/Y (INV_X3M_A9TR)                          0.21       0.80 r
+  u_theta/U40/Y (NOR2_X1A_A9TR)                           0.19       1.00 f
+  u_theta/U2472/Y (BUF_X6M_A9TR)                          0.21       1.20 f
+  u_theta/U8884/Y (OAI22_X0P5M_A9TR)                      0.13       1.33 r
+  u_theta/U8885/Y (OAI21_X0P5M_A9TR)                      0.07       1.40 f
+  u_theta/U8886/Y (AOI21_X0P5M_A9TR)                      0.08       1.48 r
+  u_theta/U8890/Y (XNOR2_X0P5M_A9TR)                      0.06       1.54 r
+  u_theta/U1837/Y (XOR2_X0P5M_A9TR)                       0.13       1.66 r
+  u_theta/U1782/Y (XOR2_X0P5M_A9TR)                       0.08       1.74 f
+  u_theta/U3731/Y (XOR2_X0P5M_A9TR)                       0.09       1.83 r
+  u_theta/U3644/Y (XNOR2_X0P5M_A9TR)                      0.07       1.90 r
+  u_theta/U1645/Y (XNOR2_X0P5M_A9TR)                      0.06       1.96 r
+  u_theta/U1576/Y (XOR2_X0P5M_A9TR)                       0.09       2.05 r
+  u_theta/U3503/Y (XOR2_X0P5M_A9TR)                       0.06       2.11 r
+  u_theta/U1495/Y (XNOR2_X0P5M_A9TR)                      0.06       2.17 r
+  u_theta/U3423/Y (XOR2_X0P5M_A9TR)                       0.07       2.24 r
+  u_theta/U3399/Y (XOR2_X0P5M_A9TR)                       0.07       2.31 r
+  u_theta/U1426/Y (XNOR2_X0P5M_A9TR)                      0.06       2.37 r
+  u_theta/U3353/Y (XOR2_X0P5M_A9TR)                       0.07       2.44 r
+  u_theta/U3328/Y (XNOR2_X0P5M_A9TR)                      0.06       2.50 r
+  u_theta/U3311/Y (XOR2_X0P5M_A9TR)                       0.07       2.57 r
+  u_theta/U1348/Y (XNOR2_X0P5M_A9TR)                      0.08       2.64 r
+  u_theta/U1343/Y (AOI21_X1M_A9TR)                        0.05       2.69 f
+  u_theta/U3271/Y (XOR2_X0P5M_A9TR)                       0.06       2.75 r
+  u_theta/U1314/Y (XOR2_X0P7M_A9TR)                       0.08       2.82 r
+  u_theta/U3257/Y (XOR2_X0P5M_A9TR)                       0.07       2.89 r
+  u_theta/U1297/Y (XNOR2_X0P5M_A9TR)                      0.07       2.96 r
+  u_theta/U3245/Y (XOR2_X0P7M_A9TR)                       0.07       3.03 r
+  u_theta/U1263/Y (XNOR2_X1P4M_A9TR)                      0.09       3.12 f
+  u_theta/U3230/Y (NOR2_X2A_A9TR)                         0.09       3.21 r
+  u_theta/U3218/Y (NOR2B_X1M_A9TR)                        0.08       3.28 r
+  u_theta/U3185/Y (NAND2_X1A_A9TR)                        0.06       3.34 f
+  u_theta/U3163/Y (INV_X1M_A9TR)                          0.07       3.41 r
+  u_theta/U3150/Y (AOI31_X1M_A9TR)                        0.07       3.49 f
+  u_theta/U3127/Y (NOR2_X2A_A9TR)                         0.08       3.57 r
+  u_theta/U1038/Y (INV_X2M_A9TR)                          0.07       3.64 f
+  u_theta/U1005/Y (NOR2_X1A_A9TR)                         0.10       3.74 r
+  u_theta/U3057/Y (NOR2_X1A_A9TR)                         0.05       3.79 f
+  u_theta/U850/Y (OAI21_X1M_A9TR)                         0.04       3.83 r
+  u_theta/U3026/Y (NAND4_X1A_A9TR)                        0.09       3.92 f
+  u_theta/U3020/Y (INV_X1M_A9TR)                          0.06       3.97 r
+  u_theta/U3013/Y (NAND2_X1A_A9TR)                        0.08       4.06 f
+  u_theta/U719/Y (INV_X0P7M_A9TR)                         0.11       4.17 r
+  u_theta/U674/Y (AOI22_X0P5M_A9TR)                       0.07       4.24 f
+  u_theta/U13144/Y (OAI211_X1M_A9TR)                      0.12       4.36 r
+  u_theta/U412/Y (XOR2_X0P5M_A9TR)                        0.13       4.49 r
+  u_theta/U14608/Y (OA22_X0P5M_A9TR)                      0.09       4.58 r
+  u_theta/out_state[113] (keccak_theta_serial)            0.00       4.58 r
+  U10003/Y (AOI22_X0P5M_A9TR)                             0.05       4.63 f
+  U9412/Y (OAI2XB1_X0P5M_A9TR)                            0.07       4.70 r
+  u_lane_ecc/data_nxt[113] (keccak_lane_ecc)              0.00       4.70 r
+  u_lane_ecc/U2226/Y (NAND2_X0P5A_A9TR)                   0.07       4.78 f
+  u_lane_ecc/U1714/Y (INV_X0P7M_A9TR)                     0.09       4.87 r
+  u_lane_ecc/u_hamming/data_in[1265] (keccak_hamming1600)
+                                                          0.00       4.87 r
+  u_lane_ecc/u_hamming/U2890/Y (AOI22BB_X0P5M_A9TR)       0.07       4.93 r
+  u_lane_ecc/u_hamming/U2605/Y (XNOR2_X0P5M_A9TR)         0.09       5.02 r
+  u_lane_ecc/u_hamming/U2279/Y (XNOR2_X0P5M_A9TR)         0.09       5.11 r
+  u_lane_ecc/u_hamming/U2203/Y (XNOR2_X0P5M_A9TR)         0.09       5.20 r
+  u_lane_ecc/u_hamming/U2127/Y (XNOR2_X0P5M_A9TR)         0.10       5.30 r
+  u_lane_ecc/u_hamming/U4148/Y (XOR2_X0P5M_A9TR)          0.07       5.36 r
+  u_lane_ecc/u_hamming/U2036/Y (XOR2_X0P5M_A9TR)          0.08       5.44 r
+  u_lane_ecc/u_hamming/U2021/Y (XOR2_X0P5M_A9TR)          0.06       5.51 r
+  u_lane_ecc/u_hamming/U1985/Y (XOR2_X0P5M_A9TR)          0.09       5.60 r
+  u_lane_ecc/u_hamming/U6167/Y (INV_X0P5B_A9TR)           0.05       5.65 f
+  u_lane_ecc/u_hamming/U1949/Y (AOI22_X0P5M_A9TR)         0.06       5.70 r
+  u_lane_ecc/u_hamming/U1940/Y (XOR2_X0P5M_A9TR)          0.08       5.79 r
+  u_lane_ecc/u_hamming/U3770/Y (XOR2_X0P5M_A9TR)          0.07       5.86 r
+  u_lane_ecc/u_hamming/U1907/Y (XNOR2_X0P5M_A9TR)         0.06       5.92 r
+  u_lane_ecc/u_hamming/U11282/Y (XOR2_X0P7M_A9TR)         0.06       5.98 r
+  u_lane_ecc/u_hamming/U3732/Y (XNOR2_X0P7M_A9TR)         0.05       6.03 r
+  u_lane_ecc/u_hamming/U11283/Y (XOR2_X0P7M_A9TR)         0.06       6.10 r
+  u_lane_ecc/u_hamming/U3724/Y (XNOR2_X0P7M_A9TR)         0.06       6.15 f
+  u_lane_ecc/u_hamming/code_out[7] (keccak_hamming1600)
+                                                          0.00       6.15 f
+  u_lane_ecc/U5004/Y (AO21A1AI2_X1M_A9TR)                 0.04       6.20 r
+  u_lane_ecc/U3388/Y (XOR2_X0P7M_A9TR)                    0.07       6.26 r
+  u_lane_ecc/U5006/Y (AO21A1AI2_X1M_A9TR)                 0.04       6.31 f
+  u_lane_ecc/U914/Y (XNOR2_X0P7M_A9TR)                    0.05       6.36 r
+  u_lane_ecc/U5019/Y (AO21A1AI2_X1M_A9TR)                 0.04       6.40 f
+  u_lane_ecc/U911/Y (XOR2_X0P7M_A9TR)                     0.05       6.46 r
+  u_lane_ecc/U5024/Y (AO21A1AI2_X1M_A9TR)                 0.04       6.50 f
+  u_lane_ecc/U3455/Y (XOR2_X0P7M_A9TR)                    0.06       6.56 f
+  u_lane_ecc/u_hamming/code_in[7] (keccak_hamming1600)
+                                                          0.00       6.56 f
+  u_lane_ecc/u_hamming/U1876/Y (XOR2_X0P7M_A9TR)          0.06       6.62 r
+  u_lane_ecc/u_hamming/U9312/Y (XOR2_X0P7M_A9TR)          0.07       6.68 r
+  u_lane_ecc/u_hamming/U1871/Y (XNOR2_X0P7M_A9TR)         0.06       6.74 r
+  u_lane_ecc/u_hamming/U1870/Y (XNOR2_X0P7M_A9TR)         0.05       6.79 r
+  u_lane_ecc/u_hamming/U1866/Y (XNOR2_X0P7M_A9TR)         0.06       6.86 r
+  u_lane_ecc/u_hamming/U1861/Y (XNOR2_X0P7M_A9TR)         0.06       6.92 r
+  u_lane_ecc/u_hamming/U6306/Y (XNOR2_X0P7M_A9TR)         0.06       6.98 r
+  u_lane_ecc/u_hamming/U9313/Y (XOR2_X0P7M_A9TR)          0.06       7.04 r
+  u_lane_ecc/u_hamming/U1858/Y (XNOR2_X0P7M_A9TR)         0.05       7.09 r
+  u_lane_ecc/u_hamming/U9314/Y (XOR2_X0P7M_A9TR)          0.06       7.16 r
+  u_lane_ecc/u_hamming/U9315/Y (XOR2_X0P7M_A9TR)          0.05       7.21 r
+  u_lane_ecc/u_hamming/U1847/Y (XNOR2_X0P7M_A9TR)         0.05       7.26 r
+  u_lane_ecc/u_hamming/U1845/Y (XOR2_X0P7M_A9TR)          0.06       7.32 r
+  u_lane_ecc/u_hamming/U33/Y (XNOR2_X0P7M_A9TR)           0.06       7.39 r
+  u_lane_ecc/u_hamming/U1842/Y (XNOR2_X3M_A9TR)           0.08       7.47 f
+  u_lane_ecc/u_hamming/U1839/Y (OAI21_X0P7M_A9TR)         0.06       7.53 r
+  u_lane_ecc/u_hamming/U11416/Y (AO21A1AI2_X1M_A9TR)      0.06       7.59 f
+  u_lane_ecc/u_hamming/U1832/Y (NOR2_X1M_A9TR)            0.14       7.73 r
+  u_lane_ecc/u_hamming/U11444/Y (NAND2_X1A_A9TR)          0.23       7.96 f
+  u_lane_ecc/u_hamming/U11493/Y (NOR2_X1A_A9TR)           0.27       8.23 r
+  u_lane_ecc/u_hamming/U1305/Y (AOI22_X0P7M_A9TR)         0.09       8.32 f
+  u_lane_ecc/u_hamming/U1073/Y (OAI211_X0P5M_A9TR)        0.06       8.38 r
+  u_lane_ecc/u_hamming/U998/Y (NAND4B_X0P7M_A9TR)         0.05       8.43 r
+  u_lane_ecc/u_hamming/U970/Y (NOR3_X1M_A9TR)             0.04       8.48 f
+  u_lane_ecc/u_hamming/U952/Y (NAND4_X0P7A_A9TR)          0.04       8.51 r
+  u_lane_ecc/u_hamming/U946/Y (NOR3_X1M_A9TR)             0.04       8.55 f
+  u_lane_ecc/u_hamming/U11519/Y (NAND4_X1A_A9TR)          0.03       8.59 r
+  u_lane_ecc/u_hamming/U11520/Y (AOI222_X1M_A9TR)         0.05       8.64 f
+  u_lane_ecc/u_hamming/U11521/Y (AOI21_X1M_A9TR)          0.05       8.69 r
+  u_lane_ecc/u_hamming/U11522/Y (OAI211_X1M_A9TR)         0.04       8.73 f
+  u_lane_ecc/u_hamming/U41/Y (NOR4BB_X1M_A9TR)            0.08       8.81 f
+  u_lane_ecc/u_hamming/U942/Y (NAND2_X4B_A9TR)            0.19       9.00 r
+  u_lane_ecc/u_hamming/U45/Y (BUF_X3P5M_A9TR)             0.25       9.26 r
+  u_lane_ecc/u_hamming/U934/Y (BUF_X3M_A9TR)              0.26       9.52 r
+  u_lane_ecc/u_hamming/U859/Y (BUFH_X1M_A9TR)             0.22       9.73 r
+  u_lane_ecc/u_hamming/U303/Y (AOI22BB_X0P5M_A9TR)        0.09       9.82 f
+  u_lane_ecc/u_hamming/data_out[1598] (keccak_hamming1600)
+                                                          0.00       9.82 f
+  u_lane_ecc/U621/Y (AO22_X0P5M_A9TR)                     0.08       9.90 f
+  u_lane_ecc/data_wr[62] (keccak_lane_ecc)                0.00       9.90 f
+  u_state_bank_cur_state_reg_4__4__62_/D (DFFRPQ_X0P5M_A9TR)
+                                                          0.00       9.90 f
+  data arrival time                                                  9.90
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.10       9.90
+  u_state_bank_cur_state_reg_4__4__62_/CK (DFFRPQ_X0P5M_A9TR)
+                                                          0.00       9.90 r
+  library setup time                                      0.00       9.90
+  data required time                                                 9.90
+  --------------------------------------------------------------------------
+  data required time                                                 9.90
+  data arrival time                                                 -9.90
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
+exit
+
+Memory usage for this session 587 Mbytes.
+Memory usage for this session including child processes 2948 Mbytes.
+CPU usage for this session 1198 seconds ( 0.33 hours ).
+Elapsed time for this session 792 seconds ( 0.22 hours ).
+
+Thank you...
+

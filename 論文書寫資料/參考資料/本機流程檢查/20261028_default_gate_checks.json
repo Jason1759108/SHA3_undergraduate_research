@@ -1,0 +1,8 @@
+{
+  "mode": "default_make_vcs_gate_no_sdf",
+  "local_checks": "Python 2.7/3 generator and mocked process tests; Python 2.7 mocked sweep/CSV integration PASS",
+  "original_00_01_and_tcl_unchanged_files": 129,
+  "workstation_simulation": "NOT_RUN",
+  "archive_sha256": "f081b1fed383e2447d59f08d096090c3e70dc4de257b0385263199800d2e8b74",
+  "zip_entries_verified": 181
+}

@@ -1,0 +1,26 @@
+{
+  "repository": "https://github.com/Xilinx/XilinxBoardStore",
+  "commit": "573a2975745ae136a9a72204ad02d5412bdaeb59",
+  "files": {
+    "board.xml": {
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/573a2975745ae136a9a72204ad02d5412bdaeb59/boards/TUL/pynq-z2/A.0/board.xml",
+      "sha256": "a565dcb39737d551cbbbb73c0053b973c40bb3dce2274943370d3032c0fea9ae"
+    },
+    "part0_pins.xml": {
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/573a2975745ae136a9a72204ad02d5412bdaeb59/boards/TUL/pynq-z2/A.0/part0_pins.xml",
+      "sha256": "3c809473938e135a925b563b5371c8687ee05c4089376e7318c0c56524cc8a0f"
+    },
+    "preset.xml": {
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/573a2975745ae136a9a72204ad02d5412bdaeb59/boards/TUL/pynq-z2/A.0/preset.xml",
+      "sha256": "18528f84aea4da503cdb3104f7706fabfb3b6ad09b78b25199cc316afa4c8cfe"
+    },
+    "pynq_z2.jpg": {
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/573a2975745ae136a9a72204ad02d5412bdaeb59/boards/TUL/pynq-z2/A.0/pynq_z2.jpg",
+      "sha256": "8d1d94615b69fa944541df962637cdc603fd099125803dba0dd1a504bb6afd15"
+    },
+    "xitem.json": {
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/573a2975745ae136a9a72204ad02d5412bdaeb59/boards/TUL/pynq-z2/A.0/xitem.json",
+      "sha256": "b83d088ab05af10e5f6fbf75ec791a1987b3f847f129a97455a78f1752eaabf8"
+    }
+  }
+}

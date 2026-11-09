@@ -1,0 +1,1284 @@
+#======================================================
+#
+# Synopsys Synthesis Scripts (Design Vision dctcl mode)
+#
+#======================================================
+#======================================================
+# (A) Global Parameters
+#======================================================
+# FT_ENABLE=0 is the same datapath without predictor/checker/replay hardware.
+set FT_ENABLE 1
+1
+if {[info exists env(FT_ENABLE)]} { set FT_ENABLE $env(FT_ENABLE) }
+1
+if {$FT_ENABLE ni {0 1}} { error "FT_ENABLE must be 0 or 1" }
+set DESIGN [expr {$FT_ENABLE ? "SHA3_parity" : "SHA3_base"}]
+SHA3_parity
+set TOP_MODULE "sha3_ultra_low_power_top"
+sha3_ultra_low_power_top
+if {[info exists env(CLK_PERIOD)]} {
+    set CYCLE $env(CLK_PERIOD)
+} else {
+    set CYCLE 10.0
+}
+10
+set INPUT_DLY  [expr 0.5*$CYCLE]
+5.0
+set OUTPUT_DLY [expr 0.5*$CYCLE]
+5.0
+#======================================================
+# (B) Read RTL Code
+#======================================================
+set hdlin_auto_save_templates TRUE
+TRUE
+# Clean previous designs in current DC session
+remove_design -all
+1
+# Package first
+analyze -f sverilog "../01_RTL/sha3_pkg.sv"
+Running PRESTO HDLC
+Compiling source file ../01_RTL/sha3_pkg.sv
+Warning:  ../01_RTL/sha3_pkg.sv:30: Parameter keyword used in local parameter declaration. (VER-329)
+Presto compilation completed successfully.
+Loading db file '/usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db'
+Loading db file '/usr/cad/synopsys/synthesis/cur/libraries/syn/dw_foundation.sldb'
+Loading db file '/usr/cad/synopsys/synthesis/cur/libraries/syn/standard.sldb'
+1
+# Explicit synthesis source list
+set syn_files [list     "../01_RTL/sha3_ctrl_fsm.sv"     "../01_RTL/sha3_pad_domain.sv"     "../01_RTL/sha3_absorb_xor.sv"     "../01_RTL/keccak_round_scheduler.sv"     "../01_RTL/keccak_parity_predictor.sv"     "../01_RTL/keccak_theta_serial.sv"     "../01_RTL/keccak_rho_pi_wire.sv"     "../01_RTL/keccak_chi_row.sv"     "../01_RTL/keccak_iota.sv"     "../01_RTL/keccak_lane_parity.sv"     "../01_RTL/keccak_state_bank.sv"     "../01_RTL/sha3_low_power_gating.sv"     "../01_RTL/sha3_output_formatter.sv"     "../01_RTL/sha3_ultra_low_power_top.sv" ]
+../01_RTL/sha3_ctrl_fsm.sv ../01_RTL/sha3_pad_domain.sv ../01_RTL/sha3_absorb_xor.sv ../01_RTL/keccak_round_scheduler.sv ../01_RTL/keccak_parity_predictor.sv ../01_RTL/keccak_theta_serial.sv ../01_RTL/keccak_rho_pi_wire.sv ../01_RTL/keccak_chi_row.sv ../01_RTL/keccak_iota.sv ../01_RTL/keccak_lane_parity.sv ../01_RTL/keccak_state_bank.sv ../01_RTL/sha3_low_power_gating.sv ../01_RTL/sha3_output_formatter.sv ../01_RTL/sha3_ultra_low_power_top.sv
+# Analyze all synthesizable RTL
+analyze -f sverilog $syn_files
+Running PRESTO HDLC
+Compiling source file ../01_RTL/sha3_ctrl_fsm.sv
+Compiling source file ../01_RTL/sha3_pad_domain.sv
+Compiling source file ../01_RTL/sha3_absorb_xor.sv
+Compiling source file ../01_RTL/keccak_round_scheduler.sv
+Compiling source file ../01_RTL/keccak_parity_predictor.sv
+Compiling source file ../01_RTL/keccak_theta_serial.sv
+Compiling source file ../01_RTL/keccak_rho_pi_wire.sv
+Compiling source file ../01_RTL/keccak_chi_row.sv
+Compiling source file ../01_RTL/keccak_iota.sv
+Compiling source file ../01_RTL/keccak_lane_parity.sv
+Compiling source file ../01_RTL/keccak_state_bank.sv
+Compiling source file ../01_RTL/sha3_low_power_gating.sv
+Compiling source file ../01_RTL/sha3_output_formatter.sv
+Compiling source file ../01_RTL/sha3_ultra_low_power_top.sv
+Presto compilation completed successfully.
+1
+# Elaborate top
+elaborate $TOP_MODULE -parameters "FT_ENABLE=$FT_ENABLE"
+Loading db file '/usr/cad/synopsys/synthesis/cur/libraries/syn/gtech.db'
+  Loading link library 'sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+
+Inferred memory devices in process
+        in routine sha3_ultra_low_power_top_FT_ENABLE1 line 118 in file
+                '../01_RTL/sha3_ultra_low_power_top.sv'.
+==================================================================================
+|     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+==================================================================================
+| formatter_start_q_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    msg_length_q_reg    | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    block_last_q_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  message_active_q_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| extra_pad_active_q_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+==================================================================================
+
+Inferred memory devices in process
+        in routine sha3_ultra_low_power_top_FT_ENABLE1 line 328 in file
+                '../01_RTL/sha3_ultra_low_power_top.sv'.
+=====================================================================================
+|       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=====================================================================================
+|  input_buffer_last_q_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| input_buffer_valid_q_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  input_buffer_data_q_reg  | Flip-flop | 1088  |  Y  | N  | Y  | N  | N  | N  | N  |
+| input_buffer_length_q_reg | Flip-flop |   8   |  Y  | N  | Y  | N  | N  | N  | N  |
+=====================================================================================
+Presto compilation completed successfully. (sha3_ultra_low_power_top_FT_ENABLE1)
+Elaborated 1 design.
+Current design is now 'sha3_ultra_low_power_top_FT_ENABLE1'.
+Information: Building the design 'sha3_ctrl_fsm'. (HDL-193)
+
+Statistics for case statements in always block at line 21 in file
+        '../01_RTL/sha3_ctrl_fsm.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            24            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine sha3_ctrl_fsm line 65 in file
+                '../01_RTL/sha3_ctrl_fsm.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  squeeze_start_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  start_process_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (sha3_ctrl_fsm)
+Information: Building the design 'sha3_pad_domain'. (HDL-193)
+Presto compilation completed successfully. (sha3_pad_domain)
+Information: Building the design 'sha3_absorb_xor'. (HDL-193)
+Presto compilation completed successfully. (sha3_absorb_xor)
+Information: Building the design 'keccak_round_scheduler'. (HDL-193)
+
+Statistics for case statements in always block at line 41 in file
+        '../01_RTL/keccak_round_scheduler.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            43            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+        in routine keccak_round_scheduler line 29 in file
+                '../01_RTL/keccak_round_scheduler.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   round_index_reg   | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    FSM_state_reg    | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+| replay_pending_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (keccak_round_scheduler)
+Information: Building the design 'keccak_theta_serial' instantiated from design 'sha3_ultra_low_power_top_FT_ENABLE1' with
+        the parameters "FT_ENABLE=1'h1". (HDL-193)
+Warning:  ../01_RTL/keccak_theta_serial.sv:35: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine keccak_theta_serial_1 line 65 in file
+                '../01_RTL/keccak_theta_serial.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     c_saved_reg     | Flip-flop |  320  |  Y  | N  | Y  | N  | N  | N  | N  |
+|     running_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|       col_reg       | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+| c_parity_saved_reg  | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (keccak_theta_serial_1)
+Information: Building the design 'keccak_rho_pi_wire'. (HDL-193)
+Presto compilation completed successfully. (keccak_rho_pi_wire)
+Information: Building the design 'keccak_chi_row' instantiated from design 'sha3_ultra_low_power_top_FT_ENABLE1' with
+        the parameters "FT_ENABLE=1'h1". (HDL-193)
+Warning:  ../01_RTL/keccak_chi_row.sv:59: signed to unsigned conversion occurs. (VER-318)
+Warning:  ../01_RTL/keccak_chi_row.sv:60: signed to unsigned conversion occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine keccak_chi_row_1 line 32 in file
+                '../01_RTL/keccak_chi_row.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  frozen_state_reg   | Flip-flop | 1600  |  Y  | N  | Y  | N  | N  | N  | N  |
+|     running_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|       cnt_reg       | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (keccak_chi_row_1)
+Information: Building the design 'sha3_output_formatter'. (HDL-193)
+
+Statistics for case statements in always block at line 34 in file
+        '../01_RTL/sha3_output_formatter.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            38            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 69 in file
+        '../01_RTL/sha3_output_formatter.sv'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            77            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+        in routine sha3_output_formatter line 19 in file
+                '../01_RTL/sha3_output_formatter.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     start_d_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|        s_reg        | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|       cnt_reg       | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine sha3_output_formatter line 69 in file
+                '../01_RTL/sha3_output_formatter.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      done_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    out_data_reg     | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    out_valid_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (sha3_output_formatter)
+Information: Building the design 'keccak_lane_parity'. (HDL-193)
+Warning:  ../01_RTL/keccak_lane_parity.sv:21: signed to unsigned conversion occurs. (VER-318)
+Presto compilation completed successfully. (keccak_lane_parity)
+Information: Building the design 'sha3_low_power_gating'. (HDL-193)
+
+Inferred memory devices in process
+        in routine sha3_low_power_gating line 10 in file
+                '../01_RTL/sha3_low_power_gating.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   gate_en_ff_reg    | Flip-flop |  25   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (sha3_low_power_gating)
+Information: Building the design 'keccak_state_bank'. (HDL-193)
+
+Inferred memory devices in process
+        in routine keccak_state_bank line 15 in file
+                '../01_RTL/keccak_state_bank.sv'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    cur_state_reg    | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (keccak_state_bank)
+Information: Building the design 'keccak_theta_parity'. (HDL-193)
+Presto compilation completed successfully. (keccak_theta_parity)
+Information: Building the design 'keccak_iota'. (HDL-193)
+Presto compilation completed successfully. (keccak_iota)
+Information: Building the design 'keccak_chi_parity'. (HDL-193)
+Presto compilation completed successfully. (keccak_chi_parity)
+1
+# Parameterized elaboration may append a suffix to the top design name.
+set ELAB_TOP [get_object_name [current_design]]
+Current design is 'sha3_ultra_low_power_top_FT_ENABLE1'.
+sha3_ultra_low_power_top_FT_ENABLE1
+current_design $ELAB_TOP
+Current design is 'sha3_ultra_low_power_top_FT_ENABLE1'.
+{sha3_ultra_low_power_top_FT_ENABLE1}
+link
+
+  Linking design 'sha3_ultra_low_power_top_FT_ENABLE1'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (15 designs)              /mnt/newNAS/home/UnderGraduate2/2026/113511153/sha3_paper_build/V3_LaneParity_LocalReplay/02_SYN/sha3_ultra_low_power_top_FT_ENABLE1.db, etc
+  sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c (library) /usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db
+  dw_foundation.sldb (library) /usr/cad/synopsys/synthesis/cur/libraries/syn/dw_foundation.sldb
+
+1
+# Check before optimization
+check_design > Report/${DESIGN}_pre_compile.check
+check_timing  > Report/${DESIGN}_pre_compile.timing
+#======================================================
+#  (C) Global Setting
+#======================================================
+set_wire_load_mode top
+1
+# set_operating_conditions -max WCCOM -min BCCOM
+# set_wire_load_model -name umc18_wl10 -library slow
+#======================================================
+#  (D) Set Design Constraints
+#======================================================
+# (D-1) Setting Clock Constraints
+create_clock -name clk -period $CYCLE [get_ports clk]
+1
+set_dont_touch_network      [get_clocks clk]
+1
+set_fix_hold                [get_clocks clk]
+1
+set_clock_uncertainty   0.1 [get_clocks clk]
+1
+# set_clock_latency -source 0 [get_clocks clk]
+# set_clock_latency         1 [get_clocks clk]
+set_input_transition 0.5 [all_inputs]
+1
+set_clock_transition 0.1 [all_clocks]
+1
+# (D-2) Setting in/out Constraints
+set_input_delay   -max  $INPUT_DLY  -clock clk   [all_inputs] ;  # setup time check
+1
+set_input_delay   -min  0           -clock clk   [all_inputs] ;  # hold  time check
+1
+set_output_delay  -max  $OUTPUT_DLY -clock clk   [all_outputs] ; # setup time check
+1
+set_output_delay  -min  0           -clock clk   [all_outputs] ; # hold  time check
+1
+set_input_delay 0 -clock clk clk
+1
+set_input_delay 0 -clock clk rst_n
+1
+# Injection ports are TB-only; synthesis treats them as tied-off 0.
+if {[sizeof_collection [get_ports -quiet ft_inject_valid]] > 0} {
+    set_case_analysis 0 [get_ports ft_inject_valid]
+    set_case_analysis 0 [get_ports ft_c_inject_valid]
+    set_false_path -from [get_ports ft_c_inject_col]
+    set_false_path -from [get_ports ft_c_inject_mask]
+    set_case_analysis 0 [get_ports ft_d_inject_valid]
+    set_false_path -from [get_ports ft_inject_lane]
+    set_false_path -from [get_ports ft_inject_mask]
+    set_false_path -from [get_ports ft_d_inject_col]
+    set_false_path -from [get_ports ft_d_inject_mask]
+}
+1
+# set_max_delay $CYCLE -from [all_inputs] -to [all_outputs]
+# (D-3) Setting Design Environment
+# set_driving_cell -library umc18io3v5v_slow -lib_cell P2C -pin {Y} [get_ports clk]
+# set_driving_cell -library umc18io3v5v_slow -lib_cell P2C -pin {Y} [remove_from_collection [all_inputs] [get_ports clk]]
+# set_load [load_of "umc18io3v5v_slow/P8C/A"] [all_outputs] ; # ~= 0.038
+set_load 0.05 [all_outputs]
+1
+# (D-4) Setting DRC Constraint
+# set_max_delay       0 ; # Optimize delay max effort
+# set_max_area        0 ; # Optimize area max effort
+set_max_transition  3    [all_inputs] ; # U18 LUT Max Transition Value
+1
+set_max_capacitance 0.15 [all_inputs] ; # U18 LUT Max Capacitance Value
+1
+set_max_fanout      10   [all_inputs]
+1
+# set_dont_use slow/JKFF*
+# set_dont_touch [get_cells core_reg_macro]
+# set hdlin_ff_always_sync_set_reset true
+# (D-5) Report Clock skew
+report_clock -skew clk
+Information: Updating design information... (UID-85)
+Warning: Design 'sha3_ultra_low_power_top_FT_ENABLE1' contains 15 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : clock_skew
+Design : sha3_ultra_low_power_top_FT_ENABLE1
+Version: R-2020.09
+Date   : Thu Oct 29 02:10:56 2026
+****************************************
+
+                 Rise      Fall  Min Rise  Min fall        Uncertainty
+Object          Delay     Delay     Delay     Delay     Plus      Minus
+--------------------------------------------------------------------------------
+clk                 -         -         -         -      0.10      0.10
+
+                 Max Transition      Min Transition
+Object           Rise      Fall      Rise      Fall
+-------------------------------------------------------
+clk              0.10      0.10      0.10      0.10
+1
+check_timing
+
+Information: Checking generated_clocks...
+
+Information: Checking loops...
+
+Information: Checking no_input_delay...
+
+Information: Checking unconstrained_endpoints...
+
+Information: Checking pulse_clock_cell_type...
+
+Information: Checking no_driving_cell...
+
+Information: Checking partial_input_delay...
+1
+#======================================================
+#  (E) Optimization
+#======================================================
+check_design > Report/$DESIGN\.check
+set_fix_multiple_port_nets -all -buffer_constants [get_designs *]
+1
+set_fix_hold [all_clocks]
+1
+# Compile predictors separately before freezing them. Freezing unmapped RTL
+# would invalidate the area comparison. Prevent cross-boundary optimization
+# from proving an error-free checker constant and removing its protection.
+if {$FT_ENABLE} {
+    foreach predictor {keccak_theta_parity keccak_chi_parity} {
+        current_design $predictor
+        set_max_delay $CYCLE -from [all_inputs] -to [all_outputs]
+        set_input_transition 0.5 [all_inputs]
+        compile_ultra
+        set_dont_touch [get_designs $predictor] true
+    }
+    current_design $ELAB_TOP
+    set predictor_cells [get_cells -hierarchical -filter {ref_name == keccak_theta_parity || ref_name == keccak_chi_parity}]
+    if {[sizeof_collection $predictor_cells] != 2} {
+        error "Expected two independent parity predictor instances"
+    }
+    set_boundary_optimization $predictor_cells false
+    set_ungroup $predictor_cells false
+}
+Current design is 'keccak_theta_parity'.
+Information: Performing power optimization. (PWR-850)
+Analyzing: "/usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db"
+Library analysis succeeded.
+Information: Running optimization using a maximum of 4 cores. (OPT-1500)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | Q-2019.12-DWBB_201912.0 |     *     |
+| Licensed DW Building Blocks        | Q-2019.12-DWBB_201912.0 |     *     |
+============================================================================
+
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+  Simplifying Design 'keccak_theta_parity'
+
+Loaded alib file './alib-52/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db.alib'
+  Building model 'DW01_NAND2'
+Information: Ungrouping 0 of 1 hierarchies before Pass 1 (OPT-775)
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'keccak_theta_parity'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'TIELO_X1M_A9TR' in the library 'sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI_X1M_A9TR' in the library 'sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:23    4899.1      0.00       0.0   13400.6                             48.2958
+    0:00:23    4899.1      0.00       0.0   13400.6                             48.2958
+
+  Beginning Constant Register Removal
+  -----------------------------------
+    0:00:23    4899.1      0.00       0.0   13400.6                             48.2958
+    0:00:23    4899.1      0.00       0.0   13400.6                             48.2958
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:00:25    4325.8      0.00       0.0   21112.9                             43.1032
+    0:00:25    4325.8      0.00       0.0   21112.9                             43.1032
+    0:00:25    4325.8      0.00       0.0   21112.9                             43.1032
+    0:00:25    4325.8      0.00       0.0   21112.9                             43.1032
+    0:00:25    4325.8      0.00       0.0   21112.9                             43.1032
+    0:00:26    4325.8      0.00       0.0   21112.9                             43.1032
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:00:26    4321.4      0.00       0.0   21164.0                             43.0301
+    0:00:26    4321.4      0.00       0.0   21164.0                             43.0301
+    0:00:26    4321.4      0.00       0.0   21164.0                             43.0301
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:27    4321.2      0.00       0.0   19817.6                             37.0324
+  Global Optimization (Phase 31)
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+    0:00:28    4555.5      0.00       0.0   13400.6 in_state[4][1][49]          38.4939
+    0:00:29    4802.3      0.00       0.0   13400.6 in_state[3][1][1]           39.8849
+    0:00:29    5052.7      0.00       0.0   13400.6 in_state[2][1][45]          41.2964
+    0:00:30    5299.4      0.00       0.0   13400.6 in_state[1][1][22]          42.6874
+    0:00:30    5549.8      0.00       0.0   13400.6 in_state[0][0][26]          44.0989
+    0:00:35    5566.8      0.00       0.0   13400.6                             44.1901
+    0:00:35    5566.8      0.00       0.0   13400.6                             44.1901
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:35    5566.8      0.00       0.0   13400.6                             44.1901
+  Global Optimization (Phase 34)
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+  Global Optimization (Phase 44)
+  Global Optimization (Phase 45)
+  Global Optimization (Phase 46)
+  Global Optimization (Phase 47)
+    0:00:39    4377.7      0.00       0.0   13400.6                             33.0494
+    0:00:39    4377.7      0.00       0.0   13400.6                             33.0494
+    0:00:39    4377.7      0.00       0.0   13400.6                             33.0494
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:39    4333.0      0.00       0.0   13400.9                             31.5654
+    0:00:40    4336.6      0.00       0.0   13401.2                             31.7381
+    0:00:40    4336.6      0.00       0.0   13401.2                             31.7381
+    0:00:40    4336.6      0.00       0.0   13401.2                             31.7381
+    0:00:40    4327.8      0.00       0.0   13401.2                             31.5289
+    0:00:41    4544.6      0.00       0.0   13401.2 in_state[4][1][45]          32.7367
+    0:00:41    4791.4      0.00       0.0   13401.2 in_state[3][2][61]          34.1277
+    0:00:42    5041.8      0.00       0.0   13401.2 in_state[2][1][40]          35.5392
+    0:00:43    5288.5      0.00       0.0   13401.2 in_state[1][1][18]          36.9302
+    0:00:43    5538.9      0.00       0.0   13401.2 in_state[0][0][21]          38.3417
+    0:00:47    5559.8      0.00       0.0   13400.6                             38.4613
+    0:00:47    5559.8      0.00       0.0   13400.6                             38.4613
+    0:00:47    5559.8      0.00       0.0   13400.6                             38.4613
+    0:00:47    5559.8      0.00       0.0   13400.6                             38.4613
+    0:00:47    5559.8      0.00       0.0   13400.6                             38.4613
+    0:00:47    5559.8      0.00       0.0   13400.6                             38.4613
+    0:00:48    5558.9      0.00       0.0   13400.6                             38.4650
+Loading db file '/usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Current design is 'keccak_chi_parity'.
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 4 cores. (OPT-1500)
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+  Simplifying Design 'keccak_chi_parity'
+
+Loaded alib file './alib-52/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db.alib'
+Information: Ungrouping 0 of 1 hierarchies before Pass 1 (OPT-775)
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'keccak_chi_parity'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'TIELO_X1M_A9TR' in the library 'sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI_X1M_A9TR' in the library 'sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+Information: There is no timing violation in design keccak_chi_parity. Delay-based auto_ungroup will not be performed. (OPT-780)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:08    1253.1      0.00       0.0    2414.8                              8.3890
+    0:00:08    1253.1      0.00       0.0    2414.8                              8.3890
+
+  Beginning Constant Register Removal
+  -----------------------------------
+    0:00:08    1253.1      0.00       0.0    2414.8                              8.3890
+    0:00:08    1253.1      0.00       0.0    2414.8                              8.3890
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 48)
+  Global Optimization (Phase 49)
+  Global Optimization (Phase 50)
+  Global Optimization (Phase 51)
+  Global Optimization (Phase 52)
+  Global Optimization (Phase 53)
+  Global Optimization (Phase 54)
+  Global Optimization (Phase 55)
+  Global Optimization (Phase 56)
+  Global Optimization (Phase 57)
+  Global Optimization (Phase 58)
+  Global Optimization (Phase 59)
+  Global Optimization (Phase 60)
+  Global Optimization (Phase 61)
+  Global Optimization (Phase 62)
+  Global Optimization (Phase 63)
+  Global Optimization (Phase 64)
+  Global Optimization (Phase 65)
+  Global Optimization (Phase 66)
+  Global Optimization (Phase 67)
+  Global Optimization (Phase 68)
+  Global Optimization (Phase 69)
+  Global Optimization (Phase 70)
+  Global Optimization (Phase 71)
+  Global Optimization (Phase 72)
+  Global Optimization (Phase 73)
+  Global Optimization (Phase 74)
+  Global Optimization (Phase 75)
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:00:09    1253.1      0.00       0.0    2414.8                             11.3032
+    0:00:09    1253.1      0.00       0.0    2414.8                             11.3032
+    0:00:09    1253.1      0.00       0.0    2414.8                             11.3032
+    0:00:10    1253.1      0.00       0.0    2414.8                             11.3032
+    0:00:10    1253.1      0.00       0.0    2414.8                             11.3032
+    0:00:10    1253.1      0.00       0.0    2414.8                             11.3032
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:00:10    1253.1      0.00       0.0    2414.8                             11.3032
+    0:00:10    1253.1      0.00       0.0    2414.8                             11.3032
+    0:00:10    1253.1      0.00       0.0    2414.8                             11.3032
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+
+
+  Beginning Design Rule Fixing  (max_transition)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:10    1253.1      0.00       0.0    2414.8                              8.2068
+  Global Optimization (Phase 76)
+  Global Optimization (Phase 77)
+  Global Optimization (Phase 78)
+    0:00:11    1394.6      0.00       0.0    2414.8 row_in[3][24]                9.0046
+    0:00:12    1547.0      0.00       0.0    2414.8                              9.8638
+    0:00:12    1547.0      0.00       0.0    2414.8                              9.8638
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:12    1547.0      0.00       0.0    2414.8                              9.8638
+  Global Optimization (Phase 79)
+  Global Optimization (Phase 80)
+  Global Optimization (Phase 81)
+  Global Optimization (Phase 82)
+  Global Optimization (Phase 83)
+  Global Optimization (Phase 84)
+  Global Optimization (Phase 85)
+  Global Optimization (Phase 86)
+  Global Optimization (Phase 87)
+  Global Optimization (Phase 88)
+  Global Optimization (Phase 89)
+  Global Optimization (Phase 90)
+  Global Optimization (Phase 91)
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:13    1253.1      0.00       0.0    2414.8                              8.2068
+    0:00:14    1392.8      0.00       0.0    2414.8 row_in[3][22]                8.9944
+    0:00:15    1547.0      0.00       0.0    2414.8                              9.8638
+    0:00:15    1547.0      0.00       0.0    2414.8                              9.8638
+    0:00:15    1547.0      0.00       0.0    2414.8                              9.8638
+    0:00:15    1547.0      0.00       0.0    2414.8                              9.8638
+    0:00:15    1547.0      0.00       0.0    2414.8                              9.8638
+    0:00:15    1547.0      0.00       0.0    2414.8                              9.8638
+Loading db file '/usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Current design is 'sha3_ultra_low_power_top_FT_ENABLE1'.
+1
+compile_ultra
+Information: Starting from 2013.12 release, constant propagation is enabled even when boundary optimization is disabled. (OPT-1318)
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 4 cores. (OPT-1500)
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+
+Information: There are 2920 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+  Simplifying Design 'sha3_ultra_low_power_top_FT_ENABLE1'
+Information: The register 'u_ctrl_fsm/squeeze_start_reg' will be removed. (OPT-1207)
+
+Loaded alib file './alib-52/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db.alib'
+Information: Ungrouping hierarchy u_ctrl_fsm before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_absorb_xor before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_round_scheduler before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_rho_pi before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_output_formatter before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_low_power_gating before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_state_bank before Pass 1 (OPT-776)
+Information: Ungrouping hierarchy u_chi/u_iota before Pass 1 (OPT-776)
+Information: Ungrouping 8 of 15 hierarchies before Pass 1 (OPT-775)
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping
+  ------------------------
+...
+  Processing 'sha3_ultra_low_power_top_FT_ENABLE1'
+Information: Added key list 'DesignWare' to design 'sha3_ultra_low_power_top_FT_ENABLE1'. (DDB-72)
+ Implement Synthetic for 'sha3_ultra_low_power_top_FT_ENABLE1'.
+  Processing 'keccak_chi_row_1'
+Information: Added key list 'DesignWare' to design 'keccak_chi_row_1'. (DDB-72)
+ Implement Synthetic for 'keccak_chi_row_1'.
+  Processing 'keccak_theta_serial_1'
+Information: Added key list 'DesignWare' to design 'keccak_theta_serial_1'. (DDB-72)
+ Implement Synthetic for 'keccak_theta_serial_1'.
+  Processing 'keccak_lane_parity'
+  Processing 'sha3_pad_domain'
+Information: Added key list 'DesignWare' to design 'sha3_pad_domain'. (DDB-72)
+ Implement Synthetic for 'sha3_pad_domain'.
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'TIELO_X1M_A9TR' in the library 'sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHI_X1M_A9TR' in the library 'sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+Information: Complementing port 'lane_active[24]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[24]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[19]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[19]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[14]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[14]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[9]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[9]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[4]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[4]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[23]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[23]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[18]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[18]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[13]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[13]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[8]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[8]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[3]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[3]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[2]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[2]_BAR'. (OPT-319)
+Information: Complementing port 'lane_active[1]' in design 'keccak_theta_serial_1'.
+         The new name of the port is 'lane_active[1]_BAR'. (OPT-319)
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:00:57   63330.5 102086592.00 328392474624.0 3640513045.4                            487.3496      0.00  
+    0:00:57   63330.5 102086592.00 328392474624.0 3640513045.4                            487.3496      0.00  
+Information: Complementing port 'absorb_en' in design 'sha3_pad_domain'.
+         The new name of the port is 'absorb_en_BAR'. (OPT-319)
+Information: Complementing port 'start' in design 'keccak_chi_row_1'.
+         The new name of the port is 'start_BAR'. (OPT-319)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+Information: Ungrouping hierarchy u_pad_domain 'sha3_pad_domain' #insts = 1502. (OPT-777)
+  Mapping Optimization (Phase 1)
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:01:55   79106.5      0.00       0.0   10412.6                            940.1791      0.00  
+    0:02:00   79106.5      0.00       0.0   10412.6                            940.1791      0.00  
+
+  Beginning Constant Register Removal
+  -----------------------------------
+    0:02:02   79106.5      0.00       0.0   10412.6                            940.1791      0.00  
+    0:02:07   79106.5      0.00       0.0   10412.6                            940.1791      0.00  
+
+  Beginning Global Optimizations
+  ------------------------------
+  Numerical Synthesis (Phase 1)
+  Numerical Synthesis (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+
+  Beginning Isolate Ports
+  -----------------------
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:02:33   65857.5      0.00       0.0   15972.0                            686.8649      0.00  
+    0:02:33   65857.5      0.00       0.0   15972.0                            686.8649      0.00  
+    0:02:33   65857.5      0.00       0.0   15972.0                            686.8649      0.00  
+    0:02:33   65857.5      0.00       0.0   15972.0                            686.8275      0.00  
+    0:02:49   65309.6      0.00       0.0   15889.7                            676.4930      0.00  
+    0:02:54   65308.6      0.00       0.0   15889.7                            676.4856      0.00  
+
+  Beginning WLM Backend Optimization
+  --------------------------------------
+    0:03:10   65231.3      0.00       0.0   15882.2                            667.2645      0.00  
+    0:03:20   64284.4      0.00       0.0   15863.9                            640.1388      0.00  
+    0:03:27   63931.5      0.00       0.0   15394.0                            634.7456      0.00  
+    0:03:27   63931.5      0.00       0.0   15394.0                            634.7456      0.00  
+    0:03:27   63931.5      0.00       0.0   15394.0                            634.7456      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:03:39   63387.0      0.00       0.0   11719.8                            483.7900      0.00  
+  Global Optimization (Phase 34)
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+    0:03:43   63531.4      0.00       0.0    9688.3 msg_in[1087]               484.8831      0.00  
+    0:03:50   63531.4      0.00       0.0    9688.3                            484.8831      0.00  
+    0:03:50   63531.4      0.00       0.0    9688.3                            484.8831      0.00  
+
+
+  Beginning Leakage Power Optimization  (max_leakage_power 0)
+  ------------------------------------
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:03:50   63531.4      0.00       0.0    9688.3                            484.8831      0.00  
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+  Global Optimization (Phase 44)
+  Global Optimization (Phase 45)
+  Global Optimization (Phase 46)
+  Global Optimization (Phase 47)
+  Global Optimization (Phase 48)
+  Global Optimization (Phase 49)
+  Global Optimization (Phase 50)
+Information: Complementing port 'fault_valid' in design 'keccak_lane_parity'.
+         The new name of the port is 'fault_valid_BAR'. (OPT-319)
+    0:04:12   63315.1      0.00       0.0    9688.3                            402.1270      0.00  
+    0:04:12   63315.1      0.00       0.0    9688.3                            402.1270      0.00  
+    0:04:12   63315.1      0.00       0.0    9688.3                            402.1270      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:15   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+
+                                  TOTAL                                                            
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
+  --------- --------- --------- --------- --------- ------------------------- --------- -----------
+    0:04:18   63315.1      0.00       0.0    9688.8                            402.0881      0.00  
+    0:04:21   63239.1      0.00       0.0    9674.5                            402.1606      0.00  
+    0:04:21   63239.1      0.00       0.0    9674.5                            402.1606      0.00  
+    0:04:22   63239.1      0.00       0.0    9674.5                            402.1606      0.00  
+    0:04:25   63235.7      0.00       0.0    9674.5                            401.9500      0.00  
+    0:04:37   63226.6      0.00       0.0    9674.3 gen_ft.u_lane_parity/net127896  401.8484      0.00  
+    0:04:40   63356.4      0.00       0.0    9673.7 net110617                  402.5908      0.00  
+    0:04:48   63356.4      0.00       0.0    9673.7                            402.5908      0.00  
+    0:04:48   63356.4      0.00       0.0    9673.7                            402.5908      0.00  
+    0:04:48   63356.4      0.00       0.0    9673.7                            402.5908      0.00  
+    0:04:48   63356.4      0.00       0.0    9673.7                            402.5908      0.00  
+    0:04:48   63356.4      0.00       0.0    9673.7                            402.5908      0.00  
+    0:04:48   63356.4      0.00       0.0    9673.7                            402.5908      0.00  
+    0:04:54   63337.3      0.00       0.0    9686.6                            402.5900      0.00  
+Loading db file '/usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'sha3_ultra_low_power_top_FT_ENABLE1' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'u_chi/clk': 3146 load(s), 1 driver(s)
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1
+# uniquify
+# compile
+#======================================================
+#  (F) Output Reports
+#======================================================
+report_design              > Report/$DESIGN\.design
+report_resource            > Report/$DESIGN\.resource
+report_timing -max_paths 3 > Report/$DESIGN\.timing
+report_area -hierarchy     > Report/$DESIGN\.area
+report_power               > Report/$DESIGN\.power
+report_clock               > Report/$DESIGN\.clock
+report_port                > Report/$DESIGN\.port
+report_power               > Report/$DESIGN\.power
+# report_reference           > Report/$DESIGN\.reference
+#======================================================
+#  (G) Change Naming Rule
+#======================================================
+set bus_inference_style "%s\[%d\]"
+%s[%d]
+set bus_naming_style    "%s\[%d\]"
+%s[%d]
+set hdlout_internal_busses true
+true
+change_names -hierarchy -rule verilog
+1
+define_name_rules name_rule -allowed "a-z A-Z 0-9 _"   -max_length 255 -type cell
+1
+define_name_rules name_rule -allowed "a-z A-Z 0-9 _[]" -max_length 255 -type net
+1
+define_name_rules name_rule -map {{"\\*cell\\*" "cell"}}
+1
+define_name_rules name_rule -case_insensitive
+1
+change_names -hierarchy -rules name_rule
+1
+#======================================================
+#  (H) Output Results
+#======================================================
+set verilogout_higher_designs_first true
+true
+write -format verilog -hierarchy -output Netlist/$DESIGN\_SYN.v 
+Writing verilog file '/mnt/newNAS/home/UnderGraduate2/2026/113511153/sha3_paper_build/V3_LaneParity_LocalReplay/02_SYN/Netlist/SHA3_parity_SYN.v'.
+1
+write -format ddc     -hierarchy -output $DESIGN\_SYN.ddc
+Writing ddc file 'SHA3_parity_SYN.ddc'.
+1
+write_sdf -version 3.0 -context verilog -load_delay cell Netlist/$DESIGN\_SYN.sdf -significant_digits 6
+Information: Writing timing information to file '/mnt/newNAS/home/UnderGraduate2/2026/113511153/sha3_paper_build/V3_LaneParity_LocalReplay/02_SYN/Netlist/SHA3_parity_SYN.sdf'. (WT-3)
+1
+write_sdc Netlist/$DESIGN\_SYN.sdc
+1
+#======================================================
+#  (I) Finish and Quit
+#======================================================
+report_area
+ 
+****************************************
+Report : area
+Design : sha3_ultra_low_power_top_FT_ENABLE1
+Version: R-2020.09
+Date   : Thu Oct 29 02:18:43 2026
+****************************************
+
+Library(s) Used:
+
+    sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c (File: /usr/cad/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db)
+
+Number of ports:                        14900
+Number of nets:                         60620
+Number of cells:                        45796
+Number of combinational cells:          41070
+Number of sequential cells:              4721
+Number of macros/black boxes:               0
+Number of buf/inv:                       7828
+Number of references:                      75
+
+Combinational area:              41900.164987
+Buf/Inv area:                     3817.951121
+Noncombinational area:           21437.134946
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                 63337.299933
+Total area:                      63337.299933
+1
+report_timing
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : sha3_ultra_low_power_top_FT_ENABLE1
+Version: R-2020.09
+Date   : Thu Oct 29 02:18:43 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: tt_typical_max_0p90v_25c   Library: sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+Wire Load Model Mode: top
+
+  Startpoint: u_theta/col_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: u_low_power_gating_gate_en_ff_reg_20_
+            (falling edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  sha3_ultra_low_power_top_FT_ENABLE1
+                     Small                 sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  u_theta/col_reg_2_/CK (DFFRPQ_X0P5M_A9TR)               0.00 #     0.00 r
+  u_theta/col_reg_2_/Q (DFFRPQ_X0P5M_A9TR)                0.28       0.28 r
+  u_theta/U691/Y (INV_X1B_A9TR)                           0.26       0.53 f
+  u_theta/U700/Y (INV_X0P7M_A9TR)                         0.29       0.83 r
+  u_theta/U710/Y (NAND2_X0P5A_A9TR)                       0.30       1.12 f
+  u_theta/U711/Y (BUF_X1P7M_A9TR)                         0.23       1.35 f
+  u_theta/U712/Y (NOR2_X0P7M_A9TR)                        0.27       1.62 r
+  u_theta/U26/Y (INV_X2M_A9TR)                            0.22       1.84 f
+  u_theta/lane_active_24__BAR (keccak_theta_serial_1)     0.00       1.84 f
+  U7415/Y (NOR4BB_X0P5M_A9TR)                             0.09       1.94 f
+  U7416/Y (NAND4B_X0P5M_A9TR)                             0.09       2.03 r
+  U7253/Y (NOR2_X2M_A9TR)                                 0.18       2.20 f
+  U7252/Y (INV_X1B_A9TR)                                  0.27       2.47 r
+  U7431/Y (NOR2_X1B_A9TR)                                 0.22       2.69 f
+  U7244/Y (INV_X0P6M_A9TR)                                0.17       2.86 r
+  U7243/Y (NOR2_X3B_A9TR)                                 0.24       3.10 f
+  U7241/Y (BUF_X2P5M_A9TR)                                0.23       3.33 f
+  U7553/Y (AOI22_X0P5M_A9TR)                              0.12       3.45 r
+  U7555/Y (NAND2_X0P5A_A9TR)                              0.09       3.54 f
+  u_low_power_gating_gate_en_ff_reg_20_/D (DFFNSRPQ_X1M_A9TR)
+                                                          0.00       3.54 f
+  data arrival time                                                  3.54
+
+  clock clk (fall edge)                                   5.00       5.00
+  clock network delay (ideal)                             0.00       5.00
+  clock uncertainty                                      -0.10       4.90
+  u_low_power_gating_gate_en_ff_reg_20_/CKN (DFFNSRPQ_X1M_A9TR)
+                                                          0.00       4.90 f
+  library setup time                                     -0.03       4.87
+  data required time                                                 4.87
+  --------------------------------------------------------------------------
+  data required time                                                 4.87
+  data arrival time                                                 -3.54
+  --------------------------------------------------------------------------
+  slack (MET)                                                        1.33
+
+
+1
+exit
+
+Memory usage for this session 570 Mbytes.
+Memory usage for this session including child processes 3161 Mbytes.
+CPU usage for this session 794 seconds ( 0.22 hours ).
+Elapsed time for this session 612 seconds ( 0.17 hours ).
+
+Thank you...
+

@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-28",
+  "source": "user pasted historical_comparison.csv; raw workstation reports not downloaded",
+  "historical_precision_match": true,
+  "current": {
+    "dynamic_power_mw": 1.6115,
+    "static_power_mw": 0.2768897,
+    "total_power_mw": 1.8883897,
+    "total_cell_area": 43698.688536,
+    "worst_slack_ns": 1.46,
+    "throughput_gbps": 0.453333333,
+    "energy_per_bit_pj": 4.16556552
+  },
+  "new_four_version_synthesis": "not executed on workstation"
+}

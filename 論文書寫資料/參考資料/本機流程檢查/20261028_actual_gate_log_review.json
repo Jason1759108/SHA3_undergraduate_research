@@ -1,0 +1,102 @@
+{
+  "source": "gate_debug_20261028_202927.tar.gz",
+  "note": "Reparsed existing workstation logs only; no simulation rerun. SDF timing-check warnings remain unresolved.",
+  "results": [
+    {
+      "gate_status": "FAIL",
+      "gate_functional_pass": false,
+      "gate_timing_violation": true,
+      "gate_sdf_log_checked": false,
+      "gate_sdf_warning_count": 6405,
+      "gate_case_count": 0,
+      "gate_note": "Normal vectors only; SDF warnings retained for review; not exhaustive path/fault verification.",
+      "version": "V0_C3_NoFT",
+      "scope": "core",
+      "actual_timing_violation_messages": 19
+    },
+    {
+      "gate_status": "FAIL",
+      "gate_functional_pass": false,
+      "gate_timing_violation": true,
+      "gate_sdf_log_checked": false,
+      "gate_sdf_warning_count": 8713,
+      "gate_case_count": 0,
+      "gate_note": "Normal vectors only; SDF warnings retained for review; not exhaustive path/fault verification.",
+      "version": "V0_C3_NoFT",
+      "scope": "full",
+      "actual_timing_violation_messages": 88
+    },
+    {
+      "gate_status": "FAIL",
+      "gate_functional_pass": false,
+      "gate_timing_violation": true,
+      "gate_sdf_log_checked": false,
+      "gate_sdf_warning_count": 10835,
+      "gate_case_count": 0,
+      "gate_note": "Normal vectors only; SDF warnings retained for review; not exhaustive path/fault verification.",
+      "version": "V1_State1600_SECDED_Replay",
+      "scope": "core",
+      "actual_timing_violation_messages": 3
+    },
+    {
+      "gate_status": "FAIL",
+      "gate_functional_pass": false,
+      "gate_timing_violation": true,
+      "gate_sdf_log_checked": false,
+      "gate_sdf_warning_count": 13139,
+      "gate_case_count": 0,
+      "gate_note": "Normal vectors only; SDF warnings retained for review; not exhaustive path/fault verification.",
+      "version": "V1_State1600_SECDED_Replay",
+      "scope": "full",
+      "actual_timing_violation_messages": 2
+    },
+    {
+      "gate_status": "FAIL",
+      "gate_functional_pass": true,
+      "gate_timing_violation": false,
+      "gate_sdf_log_checked": false,
+      "gate_sdf_warning_count": 10831,
+      "gate_case_count": 4,
+      "gate_note": "Normal vectors only; SDF warnings retained for review; not exhaustive path/fault verification.",
+      "version": "V2_Lane64_SECDED_Replay",
+      "scope": "core",
+      "actual_timing_violation_messages": 0
+    },
+    {
+      "gate_status": "FAIL",
+      "gate_functional_pass": true,
+      "gate_timing_violation": false,
+      "gate_sdf_log_checked": false,
+      "gate_sdf_warning_count": 13139,
+      "gate_case_count": 18,
+      "gate_note": "Normal vectors only; SDF warnings retained for review; not exhaustive path/fault verification.",
+      "version": "V2_Lane64_SECDED_Replay",
+      "scope": "full",
+      "actual_timing_violation_messages": 0
+    },
+    {
+      "gate_status": "FAIL",
+      "gate_functional_pass": true,
+      "gate_timing_violation": false,
+      "gate_sdf_log_checked": false,
+      "gate_sdf_warning_count": 7185,
+      "gate_case_count": 4,
+      "gate_note": "Normal vectors only; SDF warnings retained for review; not exhaustive path/fault verification.",
+      "version": "V3_LaneParity_LocalReplay",
+      "scope": "core",
+      "actual_timing_violation_messages": 0
+    },
+    {
+      "gate_status": "FAIL",
+      "gate_functional_pass": false,
+      "gate_timing_violation": false,
+      "gate_sdf_log_checked": false,
+      "gate_sdf_warning_count": 9493,
+      "gate_case_count": 0,
+      "gate_note": "Normal vectors only; SDF warnings retained for review; not exhaustive path/fault verification.",
+      "version": "V3_LaneParity_LocalReplay",
+      "scope": "full",
+      "actual_timing_violation_messages": 0
+    }
+  ]
+}

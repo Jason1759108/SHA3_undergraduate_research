@@ -1,0 +1,7 @@
+/build/
+__pycache__/
+*.jou
+*.log
+.Xil/
+/NA/
+/dfx_runtime.txt

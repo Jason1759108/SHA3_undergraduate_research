@@ -1,0 +1,28 @@
+{
+  "source_checks": [
+    {
+      "version": "V1_State1600_SECDED_Replay",
+      "original_bytes_equal_git": true,
+      "sweep_body_only_report_hook": true,
+      "all_original_rtl_paths_exist": true
+    },
+    {
+      "version": "V2_Lane64_SECDED_Replay",
+      "original_bytes_equal_git": true,
+      "sweep_body_only_report_hook": true,
+      "all_original_rtl_paths_exist": true
+    },
+    {
+      "version": "V3_LaneParity_LocalReplay",
+      "original_bytes_equal_git": true,
+      "sweep_body_only_report_hook": true,
+      "all_original_rtl_paths_exist": true
+    }
+  ],
+  "python27_syntax": "PASS",
+  "tcl_lexical_syntax": "PASS",
+  "unchanged_00_01_files": 117,
+  "zip_entries": 194,
+  "workstation_synthesis_and_gate": "NOT_RUN",
+  "zip_sha256": "5fafb431af792fdece14ecdf702bf1fc5728bae081cee1bcbbe4e2988e5ecf77"
+}
