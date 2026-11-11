@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-11",
+  "scope": "src/sysVerilog/PUF_TRNG plus explicitly identified Vivado-generated root sidecars",
+  "user_confirmed_broad_cleanup": true,
+  "deleted_targets": 293,
+  "deleted_files": 12724,
+  "deleted_MiB": 746.73,
+  "deletion_errors": 0,
+  "protected_release_and_data_hashes": "PASS",
+  "sha3_frozen_sources": 15,
+  "health_collection_tests_passed": 13,
+  "descriptive_statistics_exact_reproduction": "PASS",
+  "git_release_visibility": "PASS",
+  "push_performed": false,
+  "git_staging_or_commit_performed": false,
+  "current_release": "entropy-health-20261110T172050Z",
+  "preserved": [
+    "stage1 SHA3 source/verified release/required regression tests",
+    "stage3 health source/verified release/required regression tests",
+    "latest raw experiment ZIP/notebook/NIST outputs/reports/screenshots",
+    "one historical baseline and frozen evaluator binaries/patch/source revisions/licenses"
+  ],
+  "removed": [
+    "obsolete stage2 RTL/GUI notebooks and parameter scans",
+    "complete generated Vivado/IP/simulation projects and caches",
+    "duplicate extracted datasets and duplicate upload folders",
+    "external full source checkouts and redundant compiler objects"
+  ]
+}

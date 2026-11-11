@@ -1,0 +1,10 @@
+Opening file: 'D:\C++\SHA3_undergraduate_research\src\sysVerilog\PUF_TRNG\stage2_entropy\captures\board_21600\assessment_20261111\nist_results\controls\repeated_row_joint.bin' (SHA-256 hash 9563b535788e4d774923a53ddb1329017305b9cb66d639678df09cf89cdaba2c)
+Loaded 1000000 samples made up of 252 distinct 8-bit-wide symbols.
+
+Symbols have been translated.
+
+H_I: 4.000000
+ALPHA: 5.0251553006530614e-06, X_cutoff: 103
+X_max: 1000
+
+*** Restart Sanity Check Failed ***

@@ -1,0 +1,79 @@
+[
+  {
+    "file": "biased-random-bits.bin",
+    "reference_values": 58,
+    "missing": [],
+    "max_delta": 4.182418300580082e-14,
+    "passed": true
+  },
+  {
+    "file": "biased-random-bytes.bin",
+    "reference_values": 99,
+    "missing": [],
+    "max_delta": 4.243827511629661e-14,
+    "passed": true
+  },
+  {
+    "file": "data.pi.bin",
+    "reference_values": 57,
+    "missing": [],
+    "max_delta": 4.3298697960381105e-15,
+    "passed": true
+  },
+  {
+    "file": "normal.bin",
+    "reference_values": 94,
+    "missing": [],
+    "max_delta": 2.220446049250313e-16,
+    "passed": true
+  },
+  {
+    "file": "rand1_short.bin",
+    "reference_values": 57,
+    "missing": [],
+    "max_delta": 4.773959005888173e-15,
+    "passed": true
+  },
+  {
+    "file": "rand4_short.bin",
+    "reference_values": 94,
+    "missing": [],
+    "max_delta": 2.4424906541753444e-15,
+    "passed": true
+  },
+  {
+    "file": "rand8_short.bin",
+    "reference_values": 95,
+    "missing": [],
+    "max_delta": 7.771561172376096e-16,
+    "passed": true
+  },
+  {
+    "file": "ringOsc-nist.bin",
+    "reference_values": 58,
+    "missing": [],
+    "max_delta": 5.6066262743570405e-15,
+    "passed": true
+  },
+  {
+    "file": "truerand_1bit.bin",
+    "reference_values": 57,
+    "missing": [],
+    "max_delta": 2.0872192862952943e-14,
+    "passed": true
+  },
+  {
+    "file": "truerand_4bit.bin",
+    "reference_values": 94,
+    "missing": [],
+    "max_delta": 3.47499806707674e-14,
+    "passed": true
+  },
+  {
+    "file": "truerand_8bit.bin",
+    "reference_values": 94,
+    "missing": [],
+    "max_delta": 1.0080825063596421e-13,
+    "passed": true
+  }
+]

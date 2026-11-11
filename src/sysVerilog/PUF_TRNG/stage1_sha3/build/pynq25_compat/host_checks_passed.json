@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "pynq": "2.5",
+  "hardware": "mocked",
+  "driver_sha256": "ab87756a9cdf1aa834344f0f09539bb876584ae6082ce7ab5e92474f0529e2f6",
+  "parser_source_sha256": "c93c71ef11df3d802f33276e6cfbc237c3a16f149003a8ca4c81d6fe12b3ae98",
+  "dma_source_sha256": "9595ba84264fffff35fde5daed403e2dcc825ab27e00707e07138976d4eab456"
+}

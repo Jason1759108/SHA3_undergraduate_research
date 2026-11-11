@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "monitoring_assumption_bits_per_channel_sample": 0.5,
+  "alpha_per_test": 9.5367431640625e-07,
+  "not_validated_entropy_credit": true,
+  "RCT_C": 41,
+  "APT_WINDOW": 1024,
+  "APT_C": 793,
+  "binomial_tail_at_cutoff": 7.398290164643483e-07,
+  "binomial_tail_one_below": 1.0605073504747535e-06,
+  "baseline_batches_replayed": 1000,
+  "baseline_health_failures": [],
+  "baseline_sha256": "15368c0fde2cd7a592b46ee50f1a6d9d04309aac026744ce881c87087e0bc052",
+  "new_hardware_entropy_validated": false,
+  "source_sha256": {
+    "sim/check_policy.py": "21c5e3e557c369302fae27974a5cc9f7ad79ef27f654f21b397b9efbb6aeff3e",
+    "python/health_model.py": "90388d2131842d937105bf450addff849ac3484b4029c51c316a919e094f0a8f"
+  }
+}

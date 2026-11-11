@@ -1,0 +1,375 @@
+[
+  {
+    "label": "biased-random-bits",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\biased-random-bits.bin"
+    ],
+    "returncode": 0,
+    "seconds": 0.5565428733825684,
+    "log": "nist_results\\selftest\\biased-random-bits.log"
+  },
+  {
+    "label": "biased-random-bytes",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\biased-random-bytes.bin"
+    ],
+    "returncode": 0,
+    "seconds": 21.852002382278442,
+    "log": "nist_results\\selftest\\biased-random-bytes.log"
+  },
+  {
+    "label": "data.pi",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\data.pi.bin"
+    ],
+    "returncode": 0,
+    "seconds": 0.5004045963287354,
+    "log": "nist_results\\selftest\\data.pi.log"
+  },
+  {
+    "label": "normal",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\normal.bin"
+    ],
+    "returncode": 0,
+    "seconds": 13.456424713134766,
+    "log": "nist_results\\selftest\\normal.log"
+  },
+  {
+    "label": "rand1_short",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\rand1_short.bin"
+    ],
+    "returncode": 0,
+    "seconds": 0.03188729286193848,
+    "log": "nist_results\\selftest\\rand1_short.log"
+  },
+  {
+    "label": "rand4_short",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\rand4_short.bin"
+    ],
+    "returncode": 0,
+    "seconds": 0.2023766040802002,
+    "log": "nist_results\\selftest\\rand4_short.log"
+  },
+  {
+    "label": "rand8_short",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\rand8_short.bin"
+    ],
+    "returncode": 0,
+    "seconds": 0.2758190631866455,
+    "log": "nist_results\\selftest\\rand8_short.log"
+  },
+  {
+    "label": "ringOsc-nist",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\ringOsc-nist.bin"
+    ],
+    "returncode": 0,
+    "seconds": 0.4583745002746582,
+    "log": "nist_results\\selftest\\ringOsc-nist.log"
+  },
+  {
+    "label": "truerand_1bit",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\truerand_1bit.bin"
+    ],
+    "returncode": 0,
+    "seconds": 0.4654824733734131,
+    "log": "nist_results\\selftest\\truerand_1bit.log"
+  },
+  {
+    "label": "truerand_4bit",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\truerand_4bit.bin"
+    ],
+    "returncode": 0,
+    "seconds": 12.457937002182007,
+    "log": "nist_results\\selftest\\truerand_4bit.log"
+  },
+  {
+    "label": "truerand_8bit",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\truerand_8bit.bin"
+    ],
+    "returncode": 0,
+    "seconds": 17.648134469985962,
+    "log": "nist_results\\selftest\\truerand_8bit.log"
+  },
+  {
+    "label": "joint",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\raw_joint_concat.bin",
+      "8"
+    ],
+    "returncode": 0,
+    "seconds": 14.09299612045288,
+    "log": "nist_results\\joint.log"
+  },
+  {
+    "label": "channel_0",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\channel_0_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.5004620552062988,
+    "log": "nist_results\\channel_0.log"
+  },
+  {
+    "label": "channel_1",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\channel_1_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.4918036460876465,
+    "log": "nist_results\\channel_1.log"
+  },
+  {
+    "label": "channel_2",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\channel_2_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.5077311992645264,
+    "log": "nist_results\\channel_2.log"
+  },
+  {
+    "label": "channel_3",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\channel_3_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.4686625003814697,
+    "log": "nist_results\\channel_3.log"
+  },
+  {
+    "label": "channel_4",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\channel_4_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.5078604221343994,
+    "log": "nist_results\\channel_4.log"
+  },
+  {
+    "label": "channel_5",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\channel_5_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.5119431018829346,
+    "log": "nist_results\\channel_5.log"
+  },
+  {
+    "label": "channel_6",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\channel_6_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.4907863140106201,
+    "log": "nist_results\\channel_6.log"
+  },
+  {
+    "label": "channel_7",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\channel_7_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.4667348861694336,
+    "log": "nist_results\\channel_7.log"
+  },
+  {
+    "label": "restart_joint",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\restart_joint_rows.bin",
+      "8",
+      "6.646975140491748"
+    ],
+    "returncode": 4294967295,
+    "seconds": 0.6612107753753662,
+    "log": "nist_results\\restart_joint.log"
+  },
+  {
+    "label": "restart_channel_0",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_0.bin",
+      "1",
+      "0.843460696360899"
+    ],
+    "returncode": 4294967295,
+    "seconds": 0.03756976127624512,
+    "log": "nist_results\\restart_channel_0.log"
+  },
+  {
+    "label": "restart_channel_1",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_1.bin",
+      "1",
+      "0.8230262238690047"
+    ],
+    "returncode": 4294967295,
+    "seconds": 0.036615848541259766,
+    "log": "nist_results\\restart_channel_1.log"
+  },
+  {
+    "label": "restart_channel_2",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_2.bin",
+      "1",
+      "0.8499394742389278"
+    ],
+    "returncode": 4294967295,
+    "seconds": 0.04737138748168945,
+    "log": "nist_results\\restart_channel_2.log"
+  },
+  {
+    "label": "restart_channel_3",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_3.bin",
+      "1",
+      "0.8213754955177096"
+    ],
+    "returncode": 4294967295,
+    "seconds": 0.03669118881225586,
+    "log": "nist_results\\restart_channel_3.log"
+  },
+  {
+    "label": "restart_channel_4",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_4.bin",
+      "1",
+      "0.8541922633715596"
+    ],
+    "returncode": 4294967295,
+    "seconds": 0.06976103782653809,
+    "log": "nist_results\\restart_channel_4.log"
+  },
+  {
+    "label": "restart_channel_5",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_5.bin",
+      "1",
+      "0.8499893899496659"
+    ],
+    "returncode": 4294967295,
+    "seconds": 0.03390789031982422,
+    "log": "nist_results\\restart_channel_5.log"
+  },
+  {
+    "label": "restart_channel_6",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_6.bin",
+      "1",
+      "0.8097092859848257"
+    ],
+    "returncode": 4294967295,
+    "seconds": 0.06750822067260742,
+    "log": "nist_results\\restart_channel_6.log"
+  },
+  {
+    "label": "restart_channel_7",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_7.bin",
+      "1",
+      "0.7950438402457317"
+    ],
+    "returncode": 4294967295,
+    "seconds": 0.04064607620239258,
+    "log": "nist_results\\restart_channel_7.log"
+  }
+]

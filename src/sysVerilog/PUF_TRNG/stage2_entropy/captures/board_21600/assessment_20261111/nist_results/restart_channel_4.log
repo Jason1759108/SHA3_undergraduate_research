@@ -1,0 +1,4 @@
+Can't open random source. Reverting to a deterministic seed.: No such file or directory
+Opening file: 'D:\C++\SHA3_undergraduate_research\src\sysVerilog\PUF_TRNG\stage2_entropy\captures\board_21600\assessment_20261111\nist_results\restart_channel_4.bin' (SHA-256 hash 8edbf2caed433c5fadd6f39e34bcac7a7f6099828bfc0f973e01cf82b91b3182)
+Loaded 1000000 samples made up of 2 distinct 1-bit-wide symbols.
+H_I: 0.854192

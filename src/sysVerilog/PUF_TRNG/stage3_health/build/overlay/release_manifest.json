@@ -1,0 +1,120 @@
+{
+  "build_id": "entropy-health-20261110T172050Z",
+  "hardware_mode": "physical_ro",
+  "health_configuration": {
+    "startup_samples": 1024,
+    "rct_c": 41,
+    "apt_window": 1024,
+    "apt_c": 793
+  },
+  "physical_entropy_validated": false,
+  "physical_audit": {
+    "ro_gates": 8,
+    "ro_inverters": 88,
+    "synchronizer_flops": 16,
+    "wns_ns": 26.982,
+    "whs_ns": 0.028
+  },
+  "sha256": {
+    "entropy_health.bit": "05c49d956ebfc470eccab7b8893ef19d8341d0f1f23d829b0ff1822ec1e4c9d3",
+    "entropy_health.hwh": "4dc8494486efe3b6016c22cc397de805f95cae5afaa659ec0b2f639454c17838",
+    "entropy_health_pynq.py": "bd9f229d04f89a1507b71806ed5d9d89224d69f66b382c5e41d4aae614f10ffd",
+    "analyze_raw.py": "502cda2117d3f01a3566d8a450fd05aa03375cf53e67330115dde2000b43db75",
+    "entropy_characterize.py": "cc95508cee1410e8dcc032fc37077192804bdf5600dd951a7bfc50ef517f2253",
+    "entropy_campaign.py": "fb94e61769c263266da504d7121f9655700900e62f53fbae8e77f06e8dbbaa92"
+  },
+  "checks": {
+    "unit": {
+      "status": "PASS",
+      "suite": "unit",
+      "marker": "SUCCESS HEALTH UNIT",
+      "source_sha256": {
+        "rtl/entropy_axi.sv": "4b8fc656556340799dd78dff65e43feb96f586aa390750838a0e833438f6ce9f",
+        "rtl/entropy_health_monitor.sv": "98934c8db1e2a26457620872e87e4b5e02374d3704c130dbe0ccce78fadaae7e",
+        "rtl/ro_bank.sv": "73ef3af71a3f5d8767e96975b206e36fa7e71ee22593abb8c24d853020120bfb",
+        "rtl/ro_cell.sv": "7a6fc3b52bdb98db1276f718e44a207df93f63f4242e2184daa34de8e118328f",
+        "sim/tb_entropy_unit.sv": "a0814d4241cd274aadc6c121e7cd73df9c4a7345812f86553edaf3cd652bd673"
+      },
+      "physical_entropy_validated": false
+    },
+    "system": {
+      "status": "PASS",
+      "suite": "system",
+      "marker": "SUCCESS HEALTH SYSTEM reset GP0 startup RCT APT RAM-read fault abort recovery",
+      "source_sha256": {
+        "rtl/entropy_axi.sv": "4b8fc656556340799dd78dff65e43feb96f586aa390750838a0e833438f6ce9f",
+        "rtl/entropy_health_monitor.sv": "98934c8db1e2a26457620872e87e4b5e02374d3704c130dbe0ccce78fadaae7e",
+        "rtl/ro_bank.sv": "73ef3af71a3f5d8767e96975b206e36fa7e71ee22593abb8c24d853020120bfb",
+        "rtl/ro_cell.sv": "7a6fc3b52bdb98db1276f718e44a207df93f63f4242e2184daa34de8e118328f",
+        "sim/tb_entropy_system.sv": "a4c91bb85afdb0753621da77eb8ce70e4dd22b67df8c5dd0c8af945ea7aabc25"
+      },
+      "physical_entropy_validated": false,
+      "hwh_sha256": "4dc8494486efe3b6016c22cc397de805f95cae5afaa659ec0b2f639454c17838"
+    },
+    "host": {
+      "status": "PASS",
+      "hardware": "mocked",
+      "pynq": "2.5 parser unchanged",
+      "parser_sha256": "c93c71ef11df3d802f33276e6cfbc237c3a16f149003a8ca4c81d6fe12b3ae98",
+      "source_sha256": {
+        "python/entropy_health_pynq.py": "bd9f229d04f89a1507b71806ed5d9d89224d69f66b382c5e41d4aae614f10ffd",
+        "python/analyze_raw.py": "502cda2117d3f01a3566d8a450fd05aa03375cf53e67330115dde2000b43db75",
+        "sim/check_host.py": "741db539b6cfbdc1df9633a06859ad85e423e635dcaa5e00bca514453f701bf5"
+      }
+    },
+    "monitor": {
+      "status": "PASS",
+      "configurations": [
+        "small",
+        "default"
+      ],
+      "source_sha256": {
+        "rtl/entropy_health_monitor.sv": "98934c8db1e2a26457620872e87e4b5e02374d3704c130dbe0ccce78fadaae7e",
+        "python/health_model.py": "90388d2131842d937105bf450addff849ac3484b4029c51c316a919e094f0a8f",
+        "sim/prepare_health_vectors.py": "13d7b9daaa994424e8e2e17f8c1537a7e73b3222e19f72d5fc6e75364fc3718f",
+        "sim/run_monitor.py": "bb31985a100f6c15809b47b7fc55c87181cc32352ea0a3999ec055226e3c933c"
+      }
+    },
+    "policy": {
+      "status": "PASS",
+      "monitoring_assumption_bits_per_channel_sample": 0.5,
+      "alpha_per_test": 9.5367431640625e-07,
+      "not_validated_entropy_credit": true,
+      "RCT_C": 41,
+      "APT_WINDOW": 1024,
+      "APT_C": 793,
+      "binomial_tail_at_cutoff": 7.398290164643483e-07,
+      "binomial_tail_one_below": 1.0605073504747535e-06,
+      "baseline_batches_replayed": 1000,
+      "baseline_health_failures": [],
+      "baseline_sha256": "15368c0fde2cd7a592b46ee50f1a6d9d04309aac026744ce881c87087e0bc052",
+      "new_hardware_entropy_validated": false,
+      "source_sha256": {
+        "sim/check_policy.py": "21c5e3e557c369302fae27974a5cc9f7ad79ef27f654f21b397b9efbb6aeff3e",
+        "python/health_model.py": "90388d2131842d937105bf450addff849ac3484b4029c51c316a919e094f0a8f"
+      }
+    },
+    "collection": {
+      "status": "PASS",
+      "tests_run": 13,
+      "skipped": 0,
+      "source_sha256": {
+        "python/analyze_raw.py": "502cda2117d3f01a3566d8a450fd05aa03375cf53e67330115dde2000b43db75",
+        "python/entropy_campaign.py": "fb94e61769c263266da504d7121f9655700900e62f53fbae8e77f06e8dbbaa92",
+        "python/entropy_characterize.py": "cc95508cee1410e8dcc032fc37077192804bdf5600dd951a7bfc50ef517f2253",
+        "python/entropy_health_pynq.py": "bd9f229d04f89a1507b71806ed5d9d89224d69f66b382c5e41d4aae614f10ffd",
+        "python/health_model.py": "90388d2131842d937105bf450addff849ac3484b4029c51c316a919e094f0a8f",
+        "python/make_release.py": "0ffba292648873fd3cd411b38743151a4f3278f77cb16a345e1aa4f88cd34a62",
+        "sim/test_campaign.py": "df2c87d32b37b86980559ae03312b52bb67fe924966d0f89a573a7fa6477cb84",
+        "sim/test_characterization.py": "5e84cae7c6c52f73f264de0e3de382bf0c0f9c5b910e5c854a7dee140d2eb2d1",
+        "sim/review_characterization.py": "b36cfef7af7a3661608932699e09c329c31b6565d49a8b40305c5a0d114405eb",
+        "sim/run_collection.py": "2c797f0273d5ef90921ef1f05f9dda49ff375a59be878109d1cb5e8981abf66a",
+        "python/Entropy_Health_Bringup.ipynb": "be276526856f53ffdc3cb102c5cb39d72a89339477598effd4b0d983ca37c3e1"
+      }
+    }
+  },
+  "mutable_files": [
+    "Entropy_Health_Bringup.ipynb"
+  ],
+  "notebook_template_sha256": "be276526856f53ffdc3cb102c5cb39d72a89339477598effd4b0d983ca37c3e1"
+}

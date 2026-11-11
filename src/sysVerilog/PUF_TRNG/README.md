@@ -1,21 +1,28 @@
-# SHA-3 FPGA 上板與後續 TRNG
+# FPGA SHA3 與健康監測原始熵源
 
-**目前狀態（2026-11-09）。** aux reset 接線已在來源與既有 Vivado 專案修正，已重新綜合、實作、產生 bitstream 並完成發布。`stage1_sha3/build/overlay` 現在是修正版五檔；舊檔只保留在 `build/archived_reset_bug` 供追溯。完整 BD 模擬的 36 次比對（輸出於 HP0 介面核對）、核心一般/FT 回歸及 PYNQ 2.5 mock 相容性檢查通過；實板尚待管理員恢復後驗收。
+目前已完成兩個子系統的獨立驗證：SHA3 計算電路，以及具啟動檢查、RCT/APT 的八路 RO 候選熵源。尚未整合為完整 TRNG。
 
-**下一步先讀 [修正版逐步操作](stage1_sha3/docs/FIXED_RELEASE_STEPS.md)**：板子恢復 → 新資料夾上傳五檔 → 逐格執行。無需再手動重建已發布的 bitstream。
+## 組員先看這裡
 
-目前準備的是第一階段 SHA3-256 overlay，使用 PYNQ-Z2、Vivado 2025.2、Zynq PS 與雙向 AXI DMA。輸入由 Python 提供，輸出與 Python `hashlib.sha3_256()` 比較。
+- [目前健康監測版本與用途](stage3_health/README.md)
+- [直接上板流程](stage3_health/docs/BOARD_ONLY_STEPS.md)：使用已配對八檔，不需要自行操作 Vivado。
+- [最新實板分析](stage3_health/captures/board_21600/health_20261111/REVIEW.md)：16 批功能驗收、1000 批復測、9 組非 IID 估計及 9 組 RO 重啟評估。
+- [給老師的結果圖與原始輸出](stage3_health/delivery/teacher_evidence_20261111/展示說明.md)
+- [SHA3 基礎模組](stage1_sha3/docs/DESIGN.md)：供下一階段整合使用。
 
-所有第一階段資料位於 `stage1_sha3/`。請依序閱讀以下文件。
+本次健康監測版在板號 21600、divider 512 的保留統計估計為 **6.638383 bits/八路樣本**；它不是正式熵信用或認證。RO7 的偏置與時間相關也保留在報告中，沒有刪除較差資料以提高結果。
 
-1. [詳細操作教學](stage1_sha3/docs/VIVADO_PYNQ_GUIDE.md) 包含開啟已建立專案、檢查接線、產生 bitstream、上傳與執行 notebook，以及從空白專案手動重建的按鈕步驟。
-2. [設計與檔案說明](stage1_sha3/docs/DESIGN.md) 說明 FPGA clock-enable 改寫、DMA 封包、檔案清單與後續 TRNG 接入位置。
-3. [驗證紀錄](stage1_sha3/docs/VALIDATION.md) 列出本機實際完成的測試與建置結果。
+## 精簡後的資料結構
 
-若要在 Vivado 查看設計，可在 Tcl Console 執行以下一行，開啟已建立的 Block Design。
+| 目錄 | 保留內容 |
+|---|---|
+| stage1_sha3 | 已驗證 SHA3 RTL、驅動、必要回歸測試、建置腳本、板卡定義與配對發布檔 |
+| stage2_entropy | 只保留舊版比較基準、門檻重播所需 raw 資料、NIST 工具/版本/授權與其驗證紀錄；舊版 RTL/GUI/參數掃描流程已移除 |
+| stage3_health | 現行 RTL、驅動、收集/分析程式、必要驗證、上板檔、原始實驗 ZIP、報告與截圖 |
+| cleanup | 此次清理的範圍、數量與完整性核對摘要 |
 
-```tcl
-source {D:/C++/SHA3_undergraduate_research/src/sysVerilog/PUF_TRNG/stage1_sha3/vivado/open_project.tcl}
-```
+最新原始資料只保留一份原始 ZIP；重複解壓副本、衍生通道檔與工作用工程已刪除。重新分析時由程式驗證 ZIP 內容並在被忽略的 build/analysis_input 產生暫存，不覆寫原始證據。
 
-如果把檔案複製到另一台電腦，依詳細教學先執行 `create_project.tcl`，再開啟生成的專案。
+目前已配對的發布檔保留在各階段 build/overlay，忽略規則已明確允許它們與精選報告納入版本管理。完整 Vivado 工程、IP 複本、編譯快取不保留，需重新建置時從保留的 RTL/Tcl 產生。
+
+下一步是將健康來源與 SHA3 放入同一個新 overlay，驗證資料傳送、雜湊結果與故障時禁止有效輸出。現在沒有接 SHA3，也未聲明輸出可用於正式密碼學用途。

@@ -1,0 +1,19 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sun Nov  8 21:28:10 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/reset_audit/xsim_script.tcl
+# xsim {reset_audit} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+CONFIRMED original AUX=0 holds peripheral_aresetn=0 and interconnect_aresetn=0
+CONFIRMED corrected AUX=1 releases both reset outputs to 1
+PASS actual generated Reset IP reproduces the fault and validates the connection fix
+$finish called at time : 17200 ns : File "D:/C++/SHA3_undergraduate_research/src/sysVerilog/PUF_TRNG/stage1_sha3/build/reset_audit/tb_reset_audit.sv" Line 34
+exit
+INFO: [Common 17-206] Exiting xsim at Sun Nov  8 21:28:13 2026...

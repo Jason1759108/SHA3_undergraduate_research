@@ -28,3 +28,8 @@ obj_dir/
 /論文書寫資料/四版本程式/V*/02_SYN/*.svf
 /論文書寫資料/四版本程式/V*/02_SYN/.original_sweep.lock
 /論文書寫資料/四版本程式/check_*.log
+
+/.Xil/
+/NA/
+/dfx_runtime.txt
+/src/sysVerilog/entropy_ref.gen/

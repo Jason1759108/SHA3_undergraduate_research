@@ -1,0 +1,236 @@
+[
+  {
+    "label": "joint",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\raw_joint_concat.bin",
+      "8"
+    ],
+    "returncode": 0,
+    "seconds": 11.688592910766602
+  },
+  {
+    "label": "channel_0",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\channel_0_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.45337963104248047
+  },
+  {
+    "label": "channel_1",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\channel_1_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.49306774139404297
+  },
+  {
+    "label": "channel_2",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\channel_2_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.43883800506591797
+  },
+  {
+    "label": "channel_3",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\channel_3_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.4569823741912842
+  },
+  {
+    "label": "channel_4",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\channel_4_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.48972105979919434
+  },
+  {
+    "label": "channel_5",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\channel_5_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.46186065673828125
+  },
+  {
+    "label": "channel_6",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\channel_6_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.43643689155578613
+  },
+  {
+    "label": "channel_7",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\channel_7_concat.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.413654088973999
+  },
+  {
+    "label": "restart_joint",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\restart_joint_rows.bin",
+      "8",
+      "7.192696951878116"
+    ],
+    "returncode": 0,
+    "seconds": 24.46399974822998
+  },
+  {
+    "label": "restart_channel_0",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\nist_results\\restart_channel_0.bin",
+      "1",
+      "0.8062020358098042"
+    ],
+    "returncode": 0,
+    "seconds": 18.805431365966797
+  },
+  {
+    "label": "restart_channel_1",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\nist_results\\restart_channel_1.bin",
+      "1",
+      "0.8469342576625557"
+    ],
+    "returncode": 0,
+    "seconds": 19.726497173309326
+  },
+  {
+    "label": "restart_channel_2",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\nist_results\\restart_channel_2.bin",
+      "1",
+      "0.8407154962830979"
+    ],
+    "returncode": 0,
+    "seconds": 19.621647357940674
+  },
+  {
+    "label": "restart_channel_3",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\nist_results\\restart_channel_3.bin",
+      "1",
+      "0.8397590536380002"
+    ],
+    "returncode": 0,
+    "seconds": 19.832735538482666
+  },
+  {
+    "label": "restart_channel_4",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\nist_results\\restart_channel_4.bin",
+      "1",
+      "0.8337420683570405"
+    ],
+    "returncode": 0,
+    "seconds": 19.485745191574097
+  },
+  {
+    "label": "restart_channel_5",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\nist_results\\restart_channel_5.bin",
+      "1",
+      "0.8215626630031966"
+    ],
+    "returncode": 0,
+    "seconds": 19.590723514556885
+  },
+  {
+    "label": "restart_channel_6",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\nist_results\\restart_channel_6.bin",
+      "1",
+      "0.7332141161314768"
+    ],
+    "returncode": 0,
+    "seconds": 18.952671766281128
+  },
+  {
+    "label": "restart_channel_7",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\nist_results\\restart_channel_7.bin",
+      "1",
+      "0.6279888926618868"
+    ],
+    "returncode": 0,
+    "seconds": 17.167120218276978
+  }
+]

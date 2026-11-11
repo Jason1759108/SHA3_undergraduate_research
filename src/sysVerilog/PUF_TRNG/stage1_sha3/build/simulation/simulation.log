@@ -1,0 +1,53 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Mon Nov  9 21:47:37 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/sha3_axis_sim/xsim_script.tcl
+# xsim {sha3_axis_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PASS SHA3 AXI case=0 words=35
+PASS SHA3 AXI case=1 words=35
+PASS SHA3 AXI case=2 words=35
+PASS SHA3 AXI case=3 words=35
+PASS SHA3 AXI case=4 words=35
+PASS SHA3 AXI case=5 words=35
+PASS SHA3 AXI case=6 words=35
+PASS SHA3 AXI case=7 words=35
+PASS SHA3 AXI case=8 words=35
+PASS SHA3 AXI case=9 words=35
+PASS SHA3 AXI case=10 words=35
+PASS SHA3 AXI case=11 words=70
+PASS SHA3 AXI case=12 words=70
+PASS SHA3 AXI case=13 words=70
+PASS SHA3 AXI case=14 words=105
+PASS SHA3 AXI case=15 words=280
+PASS SHA3 AXI case=16 words=1085
+PASS SHA3 AXI case=17 words=35
+PASS SHA3 AXI case=18 words=35
+PASS SHA3 AXI case=19 words=35
+PASS SHA3 AXI case=20 words=35
+PASS SHA3 AXI case=21 words=35
+PASS SHA3 AXI case=22 words=35
+PASS SHA3 AXI case=23 words=35
+PASS SHA3 AXI case=24 words=35
+PASS SHA3 AXI case=25 words=35
+PASS SHA3 AXI case=26 words=35
+PASS SHA3 AXI case=27 words=35
+PASS SHA3 AXI case=28 words=70
+PASS SHA3 AXI case=29 words=70
+PASS SHA3 AXI case=30 words=70
+PASS SHA3 AXI case=31 words=105
+PASS SHA3 AXI case=32 words=280
+PASS SHA3 AXI case=33 words=1085
+PASS SHA3 AXI case=1 words=35
+PASS SHA3 AXI case=1 words=35
+SUCCESS SHA3 AXI vectors, stalls, malformed packets and reset
+$finish called at time : 1470560 ns : File "D:/C++/SHA3_undergraduate_research/src/sysVerilog/PUF_TRNG/stage1_sha3/sim/tb_sha3_axis.sv" Line 102
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Nov  9 21:47:40 2026...

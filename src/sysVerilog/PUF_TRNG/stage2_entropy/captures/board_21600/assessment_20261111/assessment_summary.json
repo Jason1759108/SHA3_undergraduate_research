@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-11",
+  "board_id": "21600",
+  "hardware_build": "entropy-ro-20261110T153343Z",
+  "divider": 512,
+  "samples": 1024000,
+  "batches": 1000,
+  "restart_shape": [
+    1000,
+    1000
+  ],
+  "data_integrity": "PASS",
+  "official_non_iid_reference_selftests_passed": 11,
+  "selftest_tolerance": 1e-10,
+  "selftest_max_delta": 1.0080825063596421e-13,
+  "windows_restart_positive_and_negative_controls": "PASS",
+  "non_iid_assessments_completed": 9,
+  "candidate_ro_restart_assessments_passed": 9,
+  "assessments": [
+    {
+      "label": "joint",
+      "bits_per_symbol": 8,
+      "initial_statistical_estimate": 6.646975140491748,
+      "restart_H_r": 7.29539,
+      "restart_H_c": 7.353758,
+      "retained_statistical_estimate_rounded_by_tool": 6.646975,
+      "restart_passed": true,
+      "not_a_validated_entropy_credit": true
+    },
+    {
+      "label": "channel_0",
+      "bits_per_symbol": 1,
+      "initial_statistical_estimate": 0.843460696360899,
+      "restart_H_r": 0.841549,
+      "restart_H_c": 0.875105,
+      "retained_statistical_estimate_rounded_by_tool": 0.841549,
+      "restart_passed": true,
+      "not_a_validated_entropy_credit": true
+    },
+    {
+      "label": "channel_1",
+      "bits_per_symbol": 1,
+      "initial_statistical_estimate": 0.8230262238690047,
+      "restart_H_r": 0.828932,
+      "restart_H_c": 0.804406,
+      "retained_statistical_estimate_rounded_by_tool": 0.804406,
+      "restart_passed": true,
+      "not_a_validated_entropy_credit": true
+    },
+    {
+      "label": "channel_2",
+      "bits_per_symbol": 1,
+      "initial_statistical_estimate": 0.8499394742389278,
+      "restart_H_r": 0.862095,
+      "restart_H_c": 0.918941,
+      "retained_statistical_estimate_rounded_by_tool": 0.849939,
+      "restart_passed": true,
+      "not_a_validated_entropy_credit": true
+    },
+    {
+      "label": "channel_3",
+      "bits_per_symbol": 1,
+      "initial_statistical_estimate": 0.8213754955177096,
+      "restart_H_r": 0.819853,
+      "restart_H_c": 0.859884,
+      "retained_statistical_estimate_rounded_by_tool": 0.819853,
+      "restart_passed": true,
+      "not_a_validated_entropy_credit": true
+    },
+    {
+      "label": "channel_4",
+      "bits_per_symbol": 1,
+      "initial_statistical_estimate": 0.8541922633715596,
+      "restart_H_r": 0.853292,
+      "restart_H_c": 0.844609,
+      "retained_statistical_estimate_rounded_by_tool": 0.844609,
+      "restart_passed": true,
+      "not_a_validated_entropy_credit": true
+    },
+    {
+      "label": "channel_5",
+      "bits_per_symbol": 1,
+      "initial_statistical_estimate": 0.8499893899496659,
+      "restart_H_r": 0.858587,
+      "restart_H_c": 0.865476,
+      "retained_statistical_estimate_rounded_by_tool": 0.849989,
+      "restart_passed": true,
+      "not_a_validated_entropy_credit": true
+    },
+    {
+      "label": "channel_6",
+      "bits_per_symbol": 1,
+      "initial_statistical_estimate": 0.8097092859848257,
+      "restart_H_r": 0.812268,
+      "restart_H_c": 0.832896,
+      "retained_statistical_estimate_rounded_by_tool": 0.809709,
+      "restart_passed": true,
+      "not_a_validated_entropy_credit": true
+    },
+    {
+      "label": "channel_7",
+      "bits_per_symbol": 1,
+      "initial_statistical_estimate": 0.7950438402457317,
+      "restart_H_r": 0.801181,
+      "restart_H_c": 0.869742,
+      "retained_statistical_estimate_rounded_by_tool": 0.795044,
+      "restart_passed": true,
+      "not_a_validated_entropy_credit": true
+    }
+  ],
+  "source_commits": {
+    "SP800-90B_EntropyAssessment": "87c104d0ed4cbc96103e7b8b38d6f2c7e0a6b289",
+    "libdivsufsort": "5f60d6f026c30fb4ac296f696b3c8b0eb71bd428",
+    "jsoncpp": "93acc7b155048f1a66c43235cc205519f1e7a6ea"
+  },
+  "native_compiler": "C:/msys64/mingw64/bin/g++.exe",
+  "native_port_note": "Non-IID estimator source unchanged. Restart tool uses a separately copied source tree with seed() reading 32 OS-seeded bytes via OpenSSL RAND_bytes instead of Linux /dev/urandom. Simulation, thresholds, estimators and samples unchanged. Initial unported runtime errors retained in logs.",
+  "tool_binary_sha256": {
+    "ea_non_iid.exe": "5623af70d07d453b74dd2e6d76b32c9820a421bca6f3b2a991b59de9131c1185",
+    "ea_restart_windows.exe": "6c2ab04eef4ee271b35024799143ce4fe9b0629d62dfec642301ed5bdc72b632"
+  },
+  "physical_entropy_certified": false,
+  "validated_entropy_credit": null,
+  "limitations": [
+    "Statistical estimates conditional on this dataset and tool/model assumptions; no H_submitter/physical model justification yet.",
+    "RO batch restarts and gaps, not uninterrupted acquisition or whole-board power cycling.",
+    "Only one board/configuration/session at unverified environmental conditions.",
+    "Current 128-identical-bit guard and fixed warmup are not a complete calibrated startup/RCT/APT scheme.",
+    "Do not sum channel entropy. Do not assign 256 bits of entropy to every SHA3-256 output."
+  ]
+}

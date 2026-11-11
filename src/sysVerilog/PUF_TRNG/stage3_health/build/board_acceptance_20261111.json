@@ -1,0 +1,19 @@
+{
+  "board_id": "21600",
+  "build_id": "entropy-health-20261110T172050Z",
+  "acceptance": "PASS in the recorded board/build/session",
+  "report": "captures/board_21600/health_20261111/REVIEW.md",
+  "functional_batches": 16,
+  "assessment_batches": 1000,
+  "statistical_retained_joint_bits_per_sample": 6.638383,
+  "recorded_health_faults": 0,
+  "on_board_fault_injection_performed": false,
+  "validated_entropy_credit": null,
+  "sha256": {
+    "assessment_summary.json": "2716d646740b7744e757e979d84d2ded5de970680d1c01bc48151f57a62e260e",
+    "descriptive_review.json": "95c09484242c170d58c0b1bf199080c80f794b26bdb05bccfb16f98d89416c8f",
+    "entropy_health_2026-11-11_20261110T192024Z_c6d5135c.zip": "e4c33894335029d280dfac8573162ff37336b328d410742f4e29b14cbbe0c41a",
+    "Entropy_Health_Bringup (1).ipynb": "aed9f59941cd25c51d90cfb5edcf205f48199635d0ea37942dc67219285b2b5e",
+    "integrity_review.json": "5dc47f9dedf0969e99273fa9894592b9edad996e185f681c7cc33d6d6dc89968"
+  }
+}

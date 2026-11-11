@@ -1,5 +1,7 @@
 # 第一階段驗證紀錄
 
+清理更新：完整 Vivado/模擬工作目錄已移除。已核對發布檔、PASS 摘要與精選日誌仍保留；原文工作路徑屬歷史紀錄，不能假設舊工程仍可直接開啟。完整系統最終輸出另保存在 build/results，重新建置需從現行來源產生。
+
 ## 2026-11-09 Reset 修正版
 
 本次已修正來源與既有 Block Design，重新跑 synthesis / implementation / write_bitstream。上板步驟見 [修正版操作](FIXED_RELEASE_STEPS.md)。以下是本機實際完成的檢查；尚未在實驗室實板驗收。

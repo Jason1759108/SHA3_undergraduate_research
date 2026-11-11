@@ -1,0 +1,120 @@
+Opening file: 'D:\C++\SHA3_undergraduate_research\src\sysVerilog\PUF_TRNG\stage2_entropy\captures\board_21600\assessment_20261111\2026-11-11_20261110T064656Z_36e867d1\datasets\restart_joint_rows.bin' (SHA-256 hash e6b5fdfcd64754e9464eeaf6fa4ca52612f06bcc31fc48336abdbb0de4411caa)
+Loaded 1000000 samples made up of 256 distinct 8-bit-wide symbols.
+H_I: 6.646975
+ALPHA: 5.0251553006530614e-06, X_cutoff: 31
+X_max: 18
+
+Restart Sanity Check Passed...
+
+Running non-IID tests...
+
+Running Most Common Value Estimate...
+Literal Most Common Value Estimate: Mode count = 4284
+Literal Most Common Value Estimate: p-hat = 0.0042839999999999996
+Literal Most Common Value Estimate: p_u = 0.0044522324503953326
+Literal Most Common Value Estimate: min entropy = 7.8112553671219205
+	Most Common Value Estimate (Rows) = 7.811255 / 8 bit(s)
+Literal Most Common Value Estimate: Mode count = 4284
+Literal Most Common Value Estimate: p-hat = 0.0042839999999999996
+Literal Most Common Value Estimate: p_u = 0.0044522324503953326
+Literal Most Common Value Estimate: min entropy = 7.8112553671219205
+	Most Common Value Estimate (Cols) = 7.811255 / 8 bit(s)
+
+Running Tuple Estimates...
+Literal t-Tuple Estimate: t = 2
+Literal t-Tuple Estimate: p-hat_max = 0.006164417085178289591851
+Literal t-Tuple Estimate: p_u = 0.00636603103383002769864
+Literal t-Tuple Estimate: min entropy = 7.2953900946622481
+Literal LRS Estimate: u = 3
+Literal LRS Estimate: v = 4
+Literal LRS Estimate: p-hat = 0.004068538225549864781844
+Literal LRS Estimate: p_u = 0.004232503251891068745952
+Literal LRS Estimate: min entropy = 7.8842731080980943
+Literal t-Tuple Estimate: t = 2
+Literal t-Tuple Estimate: p-hat_max = 0.005916082741141726124156
+Literal t-Tuple Estimate: p_u = 0.006113618597830376001731
+Literal t-Tuple Estimate: min entropy = 7.3537577331212258
+Literal LRS Estimate: u = 3
+Literal LRS Estimate: v = 5
+Literal LRS Estimate: p-hat = 0.004573058750790356099564
+Literal LRS Estimate: p_u = 0.004746848990617430119896
+Literal LRS Estimate: min entropy = 7.7188141299764093
+	T-Tuple Test Estimate (Rows) = 7.295390 / 8 bit(s)
+	T-Tuple Test Estimate (Cols) = 7.353758 / 8 bit(s)
+	LRS Test Estimate (Rows) = 7.884273 / 8 bit(s)
+	LRS Test Estimate (Cols) = 7.718814 / 8 bit(s)
+
+Running Predictor Estimates...
+Literal MultiMCW Prediction Estimate: C = 3891
+Literal MultiMCW Prediction Estimate: r = 3
+Literal MultiMCW Prediction Estimate: N = 999937
+Literal MultiMCW Prediction Estimate: P_global = 0.0038912451484443521
+Literal MultiMCW Prediction Estimate: P_global' = 0.0040516171878848426
+Literal MultiMCW Prediction Estimate: P_local can't change the result.
+Literal MultiMCW Prediction Estimate: min entropy = 7.9472864153675848
+	Multi Most Common in Window (MultiMCW) Prediction Test Estimate (Rows) = 7.947286 / 8 bit(s)
+Literal MultiMCW Prediction Estimate: C = 3856
+Literal MultiMCW Prediction Estimate: r = 3
+Literal MultiMCW Prediction Estimate: N = 999937
+Literal MultiMCW Prediction Estimate: P_global = 0.0038562429433054283
+Literal MultiMCW Prediction Estimate: P_global' = 0.0040158948757060024
+Literal MultiMCW Prediction Estimate: P_local can't change the result.
+Literal MultiMCW Prediction Estimate: min entropy = 7.9600627803840212
+	Multi Most Common in Window (MultiMCW) Prediction Test Estimate (Cols) = 7.960063 / 8 bit(s)
+Literal Lag Prediction Estimate: C = 4329
+Literal Lag Prediction Estimate: r = 3
+Literal Lag Prediction Estimate: N = 999999
+Literal Lag Prediction Estimate: P_global = 0.004329004329004329
+Literal Lag Prediction Estimate: P_global' = 0.0044981143922612245
+Literal Lag Prediction Estimate: P_local can't change the result.
+Literal Lag Prediction Estimate: min entropy = 7.7964639336731967
+	Lag Prediction Test Estimate (Rows) = 7.796464 / 8 bit(s)
+Literal Lag Prediction Estimate: C = 3946
+Literal Lag Prediction Estimate: r = 3
+Literal Lag Prediction Estimate: N = 999999
+Literal Lag Prediction Estimate: P_global = 0.0039460039460039462
+Literal Lag Prediction Estimate: P_global' = 0.0041074910002864146
+Literal Lag Prediction Estimate: P_local can't change the result.
+Literal Lag Prediction Estimate: min entropy = 7.9275268704986379
+	Lag Prediction Test Estimate (Cols) = 7.927527 / 8 bit(s)
+Literal MultiMMC Prediction Estimate: C = 4348
+Literal MultiMMC Prediction Estimate: r = 3
+Literal MultiMMC Prediction Estimate: N = 999998
+Literal MultiMMC Prediction Estimate: P_global = 0.0043480086960173917
+Literal MultiMMC Prediction Estimate: P_global' = 0.0045174880173994734
+Literal MultiMMC Prediction Estimate: P_local can't change the result.
+Literal MultiMMC Prediction Estimate: min entropy = 7.7902635103040954
+	Multi Markov Model with Counting (MultiMMC) Prediction Test Estimate (Rows) = 7.790264 / 8 bit(s)
+Literal MultiMMC Prediction Estimate: C = 4050
+Literal MultiMMC Prediction Estimate: r = 3
+Literal MultiMMC Prediction Estimate: N = 999998
+Literal MultiMMC Prediction Estimate: P_global = 0.0040500081000162001
+Literal MultiMMC Prediction Estimate: P_global' = 0.0042136009969830262
+Literal MultiMMC Prediction Estimate: P_local can't change the result.
+Literal MultiMMC Prediction Estimate: min entropy = 7.8907305787004747
+	Multi Markov Model with Counting (MultiMMC) Prediction Test Estimate (Cols) = 7.890731 / 8 bit(s)
+Literal LZ78Y Prediction Estimate: C = 4344
+Literal LZ78Y Prediction Estimate: r = 3
+Literal LZ78Y Prediction Estimate: N = 999983
+Literal LZ78Y Prediction Estimate: P_global = 0.0043440738492554372
+Literal LZ78Y Prediction Estimate: P_global' = 0.0045134780711392182
+Literal LZ78Y Prediction Estimate: P_local can't change the result.
+Literal LZ78Y Prediction Estimate: min entropy = 7.7915446866272875
+	LZ78Y Prediction Test Estimate (Rows) = 7.791545 / 8 bit(s)
+Literal LZ78Y Prediction Estimate: C = 4049
+Literal LZ78Y Prediction Estimate: r = 3
+Literal LZ78Y Prediction Estimate: N = 999983
+Literal LZ78Y Prediction Estimate: P_global = 0.0040490688341701811
+Literal LZ78Y Prediction Estimate: P_global' = 0.0042126440640022711
+Literal LZ78Y Prediction Estimate: P_local can't change the result.
+Literal LZ78Y Prediction Estimate: min entropy = 7.8910582602387498
+	LZ78Y Prediction Test Estimate (Cols) = 7.891058 / 8 bit(s)
+
+H_r: 7.295390
+H_c: 7.353758
+H_I: 6.646975
+
+Validation Test Passed...
+
+min(H_r, H_c, H_I): 6.646975
+

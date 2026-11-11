@@ -1,0 +1,48 @@
+......Saving to C:\Users\0milk\AppData\Local\Packages\sandbox.{576b19c7-9b34-4915-b88a-324e67399aca}\AC\Temp\tmpzkhzw_vl\board_fixture\2026-11-10_20261111T083706Z_dd3770f0
+CAPTURE 1/1 round=1 divider=256 samples=1024 RO=OFF
+.Saving to C:\Users\0milk\AppData\Local\Packages\sandbox.{576b19c7-9b34-4915-b88a-324e67399aca}\AC\Temp\tmp0zqvotxx\board_fixture\2026-11-10_20261111T083706Z_f2825005
+CAPTURE 1/32 round=1 divider=64 samples=1024 RO=OFF
+CAPTURE 2/32 round=1 divider=128 samples=1024 RO=OFF
+STOP: saved partial/fault data; capture fault/abort/watchdog; incomplete capture
+.Saving to C:\Users\0milk\AppData\Local\Packages\sandbox.{576b19c7-9b34-4915-b88a-324e67399aca}\AC\Temp\tmpy3d_gkrg\board_fixture\2026-11-10_20261111T083706Z_3c0fffab
+CAPTURE 1/32 round=1 divider=64 samples=1024 RO=OFF
+.Saving to C:\Users\0milk\AppData\Local\Packages\sandbox.{576b19c7-9b34-4915-b88a-324e67399aca}\AC\Temp\tmpvyt3dpwo\board_fixture\2026-11-10_20261111T083706Z_ecb6ad73
+CAPTURE 1/32 round=1 divider=64 samples=1024 RO=OFF
+CAPTURE 2/32 round=1 divider=128 samples=1024 RO=OFF
+CAPTURE 3/32 round=1 divider=256 samples=1024 RO=OFF
+CAPTURE 4/32 round=1 divider=512 samples=1024 RO=OFF
+CAPTURE 5/32 round=2 divider=128 samples=1024 RO=OFF
+CAPTURE 6/32 round=2 divider=256 samples=1024 RO=OFF
+CAPTURE 7/32 round=2 divider=512 samples=1024 RO=OFF
+CAPTURE 8/32 round=2 divider=64 samples=1024 RO=OFF
+CAPTURE 9/32 round=3 divider=256 samples=1024 RO=OFF
+CAPTURE 10/32 round=3 divider=512 samples=1024 RO=OFF
+CAPTURE 11/32 round=3 divider=64 samples=1024 RO=OFF
+CAPTURE 12/32 round=3 divider=128 samples=1024 RO=OFF
+CAPTURE 13/32 round=4 divider=512 samples=1024 RO=OFF
+CAPTURE 14/32 round=4 divider=64 samples=1024 RO=OFF
+CAPTURE 15/32 round=4 divider=128 samples=1024 RO=OFF
+CAPTURE 16/32 round=4 divider=256 samples=1024 RO=OFF
+CAPTURE 17/32 round=5 divider=64 samples=1024 RO=OFF
+CAPTURE 18/32 round=5 divider=128 samples=1024 RO=OFF
+CAPTURE 19/32 round=5 divider=256 samples=1024 RO=OFF
+CAPTURE 20/32 round=5 divider=512 samples=1024 RO=OFF
+CAPTURE 21/32 round=6 divider=128 samples=1024 RO=OFF
+CAPTURE 22/32 round=6 divider=256 samples=1024 RO=OFF
+CAPTURE 23/32 round=6 divider=512 samples=1024 RO=OFF
+CAPTURE 24/32 round=6 divider=64 samples=1024 RO=OFF
+CAPTURE 25/32 round=7 divider=256 samples=1024 RO=OFF
+CAPTURE 26/32 round=7 divider=512 samples=1024 RO=OFF
+CAPTURE 27/32 round=7 divider=64 samples=1024 RO=OFF
+CAPTURE 28/32 round=7 divider=128 samples=1024 RO=OFF
+CAPTURE 29/32 round=8 divider=512 samples=1024 RO=OFF
+CAPTURE 30/32 round=8 divider=64 samples=1024 RO=OFF
+CAPTURE 31/32 round=8 divider=128 samples=1024 RO=OFF
+CAPTURE 32/32 round=8 divider=256 samples=1024 RO=OFF
+..Saving to C:\Users\0milk\AppData\Local\Packages\sandbox.{576b19c7-9b34-4915-b88a-324e67399aca}\AC\Temp\tmphau4x3ad\board_fixture\2026-11-10_20261111T083707Z_4ebac541
+CAPTURE 1/1 round=1 divider=256 samples=1024 RO=OFF
+..
+----------------------------------------------------------------------
+Ran 13 tests in 24.741s
+
+OK

@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "rx_check": "independent HP0 byte scoreboard, not VIP DDR backdoor readback",
+  "hwh_sha256": "56306f1b0dd324f7f4457f2a112f9c761c7dc976844f43c7dcd4ff7d604f27e1",
+  "sha3_cases": 36,
+  "marker": "SUCCESS FULL SYSTEM reset MMIO DDR-read DMA SHA3 HP0-write and recovery",
+  "source_sha256": {
+    "rtl/core/keccak_chi_row.sv": "90d3cab6ce8c378281057e4118e3ab1a175912837d63520dc1457a008e49a261",
+    "rtl/core/keccak_iota.sv": "52890f11c42c5c3c4859903f558265e0c817447140e3069c0cfaf9291f789232",
+    "rtl/core/keccak_lane_parity.sv": "87c349fe7d32360a49402890e964790e7b2f5cb6e3a01b44cf063e10a2096d2c",
+    "rtl/core/keccak_parity_predictor.sv": "cd196acfeaa8007becf5cd956730f5af7cdc3c0173e46e54e851d529b90173cb",
+    "rtl/core/keccak_rho_pi_wire.sv": "470c465d4c1673bc60407366ad9b13ef57b75aef9fd30a5208df2ea9c5b3a65f",
+    "rtl/core/keccak_round_scheduler.sv": "6d67fb4a2447a09a1da80916ce20136666638a8e171b21fd4e951cfdb5803ea0",
+    "rtl/core/keccak_state_bank.sv": "ccc72a51c0ab3808a4207f598db9c945fe3fe5a30974847698abe0d67be31eb8",
+    "rtl/core/keccak_theta_serial.sv": "28e260d74b23e160a87bfacb45d0631327a14a90379f3b0bcdbe9a9153ccb78d",
+    "rtl/core/sha3_absorb_xor.sv": "a6aca8b4e99907a3fa8cc454da52914abb11ab4c7efae42e7e0d74e68e72fdef",
+    "rtl/core/sha3_ctrl_fsm.sv": "365976a8f2afd4afb0444314e5bbcb8f650ac6cc366e4ee4575c27f0809be3e0",
+    "rtl/core/sha3_output_formatter.sv": "f68e550ade08e8861bd1e4882a91956cb746cd41db5e89da52ab26228ec8d6a5",
+    "rtl/core/sha3_pad_domain.sv": "b6e738d50b50c5745e526bcbacc88fe9d02320bfc6cecced730317e3445f5627",
+    "rtl/core/sha3_pkg.sv": "14740c7cf6bb1dfe486ec5674081c97fed93041eb54813fbdd9dcacaa6342cc2",
+    "rtl/core/sha3_ultra_low_power_top.sv": "5e6803733ed54901381685904549cd6585a9397621da7db266b9b56bc6977e79",
+    "rtl/sha3_axis_top.sv": "37e6504f1a3aa17b69a7c2427d85fbfb39e086ed82b170c1af70ff213bbd1124",
+    "sim/tb_sha3_system.sv": "54ef97b4aa4f1f9be4398a2465b2b53601db687a3005014765cb35cfba29edbc"
+  }
+}

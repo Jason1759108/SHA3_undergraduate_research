@@ -1,0 +1,189 @@
+"xsim tb_sha3_system_behav -key {Behavioral:sim_1:Functional:tb_sha3_system} -tclbatch tb_sha3_system.tcl -protoinst "protoinst_files/design_1.protoinst" -log simulate.log"
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Mon Nov  9 21:48:07 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_sha3_system_behav/xsim_script.tcl
+# xsim {tb_sha3_system_behav} -autoloadwcfg -tclbatch {tb_sha3_system.tcl} -key {Behavioral:sim_1:Functional:tb_sha3_system} -protoinst {protoinst_files/design_1.protoinst}
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/design_1.protoinst
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_control/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_control/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_control/s00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_control/s00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_control/s00_couplers/auto_pc/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_control/s00_couplers/auto_pc/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/S01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/m00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/m00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s00_couplers/auto_pc/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s00_couplers/auto_pc/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s00_couplers/auto_us/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s00_couplers/auto_us/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s01_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s01_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s01_couplers/auto_pc/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s01_couplers/auto_pc/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s01_couplers/auto_us/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/s01_couplers/auto_us/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/xbar/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/xbar/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//axi_memory/xbar/S01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//processing_system7_0/M_AXI_GP0
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//processing_system7_0/S_AXI_HP0
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//sha3/M_AXI_MM2S
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//sha3/M_AXI_S2MM
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//sha3/S_AXI_LITE
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//sha3/sha3_dma/M_AXIS_MM2S
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//sha3/sha3_dma/M_AXI_MM2S
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//sha3/sha3_dma/M_AXI_S2MM
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//sha3/sha3_dma/S_AXIS_S2MM
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//sha3/sha3_dma/S_AXI_LITE
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//sha3/sha3_ip/M_AXIS
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_sha3_system/dut/design_1_i//sha3/sha3_ip/S_AXIS
+Time resolution is 1 ps
+source tb_sha3_system.tcl
+## set curr_wave [current_wave_config]
+## if { [string length $curr_wave] == 0 } {
+##   if { [llength [get_objects]] > 0} {
+##     add_wave /
+##     set_property needs_save false [current_wave_config]
+##   } else {
+##      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+##   }
+## }
+WARNING: [Wavedata 42-489] Can't add object "/tb_sha3_system/tx" to the wave window because it has 132160 bits, which exceeds the display limit of 65536 bits.  To change the display limit, use the command "set_property display_limit <new limit> [current_wave_config]".
+## run all
+XilinxAXIVIP: Found at Path: tb_sha3_system.dut.design_1_i.processing_system7_0.inst.M_AXI_GP0.master
+[0] : *ZYNQ_VIP_INFO : M_AXI_GP0 : Port is ENABLED.
+XilinxAXIVIP: Found at Path: tb_sha3_system.dut.design_1_i.processing_system7_0.inst.M_AXI_GP1.master
+[0] : *ZYNQ_VIP_INFO : M_AXI_GP1 : Port is DISABLED.
+XilinxAXIVIP: Found at Path: tb_sha3_system.dut.design_1_i.processing_system7_0.inst.S_AXI_GP0.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_GP0 : Port is DISABLED.
+XilinxAXIVIP: Found at Path: tb_sha3_system.dut.design_1_i.processing_system7_0.inst.S_AXI_GP1.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_GP1 : Port is DISABLED.
+XilinxAXIVIP: Found at Path: tb_sha3_system.dut.design_1_i.processing_system7_0.inst.S_AXI_HP0.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_HP0 : Port is ENABLED.
+                   0 BEFORE checking line ...... x
+                   0 AFTER checking line ...... x
+XilinxAXIVIP: Found at Path: tb_sha3_system.dut.design_1_i.processing_system7_0.inst.S_AXI_HP1.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_HP1 : Port is DISABLED.
+                   0 BEFORE checking line ...... x
+                   0 AFTER checking line ...... x
+XilinxAXIVIP: Found at Path: tb_sha3_system.dut.design_1_i.processing_system7_0.inst.S_AXI_HP2.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_HP2 : Port is DISABLED.
+                   0 BEFORE checking line ...... x
+                   0 AFTER checking line ...... x
+XilinxAXIVIP: Found at Path: tb_sha3_system.dut.design_1_i.processing_system7_0.inst.S_AXI_HP3.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_HP3 : Port is DISABLED.
+                   0 BEFORE checking line ...... x
+                   0 AFTER checking line ...... x
+XilinxAXIVIP: Found at Path: tb_sha3_system.dut.design_1_i.processing_system7_0.inst.S_AXI_ACP.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_ACP : Port is DISABLED.
+                   0 else checking line ......0
+Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value. tb_sha3_system.dut.design_1_i.sha3.sha3_dma.U0.I_PRMRY_DATAMOVER.gen_s2mm_full.I_S2MM_FULL_WRAPPER.gen_enable_indet_btt_sf.I_INDET_BTT.I_XD_FIFO.non_blk_mem.I_SYNC_FIFOGEN_FIFO.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc
+Time: 1 ps  Iteration: 0  Process: /tb_sha3_system/dut/design_1_i/sha3/sha3_dma/U0/I_PRMRY_DATAMOVER/gen_s2mm_full/I_S2MM_FULL_WRAPPER/gen_enable_indet_btt_sf/I_INDET_BTT/I_XD_FIFO/non_blk_mem/I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/Initial310_3627  Scope: tb_sha3_system.dut.design_1_i.sha3.sha3_dma.U0.I_PRMRY_DATAMOVER.gen_s2mm_full.I_S2MM_FULL_WRAPPER.gen_enable_indet_btt_sf.I_INDET_BTT.I_XD_FIFO.non_blk_mem.I_SYNC_FIFOGEN_FIFO.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc  File: D:\VIVADO\2025.2\Vivado\data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 522
+[2000] : *ZYNQ_VIP_INFO : Setting Debug Level Info as 0
+[2000] : *ZYNQ_VIP_INFO : Setting Stop On Error as 1
+                2020 else checking line ......1
+PASS full BD peripheral and interconnect resets release
+PASS PS GP0 MMIO responds and both DMA channels start
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=0 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=1 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=2 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=3 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=4 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=5 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=6 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=7 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=8 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=9 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=10 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=11 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=12 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=13 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=14 TX_words=105 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=15 TX_words=280 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=16 TX_words=1085 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=17 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=18 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=19 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=20 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=21 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=22 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=23 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=24 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=25 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=26 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=27 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=28 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=29 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=30 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=31 TX_words=105 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=32 TX_words=280 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=33 TX_words=1085 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=1 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA channels halt before PL reconfiguration
+PASS full BD peripheral and interconnect resets release
+PASS PS GP0 MMIO responds and both DMA channels start
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=1 TX_words=35 PS-DDR-DMA-SHA3-HP0
+SUCCESS FULL SYSTEM reset MMIO DDR-read DMA SHA3 HP0-write and recovery
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+$finish called at time : 1981700 ns : File "D:/C++/SHA3_undergraduate_research/src/sysVerilog/PUF_TRNG/stage1_sha3/sim/tb_sha3_system.sv" Line 188
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:01:25 . Memory (MB): peak = 252.578 ; gain = 0.000
+## quit
+INFO: xsimkernel Simulation Memory Usage: 292260 KB (Peak: 292260 KB), Simulation CPU Usage: 82765 ms
+INFO: [Common 17-206] Exiting xsim at Mon Nov  9 21:49:35 2026...

@@ -1,0 +1,350 @@
+[
+  {
+    "label": "control_reference_random",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\references\\SP800-90B_EntropyAssessment\\bin\\truerand_8bit.bin",
+      "8",
+      "4.0"
+    ],
+    "returncode": 0,
+    "seconds": 22.68843126296997,
+    "last_lines": [
+      "Literal LZ78Y Prediction Estimate: P_global = 0.003830065111106889",
+      "Literal LZ78Y Prediction Estimate: P_global' = 0.0039891726587507493",
+      "Literal LZ78Y Prediction Estimate: P_local can't change the result.",
+      "Literal LZ78Y Prediction Estimate: min entropy = 7.96969471738322",
+      "\tLZ78Y Prediction Test Estimate (Cols) = 7.969695 / 8 bit(s)",
+      "",
+      "H_r: 7.865118",
+      "H_c: 6.638405",
+      "H_I: 4.000000",
+      "",
+      "Validation Test Passed...",
+      "",
+      "min(H_r, H_c, H_I): 4.000000",
+      ""
+    ],
+    "dataset_sha256": "c7e56911d2657fa9b6e86c03d4477474d6ec698691c5f32d3918ec513713e3c3",
+    "H_I_statistical_input": 4.0,
+    "bits_per_symbol": 8
+  },
+  {
+    "label": "control_repeated_rows",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\controls\\repeated_row_joint.bin",
+      "8",
+      "4.0"
+    ],
+    "returncode": 4294967295,
+    "seconds": 7.3772053718566895,
+    "last_lines": [
+      "Opening file: 'D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\controls\\repeated_row_joint.bin' (SHA-256 hash 9563b535788e4d774923a53ddb1329017305b9cb66d639678df09cf89cdaba2c)",
+      "Loaded 1000000 samples made up of 252 distinct 8-bit-wide symbols.",
+      "",
+      "Symbols have been translated.",
+      "",
+      "H_I: 4.000000",
+      "ALPHA: 5.0251553006530614e-06, X_cutoff: 103",
+      "X_max: 1000",
+      "",
+      "*** Restart Sanity Check Failed ***"
+    ],
+    "dataset_sha256": "9563b535788e4d774923a53ddb1329017305b9cb66d639678df09cf89cdaba2c",
+    "H_I_statistical_input": 4.0,
+    "bits_per_symbol": 8
+  },
+  {
+    "label": "native_restart_joint",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\2026-11-11_20261110T064656Z_36e867d1\\datasets\\restart_joint_rows.bin",
+      "8",
+      "6.646975140491748"
+    ],
+    "returncode": 0,
+    "seconds": 20.173115253448486,
+    "last_lines": [
+      "Literal LZ78Y Prediction Estimate: P_global = 0.0040490688341701811",
+      "Literal LZ78Y Prediction Estimate: P_global' = 0.0042126440640022711",
+      "Literal LZ78Y Prediction Estimate: P_local can't change the result.",
+      "Literal LZ78Y Prediction Estimate: min entropy = 7.8910582602387498",
+      "\tLZ78Y Prediction Test Estimate (Cols) = 7.891058 / 8 bit(s)",
+      "",
+      "H_r: 7.295390",
+      "H_c: 7.353758",
+      "H_I: 6.646975",
+      "",
+      "Validation Test Passed...",
+      "",
+      "min(H_r, H_c, H_I): 6.646975",
+      ""
+    ],
+    "dataset_sha256": "e6b5fdfcd64754e9464eeaf6fa4ca52612f06bcc31fc48336abdbb0de4411caa",
+    "H_I_statistical_input": 6.646975140491748,
+    "bits_per_symbol": 8
+  },
+  {
+    "label": "native_restart_channel_0",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_0.bin",
+      "1",
+      "0.843460696360899"
+    ],
+    "returncode": 0,
+    "seconds": 19.34965682029724,
+    "last_lines": [
+      "Literal LZ78Y Prediction Estimate: P_global = 0.50602260238424057",
+      "Literal LZ78Y Prediction Estimate: P_global' = 0.50731043519336394",
+      "Literal LZ78Y Prediction Estimate: P_local can't change the result.",
+      "Literal LZ78Y Prediction Estimate: min entropy = 0.97905925839449781",
+      "\tLZ78Y Prediction Test Estimate (Cols) = 0.979059 / 1 bit(s)",
+      "",
+      "H_r: 0.841549",
+      "H_c: 0.875105",
+      "H_I: 0.843461",
+      "",
+      "Validation Test Passed...",
+      "",
+      "min(H_r, H_c, H_I): 0.841549",
+      ""
+    ],
+    "dataset_sha256": "70130581a32749cfad87a125a83a66704e5026ee8f54d087dbc0c18a9c4dfcdd",
+    "H_I_statistical_input": 0.843460696360899,
+    "bits_per_symbol": 1
+  },
+  {
+    "label": "native_restart_channel_1",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_1.bin",
+      "1",
+      "0.8230262238690047"
+    ],
+    "returncode": 0,
+    "seconds": 19.461507081985474,
+    "last_lines": [
+      "Literal LZ78Y Prediction Estimate: P_global = 0.51290171932922857",
+      "Literal LZ78Y Prediction Estimate: P_global' = 0.51418921673911699",
+      "Literal LZ78Y Prediction Estimate: P_local can't change the result.",
+      "Literal LZ78Y Prediction Estimate: min entropy = 0.95962873971409146",
+      "\tLZ78Y Prediction Test Estimate (Cols) = 0.959629 / 1 bit(s)",
+      "",
+      "H_r: 0.828932",
+      "H_c: 0.804406",
+      "H_I: 0.823026",
+      "",
+      "Validation Test Passed...",
+      "",
+      "min(H_r, H_c, H_I): 0.804406",
+      ""
+    ],
+    "dataset_sha256": "f53c060944b73534c088c411141505647cf60bbc51543ca2b8a25f1fe032eb24",
+    "H_I_statistical_input": 0.8230262238690047,
+    "bits_per_symbol": 1
+  },
+  {
+    "label": "native_restart_channel_2",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_2.bin",
+      "1",
+      "0.8499394742389278"
+    ],
+    "returncode": 0,
+    "seconds": 19.967108964920044,
+    "last_lines": [
+      "Literal LZ78Y Prediction Estimate: P_global = 0.50373356347057896",
+      "Literal LZ78Y Prediction Estimate: P_global' = 0.50502145380715535",
+      "Literal LZ78Y Prediction Estimate: P_local can't change the result.",
+      "Literal LZ78Y Prediction Estimate: min entropy = 0.98558341861944265",
+      "\tLZ78Y Prediction Test Estimate (Cols) = 0.985583 / 1 bit(s)",
+      "",
+      "H_r: 0.862095",
+      "H_c: 0.918941",
+      "H_I: 0.849939",
+      "",
+      "Validation Test Passed...",
+      "",
+      "min(H_r, H_c, H_I): 0.849939",
+      ""
+    ],
+    "dataset_sha256": "89dfe4bb464d2b14dd2ff34208caf20d216f6d3891ea52d6e6b5a63c6c37c3d6",
+    "H_I_statistical_input": 0.8499394742389278,
+    "bits_per_symbol": 1
+  },
+  {
+    "label": "native_restart_channel_3",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_3.bin",
+      "1",
+      "0.8213754955177096"
+    ],
+    "returncode": 0,
+    "seconds": 19.98432993888855,
+    "last_lines": [
+      "Literal LZ78Y Prediction Estimate: P_global = 0.50617960505328585",
+      "Literal LZ78Y Prediction Estimate: P_global' = 0.50746743292727725",
+      "Literal LZ78Y Prediction Estimate: P_local can't change the result.",
+      "Literal LZ78Y Prediction Estimate: min entropy = 0.97861285556867716",
+      "\tLZ78Y Prediction Test Estimate (Cols) = 0.978613 / 1 bit(s)",
+      "",
+      "H_r: 0.819853",
+      "H_c: 0.859884",
+      "H_I: 0.821375",
+      "",
+      "Validation Test Passed...",
+      "",
+      "min(H_r, H_c, H_I): 0.819853",
+      ""
+    ],
+    "dataset_sha256": "0e74fc76999ab09d91537a1c9a3883bd70ea5af1f8eb0e7b5bef6ddf35ff0f75",
+    "H_I_statistical_input": 0.8213754955177096,
+    "bits_per_symbol": 1
+  },
+  {
+    "label": "native_restart_channel_4",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_4.bin",
+      "1",
+      "0.8541922633715596"
+    ],
+    "returncode": 0,
+    "seconds": 20.655979871749878,
+    "last_lines": [
+      "Literal LZ78Y Prediction Estimate: P_global = 0.50220453747713711",
+      "Literal LZ78Y Prediction Estimate: P_global' = 0.50349245120163333",
+      "Literal LZ78Y Prediction Estimate: P_local can't change the result.",
+      "Literal LZ78Y Prediction Estimate: min entropy = 0.98995794663665027",
+      "\tLZ78Y Prediction Test Estimate (Cols) = 0.989958 / 1 bit(s)",
+      "",
+      "H_r: 0.853292",
+      "H_c: 0.844609",
+      "H_I: 0.854192",
+      "",
+      "Validation Test Passed...",
+      "",
+      "min(H_r, H_c, H_I): 0.844609",
+      ""
+    ],
+    "dataset_sha256": "8edbf2caed433c5fadd6f39e34bcac7a7f6099828bfc0f973e01cf82b91b3182",
+    "H_I_statistical_input": 0.8541922633715596,
+    "bits_per_symbol": 1
+  },
+  {
+    "label": "native_restart_channel_5",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_5.bin",
+      "1",
+      "0.8499893899496659"
+    ],
+    "returncode": 0,
+    "seconds": 20.6578631401062,
+    "last_lines": [
+      "Literal LZ78Y Prediction Estimate: P_global = 0.50263854485526249",
+      "Literal LZ78Y Prediction Estimate: P_global' = 0.50392645316542417",
+      "Literal LZ78Y Prediction Estimate: P_local can't change the result.",
+      "Literal LZ78Y Prediction Estimate: min entropy = 0.98871490361468928",
+      "\tLZ78Y Prediction Test Estimate (Cols) = 0.988715 / 1 bit(s)",
+      "",
+      "H_r: 0.858587",
+      "H_c: 0.865476",
+      "H_I: 0.849989",
+      "",
+      "Validation Test Passed...",
+      "",
+      "min(H_r, H_c, H_I): 0.849989",
+      ""
+    ],
+    "dataset_sha256": "f7c69deb3337aeccba3d7fa2f36cf9ab1b4b9577aa70b6827542fc7ac0386d43",
+    "H_I_statistical_input": 0.8499893899496659,
+    "bits_per_symbol": 1
+  },
+  {
+    "label": "native_restart_channel_6",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_6.bin",
+      "1",
+      "0.8097092859848257"
+    ],
+    "returncode": 0,
+    "seconds": 19.71957564353943,
+    "last_lines": [
+      "Literal LZ78Y Prediction Estimate: P_global = 0.50449957649280042",
+      "Literal LZ78Y Prediction Estimate: P_global' = 0.50578745058371199",
+      "Literal LZ78Y Prediction Estimate: P_local can't change the result.",
+      "Literal LZ78Y Prediction Estimate: min entropy = 0.98339685307254943",
+      "\tLZ78Y Prediction Test Estimate (Cols) = 0.983397 / 1 bit(s)",
+      "",
+      "H_r: 0.812268",
+      "H_c: 0.832896",
+      "H_I: 0.809709",
+      "",
+      "Validation Test Passed...",
+      "",
+      "min(H_r, H_c, H_I): 0.809709",
+      ""
+    ],
+    "dataset_sha256": "4c8a6c0329482e9ed3bb2f53c93fa234dc39460a7a4c20ff126e1da5780271ea",
+    "H_I_statistical_input": 0.8097092859848257,
+    "bits_per_symbol": 1
+  },
+  {
+    "label": "native_restart_channel_7",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\captures\\board_21600\\assessment_20261111\\nist_results\\restart_channel_7.bin",
+      "1",
+      "0.7950438402457317"
+    ],
+    "returncode": 0,
+    "seconds": 19.459588289260864,
+    "last_lines": [
+      "Literal LZ78Y Prediction Estimate: P_global = 0.50215553664412294",
+      "Literal LZ78Y Prediction Estimate: P_global' = 0.50344345091894827",
+      "Literal LZ78Y Prediction Estimate: P_local can't change the result.",
+      "Literal LZ78Y Prediction Estimate: min entropy = 0.99009835768910914",
+      "\tLZ78Y Prediction Test Estimate (Cols) = 0.990098 / 1 bit(s)",
+      "",
+      "H_r: 0.801181",
+      "H_c: 0.869742",
+      "H_I: 0.795044",
+      "",
+      "Validation Test Passed...",
+      "",
+      "min(H_r, H_c, H_I): 0.795044",
+      ""
+    ],
+    "dataset_sha256": "76252f3adb5ee58bce5873da747af228718198acf07fccfe8d286eff8abcae4c",
+    "H_I_statistical_input": 0.7950438402457317,
+    "bits_per_symbol": 1
+  }
+]

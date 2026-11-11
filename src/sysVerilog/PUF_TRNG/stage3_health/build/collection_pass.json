@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "tests_run": 13,
+  "skipped": 0,
+  "source_sha256": {
+    "python/analyze_raw.py": "502cda2117d3f01a3566d8a450fd05aa03375cf53e67330115dde2000b43db75",
+    "python/entropy_campaign.py": "fb94e61769c263266da504d7121f9655700900e62f53fbae8e77f06e8dbbaa92",
+    "python/entropy_characterize.py": "cc95508cee1410e8dcc032fc37077192804bdf5600dd951a7bfc50ef517f2253",
+    "python/entropy_health_pynq.py": "bd9f229d04f89a1507b71806ed5d9d89224d69f66b382c5e41d4aae614f10ffd",
+    "python/health_model.py": "90388d2131842d937105bf450addff849ac3484b4029c51c316a919e094f0a8f",
+    "python/make_release.py": "0ffba292648873fd3cd411b38743151a4f3278f77cb16a345e1aa4f88cd34a62",
+    "sim/test_campaign.py": "df2c87d32b37b86980559ae03312b52bb67fe924966d0f89a573a7fa6477cb84",
+    "sim/test_characterization.py": "5e84cae7c6c52f73f264de0e3de382bf0c0f9c5b910e5c854a7dee140d2eb2d1",
+    "sim/review_characterization.py": "b36cfef7af7a3661608932699e09c329c31b6565d49a8b40305c5a0d114405eb",
+    "sim/run_collection.py": "2c797f0273d5ef90921ef1f05f9dda49ff375a59be878109d1cb5e8981abf66a",
+    "python/Entropy_Health_Bringup.ipynb": "be276526856f53ffdc3cb102c5cb39d72a89339477598effd4b0d983ca37c3e1"
+  }
+}

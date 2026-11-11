@@ -1,0 +1,14 @@
+{
+  "unchanged_binary_hashes": {
+    "ea_non_iid.exe": "5623af70d07d453b74dd2e6d76b32c9820a421bca6f3b2a991b59de9131c1185",
+    "ea_restart_windows.exe": "6c2ab04eef4ee271b35024799143ce4fe9b0629d62dfec642301ed5bdc72b632"
+  },
+  "source_commits": {
+    "SP800-90B_EntropyAssessment": "87c104d0ed4cbc96103e7b8b38d6f2c7e0a6b289",
+    "libdivsufsort": "5f60d6f026c30fb4ac296f696b3c8b0eb71bd428",
+    "jsoncpp": "93acc7b155048f1a66c43235cc205519f1e7a6ea"
+  },
+  "selftests_reused": "11 official non-IID fixtures; unchanged binaries and configuration",
+  "restart_controls_reused": "known-positive and repeated-row negative controls from previous assessment",
+  "native_port_note": "Non-IID estimator source unchanged. Restart tool uses a separately copied source tree with seed() reading 32 OS-seeded bytes via OpenSSL RAND_bytes instead of Linux /dev/urandom. Simulation, thresholds, estimators and samples unchanged. Initial unported runtime errors retained in logs."
+}

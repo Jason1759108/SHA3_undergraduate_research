@@ -1,0 +1,159 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Wed Nov 11 01:20:48 2026
+| Host         : JasonWei running 64-bit major release  (build 9200)
+| Command      : report_drc -file D:/C++/SHA3_undergraduate_research/src/sysVerilog/PUF_TRNG/stage3_health/build/reports/entropy_ref/drc.rpt
+| Design       : design_1_wrapper
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Fully Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: impl_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max checks: <unlimited>
+             Checks found: 8
++---------+----------+----------------------------+--------+
+| Rule    | Severity | Description                | Checks |
++---------+----------+----------------------------+--------+
+| LUTLP-2 | Warning  | Combinatorial Loop Allowed | 8      |
++---------+----------+----------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+LUTLP-2#1 Warning
+Combinatorial Loop Allowed  
+11 LUT cells form a combinatorial loop. This can create a race condition. Timing analysis may not be accurate. The preferred resolution is to modify the design to remove combinatorial logic loops. This loop has been identified in the constraints as being known and understood by use of the ALLOW_COMBINATORIAL_LOOPS property on a net in the loop. The cells in the loop are: design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/g_inv[10].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/g_inv[1].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/g_inv[2].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/g_inv[3].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/g_inv[4].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/g_inv[5].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/g_inv[6].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/g_inv[7].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/g_inv[8].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/g_inv[9].u_inv
+design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/u_gate.
+Related violations: <none>
+
+LUTLP-2#2 Warning
+Combinatorial Loop Allowed  
+13 LUT cells form a combinatorial loop. This can create a race condition. Timing analysis may not be accurate. The preferred resolution is to modify the design to remove combinatorial logic loops. This loop has been identified in the constraints as being known and understood by use of the ALLOW_COMBINATORIAL_LOOPS property on a net in the loop. The cells in the loop are: design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[10].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[11].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[12].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[1].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[2].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[3].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[4].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[5].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[6].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[7].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[8].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/g_inv[9].u_inv
+design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/u_gate.
+Related violations: <none>
+
+LUTLP-2#3 Warning
+Combinatorial Loop Allowed  
+15 LUT cells form a combinatorial loop. This can create a race condition. Timing analysis may not be accurate. The preferred resolution is to modify the design to remove combinatorial logic loops. This loop has been identified in the constraints as being known and understood by use of the ALLOW_COMBINATORIAL_LOOPS property on a net in the loop. The cells in the loop are: design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[1].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[2].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[3].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[4].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[5].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[6].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[7].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[8].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[9].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[10].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[11].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[12].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[13].u_inv
+design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/g_inv[14].u_inv.
+Related violations: <none>
+
+LUTLP-2#4 Warning
+Combinatorial Loop Allowed  
+17 LUT cells form a combinatorial loop. This can create a race condition. Timing analysis may not be accurate. The preferred resolution is to modify the design to remove combinatorial logic loops. This loop has been identified in the constraints as being known and understood by use of the ALLOW_COMBINATORIAL_LOOPS property on a net in the loop. The cells in the loop are: design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[10].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[11].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[12].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[13].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[14].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[15].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[1].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[2].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[3].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[4].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[5].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[6].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[7].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[8].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/g_inv[9].u_inv
+ (the first 15 of 17 listed).
+Related violations: <none>
+
+LUTLP-2#5 Warning
+Combinatorial Loop Allowed  
+19 LUT cells form a combinatorial loop. This can create a race condition. Timing analysis may not be accurate. The preferred resolution is to modify the design to remove combinatorial logic loops. This loop has been identified in the constraints as being known and understood by use of the ALLOW_COMBINATORIAL_LOOPS property on a net in the loop. The cells in the loop are: design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[10].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[11].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[12].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[13].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[14].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[15].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[1].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[2].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[3].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[4].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[5].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[6].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[7].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[8].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/g_inv[9].u_inv
+ (the first 15 of 19 listed).
+Related violations: <none>
+
+LUTLP-2#6 Warning
+Combinatorial Loop Allowed  
+5 LUT cells form a combinatorial loop. This can create a race condition. Timing analysis may not be accurate. The preferred resolution is to modify the design to remove combinatorial logic loops. This loop has been identified in the constraints as being known and understood by use of the ALLOW_COMBINATORIAL_LOOPS property on a net in the loop. The cells in the loop are: design_1_i/entropy_ip/inst/u_bank/g_ro[0].u_ro/g_inv[1].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[0].u_ro/g_inv[2].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[0].u_ro/g_inv[3].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[0].u_ro/g_inv[4].u_inv
+design_1_i/entropy_ip/inst/u_bank/g_ro[0].u_ro/u_gate.
+Related violations: <none>
+
+LUTLP-2#7 Warning
+Combinatorial Loop Allowed  
+7 LUT cells form a combinatorial loop. This can create a race condition. Timing analysis may not be accurate. The preferred resolution is to modify the design to remove combinatorial logic loops. This loop has been identified in the constraints as being known and understood by use of the ALLOW_COMBINATORIAL_LOOPS property on a net in the loop. The cells in the loop are: design_1_i/entropy_ip/inst/u_bank/g_ro[1].u_ro/g_inv[1].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[1].u_ro/g_inv[2].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[1].u_ro/g_inv[3].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[1].u_ro/g_inv[4].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[1].u_ro/g_inv[5].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[1].u_ro/g_inv[6].u_inv
+design_1_i/entropy_ip/inst/u_bank/g_ro[1].u_ro/u_gate.
+Related violations: <none>
+
+LUTLP-2#8 Warning
+Combinatorial Loop Allowed  
+9 LUT cells form a combinatorial loop. This can create a race condition. Timing analysis may not be accurate. The preferred resolution is to modify the design to remove combinatorial logic loops. This loop has been identified in the constraints as being known and understood by use of the ALLOW_COMBINATORIAL_LOOPS property on a net in the loop. The cells in the loop are: design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/g_inv[1].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/g_inv[2].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/g_inv[3].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/g_inv[4].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/g_inv[5].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/g_inv[6].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/g_inv[7].u_inv,
+design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/g_inv[8].u_inv
+design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/u_gate.
+Related violations: <none>
+
+

@@ -1,0 +1,21 @@
+# Generated engineering work is disposable; only curated results below are versioned.
+/build/**
+!/build/
+!/build/nist_native/
+!/build/nist_native/build.py
+!/build/nist_native/ea_non_iid.exe
+!/build/nist_native/ea_restart_windows.exe
+!/build/nist_native/windows_restart_build_command.json
+!/build/nist_native/windows_seed.patch
+__pycache__/
+*.pyc
+*.pyo
+*.jou
+.Xil/
+NA/
+dfx_runtime.txt
+**/xsim.dir/
+*.o
+*.obj
+*.wdb
+*.vcd

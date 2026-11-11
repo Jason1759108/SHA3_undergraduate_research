@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/stnolting/neoTRNG",
+  "commit": "c688149f70fbd582eac1029cbfec4fcf97b719b2",
+  "files_sha256": {
+    "LICENSE": "23456219bee22b7099b4b842abc375b3e6629063217faa667c2417ba7e9bb359",
+    "rtl/neoTRNG.vhd": "2486e22ce779d50cad1ccabc2e889301cee0e485ace4aea9964356ff20dbf591"
+  },
+  "usage": "study reference only; not compiled, not copied into the entropy implementation"
+}

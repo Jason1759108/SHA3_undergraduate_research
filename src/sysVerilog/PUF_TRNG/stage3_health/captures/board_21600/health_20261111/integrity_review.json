@@ -1,0 +1,16 @@
+{
+  "integrity": "PASS",
+  "functional_batches": 16,
+  "assessment_batches": 1000,
+  "payload_samples": 1024000,
+  "campaign_status": "complete",
+  "ro_off_confirmed": true,
+  "all_health_states_expected": true,
+  "release_snapshot_matches_local": true,
+  "independent_binary_reexports_equal": true,
+  "notebook_completed_without_recorded_errors": true,
+  "board_id": "21600",
+  "build_id": "entropy-health-20261110T172050Z",
+  "dataset_folder": "health_assessment\\2026-11-11_20261110T192028Z_7e1391ad",
+  "physical_entropy_certified": false
+}

@@ -1,0 +1,20 @@
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Wed Nov 11 01:03:37 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/entropy_unit/xsim_script.tcl
+# xsim {entropy_unit} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PASS HEALTH UNIT startup discard, valid gating, full RAM, AW/W ordering, stalls
+PASS HEALTH UNIT startup RCT/APT fail, sticky fault, explicit clear
+PASS HEALTH UNIT monitor continuity across startup and fault at last payload sample wins
+SUCCESS HEALTH UNIT startup RCT APT valid-gate last-sample sticky abort watchdog reset recovery
+$finish called at time : 522890 ns : File "D:/C++/SHA3_undergraduate_research/src/sysVerilog/PUF_TRNG/stage3_health/sim/tb_entropy_unit.sv" Line 100
+exit
+INFO: [Common 17-206] Exiting xsim at Wed Nov 11 01:03:40 2026...

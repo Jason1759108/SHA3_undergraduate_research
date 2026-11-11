@@ -1,0 +1,14 @@
+{
+  "SP800-90B_EntropyAssessment": {
+    "url": "https://github.com/usnistgov/SP800-90B_EntropyAssessment",
+    "commit": "87c104d0ed4cbc96103e7b8b38d6f2c7e0a6b289"
+  },
+  "jsoncpp": {
+    "url": "https://github.com/open-source-parsers/jsoncpp",
+    "commit": "93acc7b155048f1a66c43235cc205519f1e7a6ea"
+  },
+  "libdivsufsort": {
+    "url": "https://github.com/y-256/libdivsufsort",
+    "commit": "5f60d6f026c30fb4ac296f696b3c8b0eb71bd428"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-11",
+  "release": {
+    "clock_mhz": 25,
+    "base": 1136656384,
+    "capacity": 1024,
+    "channels": 8,
+    "build_id": "entropy-health-20261110T172050Z"
+  },
+  "physical_audit": {
+    "ro_gates": 8,
+    "ro_inverters": 88,
+    "synchronizer_flops": 16,
+    "wns_ns": 26.982,
+    "whs_ns": 0.028
+  },
+  "checks": {
+    "unit": "PASS",
+    "system": "PASS",
+    "host": "PASS",
+    "monitor": "PASS",
+    "policy": "PASS",
+    "collection": "PASS"
+  },
+  "collection_tests": 13,
+  "monitor_vectors": 10730,
+  "resources": {
+    "slice_luts": 1213,
+    "flip_flops": 1011,
+    "bram": 0,
+    "dsp": 0
+  },
+  "drc": {
+    "errors": 0,
+    "critical_warnings": 0,
+    "known_allowed_ro_loop_warnings": 8
+  },
+  "methodology": {
+    "ro_timing_loop_warnings": 8,
+    "xdc_lookup_efficiency_warnings": 1
+  },
+  "agent_operated_board": false,
+  "new_build_entropy_validated": false,
+  "validated_entropy_credit": null,
+  "stage2_published_files_unchanged": true,
+  "bit_sha256": "05c49d956ebfc470eccab7b8893ef19d8341d0f1f23d829b0ff1822ec1e4c9d3",
+  "hwh_sha256": "4dc8494486efe3b6016c22cc397de805f95cae5afaa659ec0b2f639454c17838"
+}

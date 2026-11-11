@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "suite": "unit",
+  "marker": "SUCCESS HEALTH UNIT",
+  "source_sha256": {
+    "rtl/entropy_axi.sv": "4b8fc656556340799dd78dff65e43feb96f586aa390750838a0e833438f6ce9f",
+    "rtl/entropy_health_monitor.sv": "98934c8db1e2a26457620872e87e4b5e02374d3704c130dbe0ccce78fadaae7e",
+    "rtl/ro_bank.sv": "73ef3af71a3f5d8767e96975b206e36fa7e71ee22593abb8c24d853020120bfb",
+    "rtl/ro_cell.sv": "7a6fc3b52bdb98db1276f718e44a207df93f63f4242e2184daa34de8e118328f",
+    "sim/tb_entropy_unit.sv": "a0814d4241cd274aadc6c121e7cd73df9c4a7345812f86553edaf3cd652bd673"
+  },
+  "physical_entropy_validated": false
+}

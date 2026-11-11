@@ -1,0 +1,15 @@
+{
+  "integrity": "PASS",
+  "board_id": "21600",
+  "build_id": "entropy-ro-20261110T153343Z",
+  "batches": 1000,
+  "samples": 1024000,
+  "restart_rows": 1000,
+  "restart_columns": 1000,
+  "independently_reexported_binary_files": 10,
+  "dataset_manifest_equal_as_json": true,
+  "notebook_no_error_outputs": true,
+  "ro_off_confirmed": true,
+  "helper_matches_local_source": true,
+  "note": "JSON byte representation may differ because Windows uses CRLF; parsed content matches. Original downloaded files preserved."
+}

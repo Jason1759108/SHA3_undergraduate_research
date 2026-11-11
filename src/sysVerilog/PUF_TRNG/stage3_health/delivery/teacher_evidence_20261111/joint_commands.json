@@ -1,0 +1,28 @@
+[
+  {
+    "label": "joint",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\raw_joint_concat.bin",
+      "8"
+    ],
+    "returncode": 0,
+    "seconds": 11.688592910766602
+  },
+  {
+    "label": "restart_joint",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage3_health\\captures\\board_21600\\health_20261111\\health_assessment\\2026-11-11_20261110T192028Z_7e1391ad\\datasets\\restart_joint_rows.bin",
+      "8",
+      "7.192696951878116"
+    ],
+    "returncode": 0,
+    "seconds": 24.46399974822998
+  }
+]

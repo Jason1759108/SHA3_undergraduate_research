@@ -1,0 +1,42 @@
+--- official/shared/utils.h
++++ windows_src/shared/utils.h
+@@ -2,6 +2,7 @@
+ #define VERSION "1.1.8"
+ 
+ #pragma once
++#include <openssl/rand.h>
+ #include <iostream>		// std::cout
+ #include <string>		// std::string
+ #include <map>			// std::map
+@@ -577,23 +578,15 @@
+ //This seeds using an external source
+ //We use /dev/urandom here. 
+ //We could alternately use the RdRand (or some other OS or HW source of pseudo-random numbers)
++// Windows compatibility change, 2026-11-11: OpenSSL OS-seeded RAND_bytes
++// replaces Linux /dev/urandom only for the assessment tool simulation seed.
++// NIST entropy estimators, simulation algorithm and thresholds are unchanged.
+ void seed(uint64_t *xoshiro256starstarState){
+-	FILE *infp;
+-
+-	if((infp=fopen("/dev/urandom", "rb"))==NULL) {
+-		perror("Can't open random source. Reverting to a deterministic seed.");
+-		exit(-1);
+-	} 
+-
+-	if(fread(xoshiro256starstarState, sizeof(uint64_t), 4, infp)!=4) {
+-		perror("Can't read random seed");
+-		exit(-1);
+-	}
+-
+-	if(fclose(infp)!=0) {
+-		perror("Couldn't close random source");
+-		exit(-1);
+-	}
++    if (RAND_bytes(reinterpret_cast<unsigned char *>(xoshiro256starstarState),
++                   4 * sizeof(uint64_t)) != 1) {
++        fprintf(stderr, "OpenSSL RAND_bytes seed failed\n");
++        exit(-1);
++    }
+ }
+ 
+ /*Return an integer in the range [0, high], without modular bias*/

@@ -1,0 +1,82 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (win64) Build 6299465 Fri Nov 14 19:35:11 GMT 2025
+| Date         : Wed Nov 11 01:20:49 2026
+| Host         : JasonWei running 64-bit major release  (build 9200)
+| Command      : report_methodology -file D:/C++/SHA3_undergraduate_research/src/sysVerilog/PUF_TRNG/stage3_health/build/reports/entropy_ref/methodology.rpt
+| Design       : design_1_wrapper
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Fully Routed
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: impl_1
+      Design limits: <entire design considered>
+             Max checks: <unlimited>
+             Checks found: 9
++-----------+----------+---------------------------------------------+--------+
+| Rule      | Severity | Description                                 | Checks |
++-----------+----------+---------------------------------------------+--------+
+| TIMING-23 | Warning  | Combinational loop found                    | 8      |
+| XDCB-5    | Warning  | Runtime inefficient way to find pin objects | 1      |
++-----------+----------+---------------------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-23#1 Warning
+Combinational loop found  
+A timing loop has been detected on a combinational path. A timing arc has been disabled between design_1_i/entropy_ip/inst/u_bank/g_ro[0].u_ro/u_gate/I1 and design_1_i/entropy_ip/inst/u_bank/g_ro[0].u_ro/u_gate/O to disable the timing loop
+Related violations: <none>
+
+TIMING-23#2 Warning
+Combinational loop found  
+A timing loop has been detected on a combinational path. A timing arc has been disabled between design_1_i/entropy_ip/inst/u_bank/g_ro[1].u_ro/u_gate/I1 and design_1_i/entropy_ip/inst/u_bank/g_ro[1].u_ro/u_gate/O to disable the timing loop
+Related violations: <none>
+
+TIMING-23#3 Warning
+Combinational loop found  
+A timing loop has been detected on a combinational path. A timing arc has been disabled between design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/u_gate/I1 and design_1_i/entropy_ip/inst/u_bank/g_ro[2].u_ro/u_gate/O to disable the timing loop
+Related violations: <none>
+
+TIMING-23#4 Warning
+Combinational loop found  
+A timing loop has been detected on a combinational path. A timing arc has been disabled between design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/u_gate/I1 and design_1_i/entropy_ip/inst/u_bank/g_ro[3].u_ro/u_gate/O to disable the timing loop
+Related violations: <none>
+
+TIMING-23#5 Warning
+Combinational loop found  
+A timing loop has been detected on a combinational path. A timing arc has been disabled between design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/u_gate/I1 and design_1_i/entropy_ip/inst/u_bank/g_ro[4].u_ro/u_gate/O to disable the timing loop
+Related violations: <none>
+
+TIMING-23#6 Warning
+Combinational loop found  
+A timing loop has been detected on a combinational path. A timing arc has been disabled between design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/u_gate/I1 and design_1_i/entropy_ip/inst/u_bank/g_ro[5].u_ro/u_gate/O to disable the timing loop
+Related violations: <none>
+
+TIMING-23#7 Warning
+Combinational loop found  
+A timing loop has been detected on a combinational path. A timing arc has been disabled between design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/u_gate/I1 and design_1_i/entropy_ip/inst/u_bank/g_ro[6].u_ro/u_gate/O to disable the timing loop
+Related violations: <none>
+
+TIMING-23#8 Warning
+Combinational loop found  
+A timing loop has been detected on a combinational path. A timing arc has been disabled between design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/u_gate/I1 and design_1_i/entropy_ip/inst/u_bank/g_ro[7].u_ro/u_gate/O to disable the timing loop
+Related violations: <none>
+
+XDCB-5#1 Warning
+Runtime inefficient way to find pin objects  
+The option '-to : [get_pins -hier -quiet -filter {NAME =~ *sync_meta_reg*/D}]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '3' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: D:/C++/SHA3_undergraduate_research/src/sysVerilog/PUF_TRNG/stage3_health/constraints/entropy.xdc (Line: 3)
+Related violations: <none>
+
+

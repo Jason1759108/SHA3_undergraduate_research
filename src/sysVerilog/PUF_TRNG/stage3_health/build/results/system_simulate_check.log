@@ -1,0 +1,81 @@
+"xsim tb_entropy_system_behav -key {Behavioral:sim_1:Functional:tb_entropy_system} -tclbatch tb_entropy_system.tcl -protoinst "protoinst_files/design_1.protoinst" -log simulate.log"
+
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Wed Nov 11 01:08:30 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tb_entropy_system_behav/xsim_script.tcl
+# xsim {tb_entropy_system_behav} -autoloadwcfg -tclbatch {tb_entropy_system.tcl} -key {Behavioral:sim_1:Functional:tb_entropy_system} -protoinst {protoinst_files/design_1.protoinst}
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/design_1.protoinst
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_entropy_system/dut/design_1_i//axi_control/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_entropy_system/dut/design_1_i//axi_control/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_entropy_system/dut/design_1_i//axi_control/s00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_entropy_system/dut/design_1_i//axi_control/s00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_entropy_system/dut/design_1_i//axi_control/s00_couplers/auto_pc/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_entropy_system/dut/design_1_i//axi_control/s00_couplers/auto_pc/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_entropy_system/dut/design_1_i//entropy_ip/s_axi
+INFO: [Wavedata 42-564]   Found protocol instance at /tb_entropy_system/dut/design_1_i//processing_system7_0/M_AXI_GP0
+Time resolution is 1 ps
+source tb_entropy_system.tcl
+## set curr_wave [current_wave_config]
+## if { [string length $curr_wave] == 0 } {
+##   if { [llength [get_objects]] > 0} {
+##     add_wave /
+##     set_property needs_save false [current_wave_config]
+##   } else {
+##      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+##   }
+## }
+## run all
+XilinxAXIVIP: Found at Path: tb_entropy_system.dut.design_1_i.processing_system7_0.inst.M_AXI_GP0.master
+[0] : *ZYNQ_VIP_INFO : M_AXI_GP0 : Port is ENABLED.
+XilinxAXIVIP: Found at Path: tb_entropy_system.dut.design_1_i.processing_system7_0.inst.M_AXI_GP1.master
+[0] : *ZYNQ_VIP_INFO : M_AXI_GP1 : Port is DISABLED.
+XilinxAXIVIP: Found at Path: tb_entropy_system.dut.design_1_i.processing_system7_0.inst.S_AXI_GP0.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_GP0 : Port is DISABLED.
+XilinxAXIVIP: Found at Path: tb_entropy_system.dut.design_1_i.processing_system7_0.inst.S_AXI_GP1.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_GP1 : Port is DISABLED.
+XilinxAXIVIP: Found at Path: tb_entropy_system.dut.design_1_i.processing_system7_0.inst.S_AXI_HP0.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_HP0 : Port is DISABLED.
+                   0 BEFORE checking line ...... x
+                   0 AFTER checking line ...... x
+XilinxAXIVIP: Found at Path: tb_entropy_system.dut.design_1_i.processing_system7_0.inst.S_AXI_HP1.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_HP1 : Port is DISABLED.
+                   0 BEFORE checking line ...... x
+                   0 AFTER checking line ...... x
+XilinxAXIVIP: Found at Path: tb_entropy_system.dut.design_1_i.processing_system7_0.inst.S_AXI_HP2.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_HP2 : Port is DISABLED.
+                   0 BEFORE checking line ...... x
+                   0 AFTER checking line ...... x
+XilinxAXIVIP: Found at Path: tb_entropy_system.dut.design_1_i.processing_system7_0.inst.S_AXI_HP3.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_HP3 : Port is DISABLED.
+                   0 BEFORE checking line ...... x
+                   0 AFTER checking line ...... x
+XilinxAXIVIP: Found at Path: tb_entropy_system.dut.design_1_i.processing_system7_0.inst.S_AXI_ACP.slave
+[0] : *ZYNQ_VIP_INFO : S_AXI_ACP : Port is DISABLED.
+                   0 else checking line ......0
+[2000] : *ZYNQ_VIP_INFO : Setting Debug Level Info as 0
+[2000] : *ZYNQ_VIP_INFO : Setting Stop On Error as 1
+PASS SYSTEM reset assert/release and RO default off
+PASS SYSTEM 1024 samples captured and ALL read through PS GP0 match independent scoreboard
+PASS SYSTEM reset assert/release and RO default off
+PASS SYSTEM 1024 samples captured and ALL read through PS GP0 match independent scoreboard
+SUCCESS HEALTH SYSTEM reset GP0 startup RCT APT RAM-read fault abort recovery
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+$finish called at time : 6138460 ns : File "D:/C++/SHA3_undergraduate_research/src/sysVerilog/PUF_TRNG/stage3_health/sim/tb_entropy_system.sv" Line 72
+run: Time (s): cpu = 00:00:01 ; elapsed = 00:03:27 . Memory (MB): peak = 241.348 ; gain = 0.000
+## quit
+INFO: xsimkernel Simulation Memory Usage: 1011632 KB (Peak: 1011632 KB), Simulation CPU Usage: 203546 ms
+INFO: [Common 17-206] Exiting xsim at Wed Nov 11 01:12:00 2026...
