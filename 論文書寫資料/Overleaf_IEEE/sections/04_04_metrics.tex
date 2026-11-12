@@ -1,0 +1,18 @@
+\subsection{Single-Block Timing and P/T Definition}
+% Person A, P1. F5, R5. Use 135 bytes = 1080 useful input bits.
+% The final V0/V1/V2 paper_cycle_monitor rows each give N_single=258
+% for both 135-byte, one-permutation test cases. Source:
+% V012_single_block_10ns.csv in the local paper results folder.
+\begin{equation}
+T_{\mathrm{single}} =
+\frac{135 \times 8}{N_{\mathrm{single}}\,t_{\mathrm{clk}}}.
+\label{eq:single-throughput}
+\end{equation}
+\begin{equation}
+E_{\mathrm{est}} =
+\frac{P_{\mathrm{SHA3}}}{T_{\mathrm{single}}}.
+\label{eq:estimated-energy}
+\end{equation}
+% With P in mW and T in Gbit/s, E_est is in pJ/useful input bit.
+% t_clk=10 ns and T_single=0.418604651 Gbit/s for all three versions.
+

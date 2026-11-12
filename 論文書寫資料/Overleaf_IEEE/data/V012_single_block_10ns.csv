@@ -1,0 +1,4 @@
+version,message_bytes,payload_bits,permutations,e2e_cycles,period_ns,single_block_throughput_gbps,total_power_mw,single_block_estimated_p_over_t_pj_per_bit,total_cell_area,static_power_mw,dynamic_power_mw,worst_slack_ns,rtl_01_status,synthesis_02_status,gate_03_status,gate_03_timing_violation,gate_03_sdf_warnings,power_source,cycle_source
+V0_C3_NoFT,135,1080,1,258,10,0.418604651,2.0176281,4.819889350,47995.187680,0.3071281,1.7105,1.66,PASS,OK,PASS_WITH_SDF_WARNING,NO,4364,archived_2026-11-04_10ns,current_01_rtl_135byte_monitor
+V1_State1600_SECDED_Replay,135,1080,1,258,10,0.418604651,3.5283499,8.428835872,93673.840758,0.6412499,2.8871,0.00,PASS,OK,PASS_WITH_SDF_WARNING,NO,6321,archived_2026-11-04_10ns,current_01_rtl_135byte_monitor
+V2_Lane64_SECDED_Replay,135,1080,1,258,10,0.418604651,3.3803968,8.075392356,91894.367726,0.5977968,2.7826,0.00,PASS,OK,PASS_WITH_SDF_WARNING,NO,6321,archived_2026-11-04_10ns,current_01_rtl_135byte_monitor

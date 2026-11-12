@@ -1,5 +1,5 @@
-# 四版正式程式
+# 論文比較用 V0／V1／V2 正式來源
 
-`V0_C3_NoFT`、`V1_State1600_SECDED_Replay`、`V2_Lane64_SECDED_Replay`、`V3_LaneParity_LocalReplay` 是 2026-11-04 工作站驗證所用的 overlay。四版均有完整 01 RTL `PASS`、10 ns 02 `OK`、03 `PASS_WITH_SDF_WARNING` 的精簡結果。結果檔在 `../工作站結果/2026-11-04_四版10ns/`。
+寫本文時只使用 2026-11-04 的 V0 基準、V1 1600-bit SECDED、V2 lane-level SECDED 三個 overlay，供 A/B 查閱正式 RTL、PATTERN、cycle monitor 與原始合成設定。此資料夾仍有 V3 專題版本副本，但**不納入本文**。它們是工作站 `build` 專案的來源副本，不是製程庫、netlist 或完整工具安裝。
 
-工作站操作及保存規則見 [PROJECT_10NS_GUIDE.md](PROJECT_10NS_GUIDE.md)。`SERIAL320_four_compact.zip` 由 `package_four.py` 產生，是這四個資料夾的傳輸包。四版是 build 專案的 overlay，並非完整製程庫或已 build 的工作站專案。
+寫作時使用 [三版單 block 主表](../工作站結果/單block正式週期/V012_single_block_10ns.csv) 和 [封存 10 ns 證據](../工作站結果/2026-11-04_四版10ns/)。不要從此資料夾直接推測合成功耗或故障覆蓋率；各數字和限制以結果說明為準。

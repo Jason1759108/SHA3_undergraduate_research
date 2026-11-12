@@ -1,0 +1,75 @@
+\documentclass[conference]{IEEEtran}
+
+% IEEEtran controls two-column layout, fonts, headings, and caption style.
+% Keep the preamble small; follow a specific venue's official template if selected later.
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+
+\begin{document}
+
+\title{Protection Granularity and Hardware Cost of SECDED in a Serialized SHA3-256 Accelerator}
+
+% Replace names, affiliation, and email before sharing the PDF.
+\author{
+\IEEEauthorblockN{Author A and Author B}
+\IEEEauthorblockA{Department and University\\
+City, Country\\
+authorA@example.com, authorB@example.com}
+}
+
+\maketitle
+
+\begin{abstract}
+% Person B, P4: State the shared C3 baseline, V1/V2 comparison,
+% verified single-block measurement, key results, and limitations.
+% Verified numbers: all three versions use 258 cycles for 135 bytes;
+% V1/V2 estimated P/T is 8.428835872 / 8.075392356 pJ/bit.
+\end{abstract}
+
+\begin{IEEEkeywords}
+SHA-3, SECDED, fault tolerance, hardware cost, replay
+\end{IEEEkeywords}
+
+\section{Introduction}
+\input{sections/01_01_background}
+\input{sections/01_02_motivation}
+\input{sections/01_03_questions}
+
+\section{Background and Related Work}
+\input{sections/02_01_sha3}
+\input{sections/02_02_codes}
+\input{sections/02_03_related}
+
+\section{Architecture}
+\input{sections/03_01_baseline}
+\input{sections/03_02_full_state}
+\input{sections/03_03_lane}
+\input{sections/03_04_response}
+
+\section{Experimental Method}
+\input{sections/04_01_versions}
+\input{sections/04_02_fault_model}
+\input{sections/04_03_rtl_verification}
+\input{sections/04_04_metrics}
+\input{sections/04_05_gate_verification}
+
+\section{Results and Discussion}
+\input{sections/05_01_verification_results}
+\input{sections/05_02_area_power}
+\input{sections/05_03_energy}
+\input{sections/05_04_tradeoffs}
+
+\section{Conclusions and Future Work}
+\input{sections/06_01_conclusions}
+\input{sections/06_02_future}
+
+\appendices
+\input{sections/app_a_sources}
+\input{sections/app_b_tests}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

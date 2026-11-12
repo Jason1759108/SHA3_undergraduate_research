@@ -1,163 +1,90 @@
 # 論文共同 Phase 排程與分工
 
-更新日期：2026-11-08。本文件是「若恢復論文撰寫」的固定 10 ns 版本；不改變目前以大學部專題發表為主的決定。論文全文英文；分工與工作站說明中文。資料準備由使用者完成，A/B 只分配寫作、圖表與自己內容修訂。
+更新日期：2026-11-13。老師確認以 **V1 全 state SECDED 與 V2 lane SECDED 的成本比較**為主軸，V0 是共同基準。V3 不列入論文正文、圖表或主結論。本文的撰稿資料只引用三版相關 RTL 與結果；資料夾中既存的其他專題紀錄不當作本篇證據。
 
-## 0. 英文論文版型與寫作規範（開始各 Phase 前先採用）
+## 0. 共用格式、資料口徑與協作方式
 
-**論文全文使用英文；三份分工文件維持中文。** 本次選用「參照 LNCS 的單欄英文研究論文版型」，參考 `references/Pessl2013PushingTheLimits.pdf`，並核對 Springer 的作者排版說明。選擇原因是該文同屬序列化 SHA-3 硬體與成本研究，且其 1、1.1 層級與本組既有分工編號直接相容。
+- 全文英文，使用 Overleaf 上的 `IEEEtran` conference 兩欄 LaTeX 版型。這是 IEEE 風格草稿，不表示已投 IEEE 會議。英文標題、摘要、Keywords、References 及附錄都在 [Overleaf 專案模板](../Overleaf_IEEE/)。
+- Overleaf 是**唯一的寫作編輯位置**。不在 GitHub 建 A/B 各自的段落工作區；本地分工手冊保留中文。正文每個小節為獨立 `sections/NN_NN_*.tex`，A/B 各編自己的檔，`main.tex` 只維護章節順序、題目與作者。
+- 圖與表由 LaTeX 自動編號；內文以 `\label{}`／`\ref{}` 引用。圖說放圖下、表題放表上。F/R 是工作代號，**不是** PDF 內顯示的編號。圖片成品放 Overleaf `figures/`，圖源與資料保存在本地 [工作站結果](../工作站結果/) 或參考資料；無須重複上傳大型 EDA 檔。
+- 以 [Overleaf 建立與共編指南](./Overleaf建立與共編指南.md) 建專案並邀請另一位作者。免費方案目前允許專案擁有者邀請一位 collaborator；若權限因帳號方案不同而變動，以 Overleaf 畫面為準。
 
-### 0.1 格式選擇可以調整，不是禁止 APA 或期刊格式
+### 0.1 唯一的 P/T 指標
 
-先前的中文工程論文版面已被本節取代。APA、LNCS、IEEE、ACM 或特定期刊格式都可以依實際用途選用；保留 n.n 分工編號不代表永遠不能換版型。若目標版型改用不同編號，保留工作對照表即可。版面、引文樣式與研究內容是可以分別調整的事項。
+選固定的 **135-byte SHA3-256 訊息**作單一 block 實驗。135 bytes 是可在一個 136-byte rate block 中完成 padding 的最大有效 payload；136-byte 訊息在目前 PATTERN 中需要第二次 permutation。V0/V1/V2 各自從「輸入被接受」量到「完整 digest 最後一字被 monitor 取樣」；使用同一個 testbench monitor 事件定義。記週期為 `N_single`，clock period 為 10 ns，整顆 SHA3 的 DC 估計功耗為 `P_total`：
 
-目前目標是接近公開英文研究論文的呈現方式，因此採用標題、作者與機構、Abstract、Keywords、連續正文、References、Appendices 的文章結構。不另做學位論文式封面、中文摘要、目錄或每章強制換頁。arXiv 的 PDF 指引著重可讀文字、字型與檔案完整性，沒有要求一律採 APA；Word 稿完成後可匯出符合其要求的 PDF。未來若選定期刊或研討會，再套用該出版單位當時的正式範本。
+`T_single = (135 × 8) / (N_single × 10 ns)`；`P/T = P_total / T_single`，單位為 pJ/有效輸入 bit。
 
-本 Word 是依參考論文與規範重建的可編輯骨架，**不是下載的官方 LNCS 範本，也不表示已投稿或已獲接受**。保留頁尾頁碼方便草稿溝通；Springer 正式製作時的頁碼與頁首規則另依投稿要求處理。
+正式三版結果已回收：[單 block 主表](../工作站結果/單block正式週期/V012_single_block_10ns.csv) 與各版兩筆 135-byte 原始週期列。V0/V1/V2 都是 `N_single=258`、`permutations=1`，在 10 ns 下 `T_single=0.418604651 Gbps`。整顆 SHA3 估計 P/T 依序是 **4.819889350、8.428835872、8.075392356 pJ/有效輸入 bit**。V2 比 V1 低約 **4.19%**；三版週期相同，因此差幅來自 10 ns 估計總功耗。**所有論文 P/T、吞吐與能量圖只用這個單 block 口徑**；舊 240-cycle 與 4096-byte P/T 欄僅留在封存 CSV，不帶入正文。來源、公式與限制見 [工作站結果說明](../工作站結果/單block正式週期/README.md)。
 
-### 0.2 為什麼選這份參考論文
+### 0.2 證據邊界
 
-| 本地參考資料 | 觀察與用途 |
-| --- | --- |
-| `Pessl2013PushingTheLimits.pdf` | LNCS／CHES 論文；單欄、置中題目、1 與 1.1 編號；本次版型主要依據 |
-| `An_SHA-3_Hardware_Architecture_against_Failures_Ba.pdf` | Sensors 的 ArchHC 相關論文；適合研究內容參考，但出版社側欄、刊名、出版資訊不適合直接搬到本組未投稿稿件 |
-| `Lightweight_Unified_Sha-3Shake_Architecture_with_a.pdf` | 單欄英文預印本；可參考文章組織，但檔內仍有 DOI、會議名稱、CCS 等模板佔位，這些不照抄 |
-| `NIST.FIPS.202.pdf`、`Keccak-implementation-3.2.pdf` | 標準與技術報告；保留作技術資料，不作文章版型主要依據 |
+- V0/V1/V2 的 10 ns 合成面積、總功耗、slack、01/02/03 狀態與單 block 週期已保存，可填寫主表 R7、F7/F8 與百分比結論；需保留估計功耗和 SDF 警告的文字限定。
+- ArchHC 是研究動機，不是 V1 的 RTL 重現；ArchHC 用 1600-bit Hamming，而本組 V1 用 1600-bit SECDED 加 replay。FPGA 與 ASIC 數字不直接排名。
+- 本組現有 FT PATTERN 注入的是編碼後、寫入 state 前的指定 codeword／D 路徑故障。V1/V2 的 ECC decoder 目前沒有讀取已儲存的 `ecc_q` 作比較；論文不能稱已驗證「state 暫存器儲存期間 bit 翻轉可被 ECC 修正」。03 gate 是正常功能測試且帶 SDF 警告，不是 mapped fault injection 或實體 signoff。
+- 不宣稱最佳頻率、Fmax、fault coverage 百分比、post-layout power 或故障時實測能量。功耗是 DC 估計，沒有實際活動波形。
 
-### 0.3 本次 Word 的樣式設定
+## 1. 文章題目與章節
 
-| 項目 | 目前設定 |
-| --- | --- |
-| 頁面 | A4、單欄；文字區寬 12.2 cm、高 19.3 cm，居中配置；左右邊界 4.4 cm、上下 5.2 cm。此處是重建參考版面的設定 |
-| 字體 | 全文 Times New Roman，黑色；數學式使用 Word 公式字型 |
-| 論文題目 | 14 pt、粗體、置中；主題與比較範圍分兩段排，構成同一完整題目 |
-| 作者／機構 | 作者 10 pt；機構與 email 9 pt；置中；姓名與資訊暫留英文佔位 |
-| Abstract／Keywords | 9 pt；Abstract 與 Keywords 不編號；只留位置，尚未填研究內容 |
-| 第一層標題 | 例如 1 Introduction；12 pt、粗體、靠左；不強制另起一頁 |
-| 第二層標題 | 例如 1.1 Research Background；10 pt、粗體、靠左；沿用分工 n.n |
-| 第三層 | 必要時使用 10 pt 粗體的行內標題，標題後接正文；依 LNCS 習慣不另編 1.1.1。目前未新增第三層內容 |
-| 內文 | 10 pt、單行、左右對齊；一般段首縮排 0.35 cm；小節第一段與圖表後第一段不縮排 |
-| 圖說／表題 | 9 pt；短標題置中，多行標題左右對齊；圖說在下、表題在上 |
-| 頁碼 | 全文從 1 起算，頁尾置中；僅供草稿與預印本閱讀，投稿時可依範本移除 |
+**Protection Granularity and Hardware Cost of SECDED in a Serialized SHA3-256 Accelerator**
 
-Word 的 Heading 1／Heading 2 可在導覽窗格中使用。小節編號目前是文字，若重排章節需同步調整；不因換成英文而更動 A／B 工作歸屬。正式稿移除所有英文佔位提示。
-
-### 0.4 圖表、公式與引用
-
-- 圖與表都要有名稱，內文先引用，再放圖表；例如 Fig. 5、Table 3。圖置中、圖說在下；表題在表格上方。短圖說與短表題均置中，多行則左右對齊。
-- 全文圖連續編為 Fig. 1–10；表連續編為 Table 1–8，不再使用前版「圖 2-1／表 3-1」。F／R 仍是分工工作代號，完全保留。F3、F4 的 (a)、(b) 分圖仍由原負責人製作，另一小節引用即可。
-- 圖說和表題的數字已設為 Word SEQ 欄位；新增圖表時用相同標號類型。Ctrl+A、F9 可更新數字；圖說文字及內文交互參照仍需隨內容維護。
-- 圖內標示、座標、單位、圖例、表頭和註解都用英文。圖源保留可編輯版本；改編圖或外部資料要有來源。註解使用 Note:；圖字以最終尺寸可讀為準，建議至少 8–9 pt。
-- 表格保留可編輯數字與欄位，量與單位寫清楚；不以圖片代替整張結果表。公式使用 Word 公式編輯器，重要公式連續編為 (1)、(2)，式置中、編號靠右。
-- 目前採數字引用 [1]、[2]，依首次引用排序，同一來源重用同一號碼；這不代表套用了整套 IEEE 版面。若正式轉投 LNCS，依指定書目樣式與排序要求處理；若改 APA，則整體切換作者年份引用，避免一篇混用兩套。
-- 不預填未完成的數據、摘要或參考文獻。骨架中的 figure/table to be inserted 只是工作提示，成稿時刪除。
-
-### 0.5 工作代號與正式圖表號
-
-| 工作代號 | 英文正式編號 | 所屬小節 |
+| 章節 | 英文標題 | 負責 |
 | --- | --- | --- |
-| F1 | Fig. 1 | 2.1 |
-| F2 | Fig. 2 | 3.1 |
-| F3 | Fig. 3 | 3.2；3.3 引用 (b) |
-| F4 | Fig. 4 | 4.2；4.3 引用 (b) |
-| F5 | Fig. 5 | 4.4 |
-| F6 | Fig. 6 | 4.5 |
-| F7 | Fig. 7 | 6.2 |
-| F8 | Fig. 8 | 6.3 |
-| F9 | Fig. 9 | 6.5 |
-| F10 | Fig. 10 | 6.6 |
-| R1 | Table 1 | 2.4 |
-| R2a | Table 2 | 3.4 |
-| R2b | Table 3 | 5.1 |
-| R3 | Table 4 | 5.3 |
-| R4 | Table 5 | 5.5 |
-| R5 | Table 6 | 6.1 |
-| R6 | Table 7 | 6.4 |
-| R7 | Table 8 | 6.6 |
+| 1.1 | Research Background | B |
+| 1.2 | Motivation from ArchHC | B |
+| 1.3 | Research Questions and Contributions | B |
+| 2.1 | SHA3-256 and the Serialized C3 Baseline | B |
+| 2.2 | Hamming Codes, SECDED, and Replay | B |
+| 2.3 | Related Work and Comparison Scope | B |
+| 3.1 | Common Baseline and Low-Power Datapath | A |
+| 3.2 | Full-State SECDED (V1) | A |
+| 3.3 | Lane-Level SECDED (V2) | A |
+| 3.4 | Fault Response and Protection Boundaries | B |
+| 4.1 | Design Versions and Synthesis Conditions | A |
+| 4.2 | Fault Model and RTL Test Matrix | B |
+| 4.3 | Functional Verification | B |
+| 4.4 | Single-Block Timing and P/T Definition | A |
+| 4.5 | Gate-Level Verification and Evidence Limits | B |
+| 5.1 | Functional and Fault-Test Results | B |
+| 5.2 | Area, Power, and Timing at 10 ns | A |
+| 5.3 | Single-Block Throughput and P/T | A |
+| 5.4 | Granularity Tradeoffs and Limitations | A |
+| 6.1 | Conclusions | A |
+| 6.2 | Future Work | A |
+| Appendix A | Versions, Sources, and Calculation Details | A |
+| Appendix B | RTL Test Inventory | B |
 
-### 0.6 英文題目與中英章節對照
+摘要與 Keywords 由 B 在 P4 依已完成結果撰寫；作者與機構由兩人直接填 `main.tex`。段落名稱可在投稿前依老師意見調整，但小節內容與負責人不因 LaTeX 自動編號而改變。
 
-中文題意沿用原規劃；「整體 SECDED」譯為 Full-State SECDED，「奇偶預測局部重算」譯為 Parity Prediction with Local Replay。Theta／Chi／Iota 分別對應 θ／χ／ι。
+## 2. 圖表工作代號與放置位置
 
-**Protection Granularity and Recovery Tradeoffs in Serialized SHA3-256 Hardware — A Fixed-Period Comparison of Full-State SECDED, Lane-Level SECDED, and Parity Prediction with Local Replay**
-
-以下英文章節已寫入 [Word 骨架](./論文_寫作架構範本.docx)。個人手冊仍以中文說明，依相同 n.n 對應即可；各節編號及圖表對應保留；Phase 與實驗工作依本次分工更新。
-
-| 編號 | 中文題意 | Word 英文標題 |
-| --- | --- | --- |
-| — | 摘要 | Abstract |
-| 1 | 緒論 | Introduction |
-| 1.1 | 研究背景 | Research Background |
-| 1.2 | ArchHC 出發的研究動機 | Research Motivation Based on ArchHC |
-| 1.3 | 粒度與策略研究問題 | Research Questions on Protection Granularity and Strategy |
-| 1.4 | 已完成研究貢獻 | Research Contributions |
-| 2 | 背景與相關研究 | Background and Related Work |
-| 2.1 | SHA3-256／Keccak 結構 | SHA3-256 and the Keccak Structure |
-| 2.2 | SECDED 與 parity 原理 | Principles of SECDED and Parity |
-| 2.3 | Replay 與可信來源 | Replay and Trusted Sources |
-| 2.4 | 相關研究與本研究定位 | Related Work and Positioning of This Study |
-| 3 | 基準架構與 SECDED 保護方案 | Baseline Architecture and SECDED Protection Schemes |
-| 3.1 | C3 基準架構 | C3 Baseline Architecture |
-| 3.2 | 1600-bit SECDED | 1600-bit SECDED |
-| 3.3 | Lane SECDED | Lane-Level SECDED |
-| 3.4 | 共同與差異設計 | Shared Design Elements and Differences |
-| 4 | 奇偶預測與局部重算架構 | Parity Prediction and Local Replay Architecture |
-| 4.1 | 現行方案設計目標 | Design Objectives of the Current Scheme |
-| 4.2 | θ parity 預測 | Theta Parity Prediction |
-| 4.3 | χ／ι parity 預測 | Chi and Iota Parity Prediction |
-| 4.4 | 原子提交與控制接線 | Atomic Commit and Control Interconnections |
-| 4.5 | Replay 與恢復時序 | Replay and Recovery Timing |
-| 4.6 | 保護範圍與設計限制 | Protection Scope and Design Limitations |
-| 5 | 實驗方法與評估指標 | Experimental Methods and Evaluation Metrics |
-| 5.1 | 版本與合成環境 | Design Versions and Synthesis Environment |
-| 5.2 | 功能驗證方法 | Functional Verification Methods |
-| 5.3 | 故障模型與注入方法 | Fault Models and Injection Methods |
-| 5.4 | 合成與閘級驗證範圍 | Synthesis and Gate-Level Verification Scope |
-| 5.5 | 評估指標與計算方式 | Evaluation Metrics and Calculation Methods |
-| 6 | 實驗結果與討論 | Experimental Results and Discussion |
-| 6.1 | 功能與故障結果 | Functional Verification and Fault-Injection Results |
-| 6.2 | SECDED 粒度的 PPA 比較 | PPA Comparison of SECDED Protection Granularities |
-| 6.3 | SECDED→parity 的策略成本 | Strategy Costs of Moving from SECDED to Parity |
-| 6.4 | 最終方案對起始方案 | Comparison of the Final and Initial Schemes |
-| 6.5 | 保護能力與硬體成本解讀 | Interpreting Protection Capability and Hardware Cost |
-| 6.6 | 恢復延遲、適用情境與限制 | Recovery Latency, Applicable Scenarios, and Limitations |
-| 7 | 結論與未來工作 | Conclusions and Future Work |
-| 7.1 | 結論 | Conclusions |
-| 7.2 | 未來工作 | Future Work |
-| — | 參考文獻 | References |
-| A | 版本、10 ns 合成與成本來源 | Appendix A  Versions, 10 ns Synthesis, and Cost Data Sources |
-| B | 測試、故障案例與重現方法 | Appendix B  Tests, Fault Cases, and Reproduction Procedures |
-
-來源：[本地主要版型參考](../參考資料/參考論文/Pessl2013PushingTheLimits.pdf)、[Springer 作者指引與 Word／LaTeX 範本](https://link.springer.com/series/558/information-for-authors-and-editors)、[Springer 作者排版規範](https://cms-resources.apps.public.k8s.springernature.io/springer-cms/rest/v1/content/27852130/data/Instructions%20for%20Authors%20PDF)、[arXiv PDF 提交說明](https://info.arxiv.org/help/submit_pdf.html)。
-
-## 1 研究主軸與資料完成條件
-
-主要問題是 V1→V2：在同一序列化 SHA3-256、同一 SECDED＋replay 策略及固定 10 ns 設定下，整顆 1600-bit 與分 lane 保護的成本、時序及已測故障行為如何不同。V0 是無保護成本基準。V3 是 parity＋local replay 的延伸策略，用來說明不同保護能力下的成本取捨；不得當作與 SECDED 等強度的直接替代。V1 是本組在 C3 核心上製作的對照，不能稱為 ArchHC 重現。
-
-主結果採四版相同 10 ns、相同合成條件下的 full SHA3 cell area、DC 估計功耗、4096-byte 端到端吞吐及估計 P/T。舊欄 `energy_per_bit_pj` 使用 1088 bits／240 cycles 的 core-normalized 分母，只作口徑對照；`standalone_core_cycles=241` 來自 RTL 測試，**沒有相應獨立 core 合成的面積或功耗**，不得補造 `P_core/T_core`。現有四版 `rtl_latest.json` 均為 PASS；10 ns CSV 的 02 均為 OK、03 均為 PASS_WITH_SDF_WARNING，且 `gate_03_timing_violation=NO`。
-
-現行證據是 [工作站結果](../工作站結果/2026-11-04_四版10ns/) 中每版一份 `rtl_latest.json` 與一列 10 ns `sweep_summary.csv`；總表見 [四版10ns摘要.csv](../工作站結果/2026-11-04_四版10ns/四版10ns摘要.csv)。**不以掃頻為完成條件**，也不宣稱最佳操作點、Fmax、跨頻率優勢、post-layout 或晶片實測。CSV 不含逐案故障 log、單元面積分解或 critical-path 報告；需要此類證據的詳細主張應刪去或明列未驗證。方法與來源界線見 [工作站操作與資料說明](./工作站操作與資料說明.md)。
-
-## 2 Phase 與並行方式
-
-| Phase | A | B | 依賴 |
+| 工作代號 | 小節 | 內容與證據 | 負責 |
 | --- | --- | --- | --- |
-| P1 | 3.1、5.1、5.5；F2、R2b、R4 | 1.1、1.2、1.3、2.1、2.2、2.3、2.4；F1、R1 | 四版程式與 10 ns 結果已在資料夾；兩人各自完成 |
-| P2 | 3.2、3.3、3.4、4.1、4.4；F3、F5、R2a | 4.2、4.3、4.5、4.6、5.2、5.3、5.4；F4、F6、R3 | 各自依 RTL、PATTERN 與固定 10 ns 方法寫作 |
-| P3 | 6.2、6.3、6.4、6.5；F7、F8、F9、R6 | 6.1、6.6；F10、R5、R7 | 均用現有八份精簡結果；逐案數值缺失時只寫可證明的層級 |
-| P4 | 7.1、7.2、附錄 A；自己的數據敘述修訂 | 1.4、Abstract、附錄 B；按節號整併全文 | 使用同一批 10 ns 結果；整併需兩人交稿，非互相審查 |
+| F1 | 2.1 | SHA3-256 rate/state 與序列化流程示意；由標準與 RTL 畫 | B |
+| F2 | 3.1 | C3 共用 datapath、lane clock gating 與寫回路徑 | A |
+| F3 | 3.2；3.3 引用 | V1 單一 (1612,1600) 與 V2 25 個 (72,64) 編碼器示意 | A |
+| F4 | 3.4 | 單錯直接修正、不可修正錯誤 replay 的事件流程；標注注入邊界 | B |
+| F5 | 4.4 | 135-byte 單 block 的起訖事件、padding、輸出八字與計時範圍 | A |
+| F6 | 5.1 | V1/V2 故障類別與預期回應示意；不畫未保存的逐案波形 | B |
+| F7 | 5.2 | V0/V1/V2 的 10 ns 面積與總功耗比較 | A |
+| F8 | 5.3 | 用已核對的 258-cycle 單 block 結果畫吞吐與 P/T 比較 | A |
+| R1 | 2.3 | ArchHC 與本組比較條件、不同平台及故障範圍 | B |
+| R2 | 3.3 | V1/V2 碼字、校驗位元、修正與 replay 條件 | A |
+| R3 | 4.1 | 版本、top、10 ns 設定及正式來源 | A |
+| R4 | 4.2 | PATTERN 故障位置、bit 數、預期狀態與測試 suite | B |
+| R5 | 4.4 | 面積、功耗、`N_single`、吞吐與 P/T 公式／單位 | A |
+| R6 | 5.1 | 01 suite PASS、02 OK、03 帶警告通過與限制 | B |
+| R7 | 5.3 | 從 `V012_single_block_10ns.csv` 填 V0/V1/V2 的同 10 ns 主結果 | A |
 
-P1–P3 不要求兩人同時開始或完成；A 先做完等待 B 交稿也可以。老師與 AI 負責審查，沒有 A 主／B 輔、相互校驗或互改圖表任務。詳細每一個 n.n 的段落內容與 F/R 要求分別寫在個人手冊。
+原 F9/F10、R8 及 V3 專屬圖表不進本文；不保留空佔位。每張圖與表在對應個人手冊的小節另有內容要求。
 
-## 3 儲存方式
+## 3. Phase 與並行分工
 
-| 資料 | 位置 |
-| --- | --- |
-| 四版 build 專案的正式 overlay 與傳輸 ZIP | `四版本程式/V*/`、`四版本程式/SERIAL320_four_compact.zip` |
-| 四版固定 10 ns 工作站證據 | `工作站結果/2026-11-04_四版10ns/V*/rtl_latest.json`、`V*/results/sweep/sweep_summary.csv`、`四版10ns摘要.csv` |
-| 原論文、歷史參考、方法查核 | `參考資料/`；歷史數字不併入新主結果 |
-| A 正文與圖表 | `personA工作空間/段落/`、`圖表/` |
-| B 正文與圖表 | `personB工作空間/段落/`、`圖表/` |
-| 說明與英文 Word 骨架 | `分工說明與模板/` |
-| 合併稿 | `論文定稿/` |
+| Phase | A | B | 相依關係 |
+| --- | --- | --- | --- |
+| P1 | 3.1、4.1、4.4；F2/F5、R3/R5。引用已保存的 258-cycle 單 block 計算欄位 | 1.1–1.3、2.1–2.3；F1、R1。整理 ArchHC 與保護模型 | 可獨立開始，正式 `N_single` 已到齊 |
+| P2 | 3.2–3.3；F3、R2 | 3.4、4.2–4.3、4.5；F4、R4 | 各編自己的 `.tex`；共同採用同一故障邊界定義 |
+| P3 | 5.2–5.4；F7/F8、R7；直接使用已保存的三版主表與各版原始週期列 | 5.1；F6、R6；只用保存的 suite-level 證據 | 可並行；不安排互相驗收 |
+| P4 | 6.1–6.2、Appendix A，整合自己的圖表引用 | Abstract、Keywords、Appendix B，整合自己的引用與文獻 | 兩人各自收尾，老師與 AI 做校對 |
 
-不建立 T01–T12、分 Phase 空白資料夾或逐週期合成副本。四版程式包與精簡結果已存在；圖表用 CSV 與明示的 RTL／PATTERN 測試內容製作，缺少的逐案 log 或面積分解不得推定為已有。
+原始 RTL、工作站結果與參考文獻仍留本地；Overleaf 專案只放稿件、圖片、表格與 bibliography。不要把製程庫、netlist、個人帳密或大型 sweep 目錄上傳 Overleaf。

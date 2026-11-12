@@ -1,0 +1,13 @@
+[INFO] Python executable: /usr/bin/python
+[INFO] V2_Lane64_SECDED_Replay: normal
+[PASS] normal
+[INFO] V2_Lane64_SECDED_Replay: ft
+[PASS] ft
+[INFO] V2_Lane64_SECDED_Replay: cross_lane
+[PASS] cross_lane
+[INFO] V2_Lane64_SECDED_Replay: hamming_unit
+[PASS] hamming_unit
+[INFO] V2_Lane64_SECDED_Replay: core
+[PASS] core
+[SUCCESS] Complete RTL suite passed!
+/mnt/newNAS/home/UnderGraduate2/2026/113511153/SHA3_undergraduate_research/project_run/V2_Lane64_SECDED_Replay/rtl_latest.json
