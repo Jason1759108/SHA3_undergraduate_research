@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "expected_rejections": 41,
+  "pynq": "2.5 original parser and DMA; MMIO/Overlay/allocate mocked",
+  "authored_notebook_execution": "MOCK ONLY, not board acceptance",
+  "hwh_sha256": "68bdba195a4db3b5e37159883492394ea852a921acec854c541c6603471577e3",
+  "source_sha256": {
+    "python/trng_collect.py": "c0a9b099cc36f72b057a48a3bfc896157973fcf3942eb054de901f2f37d423a3",
+    "python/trng_health.py": "cb8a22b0d0355848b31e58fb5971f64315256ca2523d7e138bd3308edecd718f",
+    "python/TRNG_Integrated_Bringup.ipynb": "a18b87777a0987680bae466da722b13435c8de72813b58a93aa0bccd05e19d5d",
+    "python/trng_pynq.py": "c972d84213442af417de563a12ef8878755cf0bfcff4a90fb5c8ba42a28080c4",
+    "python/trng_sha3.py": "02a559ed0e2fefce3416b8fd798082286a8863e9da8453a27a565cccc16f623d",
+    "sim/check_host.py": "bad560f88ca497f1568add088f5d4c7a30c05703dc14ca9d88c12e3fe0fd131d",
+    "sim/review_board_capture.py": "8f485c63d7570869a08c961bc7a1fbd42719af3844e75cff610a73b4f1f462a7"
+  }
+}

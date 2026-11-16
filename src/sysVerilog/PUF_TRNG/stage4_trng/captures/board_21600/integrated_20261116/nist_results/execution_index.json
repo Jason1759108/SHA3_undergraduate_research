@@ -1,0 +1,236 @@
+[
+  {
+    "label": "joint",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\raw_joint_concat.bin",
+      "8"
+    ],
+    "returncode": 0,
+    "seconds": 10.56483507156372
+  },
+  {
+    "label": "channel_0",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\raw_channel_0.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.45418477058410645
+  },
+  {
+    "label": "channel_1",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\raw_channel_1.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.45044374465942383
+  },
+  {
+    "label": "channel_2",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\raw_channel_2.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.463090181350708
+  },
+  {
+    "label": "channel_3",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\raw_channel_3.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.43395352363586426
+  },
+  {
+    "label": "channel_4",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\raw_channel_4.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.4654819965362549
+  },
+  {
+    "label": "channel_5",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\raw_channel_5.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.459658145904541
+  },
+  {
+    "label": "channel_6",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\raw_channel_6.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.4315969944000244
+  },
+  {
+    "label": "channel_7",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_non_iid.exe",
+      "-i",
+      "-a",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\raw_channel_7.bin",
+      "1"
+    ],
+    "returncode": 0,
+    "seconds": 0.43523502349853516
+  },
+  {
+    "label": "restart_joint",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\restart_joint_1000x1000.bin",
+      "8",
+      "7.092671388495397"
+    ],
+    "returncode": 0,
+    "seconds": 20.921217918395996
+  },
+  {
+    "label": "restart_channel_0",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\restart_channel_0.bin",
+      "1",
+      "0.8669310562561852"
+    ],
+    "returncode": 0,
+    "seconds": 16.386462450027466
+  },
+  {
+    "label": "restart_channel_1",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\restart_channel_1.bin",
+      "1",
+      "0.7588949364204342"
+    ],
+    "returncode": 0,
+    "seconds": 15.552000999450684
+  },
+  {
+    "label": "restart_channel_2",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\restart_channel_2.bin",
+      "1",
+      "0.8284910642905698"
+    ],
+    "returncode": 0,
+    "seconds": 16.30838370323181
+  },
+  {
+    "label": "restart_channel_3",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\restart_channel_3.bin",
+      "1",
+      "0.8510551436382526"
+    ],
+    "returncode": 0,
+    "seconds": 16.627212047576904
+  },
+  {
+    "label": "restart_channel_4",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\restart_channel_4.bin",
+      "1",
+      "0.9237970725151818"
+    ],
+    "returncode": 0,
+    "seconds": 17.091327667236328
+  },
+  {
+    "label": "restart_channel_5",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\restart_channel_5.bin",
+      "1",
+      "0.7697914557317467"
+    ],
+    "returncode": 0,
+    "seconds": 15.965192556381226
+  },
+  {
+    "label": "restart_channel_6",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\restart_channel_6.bin",
+      "1",
+      "0.7648282198840358"
+    ],
+    "returncode": 0,
+    "seconds": 16.0764741897583
+  },
+  {
+    "label": "restart_channel_7",
+    "command": [
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage2_entropy\\build\\nist_native\\ea_restart_windows.exe",
+      "-n",
+      "-vv",
+      "D:\\C++\\SHA3_undergraduate_research\\src\\sysVerilog\\PUF_TRNG\\stage4_trng\\build\\analysis_input\\integrated_20261116\\restart_channel_7.bin",
+      "1",
+      "0.7606943120367498"
+    ],
+    "returncode": 0,
+    "seconds": 16.45431923866272
+  }
+]

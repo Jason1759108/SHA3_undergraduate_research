@@ -1,0 +1,16 @@
+{
+  "experiment_date": "2026-11-16",
+  "board_id": "21600",
+  "build_id": "trng-integrated-20261115T162306Z",
+  "known_message_sha3_comparisons": 34,
+  "functional_batches": 16,
+  "assessment_batches": 1000,
+  "all_1016_saved_batch_digests_recomputed_and_matched": true,
+  "ro_off_at_end": true,
+  "both_dma_halted_at_end": true,
+  "retained_joint_statistical_estimate": 7.092671,
+  "validated_entropy_credit": null,
+  "entropy_certified": false,
+  "status": "PASS",
+  "evidence": "captures/board_21600/integrated_20261116/assessment_summary.json"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS_PREPARATION",
+  "mode": "single_sequence_pilot",
+  "target_bits": 1000000,
+  "fresh_hardware_batches_required": 3907,
+  "real_board_data_received": false,
+  "addon_zip_sha256": "31eae0061767fa7168656eec4a278c8c55ebdbec4942eea51a197b18618b034d",
+  "base_release_unchanged": true,
+  "tool_reference_controls": "PASS: 16 Appendix B values, ASCII/binary equivalence, zero negative control",
+  "collection_mock_test": "PASS: complete authored notebook, alarm/mismatch/tamper rejection"
+}

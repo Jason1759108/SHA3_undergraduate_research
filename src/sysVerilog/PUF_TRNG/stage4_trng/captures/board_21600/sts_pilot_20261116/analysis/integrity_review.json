@@ -1,0 +1,11 @@
+{
+  "status": "PASS_PILOT_EVIDENCE",
+  "batches": 3907,
+  "fpga_digests_recomputed": 3907,
+  "tested_bits": 1000000,
+  "board_id": "21600",
+  "experiment_date": "2026-11-16",
+  "build_id": "trng-integrated-20261115T162306Z",
+  "archive_sha256": "fa03e0fb16e17ae1291e36c324476a1766c98c9b0e950d9153438742dbab70b8",
+  "entropy_certified": false
+}

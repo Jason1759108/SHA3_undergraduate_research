@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "appendix_b_e_reference_values_checked": 16,
+  "absolute_tolerance": 2e-06,
+  "reference_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-22r1a.pdf",
+  "reference_pages": "B-2, 1,000,000-bit e sample",
+  "ascii_binary_pvalue_lists_identical": true,
+  "zero_input_frequency_and_runs_rejected": true,
+  "inapplicable_excursions_preserved_as_NA": true,
+  "source_unmodified_verified_against_official_zip": true,
+  "exe_sha256": "2a2518f19762ed3b60aa30d83be730cca4986560f1744784f8dced7688a858aa"
+}

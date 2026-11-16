@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "drc": {
+    "LUTLP-2": {
+      "severity": "Warning",
+      "count": 8
+    },
+    "PDCN-1569": {
+      "severity": "Warning",
+      "count": 3
+    },
+    "REQP-1839": {
+      "severity": "Warning",
+      "count": 8
+    },
+    "RTSTAT-10": {
+      "severity": "Warning",
+      "count": 1
+    },
+    "REQP-181": {
+      "severity": "Advisory",
+      "count": 2
+    }
+  },
+  "methodology": {
+    "LUTAR-1": {
+      "severity": "Warning",
+      "count": 4
+    },
+    "TIMING-23": {
+      "severity": "Warning",
+      "count": 8
+    },
+    "XDCB-5": {
+      "severity": "Warning",
+      "count": 1
+    }
+  },
+  "vendor_drc_matches_previous_sha3": true,
+  "note": "Warnings retained, not suppressed. RO loops intentional; vendor FIFO/reset warnings remain a residual implementation caveat. Stop DMA before reconfiguration and validate on board."
+}

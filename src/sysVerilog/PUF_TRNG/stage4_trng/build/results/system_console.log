@@ -1,0 +1,103 @@
+mory/hdl/xpm_memory.sv Line: 522
+[2000] : *ZYNQ_VIP_INFO : Setting Debug Level Info as 0
+[2000] : *ZYNQ_VIP_INFO : Setting Stop On Error as 1
+                2020 else checking line ......1
+PASS full BD peripheral and interconnect resets release
+PASS PS GP0 MMIO responds and both DMA channels start
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=0 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=1 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=2 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=3 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=4 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=5 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=6 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=7 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=8 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=9 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=10 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=11 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=12 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=13 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=14 TX_words=105 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=15 TX_words=280 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=16 TX_words=1085 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=17 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=18 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=19 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=20 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=21 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=22 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=23 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=24 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=25 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=26 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=27 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=28 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=29 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=30 TX_words=70 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=31 TX_words=105 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=32 TX_words=280 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=33 TX_words=1085 PS-DDR-DMA-SHA3-HP0
+PASS DMA complete TX=00001002 RX=00001002
+PASS INTEGRATED capture 1024 actual RAM bytes -> DMA -> SHA3 -> checked HP0 digest
+PASS DMA complete TX=00001002 RX=00001002
+PASS INTEGRATED capture 1024 actual RAM bytes -> DMA -> SHA3 -> checked HP0 digest
+PASS DMA complete TX=00001002 RX=00001002
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=1 TX_words=35 PS-DDR-DMA-SHA3-HP0
+PASS DMA channels halt before PL reconfiguration
+PASS full BD peripheral and interconnect resets release
+PASS PS GP0 MMIO responds and both DMA channels start
+PASS DMA complete TX=00001002 RX=00001002
+PASS SYSTEM case=1 TX_words=35 PS-DDR-DMA-SHA3-HP0
+SUCCESS INTEGRATED SYSTEM source startup RCT APT abort RAM DMA SHA3 HP0 reset recovery
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+Executing Axi4 End Of Simulation checks
+$finish called at time : 8588580 ns : File "D:/C++/SHA3_undergraduate_research/src/sysVerilog/PUF_TRNG/stage4_trng/sim/tb_trng_system.sv" Line 266
+run: Time (s): cpu = 00:00:03 ; elapsed = 00:05:30 . Memory (MB): peak = 253.090 ; gain = 0.000
+## quit
+INFO: xsimkernel Simulation Memory Usage: 1007656 KB (Peak: 1007656 KB), Simulation CPU Usage: 324358 ms
+INFO: [Common 17-206] Exiting xsim at Mon Nov 16 00:07:12 2026...
+
+Recorded D:\C++\SHA3_undergraduate_research\src\sysVerilog\PUF_TRNG\stage4_trng\build\system_sim_result.json

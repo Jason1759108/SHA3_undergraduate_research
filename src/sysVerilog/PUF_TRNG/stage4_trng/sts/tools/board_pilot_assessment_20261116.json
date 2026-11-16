@@ -1,0 +1,26 @@
+{
+  "status": "SINGLE_SEQUENCE_PILOT_COMPLETED_WITH_ONE_LOW_PVALUE",
+  "experiment_date": "2026-11-16",
+  "board_id": "21600",
+  "build_id": "trng-integrated-20261115T162306Z",
+  "hardware_sha3_batches": 3907,
+  "tested_bits": 1000000,
+  "sequences": 1,
+  "test_families_applicable": 15,
+  "pvalue_components": 188,
+  "components_at_or_above_alpha": 187,
+  "low_p_components": [
+    {
+      "family": "NonOverlappingTemplate",
+      "component_index_zero_based": 97,
+      "component_number_one_based": 98,
+      "p_value": 0.004706,
+      "template": "110000010"
+    }
+  ],
+  "all_components_at_or_above_alpha": false,
+  "multi_sequence_pass_proportion_assessed": false,
+  "pvalue_uniformity_assessed": false,
+  "entropy_certified": false,
+  "evidence": "captures/board_21600/sts_pilot_20261116/REVIEW.md"
+}

@@ -1,0 +1,354 @@
+OFFLINE SOFTWARE MOCK TEST ONLY - NO FPGA/BOARD WAS USED
+PASS original PYNQ 2.5 parser: TWO IPs, DMA hierarchy and 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+PASS SHA3 empty 0
+PASS SHA3 abc 3
+PASS SHA3 pattern_1 1
+PASS SHA3 pattern_3 3
+PASS SHA3 pattern_4 4
+PASS SHA3 pattern_7 7
+PASS SHA3 pattern_31 31
+PASS SHA3 pattern_32 32
+PASS SHA3 pattern_64 64
+PASS SHA3 pattern_135 135
+PASS SHA3 pattern_136 136
+PASS SHA3 pattern_137 137
+PASS SHA3 pattern_271 271
+PASS SHA3 pattern_272 272
+PASS SHA3 pattern_273 273
+PASS SHA3 pattern_1000 1000
+PASS SHA3 pattern_4096 4096
+PASS SHA3 empty 0
+PASS SHA3 abc 3
+PASS SHA3 pattern_1 1
+PASS SHA3 pattern_3 3
+PASS SHA3 pattern_4 4
+PASS SHA3 pattern_7 7
+PASS SHA3 pattern_31 31
+PASS SHA3 pattern_32 32
+PASS SHA3 pattern_64 64
+PASS SHA3 pattern_135 135
+PASS SHA3 pattern_136 136
+PASS SHA3 pattern_137 137
+PASS SHA3 pattern_271 271
+PASS SHA3 pattern_272 272
+PASS SHA3 pattern_273 273
+PASS SHA3 pattern_1000 1000
+PASS SHA3 pattern_4096 4096
+SUCCESS 34 known-message FPGA SHA3 comparisons
+PASS shared overlay downloaded ONCE; original DMA transfers; 34 KAT plus repeated generate
+PASS integrated batches 2/2; RO OFF after each batch
+Saved evidence: C:\Users\0milk\AppData\Local\Packages\openai.codex_2p2nqsd0c76g0\AC\#!sandbox.{192d8efe-12ee-4aba-87b8-390f463c4397}\Temp\tmpfbe5y_03\results\2026-11-15_20261115T162234Z_a181b5cf.zip
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+PASS invalid/startup/RCT/APT/count cases reject BEFORE RAM/DMA; capture timeout aborts
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+PASS wrong digest/status/length/DMA error/timeout latch; stuck-stop NEVER frees/reloads; explicit recovery
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+PASS allocation ownership, closed session, driver tamper and clock/reset rejection before download
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+Saved evidence: C:\Users\0milk\AppData\Local\Packages\openai.codex_2p2nqsd0c76g0\AC\#!sandbox.{192d8efe-12ee-4aba-87b8-390f463c4397}\Temp\tmpfbe5y_03\failed\2026-11-16_20261115T162234Z_f224f943.zip
+PYNQ 2.5 Python 3.12.4
+kernel OK
+{
+  "build_id": "mock-only",
+  "clock_mhz": 25,
+  "entropy_credit_validated": false,
+  "certified": false
+}
+Board: 21600 Experiment: 2026-11-16
+Verified release; downloading ONE integrated overlay (RO OFF)
+Health source and SHA3 ready at 25 MHz
+{'status': 0, 'count': 0, 'ro_enable': 0, 'fault_mask': 0, 'rct_mask': 0, 'apt_mask': 0, 'observed': 0, 'startup_seen': 0}
+PASS SHA3 empty 0
+PASS SHA3 abc 3
+PASS SHA3 pattern_1 1
+PASS SHA3 pattern_3 3
+PASS SHA3 pattern_4 4
+PASS SHA3 pattern_7 7
+PASS SHA3 pattern_31 31
+PASS SHA3 pattern_32 32
+PASS SHA3 pattern_64 64
+PASS SHA3 pattern_135 135
+PASS SHA3 pattern_136 136
+PASS SHA3 pattern_137 137
+PASS SHA3 pattern_271 271
+PASS SHA3 pattern_272 272
+PASS SHA3 pattern_273 273
+PASS SHA3 pattern_1000 1000
+PASS SHA3 pattern_4096 4096
+PASS SHA3 empty 0
+PASS SHA3 abc 3
+PASS SHA3 pattern_1 1
+PASS SHA3 pattern_3 3
+PASS SHA3 pattern_4 4
+PASS SHA3 pattern_7 7
+PASS SHA3 pattern_31 31
+PASS SHA3 pattern_32 32
+PASS SHA3 pattern_64 64
+PASS SHA3 pattern_135 135
+PASS SHA3 pattern_136 136
+PASS SHA3 pattern_137 137
+PASS SHA3 pattern_271 271
+PASS SHA3 pattern_272 272
+PASS SHA3 pattern_273 273
+PASS SHA3 pattern_1000 1000
+PASS SHA3 pattern_4096 4096
+SUCCESS 34 known-message FPGA SHA3 comparisons
+PASS integrated batches 16/16; RO OFF after each batch
+Saved evidence: trng_results\2026-11-16_20261115T162234Z_16138d96.zip
+{
+  "archive": "trng_results\\2026-11-16_20261115T162234Z_16138d96.zip",
+  "summary": {
+    "board_id": "21600",
+    "experiment_date": "2026-11-16",
+    "board_utc_timestamp": "20261115T162234Z_16138d96",
+    "board_clock_may_be_wrong": true,
+    "build_id": "mock-only",
+    "requested_batches": 16,
+    "divider": 512,
+    "status": "PASS_FUNCTIONAL",
+    "certified": false,
+    "entropy_credit_validated": false,
+    "note": "RO restarts per batch; startup 1024 discarded; payload 1024 retained. PS bridges raw bytes to FPGA SHA3.",
+    "completed_batches": 16,
+    "raw_bytes": 16384,
+    "digest_bytes": 512,
+    "duplicate_raw_batches": 15,
+    "duplicate_digests": 15,
+    "all_hardware_digests_match_python": true,
+    "health_faults": 0,
+    "final_health": {
+      "status": 194,
+      "count": 1024,
+      "ro_enable": 0,
+      "fault_mask": 0,
+      "rct_mask": 0,
+      "apt_mask": 0,
+      "observed": 2048,
+      "startup_seen": 1024
+    },
+    "datasets": {
+      "conditioned_sha3_256.bin": {
+        "bytes": 512,
+        "sha256": "6f3172c771d027b75b82cde5231ae3d40ac9303ecc8cc3887b74cef029b5d310"
+      },
+      "raw_channel_0.bin": {
+        "bytes": 16384,
+        "sha256": "0063e7778d1d45f50f024fc778f0e8b74627c46a13e02107d93e0601c71db10b"
+      },
+      "raw_channel_1.bin": {
+        "bytes": 16384,
+        "sha256": "09e1fef6b926c541dc102c0c4d73664119b06684d31e7d970db3495b74a8a9b8"
+      },
+      "raw_channel_2.bin": {
+        "bytes": 16384,
+        "sha256": "8528f9554a1ed646d6a80cca09db2c46a7dd711788d8f3d064b558fd0381bfe6"
+      },
+      "raw_channel_3.bin": {
+        "bytes": 16384,
+        "sha256": "f852f7a7ccc8bcb4c300b1a8234bcb9534111ed84ce8d6fbeddb2c558bd9308e"
+      },
+      "raw_channel_4.bin": {
+        "bytes": 16384,
+        "sha256": "b18920dd9ed2d219bfc6d44af05837e6397da6a87a27fed2fbc6c190af6ba03a"
+      },
+      "raw_channel_5.bin": {
+        "bytes": 16384,
+        "sha256": "4447283a48d5b7af195b169d040db0553880011c145ccd3f586f3777a46c0703"
+      },
+      "raw_channel_6.bin": {
+        "bytes": 16384,
+        "sha256": "efb705ceda15dd897de9bbde9c1c206f8e9f089e4c80f8c176c1d3ecea164449"
+      },
+      "raw_channel_7.bin": {
+        "bytes": 16384,
+        "sha256": "0fb88ada3cd16938874052f1dd17f562c36628df6f3987824176a32474d91c8c"
+      },
+      "raw_joint_concat.bin": {
+        "bytes": 16384,
+        "sha256": "a8c7ef11b44f99d24ca05a81a5cee1be9ed05f4ea2f12df3b83bc2b90e851aa3"
+      }
+    }
+  }
+}
+PASS integrated batches 16/1000; RO OFF after each batch
+PASS integrated batches 32/1000; RO OFF after each batch
+PASS integrated batches 48/1000; RO OFF after each batch
+PASS integrated batches 64/1000; RO OFF after each batch
+PASS integrated batches 80/1000; RO OFF after each batch
+PASS integrated batches 96/1000; RO OFF after each batch
+PASS integrated batches 112/1000; RO OFF after each batch
+PASS integrated batches 128/1000; RO OFF after each batch
+PASS integrated batches 144/1000; RO OFF after each batch
+PASS integrated batches 160/1000; RO OFF after each batch
+PASS integrated batches 176/1000; RO OFF after each batch
+PASS integrated batches 192/1000; RO OFF after each batch
+PASS integrated batches 208/1000; RO OFF after each batch
+PASS integrated batches 224/1000; RO OFF after each batch
+PASS integrated batches 240/1000; RO OFF after each batch
+PASS integrated batches 256/1000; RO OFF after each batch
+PASS integrated batches 272/1000; RO OFF after each batch
+PASS integrated batches 288/1000; RO OFF after each batch
+PASS integrated batches 304/1000; RO OFF after each batch
+PASS integrated batches 320/1000; RO OFF after each batch
+PASS integrated batches 336/1000; RO OFF after each batch
+PASS integrated batches 352/1000; RO OFF after each batch
+PASS integrated batches 368/1000; RO OFF after each batch
+PASS integrated batches 384/1000; RO OFF after each batch
+PASS integrated batches 400/1000; RO OFF after each batch
+PASS integrated batches 416/1000; RO OFF after each batch
+PASS integrated batches 432/1000; RO OFF after each batch
+PASS integrated batches 448/1000; RO OFF after each batch
+PASS integrated batches 464/1000; RO OFF after each batch
+PASS integrated batches 480/1000; RO OFF after each batch
+PASS integrated batches 496/1000; RO OFF after each batch
+PASS integrated batches 512/1000; RO OFF after each batch
+PASS integrated batches 528/1000; RO OFF after each batch
+PASS integrated batches 544/1000; RO OFF after each batch
+PASS integrated batches 560/1000; RO OFF after each batch
+PASS integrated batches 576/1000; RO OFF after each batch
+PASS integrated batches 592/1000; RO OFF after each batch
+PASS integrated batches 608/1000; RO OFF after each batch
+PASS integrated batches 624/1000; RO OFF after each batch
+PASS integrated batches 640/1000; RO OFF after each batch
+PASS integrated batches 656/1000; RO OFF after each batch
+PASS integrated batches 672/1000; RO OFF after each batch
+PASS integrated batches 688/1000; RO OFF after each batch
+PASS integrated batches 704/1000; RO OFF after each batch
+PASS integrated batches 720/1000; RO OFF after each batch
+PASS integrated batches 736/1000; RO OFF after each batch
+PASS integrated batches 752/1000; RO OFF after each batch
+PASS integrated batches 768/1000; RO OFF after each batch
+PASS integrated batches 784/1000; RO OFF after each batch
+PASS integrated batches 800/1000; RO OFF after each batch
+PASS integrated batches 816/1000; RO OFF after each batch
+PASS integrated batches 832/1000; RO OFF after each batch
+PASS integrated batches 848/1000; RO OFF after each batch
+PASS integrated batches 864/1000; RO OFF after each batch
+PASS integrated batches 880/1000; RO OFF after each batch
+PASS integrated batches 896/1000; RO OFF after each batch
+PASS integrated batches 912/1000; RO OFF after each batch
+PASS integrated batches 928/1000; RO OFF after each batch
+PASS integrated batches 944/1000; RO OFF after each batch
+PASS integrated batches 960/1000; RO OFF after each batch
+PASS integrated batches 976/1000; RO OFF after each batch
+PASS integrated batches 992/1000; RO OFF after each batch
+PASS integrated batches 1000/1000; RO OFF after each batch
+Saved evidence: trng_results\2026-11-16_20261115T162235Z_611ce732.zip
+{
+  "archive": "trng_results\\2026-11-16_20261115T162235Z_611ce732.zip",
+  "summary": {
+    "board_id": "21600",
+    "experiment_date": "2026-11-16",
+    "board_utc_timestamp": "20261115T162235Z_611ce732",
+    "board_clock_may_be_wrong": true,
+    "build_id": "mock-only",
+    "requested_batches": 1000,
+    "divider": 512,
+    "status": "PASS_FUNCTIONAL",
+    "certified": false,
+    "entropy_credit_validated": false,
+    "note": "RO restarts per batch; startup 1024 discarded; payload 1024 retained. PS bridges raw bytes to FPGA SHA3.",
+    "completed_batches": 1000,
+    "raw_bytes": 1024000,
+    "digest_bytes": 32000,
+    "duplicate_raw_batches": 999,
+    "duplicate_digests": 999,
+    "all_hardware_digests_match_python": true,
+    "health_faults": 0,
+    "final_health": {
+      "status": 194,
+      "count": 1024,
+      "ro_enable": 0,
+      "fault_mask": 0,
+      "rct_mask": 0,
+      "apt_mask": 0,
+      "observed": 2048,
+      "startup_seen": 1024
+    },
+    "datasets": {
+      "conditioned_sha3_256.bin": {
+        "bytes": 32000,
+        "sha256": "cd6829a519da27c79a2f39cb57d0d2f16755e73b0e415b6f39e168a6540a236d"
+      },
+      "raw_channel_0.bin": {
+        "bytes": 1024000,
+        "sha256": "47c69e6f4f4ae67766f123a82f11756b6a8db6141a628fd24186540bd3dfeae4"
+      },
+      "raw_channel_1.bin": {
+        "bytes": 1024000,
+        "sha256": "0b7227ee556a91cf4fe5b50f114501cdd407ecfcfbc7eb3696e34e1b5a9ee7ca"
+      },
+      "raw_channel_2.bin": {
+        "bytes": 1024000,
+        "sha256": "1e68284c1ec13ef06ba6f79a2444a54bf2b2c20e0341e59413767db59acb45d1"
+      },
+      "raw_channel_3.bin": {
+        "bytes": 1024000,
+        "sha256": "f9e3744433e6af1a3ac561d826d5fc21e9859328bd70e263b27db20f1ede02be"
+      },
+      "raw_channel_4.bin": {
+        "bytes": 1024000,
+        "sha256": "6351300bc73d88da8dccf3d95172954c2c3aebe56a12a07758b27229f47818f4"
+      },
+      "raw_channel_5.bin": {
+        "bytes": 1024000,
+        "sha256": "5bdbeb03d45340081df7eed3ece0e303ade04945f8673ef2b38c2a770f2c4fc2"
+      },
+      "raw_channel_6.bin": {
+        "bytes": 1024000,
+        "sha256": "584f5ff895f30fc3f8912899110b99ecceb94fd839037e29fb060f1b607f1a6e"
+      },
+      "raw_channel_7.bin": {
+        "bytes": 1024000,
+        "sha256": "a8b424f55ba99eb2fd645cd414d90a94240693e2918663e86936541b2808c4c3"
+      },
+      "raw_joint_concat.bin": {
+        "bytes": 1024000,
+        "sha256": "3f2c03b2b1fb50a72c7d4ba9289fe0610c2232101228de5439d833ffb68b9878"
+      },
+      "restart_joint_1000x1000.bin": {
+        "bytes": 1000000,
+        "sha256": "ad961c3bc4b967a27b171653255d035af1c42ff08632dd45b0b7bcfdedcd7a55"
+      }
+    }
+  }
+}
+Final health: {'status': 194, 'count': 1024, 'ro_enable': 0, 'fault_mask': 0, 'rct_mask': 0, 'apt_mask': 0, 'observed': 2048, 'startup_seen': 1024}
+DMA halted: True True
+SUCCESS INTEGRATED BOARD FUNCTIONAL ACCEPTANCE; entropy assessment pending
+PASS failed collection evidence and complete authored notebook with 1000-batch/restart export (MOCK)
+SUCCESS INTEGRATED HOST 41 expected rejections

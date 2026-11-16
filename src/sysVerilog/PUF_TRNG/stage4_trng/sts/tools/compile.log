@@ -1,0 +1,7 @@
+D:\C++\SHA3_undergraduate_research\src\sysVerilog\PUF_TRNG\stage4_trng\sts\build\upstream\sts-2.1.2\sts-2.1.2\src\genutils.c: In function 'DivMod':
+D:\C++\SHA3_undergraduate_research\src\sysVerilog\PUF_TRNG\stage4_trng\sts\build\upstream\sts-2.1.2\sts-2.1.2\src\genutils.c:402:25: warning: 'memset' specified size between 18446744071562067969 and 18446744073709551615 exceeds maximum object size 9223372036854775807 [-Wstringop-overflow=]
+  402 |                         memset(ts, 0x00, lgth_x+1);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\C++\SHA3_undergraduate_research\src\sysVerilog\PUF_TRNG\stage4_trng\sts\build\upstream\sts-2.1.2\sts-2.1.2\src\genutils.c:402:25: warning: 'memset' specified size between 18446744071562067969 and 18446744073709551615 exceeds maximum object size 9223372036854775807 [-Wstringop-overflow=]
+D:\C++\SHA3_undergraduate_research\src\sysVerilog\PUF_TRNG\stage4_trng\sts\build\upstream\sts-2.1.2\sts-2.1.2\src\genutils.c:402:25: warning: 'memset' specified size between 18446744071562067969 and 18446744073709551615 exceeds maximum object size 9223372036854775807 [-Wstringop-overflow=]
+D:\C++\SHA3_undergraduate_research\src\sysVerilog\PUF_TRNG\stage4_trng\sts\build\upstream\sts-2.1.2\sts-2.1.2\src\genutils.c:402:25: warning: 'memset' specified size between 18446744071562067969 and 18446744073709551615 exceeds maximum object size 9223372036854775807 [-Wstringop-overflow=]

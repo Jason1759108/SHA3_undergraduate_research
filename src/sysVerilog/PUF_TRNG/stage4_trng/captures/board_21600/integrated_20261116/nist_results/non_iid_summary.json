@@ -1,0 +1,74 @@
+[
+  {
+    "label": "joint",
+    "bits_per_symbol": 8,
+    "samples": 1024000,
+    "initial_statistical_estimate": 7.092671388495397,
+    "sha256": "349a5dc6805b1ee5c456be14ff06b016d3fb7dabc6e7eb0dbce8ff02b0a64f45",
+    "not_validated_entropy_credit": true
+  },
+  {
+    "label": "channel_0",
+    "bits_per_symbol": 1,
+    "samples": 1024000,
+    "initial_statistical_estimate": 0.8669310562561852,
+    "sha256": "af64767c49075b6c4251767ccc313f5977f7d651f8c5b2d524650711bbf4cada",
+    "not_validated_entropy_credit": true
+  },
+  {
+    "label": "channel_1",
+    "bits_per_symbol": 1,
+    "samples": 1024000,
+    "initial_statistical_estimate": 0.7588949364204342,
+    "sha256": "874ea4ab5866ea435bac9b3de8a09ac3e2998ca39bd37107b450fbcc429bf65a",
+    "not_validated_entropy_credit": true
+  },
+  {
+    "label": "channel_2",
+    "bits_per_symbol": 1,
+    "samples": 1024000,
+    "initial_statistical_estimate": 0.8284910642905698,
+    "sha256": "5f33f72a81f03703e9a4c5b147c678de3c5d648f39a543836d02ce642ba7e53c",
+    "not_validated_entropy_credit": true
+  },
+  {
+    "label": "channel_3",
+    "bits_per_symbol": 1,
+    "samples": 1024000,
+    "initial_statistical_estimate": 0.8510551436382526,
+    "sha256": "0483662263053d2e0fa38c0674b225bf7feca1312f0dc82b82df9fdb8a9d8c25",
+    "not_validated_entropy_credit": true
+  },
+  {
+    "label": "channel_4",
+    "bits_per_symbol": 1,
+    "samples": 1024000,
+    "initial_statistical_estimate": 0.9237970725151818,
+    "sha256": "f5ad53a54e80f06befced33be93d5f5842a541b184ec6ac7414f14a91945e37b",
+    "not_validated_entropy_credit": true
+  },
+  {
+    "label": "channel_5",
+    "bits_per_symbol": 1,
+    "samples": 1024000,
+    "initial_statistical_estimate": 0.7697914557317467,
+    "sha256": "a3c5f75a8e2c27d0894d6f89ba9b0832417a38fcf0ac3852d4cd6a39942f0fc0",
+    "not_validated_entropy_credit": true
+  },
+  {
+    "label": "channel_6",
+    "bits_per_symbol": 1,
+    "samples": 1024000,
+    "initial_statistical_estimate": 0.7648282198840358,
+    "sha256": "f8edad51a71aeb015934388cb2115861c3ce10f8096beb4b504a2171618b3763",
+    "not_validated_entropy_credit": true
+  },
+  {
+    "label": "channel_7",
+    "bits_per_symbol": 1,
+    "samples": 1024000,
+    "initial_statistical_estimate": 0.7606943120367498,
+    "sha256": "1af617baeff46f6b2c4b148220dd93c63b08a1c2ec87c4da946409a1f7b75798",
+    "not_validated_entropy_credit": true
+  }
+]

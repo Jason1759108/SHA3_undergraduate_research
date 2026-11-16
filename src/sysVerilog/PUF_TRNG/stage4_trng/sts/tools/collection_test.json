@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "mock_only": true,
+  "authored_notebook_executed": true,
+  "fresh_mock_digests": 3907,
+  "source_and_digest_trace_recomputed": true,
+  "fault_no_retry": true,
+  "raw_and_output_tampering_rejected": true,
+  "expected_rejections": 5,
+  "source_sha256": {
+    "python/trng_sts_collect.py": "991c2bb2f96f984325d9a4baa6776ea9449d40d6a251d5ef514d82be51ab99e6",
+    "python/TRNG_STS_Pilot.ipynb": "c32bb3d791b537ac1e88e4e7b9150155e16a48b5eacee154987d2e88f3574b90",
+    "python/sts_addon_manifest.json": "572fa61c9b80c8355ba3bb46f12322a5f5aec602a502659499e3b2f9f4983e7a",
+    "review_sts_capture.py": "1d2e9631755742d32ffb90dd769169fcbe20ad299439a3ee906998ebcad4985a",
+    "test_collection.py": "3f27a0a70087508e971f9838590fc7ee2ee412302607c622438c830baf69c058"
+  }
+}

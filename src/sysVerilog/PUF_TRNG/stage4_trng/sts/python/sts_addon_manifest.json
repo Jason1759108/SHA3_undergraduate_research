@@ -1,0 +1,9 @@
+{
+  "mode": "single_sequence_pilot",
+  "target_bits": 1000000,
+  "batches": 3907,
+  "base_build_id": "trng-integrated-20261115T162306Z",
+  "base_release_manifest_sha256": "1a338d1c16e9d61c0a9d70b2b9071926f0b1ffe181ae7dd41c23c603c6d13f29",
+  "collector_sha256": "991c2bb2f96f984325d9a4baa6776ea9449d40d6a251d5ef514d82be51ab99e6",
+  "notebook_excluded_from_immutable_hash": "Jupyter autosave and user-entered board/date"
+}

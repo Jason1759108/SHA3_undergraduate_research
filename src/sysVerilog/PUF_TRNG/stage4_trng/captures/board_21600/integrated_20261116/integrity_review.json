@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "artifacts": {
+    "2026-11-16_20261115T064314Z_8587ef6d.zip": {
+      "bytes": 69655,
+      "sha256": "19190556c31099a1d374cdef36823875e2a5c32d2b013e2c705b89ea9f4cccd0"
+    },
+    "2026-11-16_20261115T064320Z_80de3249.zip": {
+      "bytes": 4963598,
+      "sha256": "0ece6e3e79329c9c18afef77808444583d3dad16a7e4b351c51cdae01ca58c3b"
+    },
+    "TRNG_Integrated_Bringup.ipynb": {
+      "bytes": 21949,
+      "sha256": "c8c548f1a516fee4916f96ca465fa0dee8cdc8ccf5e37a1fd3bc78994c1bf717"
+    }
+  },
+  "collections": {
+    "2026-11-16_20261115T064314Z_8587ef6d.zip": {
+      "status": "PASS_FUNCTIONAL_EVIDENCE",
+      "build_id": "trng-integrated-20261115T162306Z",
+      "board_id": "21600",
+      "experiment_date": "2026-11-16",
+      "batches": 16,
+      "raw_bytes": 16384,
+      "duplicate_raw_batches": 0,
+      "duplicate_digests": 0,
+      "all_saved_digests_match_python": true,
+      "new_layout_entropy_assessment": "PENDING",
+      "entropy_credit_validated": false,
+      "certified": false,
+      "note": "Checks internal consistency of provided evidence; does not authenticate the physical board or prove entropy."
+    },
+    "2026-11-16_20261115T064320Z_80de3249.zip": {
+      "status": "PASS_FUNCTIONAL_EVIDENCE",
+      "build_id": "trng-integrated-20261115T162306Z",
+      "board_id": "21600",
+      "experiment_date": "2026-11-16",
+      "batches": 1000,
+      "raw_bytes": 1024000,
+      "duplicate_raw_batches": 0,
+      "duplicate_digests": 0,
+      "all_saved_digests_match_python": true,
+      "new_layout_entropy_assessment": "PENDING",
+      "entropy_credit_validated": false,
+      "certified": false,
+      "note": "Checks internal consistency of provided evidence; does not authenticate the physical board or prove entropy."
+    }
+  },
+  "notebook": {
+    "executed_code_cells": 8,
+    "errors": 0,
+    "known_message_sha3_passes": 34,
+    "dma_halted": true,
+    "ro_off": true,
+    "source_changes": [
+      {
+        "code_cell": 3,
+        "actual_source": "from datetime import datetime\nboard_id = \"21600\"\nexperiment_date = \"2026-11-16\"\nassert board_id.strip()\ndatetime.strptime(experiment_date, \"%Y-%m-%d\")\nprint(\"Board:\", board_id, \"Experiment:\", experiment_date)"
+      }
+    ]
+  },
+  "recorded_experiment_date": "2026-11-16",
+  "board_clock_inconsistent_with_release_timestamp": true,
+  "clock_note": "Board filenames show 2026-11-15 06:43Z, preceding the release UTC timestamp. Retain user-entered experiment date; do not infer chronology from board clock.",
+  "hardware_fault_injection_performed": false,
+  "entropy_certified": false
+}

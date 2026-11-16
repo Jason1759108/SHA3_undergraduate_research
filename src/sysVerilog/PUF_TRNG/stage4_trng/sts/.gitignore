@@ -1,0 +1,4 @@
+/build/
+/references/*.zip
+__pycache__/
+*.pyc

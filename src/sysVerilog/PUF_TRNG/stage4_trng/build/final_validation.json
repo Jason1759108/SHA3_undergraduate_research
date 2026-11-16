@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "build_id": "trng-integrated-20261115T162306Z",
+  "release_zip_sha256": "f4d9eaa40512eb87679b38aa1cbe9d6037853da0baf3581c88d2b8340a1bc452",
+  "release_files": [
+    "TRNG_Integrated_Bringup.ipynb",
+    "release_manifest.json",
+    "trng_collect.py",
+    "trng_health.py",
+    "trng_pynq.py",
+    "trng_sha3.bit",
+    "trng_sha3.hwh",
+    "trng_sha3.py"
+  ],
+  "physical_audit": {
+    "ro_gates": 8,
+    "ro_inverters": 88,
+    "synchronizer_flops": 16,
+    "wns_ns": 3.442,
+    "whs_ns": 0.031
+  },
+  "checks": [
+    "unit",
+    "normal",
+    "ft",
+    "axis",
+    "system",
+    "host"
+  ],
+  "original_stages_unchanged": true,
+  "reviewed_warnings": {
+    "status": "PASS",
+    "drc": {
+      "LUTLP-2": {
+        "severity": "Warning",
+        "count": 8
+      },
+      "PDCN-1569": {
+        "severity": "Warning",
+        "count": 3
+      },
+      "REQP-1839": {
+        "severity": "Warning",
+        "count": 8
+      },
+      "RTSTAT-10": {
+        "severity": "Warning",
+        "count": 1
+      },
+      "REQP-181": {
+        "severity": "Advisory",
+        "count": 2
+      }
+    },
+    "methodology": {
+      "LUTAR-1": {
+        "severity": "Warning",
+        "count": 4
+      },
+      "TIMING-23": {
+        "severity": "Warning",
+        "count": 8
+      },
+      "XDCB-5": {
+        "severity": "Warning",
+        "count": 1
+      }
+    },
+    "vendor_drc_matches_previous_sha3": true,
+    "note": "Warnings retained, not suppressed. RO loops intentional; vendor FIFO/reset warnings remain a residual implementation caveat. Stop DMA before reconfiguration and validate on board."
+  },
+  "board_acceptance": "PENDING",
+  "new_layout_entropy_assessment": "PENDING"
+}

@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-16",
+  "status": "PASS_DELIVERY_INTEGRITY_CHECK",
+  "checks": {
+    "immutable_release_files": 6,
+    "release_zip_matches_predeployment_validation": true,
+    "frozen_rtl_files": 19,
+    "sts_addon_pins_match": true,
+    "sts_tool_and_all_preserved_sources_match": true,
+    "zip_crc_checked": 6,
+    "sts_original_failure_retained": true,
+    "navigation_links_exist": true,
+    "generated_files_outside_delivery_and_quarantine_ignored": true,
+    "no_stage4_candidate_over_50_MiB": true
+  },
+  "note": "Integrity and packaging checks only; previous hardware/simulation results retained, not rerun; single STS low-P result remains. No Git stage/commit/push."
+}
