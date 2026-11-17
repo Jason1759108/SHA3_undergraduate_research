@@ -1,0 +1,97 @@
+{
+  "accepted_mismatches": 0,
+  "attempts": 1000,
+  "bitmap_hex": "feffffdbfffffbecfdfbe7fbbfbbece97ffec59efc378feed7eff93db7ffeefdbfdddfb9ebefdfff",
+  "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "blocks_of_100": [
+    {
+      "accepted_mismatches": 0,
+      "first": 1,
+      "hardware_rejections": 0,
+      "last": 100,
+      "successful_matching": 100
+    },
+    {
+      "accepted_mismatches": 0,
+      "first": 101,
+      "hardware_rejections": 0,
+      "last": 200,
+      "successful_matching": 100
+    },
+    {
+      "accepted_mismatches": 0,
+      "first": 201,
+      "hardware_rejections": 0,
+      "last": 300,
+      "successful_matching": 100
+    },
+    {
+      "accepted_mismatches": 0,
+      "first": 301,
+      "hardware_rejections": 0,
+      "last": 400,
+      "successful_matching": 100
+    },
+    {
+      "accepted_mismatches": 0,
+      "first": 401,
+      "hardware_rejections": 0,
+      "last": 500,
+      "successful_matching": 100
+    },
+    {
+      "accepted_mismatches": 0,
+      "first": 501,
+      "hardware_rejections": 0,
+      "last": 600,
+      "successful_matching": 100
+    },
+    {
+      "accepted_mismatches": 0,
+      "first": 601,
+      "hardware_rejections": 0,
+      "last": 700,
+      "successful_matching": 100
+    },
+    {
+      "accepted_mismatches": 0,
+      "first": 701,
+      "hardware_rejections": 0,
+      "last": 800,
+      "successful_matching": 100
+    },
+    {
+      "accepted_mismatches": 0,
+      "first": 801,
+      "hardware_rejections": 0,
+      "last": 900,
+      "successful_matching": 100
+    },
+    {
+      "accepted_mismatches": 0,
+      "first": 901,
+      "hardware_rejections": 0,
+      "last": 1000,
+      "successful_matching": 100
+    }
+  ],
+  "board_label": "20100",
+  "corrected_word_distribution": {
+    "0": 1000
+  },
+  "duration_seconds": 1297.8373755095527,
+  "hardware_rejections": 0,
+  "linux_boot_id": "76aacdb7-bf29-48c3-bc3f-4cd82b2861b6",
+  "maximum_attempt_seconds": 1.296743311919272,
+  "median_attempt_seconds": 1.295279265847057,
+  "minimum_attempt_seconds": 1.2946694009006023,
+  "original_registration_hex": "0c45970613cdaaf68f0d215d52224948f33cfa09ac718742f7d709412807861d",
+  "passed": true,
+  "records_verified": true,
+  "rejection_pair_counts": {},
+  "status_counts": {
+    "0": 1000
+  },
+  "successful_matching": 1000,
+  "total_corrected_words": 0
+}

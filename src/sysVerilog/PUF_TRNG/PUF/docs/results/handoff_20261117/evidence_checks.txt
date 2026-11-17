@@ -1,0 +1,43 @@
+{
+  "common_bitmap_20200_refusals": 49,
+  "common_bitmap_all_passed": false,
+  "cross_board_hamming_bits": 72,
+  "cross_board_identities_differ": true,
+  "original_routed_report_checks": {
+    "critical_cdc": false,
+    "expected_gray_cdc": true,
+    "expected_reset_cdc": true,
+    "gray_buses": 640,
+    "hold_failing": 0,
+    "max_bus_skew_ns": 3.323,
+    "min_bus_skew_slack_ns": 4.677,
+    "no_missing_clock": true,
+    "no_unconstrained_internal_endpoints": true,
+    "passed": true,
+    "pulse_failing": 0,
+    "setup_failing": 0,
+    "severe_drc": false,
+    "whs_ns": 0.061,
+    "wns_ns": 0.145,
+    "wpws_ns": 0.5
+  },
+  "own_bitmap_1000": {
+    "20100": {
+      "accepted_mismatches": 0,
+      "attempts": 1000,
+      "hardware_rejections": 0,
+      "successful_matching": 1000,
+      "total_corrected_words": 0
+    },
+    "20200": {
+      "accepted_mismatches": 0,
+      "attempts": 1000,
+      "hardware_rejections": 0,
+      "successful_matching": 1000,
+      "total_corrected_words": 0
+    }
+  },
+  "records_verified": true,
+  "strict_failure_prefix_byte_identical": true,
+  "training_plan_byte_identical": true
+}

@@ -1,0 +1,16 @@
+{
+  "six_sv_files_exact_inverse_rename_match": true,
+  "stimuli_and_assertions_unchanged": true,
+  "rtl_byte_identical": true,
+  "changed_files": {
+    "TESTBED.sv": "TESTBED_PUF_AXI_RO.sv",
+    "PATTERN.sv": "PATTERN_PUF_AXI_RO.sv",
+    "TESTBED_PUF_COUNT.sv": "TESTBED_PUF_CORE_COUNT.sv",
+    "PATTERN_PUF.sv": "PATTERN_PUF_CORE_COUNT.sv",
+    "TESTBED_ECC.sv": "TESTBED_PUF_ECC_SECDED.sv",
+    "PATTERN_ECC.sv": "PATTERN_PUF_ECC_SECDED.sv",
+    "filelist.f": "filelist_puf_axi_ro.f",
+    "filelist_core.f": "filelist_puf_core_count.f",
+    "filelist_ecc.f": "filelist_puf_ecc_secded.f"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "comparison_verified": true,
+  "all_transactions_successful": false,
+  "identities_differ": true,
+  "hamming_distance_bits": 72,
+  "compared_bits": 256,
+  "hamming_distance_percent": 28.125,
+  "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "bitmap_hex": "feebfe3ffff7fbedfdfbe7fbbfbbeced7ffaf1fbbc37836dfbffbb7ff4ffeafd97bfffbdfbefdfff",
+  "common_eligible": 266,
+  "client_date": "2026-11-13",
+  "board_20100": {
+    "candidate_hex": "0c5650309cdaafb478690aea91892220e67fb24cb3a18685df719a04d007861d",
+    "successful": 111,
+    "rejected": 0,
+    "attempts": 111,
+    "stage_results": {
+      "repeat": {
+        "attempts": 100,
+        "accepted": 100,
+        "weak_rejections": 0
+      },
+      "abort-reset": {
+        "attempts": 1,
+        "accepted": 1,
+        "weak_rejections": 0
+      },
+      "same-bitstream-reload": {
+        "attempts": 10,
+        "accepted": 10,
+        "weak_rejections": 0
+      }
+    }
+  },
+  "board_20200": {
+    "candidate_hex": "0e5f79309a48ea2d78e1ca7b95c822be823fa2de70f7cac8ca70120690828c51",
+    "successful": 62,
+    "rejected": 49,
+    "attempts": 111,
+    "stage_results": {
+      "repeat": {
+        "attempts": 100,
+        "accepted": 52,
+        "weak_rejections": 48
+      },
+      "abort-reset": {
+        "attempts": 1,
+        "accepted": 1,
+        "weak_rejections": 0
+      },
+      "same-bitstream-reload": {
+        "attempts": 10,
+        "accepted": 9,
+        "weak_rejections": 1
+      }
+    }
+  },
+  "note": "The two identities differ. The common-bitmap zero-rejection criterion FAILED on 20200; all 49 refusals are retained. Both per-board-bitmap baselines passed 111/111. 20200 continuation includes a diagnostic pause after its first rejection."
+}

@@ -1,0 +1,6 @@
+{
+  "candidate_hex": "0e5f79309a48ea2d78e1ca7b95c822be823fa2de70f7cac8ca70120690828c51",
+  "helper_hex": "de91742a8a6ec12e98e4",
+  "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+  "note": "Experimental PUF reference data, not a production secret store."
+}

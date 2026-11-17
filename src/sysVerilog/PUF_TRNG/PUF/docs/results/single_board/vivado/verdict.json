@@ -1,0 +1,18 @@
+{
+  "wns_ns": 0.145,
+  "setup_failing": 0,
+  "whs_ns": 0.061,
+  "hold_failing": 0,
+  "wpws_ns": 0.5,
+  "pulse_failing": 0,
+  "gray_buses": 640,
+  "max_bus_skew_ns": 3.323,
+  "min_bus_skew_slack_ns": 4.677,
+  "no_missing_clock": true,
+  "no_unconstrained_internal_endpoints": true,
+  "critical_cdc": false,
+  "severe_drc": false,
+  "expected_gray_cdc": true,
+  "expected_reset_cdc": true,
+  "passed": true
+}

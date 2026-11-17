@@ -1,0 +1,23 @@
+[PASS] AXI independent channels, WSTRB, response backpressure, invalid accesses
+[PASS] all 320 diagnostic pair positions via real RO-wave counters
+[PASS] command=0 status=0 corrected=0
+[PASS] command=1 status=6 corrected=0
+[PASS] command=3 status=1 corrected=0
+[PASS] command=256 status=1 corrected=0
+[PASS] command=0 status=7 corrected=0
+[PASS] command=0 status=7 corrected=0
+[PASS] command=0 status=8 corrected=0
+[PASS] command=0 status=9 corrected=0
+[PASS] command=1 status=0 corrected=0
+[PASS] command=1 status=0 corrected=1
+[PASS] command=1 status=5 corrected=0
+[PASS] command=0 status=4 corrected=0
+[PASS] command=0 status=10 corrected=0
+[PASS] command=0 status=11 corrected=0
+[PASS] command=1 status=0 corrected=0
+[PASS] command=1 status=0 corrected=0
+[SUCCESS] PUF256 real-wave/counter/ECC/AXI regression; reset recovery without re-enrollment
+- C:/Users/a0981/Documents/Codex/2026-11-04/puf/work/puf_repository_20261117/sim\PATTERN.sv:161: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 17ms; walltime 368.812 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 10 MB

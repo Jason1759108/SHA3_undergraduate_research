@@ -1,0 +1,23 @@
+{
+  "board_label": "20200",
+  "driver_sha256": "40ea18fdeef2c04a6b47828c02a14c8b3048695bacd3be1dd77ff249e0609f65",
+  "enrollment": {
+    "bitmap_hex": "fdebfe2ffef7fbefd9fefffdffff8dfbfefb99ebbff7e36cfb7daf7ff4fefbfd97b6fbfbf9eeffdb",
+    "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+    "format": "puf256-public-reconstruction-v1",
+    "helper_hex": "daa3b092dab21b2dbc9f",
+    "hwh_sha256": "2cd50c158601bfadd18a1420298a87fee2520f820bcfe0d3da12df59e0a694c2",
+    "note": "No stored key. Helper/bitmap are not authenticated by this prototype.",
+    "warmup_cycles": 1024,
+    "window_cycles": 100000
+  },
+  "expected_key_sha256": "aaa3af481b76f29a9cff45b319db5a2c98c7151c4f759e35e8834671ba505f10",
+  "format": "puf256-own-enrollment-1000-v1",
+  "source_baseline": "results_20261112_235911",
+  "source_sha256": {
+    "enrollment.json": "7baaa470db03f07b433997e8a5abff37e956a8da1efc6817af5890707da4ca28",
+    "environment.json": "9369e817a537b9a9de345d8526f7dd1f58814b18d7eec9dd8f683657e9ad5685",
+    "reconstructions.json": "ecfa11590c6f1e824fb83d3b299ca7fe957b5824381a5d702d745bd0ce959a76",
+    "selection.json": "b0674e57046cca36840d48c3c3a8d67de30e9b50d4544267b01832ac1eacf270"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "complete": true,
+  "requested": 234,
+  "completed": 234,
+  "pending": [],
+  "completed_findings": [
+    {
+      "rule": "LUTAR-1",
+      "severity": "Warning",
+      "description": "LUT drives async reset alert",
+      "count": 1
+    },
+    {
+      "rule": "ULMTCS-2",
+      "severity": "Warning",
+      "description": "Control Sets use limits require reduction",
+      "count": 1
+    },
+    {
+      "rule": "XDCB-1",
+      "severity": "Warning",
+      "description": "Runtime intensive exceptions",
+      "count": 1
+    },
+    {
+      "rule": "TIMING-2",
+      "severity": "Critical Warning",
+      "description": "Invalid primary clock source pin",
+      "count": 640
+    },
+    {
+      "rule": "TIMING-4",
+      "severity": "Critical Warning",
+      "description": "Invalid primary clock redefinition on a clock tree",
+      "count": 640
+    },
+    {
+      "rule": "TIMING-14",
+      "severity": "Critical Warning",
+      "description": "LUT on the clock tree",
+      "count": 640
+    },
+    {
+      "rule": "TIMING-23",
+      "severity": "Warning",
+      "description": "Combinational loop found",
+      "count": 640
+    }
+  ],
+  "unexpected_findings": [],
+  "all_rules_clean": false,
+  "running": false,
+  "state": "complete_with_findings",
+  "source_checkpoint_sha256": "ed2a6e0a4f76d4fe61824b9ae4fd1baaeff36afb9be6b8c1fe6331d55e1bb4dd",
+  "timing_analysis_seconds": 50,
+  "completed_utc": "2026-11-13T07:02:52.259860+00:00",
+  "source_constraints_changed": false,
+  "board_measurements_verified": true,
+  "board_rows": 59392,
+  "note": "All 234 rules completed. Findings retain vendor severities; completion is not a zero-warning PASS.",
+  "analysis_workaround": {
+    "parameter": "sta.enableClockUncertainty",
+    "value": false,
+    "scope": "Read-only methodology on this immutable routed checkpoint; set before open_checkpoint",
+    "validation": "Original user timing commands and rule enablement identical; max paths identical; min endpoints equal or stricter",
+    "path_records": 178766,
+    "stricter_hold_budget_records": 640,
+    "weakened_endpoint_records": 0,
+    "equivalent": false,
+    "conservative": true,
+    "vendor_internal_parameter": true
+  },
+  "timing_methodology_native_elapsed_seconds": 50,
+  "timing_run_with_validation_seconds": 155.171,
+  "board_bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "board_verification": "sample_results/board_20261113/verification.json"
+}

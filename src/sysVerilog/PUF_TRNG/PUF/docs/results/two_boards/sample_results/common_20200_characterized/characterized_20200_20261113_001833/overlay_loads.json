@@ -1,0 +1,145 @@
+[
+  {
+    "fclk0_mhz": 100.0,
+    "index": 0,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  },
+  {
+    "fclk0_mhz": 100.0,
+    "index": 1,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  },
+  {
+    "fclk0_mhz": 100.0,
+    "index": 2,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  },
+  {
+    "fclk0_mhz": 100.0,
+    "index": 3,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  },
+  {
+    "fclk0_mhz": 100.0,
+    "index": 4,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  },
+  {
+    "fclk0_mhz": 100.0,
+    "index": 5,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  },
+  {
+    "fclk0_mhz": 100.0,
+    "index": 6,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  },
+  {
+    "fclk0_mhz": 100.0,
+    "index": 7,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  },
+  {
+    "fclk0_mhz": 100.0,
+    "index": 8,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  },
+  {
+    "fclk0_mhz": 100.0,
+    "index": 9,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  },
+  {
+    "fclk0_mhz": 100.0,
+    "index": 10,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  }
+]

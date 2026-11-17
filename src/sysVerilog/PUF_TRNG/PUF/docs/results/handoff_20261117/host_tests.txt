@@ -1,0 +1,25 @@
+test_characterization_never_counts_rejection_as_success (test_comparison.ComparisonTests.test_characterization_never_counts_rejection_as_success) ... ok
+test_distinct_and_equal_identities (test_comparison.ComparisonTests.test_distinct_and_equal_identities) ... ok
+test_joint_selection_ignores_polarity (test_comparison.ComparisonTests.test_joint_selection_ignores_polarity) ... ok
+test_no_false_difference_when_equal (test_comparison.ComparisonTests.test_no_false_difference_when_equal) ... ok
+test_reject_changed_trial (test_comparison.ComparisonTests.test_reject_changed_trial) ... ok
+test_reject_same_running_kernel (test_comparison.ComparisonTests.test_reject_same_running_kernel) ... ok
+test_exact_gap_ranking_and_insufficient_pairs (test_host.FrozenSelection.test_exact_gap_ranking_and_insufficient_pairs) ... ok
+test_training_only_margin_and_holdout (test_host.FrozenSelection.test_training_only_margin_and_holdout) ... ok
+test_error_packet_and_leak_rejection (test_host.HostProtocol.test_error_packet_and_leak_rejection) ... ok
+test_no_partial_configuration_on_invalid_inputs (test_host.HostProtocol.test_no_partial_configuration_on_invalid_inputs) ... ok
+test_raw_acquisition (test_host.HostProtocol.test_raw_acquisition) ... ok
+test_sequence_race_and_timeout (test_host.HostProtocol.test_sequence_race_and_timeout) ... ok
+test_word_order_and_consume (test_host.HostProtocol.test_word_order_and_consume) ... ok
+test_accepted_changed_identity_remains_failure (test_verifier.VerifierTests.test_accepted_changed_identity_remains_failure) ... ok
+test_changed_helper_rejected (test_verifier.VerifierTests.test_changed_helper_rejected) ... ok
+test_duplicate_hardware_sequence_rejected (test_verifier.VerifierTests.test_duplicate_hardware_sequence_rejected) ... ok
+test_exact_1000 (test_verifier.VerifierTests.test_exact_1000) ... ok
+test_linux_serialized_input_preserves_source_hash_binding (test_verifier.VerifierTests.test_linux_serialized_input_preserves_source_hash_binding) ... ok
+test_missing_attempt_rejected (test_verifier.VerifierTests.test_missing_attempt_rejected) ... ok
+test_weak_rejection_remains_failure (test_verifier.VerifierTests.test_weak_rejection_remains_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.594s
+
+OK

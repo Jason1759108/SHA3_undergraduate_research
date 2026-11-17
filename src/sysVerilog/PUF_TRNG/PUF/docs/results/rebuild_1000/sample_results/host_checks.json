@@ -1,0 +1,12 @@
+{
+  "client_date": "2026-11-13",
+  "synthetic_verifier_tests": {
+    "passed": true,
+    "count": 7,
+    "command": "python -m unittest discover -s 00_VERIFY -p test_verifier.py -v",
+    "test_source_sha256": "a72d37126b75cd089c33910a55895fc70697ece52530020669f51b32247cf964"
+  },
+  "runner_python36_syntax_valid": true,
+  "package_script_syntax_valid": true,
+  "note": "Seven synthetic verifier tests passed, including Linux/Windows input serialization with the original input byte hash still bound. These are not FPGA measurements."
+}

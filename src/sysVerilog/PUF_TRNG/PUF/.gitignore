@@ -1,0 +1,45 @@
+# Generated build/deployment products (historical evidence under docs is retained).
+/build/
+/.build/
+/deploy/
+/.Xil/
+**/__pycache__/
+*.py[cod]
+*.jou
+*.log
+*.vcd
+*.fsdb
+*.vpd
+*.wdb
+*.wlf
+*.dcp
+*.bit
+*.hwh
+*.xpr
+*.str
+*.dmp
+*.bak
+/sim/simv*
+/sim/csrc/
+/sim/ucli.key
+/sim/novas*
+/sim/verdiLog/
+/sim/DVEfiles/
+/sim/obj_dir/
+/scripts/synthesis/WORK/
+/scripts/synthesis/command.log
+/scripts/synthesis/default.svf
+# New per-board data is generated at runtime; checked historical evidence remains tracked.
+/software/results_*/
+/software/common_*/
+/software/characterized_*/
+/software/rebuild1000_*/
+/software/own_enrollment_*.json
+/software/common_bitmap.json
+/software/reference_*.json
+**/.ipynb_checkpoints/
+
+/NA/
+
+# Preserve the explicitly archived old validation evidence.
+!docs/history/legacy_ro_integration/sample_results/**/*.log

@@ -1,0 +1,16 @@
+{
+  "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "board_label": "20200",
+  "board_started_utc": "2026-11-13T00:58:48Z",
+  "client_date": "2026-11-13",
+  "conditions": "Ambient lab conditions; no controlled temperature/voltage sweep or power cycle.",
+  "driver_sha256": "40ea18fdeef2c04a6b47828c02a14c8b3048695bacd3be1dd77ff249e0609f65",
+  "hwh_sha256": "2cd50c158601bfadd18a1420298a87fee2520f820bcfe0d3da12df59e0a694c2",
+  "input_sha256": "4c30ac0daf4e0f691f1347efc98236ec4459377d9bf121e83993e98b18acf319",
+  "linux_boot_id": "843fb581-7a98-48b1-a566-d7bbfa7fadb2",
+  "module_sha256": "2441d0abe338cb56fcb4389025b9450df484989b76f13decbf813686efd0d867",
+  "policy": "Exactly 1000 reconstruction attempts; no new registration, re-selection, or automatic retries.",
+  "pynq": "2.5",
+  "python": "3.6.5",
+  "requested_attempts": 1000
+}

@@ -1,0 +1,6 @@
+{
+  "board_label": "20100",
+  "expected_candidate_hex": "0c5650309cdaafb478690aea91892220e67fb24cb3a18685df719a04d007861d",
+  "note": "Training-only laboratory reference; the board must produce its identity through actual PL registers.",
+  "plan_sha256": "a3530b72719b7b8c983a95f7a1afca6f3c71c2d46d406b32987236ffadb57346"
+}

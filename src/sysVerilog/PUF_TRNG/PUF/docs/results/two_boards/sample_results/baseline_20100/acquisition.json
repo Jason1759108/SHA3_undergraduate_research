@@ -1,0 +1,9 @@
+{
+  "server": "http://140.113.201.80:20100/",
+  "folder": "puf256_a0981_20261113",
+  "raw_archive_sha256": "657ca53bced3978256ebfb2d322eb7fc6d7c968b1ba139f0a52b2437fe072a61",
+  "notebook_export_snapshot_sha256": "e2ad4af7b88eb82909fe2684a2900b4402df0b0fdc2c93bdac8ac404ff4b8bbf",
+  "notebook_normalization": "Removed exactly one unexecuted temporary base64 export cell; all three executed source cells AST-match the upload and contain no error output. Original export snapshot retained.",
+  "timestamp_note": "Server clock differs from client; result folder keeps its original board timestamp.",
+  "independent_verification": "verification.json"
+}

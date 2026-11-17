@@ -1,0 +1,5 @@
+[SUCCESS] SECDED sketch: 4 clean, 64 single, 480 double error cases
+- C:\Users\a0981\Documents\Git Repo\SHA3_undergraduate_research\src\puf\00_TESTBED\PATTERN_ECC.sv:24: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 552ns; walltime 0.002 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 6 MB

@@ -1,0 +1,182 @@
+[
+  {
+    "corrected_words": 0,
+    "index": 0,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 1,
+    "stage": "registration",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 0,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 2,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 1,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 3,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 2,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 4,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 3,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 5,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 4,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 6,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 5,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 7,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 6,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 8,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 7,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 9,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 8,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 10,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 9,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 11,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 10,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 12,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 11,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 13,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 12,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 14,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 13,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 15,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 14,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 16,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 15,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 17,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 16,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 18,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 17,
+    "key_sha256": "a1c6d8e9b87edbc8b9807f64846520dae17015b81a6905e09300198287ab9b51",
+    "match": true,
+    "sequence": 19,
+    "stage": "repeat",
+    "status": 0
+  },
+  {
+    "corrected_words": 0,
+    "index": 18,
+    "key_sha256": null,
+    "match": false,
+    "sequence": 20,
+    "stage": "repeat",
+    "status": 4
+  }
+]

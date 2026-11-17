@@ -1,0 +1,14 @@
+{
+  "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "corrected_word_distribution": {
+    "0": 111
+  },
+  "eligible_pairs": 288,
+  "passed": true,
+  "raw_rows": 59392,
+  "reconstructions": 111,
+  "same_bitstream_reloads": 10,
+  "selected_pairs": 256,
+  "total_corrected_words": 0,
+  "verification": "Independent CSV ranking, margin, polarity, helper syndrome, output digest and completion sequence checks"
+}

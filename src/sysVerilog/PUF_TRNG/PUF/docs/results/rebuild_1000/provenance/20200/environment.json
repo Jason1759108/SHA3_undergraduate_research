@@ -1,0 +1,17 @@
+{
+  "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "conditions": "One PYNQ-Z2, ambient lab conditions; no controlled voltage/temperature sweep.",
+  "holdout_reads": 32,
+  "hwh_sha256": "2cd50c158601bfadd18a1420298a87fee2520f820bcfe0d3da12df59e0a694c2",
+  "pynq": "2.5",
+  "python": "3.6.5",
+  "reconstruction_runs": 100,
+  "reference_reads": 32,
+  "reload_runs": 10,
+  "started_utc": "2026-11-12T23:59:11Z",
+  "system_hz": 100000000,
+  "timestamp_note": "Board wall clock may differ from client; elapsed time uses monotonic clock.",
+  "training_reads": 128,
+  "warmup_cycles": 1024,
+  "window_cycles": 100000
+}

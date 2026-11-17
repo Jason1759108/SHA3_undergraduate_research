@@ -1,0 +1,25 @@
+{
+  "accepted_mismatches": 0,
+  "attempts_sha256": "1ce366e3757e0b6f0a15fbdf768a083cdb0da5b86df246debdfeb2cb57e5ef84",
+  "bitmap_hex": "fdebfe2ffef7fbefd9fefffdffff8dfbfefb99ebbff7e36cfb7daf7ff4fefbfd97b6fbfbf9eeffdb",
+  "board_label": "20200",
+  "completed": true,
+  "completed_attempts": 1000,
+  "corrected_word_distribution": {
+    "0": 1000
+  },
+  "elapsed_seconds": 1297.8353757280856,
+  "expected_key_sha256": "aaa3af481b76f29a9cff45b319db5a2c98c7151c4f759e35e8834671ba505f10",
+  "fclk0_end_mhz": 100.0,
+  "files_unchanged": true,
+  "hardware_rejections": 0,
+  "helper_hex": "daa3b092dab21b2dbc9f",
+  "input_sha256": "4c30ac0daf4e0f691f1347efc98236ec4459377d9bf121e83993e98b18acf319",
+  "passed": true,
+  "requested_attempts": 1000,
+  "status_counts": {
+    "0": 1000
+  },
+  "successful_matching": 1000,
+  "total_corrected_words": 0
+}

@@ -1,0 +1,17 @@
+{
+  "bitmap_hex": "feebfe3ffff7fbedfdfbe7fbbfbbeced7ffaf1fbbc37836dfbffbb7ff4ffeafd97bfffbdfbefdfff",
+  "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "board_label": "20100",
+  "holdout_reads": 32,
+  "hwh_sha256": "2cd50c158601bfadd18a1420298a87fee2520f820bcfe0d3da12df59e0a694c2",
+  "linux_boot_id": "76aacdb7-bf29-48c3-bc3f-4cd82b2861b6",
+  "plan_sha256": "a3530b72719b7b8c983a95f7a1afca6f3c71c2d46d406b32987236ffadb57346",
+  "pynq": "2.5",
+  "python": "3.6.5",
+  "reconstruction_runs": 100,
+  "reference_sha256": "bfd4d8eed3e8b000c417766a49051c0d9822433fb196c1fa4049091d28f63402",
+  "reload_runs": 10,
+  "scope": "Two declared endpoints, same routed bitstream and pair order; ambient conditions. Boot ID is not a permanent chip identifier.",
+  "warmup_cycles": 1024,
+  "window_cycles": 100000
+}

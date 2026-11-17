@@ -1,0 +1,14 @@
+{
+  "bitmap_hex": "feebfe3ffff7fbedfdfbe7fbbfbbeced7ffaf1fbbc37836dfbffbb7ff4ffeafd97bfffbdfbefdfff",
+  "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "board_label": "20100",
+  "candidate_hex": "0c5650309cdaafb478690aea91892220e67fb24cb3a18685df719a04d007861d",
+  "corrected_words": 0,
+  "elapsed_seconds": 172.56695067230612,
+  "holdout_samples": 8192,
+  "key_sha256": "2e8cabe88c015c46363a8e566d758b2ec14a614605758c33b052f79ebc1570c2",
+  "passed": true,
+  "plan_sha256": "a3530b72719b7b8c983a95f7a1afca6f3c71c2d46d406b32987236ffadb57346",
+  "reconstruction_count": 111,
+  "reload_count": 10
+}

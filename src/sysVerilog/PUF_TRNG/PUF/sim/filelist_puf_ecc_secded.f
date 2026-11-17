@@ -1,0 +1,3 @@
+../rtl/puf_sketch.sv
+PATTERN_PUF_ECC_SECDED.sv
+TESTBED_PUF_ECC_SECDED.sv

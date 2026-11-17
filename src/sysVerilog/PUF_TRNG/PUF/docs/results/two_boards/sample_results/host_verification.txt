@@ -1,0 +1,11 @@
+test_characterization_never_counts_rejection_as_success (test_comparison.ComparisonTests.test_characterization_never_counts_rejection_as_success) ... ok
+test_distinct_and_equal_identities (test_comparison.ComparisonTests.test_distinct_and_equal_identities) ... ok
+test_joint_selection_ignores_polarity (test_comparison.ComparisonTests.test_joint_selection_ignores_polarity) ... ok
+test_no_false_difference_when_equal (test_comparison.ComparisonTests.test_no_false_difference_when_equal) ... ok
+test_reject_changed_trial (test_comparison.ComparisonTests.test_reject_changed_trial) ... ok
+test_reject_same_running_kernel (test_comparison.ComparisonTests.test_reject_same_running_kernel) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.648s
+
+OK

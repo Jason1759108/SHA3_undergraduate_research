@@ -1,0 +1,15 @@
+[PASS] WAVE phase=1 command=REGISTRATION                     status=PUF_OK measurements=1280
+[PASS] WAVE phase=2 command=CERTIFICATION                    status=PUF_OK measurements=1280
+[PASS] WAVE phase=3 command=CERTIFICATION                    status=PUF_OK measurements=1280
+[PASS] WAVE phase=4 command=CERTIFICATION                    status=PUF_OK measurements=1280
+[PASS] WAVE phase=5 command=CERTIFICATION                    status=PUF_ECC_UNCORRECTABLE measurements=1280
+[PASS] WAVE phase=6 command=REGISTRATION                     status=PUF_WEAK_PAIR measurements=5
+[PASS] WAVE phase=7 command=CERTIFICATION                    status=PUF_WEAK_PAIR measurements=5
+[PASS] WAVE phase=8 command=REGISTRATION                     status=PUF_OK measurements=1280
+[PASS] WAVE phase=9 command=CERTIFICATION                    status=PUF_OK measurements=1280
+[PASS] WAVE phase=10 command=CERTIFICATION                    status=PUF_OK measurements=1280
+[SUCCESS] complete RO waveform -> real counter -> PUF -> ECC regression
+- C:\Users\a0981\Documents\Git Repo\SHA3_undergraduate_research\src\puf\00_TESTBED\PATTERN_PUF_WAVE.sv:133: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 12ms; walltime 5.864 s; speed 2.092 ms/s
+- Verilator: cpu 5.547 s on 1 threads; alloced 7 MB

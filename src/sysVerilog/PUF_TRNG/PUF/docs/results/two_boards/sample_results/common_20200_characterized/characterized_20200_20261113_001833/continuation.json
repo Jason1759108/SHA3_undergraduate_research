@@ -1,0 +1,6 @@
+{
+  "module_sha256": "2c14f2ab65d0cdf6575b630de120cbb021684d48c91899fcb70c3319df5ae60a",
+  "policy": "Fixed attempt schedule; record every WEAK_PAIR, no automatic retries or pair replacement.",
+  "source_strict_directory": "common_20200_20261113_000917",
+  "strict_prefix_sha256": "245a361c206e3c7926ba577fa61881d05d853798bcbade31f3909682c6bd178d"
+}

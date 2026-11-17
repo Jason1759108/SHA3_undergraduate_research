@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-17",
+  "note": "Active RTL must remain byte-identical. Host/build paths and new handoff entry points differ; historical board results qualify the original bitstream only.",
+  "original_bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "rtl": {
+    "puf_axi.sv": {
+      "bytes": 13581,
+      "sha256": "d50bdefd3611ccb6147d8bd1bb9bb2f6392111ade46d2f20061f127d4c559c2d"
+    },
+    "puf_core.sv": {
+      "bytes": 5083,
+      "sha256": "33ca703003b1c7d84791435725c6416ec1acb2a5709478f4db3e66b48584c44b"
+    },
+    "puf_device.sv": {
+      "bytes": 5551,
+      "sha256": "2af5919af17b854e16a512e36c4e0e3c5f65753e8e760c61811e3b38187bf2da"
+    },
+    "puf_fpga_top.sv": {
+      "bytes": 2694,
+      "sha256": "c2777d3f3bc527e30b039600b06df47e3f122e4492243848cad1ba831ddb3606"
+    },
+    "puf_sketch.sv": {
+      "bytes": 1465,
+      "sha256": "fd7a96e5917ff3eea4c47185f220abe99d2737947741e1c66c91aad577bc0e2d"
+    },
+    "puf_types.sv": {
+      "bytes": 2493,
+      "sha256": "9ce471ad02c4adaa7f447bab30584c76739a35868bdacce972a849ef3217cc32"
+    },
+    "ro_bank.sv": {
+      "bytes": 280,
+      "sha256": "f80705d9adf2a8dd3030c574e74ddbb89a2118252ca22de6f4b08ce8b2976236"
+    },
+    "ro_edge_counter.sv": {
+      "bytes": 1756,
+      "sha256": "943381e87366139f30c53b526dbe2750c3392cc8839f65b2ccb37b7f1578070d"
+    },
+    "ro_lut_cell.sv": {
+      "bytes": 643,
+      "sha256": "6f07f74e4c808a5a4b30938ba671abdba0c2bf787735ae3acf94bb3acbe57920"
+    },
+    "ro_measure.sv": {
+      "bytes": 6193,
+      "sha256": "40a73be39a326bc6a32ada72a06ad7c593705923d7200025d6308d99c57a36bc"
+    }
+  },
+  "rtl_source": "pynq_z2_puf256/01_RTL"
+}

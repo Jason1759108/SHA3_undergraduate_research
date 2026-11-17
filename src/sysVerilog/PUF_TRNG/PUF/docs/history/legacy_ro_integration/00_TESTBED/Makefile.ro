@@ -1,0 +1,17 @@
+# Optional focused targets; original workstation Makefile is preserved.
+PYTHON ?= python3
+.PHONY: wave count ro ecc local
+wave:
+	vcs -full64 -sverilog -f filelist.f -o simv_wave
+	./simv_wave
+count:
+	vcs -full64 -sverilog -f filelist_count.f -o simv_count
+	./simv_count
+ro:
+	vcs -full64 -sverilog -f filelist_ro.f -o simv_ro
+	./simv_ro
+ecc:
+	vcs -full64 -sverilog -f filelist_ecc.f -o simv_ecc
+	./simv_ecc
+local:
+	$(PYTHON) run_sim.py --mode all --vcd

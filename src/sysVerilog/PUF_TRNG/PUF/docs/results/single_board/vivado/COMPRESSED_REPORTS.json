@@ -1,0 +1,12 @@
+{
+  "timing_summary.rpt": {
+    "raw_bytes": 47836336,
+    "raw_sha256": "e50ec846c54fc917be87a96ba564cc35be79afa4cfec914b699b44d279032d20",
+    "stored": "timing_summary.rpt.gz"
+  },
+  "bus_skew.rpt": {
+    "raw_bytes": 9189601,
+    "raw_sha256": "f59dfd2f5841a52ddc0f530c6d4e8b16507785ba07e59106c2774f0f806e3389",
+    "stored": "bus_skew.rpt.gz"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "static_checks_passed": true,
+  "rtl_byte_identical": true,
+  "rtl_files": 10,
+  "filelists": 3,
+  "python_syntax_files": 24,
+  "notebooks": 3,
+  "local_document_links": 36,
+  "scope": "Source/path/syntax checks only; no vendor synthesis, implementation, or board qualification."
+}

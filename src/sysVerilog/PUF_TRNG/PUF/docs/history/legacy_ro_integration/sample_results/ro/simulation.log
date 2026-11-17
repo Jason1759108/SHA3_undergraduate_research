@@ -1,0 +1,16 @@
+[PASS] waveform counters A=250 B=200
+[PASS] waveform counters A=250 B=200
+[PASS] waveform counters A=250 B=200
+[PASS] waveform counters A=250 B=200
+[PASS] waveform counters A=250 B=200
+[PASS] waveform counters A=250 B=200
+[PASS] waveform counters A=250 B=200
+[PASS] waveform counters A=250 B=200
+[PASS] waveform counters A=0 B=200
+[PASS] waveform counters A=250 B=200
+[PASS] waveform counters A=250 B=200
+[SUCCESS] RO waveform and Gray counter regression
+- C:\Users\a0981\Documents\Git Repo\SHA3_undergraduate_research\src\puf\00_TESTBED\PATTERN_RO.sv:24: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 12us; walltime 0.004 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 6 MB

@@ -1,0 +1,27 @@
+[PASS] phase=1 command=REGISTRATION                     status=PUF_OK corrected=0 requests=1280
+[PASS] phase=2 command=CERTIFICATION                    status=PUF_OK corrected=0 requests=1280
+[PASS] phase=3 command=CERTIFICATION                    status=PUF_OK corrected=0 requests=1280
+[PASS] phase=4 command=CERTIFICATION                    status=PUF_OK corrected=16 requests=1280
+[PASS] phase=5 command=CERTIFICATION                    status=PUF_ECC_UNCORRECTABLE corrected=0 requests=1280
+[PASS] phase=6 command=CERTIFICATION                    status=PUF_OK corrected=1 requests=1280
+[LIMIT] SECDED three-error miscorrection remains possible; no key authentication
+[PASS] phase=7 command=REGISTRATION                     status=PUF_WEAK_PAIR corrected=0 requests=5
+[PASS] phase=7 command=CERTIFICATION                    status=PUF_WEAK_PAIR corrected=0 requests=5
+[PASS] phase=8 command=REGISTRATION                     status=PUF_BAD_BITMAP corrected=0 requests=0
+[PASS] phase=8 command=CERTIFICATION                    status=PUF_BAD_BITMAP corrected=0 requests=0
+[PASS] phase=8 command=REGISTRATION                     status=PUF_BAD_BITMAP corrected=0 requests=0
+[PASS] phase=9 command=CERTIFICATION                    status=PUF_MISSING_HELPER corrected=0 requests=0
+[PASS] phase=9 command=INVALID_COMMAND                  status=PUF_BAD_COMMAND corrected=0 requests=0
+[PASS] phase=9 command=INVALID_COMMAND                  status=PUF_BAD_COMMAND corrected=0 requests=0
+[PASS] phase=10 command=CERTIFICATION                    status=PUF_ECC_UNCORRECTABLE corrected=0 requests=1280
+[PASS] phase=10 command=CERTIFICATION                    status=PUF_ECC_UNCORRECTABLE corrected=0 requests=1280
+[PASS] phase=11 command=REGISTRATION                     status=PUF_OK corrected=0 requests=1280
+[PASS] phase=11 command=CERTIFICATION                    status=PUF_OK corrected=0 requests=1280
+[PASS] phase=12 command=REGISTRATION                     status=PUF_MEASURE_TIMEOUT corrected=0 requests=0
+[PASS] phase=13 command=CERTIFICATION                    status=PUF_MEASURE_TIMEOUT corrected=0 requests=1
+[PASS] phase=14 command=CERTIFICATION                    status=PUF_OK corrected=0 requests=1280
+[SUCCESS] simplified PUF external bitmap/helper, two commands, enum and adapter-handshake regression
+- C:/Users/a0981/Documents/Codex/2026-11-04/puf/work/puf_repository_20261117/sim\PATTERN_PUF.sv:143: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.38
+- Verilator: $finish at 710us; walltime 0.104 s; speed 0.000 s/s
+- Verilator: cpu 0.000 s on 1 threads; alloced 6 MB

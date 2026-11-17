@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-17",
+  "git_commit_or_push_performed": false,
+  "historical_evidence_byte_identical": true,
+  "protected_files_checked": 243,
+  "rtl_unchanged": true,
+  "static_checks_passed": true,
+  "sv_stimuli_assertions_exact_inverse_rename_match": true,
+  "tests": {
+    "axi-ro": {
+      "executed": false,
+      "note": "Renamed full integration elaborates. Stimuli/checks exactly inverse-match prior executed regression; full run not repeated for name-only change.",
+      "translated": true
+    },
+    "core-count": {
+      "compiled": true,
+      "executed": true,
+      "passed": true
+    },
+    "ecc-secded": {
+      "compiled": true,
+      "executed": true,
+      "passed": true
+    }
+  },
+  "vcd_renamed_scope_smoke_passed": true,
+  "vcs_executed": false
+}

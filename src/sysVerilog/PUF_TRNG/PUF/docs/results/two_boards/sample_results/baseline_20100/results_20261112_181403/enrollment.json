@@ -1,0 +1,10 @@
+{
+  "bitmap_hex": "feffffdbfffffbecfdfbe7fbbfbbece97ffec59efc378feed7eff93db7ffeefdbfdddfb9ebefdfff",
+  "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "format": "puf256-public-reconstruction-v1",
+  "helper_hex": "950e514f995bd8df0e52",
+  "hwh_sha256": "2cd50c158601bfadd18a1420298a87fee2520f820bcfe0d3da12df59e0a694c2",
+  "note": "No stored key. Helper/bitmap are not authenticated by this prototype.",
+  "warmup_cycles": 1024,
+  "window_cycles": 100000
+}

@@ -1,0 +1,152 @@
+{
+  "stage": "puf256-v1",
+  "pairs": 320,
+  "selected_pairs": 256,
+  "puf_bits": 256,
+  "helper_bits": 80,
+  "repeats": 5,
+  "min_count_margin": 8,
+  "ro_count": 640,
+  "counter_bits": 16,
+  "counter_mode": "saturating",
+  "max_window_cycles": 100000,
+  "vivado": "2026.1",
+  "part": "xc7z020clg400-1",
+  "build": "C:\\Users\\a0981\\Documents\\Codex\\puf256\\vivado_20261113_142821",
+  "files": {
+    "board_validation.py": {
+      "bytes": 9197,
+      "sha256": "b8d22f6bbf07d73576c7a3f154299a06d77ed39c839543ecb5e79dc599e71da8"
+    },
+    "characterize_common.py": {
+      "bytes": 6183,
+      "sha256": "2c14f2ab65d0cdf6575b630de120cbb021684d48c91899fcb70c3319df5ae60a"
+    },
+    "cross_board.py": {
+      "bytes": 7686,
+      "sha256": "c240c31b02125d4f906cafed85da2e529a51476a97fd1fc1d50c23b60202cb17"
+    },
+    "freeze_1000_input.py": {
+      "bytes": 1715,
+      "sha256": "91a07a2abcd01ed5f7fce340cf68b470222defd34873ece0ada5714e67047e56"
+    },
+    "puf256.bit": {
+      "bytes": 4045771,
+      "sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2"
+    },
+    "puf256.hwh": {
+      "bytes": 139026,
+      "sha256": "2cd50c158601bfadd18a1420298a87fee2520f820bcfe0d3da12df59e0a694c2"
+    },
+    "puf256.py": {
+      "bytes": 7189,
+      "sha256": "40ea18fdeef2c04a6b47828c02a14c8b3048695bacd3be1dd77ff249e0609f65"
+    },
+    "PUF256_1000_20100.ipynb": {
+      "bytes": 1371,
+      "sha256": "29e4354fe910afce267a01e70ce3f553148f65d2df58b59ebdadbf16f03a5f10"
+    },
+    "PUF256_1000_20200.ipynb": {
+      "bytes": 1371,
+      "sha256": "2ba66d1d61b5938e056a445233a9eb1beb5b602cecb97e8e5e8ee993d5849619"
+    },
+    "PUF256_Validation.ipynb": {
+      "bytes": 4001,
+      "sha256": "62c385ca4256c88cd1cc01392880f590ad237884ff7a2d7fb7ee7f6ba91967eb"
+    },
+    "puf_screening.py": {
+      "bytes": 3208,
+      "sha256": "d08c18b3e886c3520a2e1d560ed555ab43d04c3fe28320144965258abc6b88fe"
+    },
+    "rebuild_1000.py": {
+      "bytes": 8959,
+      "sha256": "2441d0abe338cb56fcb4389025b9450df484989b76f13decbf813686efd0d867"
+    },
+    "reconstruct.py": {
+      "bytes": 1418,
+      "sha256": "34126de36e3872fae90d70634245fb6410e68d895ae251d5d24c47b2ea3ec488"
+    }
+  },
+  "rtl_sha256": {
+    "puf_axi.sv": "d50bdefd3611ccb6147d8bd1bb9bb2f6392111ade46d2f20061f127d4c559c2d",
+    "puf_core.sv": "33ca703003b1c7d84791435725c6416ec1acb2a5709478f4db3e66b48584c44b",
+    "puf_device.sv": "2af5919af17b854e16a512e36c4e0e3c5f65753e8e760c61811e3b38187bf2da",
+    "puf_fpga_top.sv": "c2777d3f3bc527e30b039600b06df47e3f122e4492243848cad1ba831ddb3606",
+    "puf_sketch.sv": "fd7a96e5917ff3eea4c47185f220abe99d2737947741e1c66c91aad577bc0e2d",
+    "puf_types.sv": "9ce471ad02c4adaa7f447bab30584c76739a35868bdacce972a849ef3217cc32",
+    "ro_bank.sv": "f80705d9adf2a8dd3030c574e74ddbb89a2118252ca22de6f4b08ce8b2976236",
+    "ro_edge_counter.sv": "943381e87366139f30c53b526dbe2750c3392cc8839f65b2ccb37b7f1578070d",
+    "ro_lut_cell.sv": "6f07f74e4c808a5a4b30938ba671abdba0c2bf787735ae3acf94bb3acbe57920",
+    "ro_measure.sv": "40a73be39a326bc6a32ada72a06ad7c593705923d7200025d6308d99c57a36bc"
+  },
+  "routed_checks": {
+    "wns_ns": 0.145,
+    "setup_failing": 0,
+    "whs_ns": 0.061,
+    "hold_failing": 0,
+    "wpws_ns": 0.5,
+    "pulse_failing": 0,
+    "gray_buses": 640,
+    "max_bus_skew_ns": 3.323,
+    "min_bus_skew_slack_ns": 4.677,
+    "no_missing_clock": true,
+    "no_unconstrained_internal_endpoints": true,
+    "critical_cdc": false,
+    "severe_drc": false,
+    "expected_gray_cdc": true,
+    "expected_reset_cdc": true,
+    "passed": true
+  },
+  "final_routed_sha256": "ed2a6e0a4f76d4fe61824b9ae4fd1baaeff36afb9be6b8c1fe6331d55e1bb4dd",
+  "methodology": {
+    "mode": "separate per-check analysis of final_routed.dcp",
+    "complete_at_prepare": true,
+    "findings": [
+      {
+        "rule": "LUTAR-1",
+        "severity": "Warning",
+        "description": "LUT drives async reset alert",
+        "count": 1
+      },
+      {
+        "rule": "ULMTCS-2",
+        "severity": "Warning",
+        "description": "Control Sets use limits require reduction",
+        "count": 1
+      },
+      {
+        "rule": "XDCB-1",
+        "severity": "Warning",
+        "description": "Runtime intensive exceptions",
+        "count": 1
+      },
+      {
+        "rule": "TIMING-2",
+        "severity": "Critical Warning",
+        "description": "Invalid primary clock source pin",
+        "count": 640
+      },
+      {
+        "rule": "TIMING-4",
+        "severity": "Critical Warning",
+        "description": "Invalid primary clock redefinition on a clock tree",
+        "count": 640
+      },
+      {
+        "rule": "TIMING-14",
+        "severity": "Critical Warning",
+        "description": "LUT on the clock tree",
+        "count": 640
+      },
+      {
+        "rule": "TIMING-23",
+        "severity": "Warning",
+        "description": "Combinational loop found",
+        "count": 640
+      }
+    ],
+    "all_rules_clean": false
+  },
+  "board_verified_at_prepare": false,
+  "notebook_hash_note": "Hash is the unexecuted upload file; saved execution outputs change the server notebook hash"
+}

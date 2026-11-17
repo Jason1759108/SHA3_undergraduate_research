@@ -1,0 +1,20 @@
+{
+  "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "elapsed_seconds": 285.21896156389266,
+  "eligible_pairs": 293,
+  "holdout": {
+    "failed_pairs": [],
+    "passed": true,
+    "reads_per_pair": 32,
+    "selected_count": 256
+  },
+  "holdout_samples": 8192,
+  "passed": true,
+  "reconstruction_count": 111,
+  "reference_samples": 10240,
+  "reload_count": 10,
+  "scope": "Single board, fixed routed bitstream, ambient conditions. No authentication, SHA3, entropy or multi-device uniqueness claim.",
+  "selected_pairs": 256,
+  "total_corrected_words": 0,
+  "training_samples": 40960
+}

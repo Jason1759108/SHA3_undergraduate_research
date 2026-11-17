@@ -1,0 +1,18 @@
+{
+  "all_accepted_keys_match": true,
+  "all_transactions_successful": false,
+  "bitmap_hex": "feebfe3ffff7fbedfdfbe7fbbfbbeced7ffaf1fbbc37836dfbffbb7ff4ffeafd97bfffbdfbefdfff",
+  "bitstream_sha256": "79346d7855c4a678563e8010083456b762b63bc8a8455388b2c45d4f12b7c7c2",
+  "board_label": "20200",
+  "candidate_hex": "0e5f79309a48ea2d78e1ca7b95c822be823fa2de70f7cac8ca70120690828c51",
+  "corrected_words": 0,
+  "linux_boot_id": "843fb581-7a98-48b1-a566-d7bbfa7fadb2",
+  "min_abs_margin": 10,
+  "passed": false,
+  "raw_holdout_rows": 8192,
+  "reconstructions": 111,
+  "records_verified": true,
+  "rejected_reconstructions": 49,
+  "reloads": 10,
+  "successful_reconstructions": 62
+}

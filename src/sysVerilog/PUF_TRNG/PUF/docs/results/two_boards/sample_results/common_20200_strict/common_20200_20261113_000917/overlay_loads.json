@@ -1,0 +1,15 @@
+[
+  {
+    "fclk0_mhz": 100.0,
+    "index": 0,
+    "initial_volatile_registers": {
+      "bitmap": 0,
+      "helper_input": 0,
+      "helper_input_valid": 0,
+      "helper_output": 0,
+      "key_data": 0,
+      "puf_sequence": 0,
+      "raw_sequence": 0
+    }
+  }
+]

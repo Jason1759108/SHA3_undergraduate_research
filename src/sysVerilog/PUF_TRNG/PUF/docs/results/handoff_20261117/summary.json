@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-17",
+  "dc_executed": false,
+  "deployment_prepare_on_original_checkpoint": true,
+  "installed_path_checks": {
+    "evidence_checks": {
+      "command": [
+        "verification/recheck_evidence.py"
+      ],
+      "passed": true
+    },
+    "host_tests": {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "verification",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "passed": true
+    },
+    "static_checks": {
+      "command": [
+        "verification/check_handoff.py"
+      ],
+      "passed": true
+    }
+  },
+  "new_board_measurements": false,
+  "new_full_fpga_implementation": false,
+  "rtl_unchanged": true,
+  "simulation": {
+    "core": {
+      "log_sha256": "9d6e7f2d1ac5189ceb98fdb78c7a5348baf8e37656c6c608e358387dfd0bf91c",
+      "passed": true,
+      "source_tree": "Relocated staged tree; RTL/sim source bytes match installed tree."
+    },
+    "ecc": {
+      "log_sha256": "6d38edc81e560db1d5542943d0e0b70959644551b7bb69288b887665969902fb",
+      "passed": true,
+      "source_tree": "Relocated staged tree; RTL/sim source bytes match installed tree."
+    },
+    "wave": {
+      "log_sha256": "8c281355f9fb1b4cb8c85f4e60eabc8a77c7414b07725d69813c1c250d0d08b9",
+      "passed": true,
+      "source_tree": "Relocated staged tree; RTL/sim source bytes match installed tree."
+    }
+  },
+  "vcs_executed": false,
+  "vivado_bd_validate": true,
+  "vivado_ip_package": true
+}

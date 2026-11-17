@@ -1,0 +1,17 @@
+.gitignore text eol=lf
+.gitattributes text eol=lf
+# Active executable text uses portable newlines.
+*.py text eol=lf
+*.tcl text eol=lf
+*.f text eol=lf
+*.md text eol=lf
+Makefile text eol=lf
+# These bytes are bound to the historical RTL/checkpoint/evidence hashes.
+rtl/*.sv -text
+docs/history/** -text
+docs/results/** -text
+scripts/vivado/board_files/** -text
+*.ipynb -text
+*.png binary
+*.zip binary
+*.gz binary

@@ -1,0 +1,10 @@
+.build/
+__pycache__/
+00_TESTBED/simv*
+00_TESTBED/csrc/
+00_TESTBED/*.vcd
+00_TESTBED/*.fsdb
+00_TESTBED/*.log
+sample_results/**/*.vcd
+02_SYN/Report/
+02_SYN/Netlist/

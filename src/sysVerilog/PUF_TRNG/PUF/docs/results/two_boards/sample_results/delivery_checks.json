@@ -1,0 +1,17 @@
+{
+  "all_transactions_successful": false,
+  "comparison_verified": true,
+  "diagnostic_probe_abs_gap_max": 28,
+  "diagnostic_probe_abs_gap_min": 10,
+  "diagnostic_probe_samples": 256,
+  "diagnostic_probe_weak_samples": 0,
+  "original_overlay_files_byte_identical": true,
+  "portable_training_only_refreeze_byte_identical": true,
+  "rejected_pair_counts": {
+    "2": 10,
+    "16": 38,
+    "25": 1
+  },
+  "strict_failure_prefix_byte_identical": true,
+  "synthetic_protocol_tests": 6
+}

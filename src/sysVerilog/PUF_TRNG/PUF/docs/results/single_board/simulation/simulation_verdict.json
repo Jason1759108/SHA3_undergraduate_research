@@ -1,0 +1,17 @@
+{
+  "wave": {
+    "passed": true,
+    "log_sha256": "51f061126bfc1be1813a1debaeef2aa60a758d47162ed4bee309784dd0ae4115",
+    "vcd_bytes": 517415595,
+    "vcd_sha256": "10d273d500083d09498b5f264714c90a1a97f04b5a14a5460a98c24b1f15b4b0",
+    "trace_signals": 178
+  },
+  "core": {
+    "passed": true,
+    "log_sha256": "59c129dafe0f3425240f015f13067c377f5b1f50fd9522ef63ccd4107770d427"
+  },
+  "ecc": {
+    "passed": true,
+    "log_sha256": "dce2b15b18b9af1c953b69712e8a0c61a44079d57fc3b05b3c92306a7f0cc64c"
+  }
+}

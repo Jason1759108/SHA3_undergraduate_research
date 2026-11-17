@@ -1,0 +1,3 @@
+../01_RTL/puf_sketch.sv
+../00_TESTBED/PATTERN_ECC.sv
+../00_TESTBED/TESTBED_ECC.sv

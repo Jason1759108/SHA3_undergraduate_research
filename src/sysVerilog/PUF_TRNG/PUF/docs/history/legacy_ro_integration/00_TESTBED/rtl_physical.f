@@ -1,0 +1,10 @@
+../01_RTL/puf_types.sv
+../01_RTL/puf_core.sv
+../01_RTL/puf_sketch.sv
+../01_RTL/puf_device.sv
+../01_RTL/ro_frequency_counter.sv
+../01_RTL/ro_measure_backend.sv
+../01_RTL/puf_ro_top.sv
+../01_RTL/ro_cell.sv
+../01_RTL/ro_array.sv
+../01_RTL/puf_ro_chip_top.sv
